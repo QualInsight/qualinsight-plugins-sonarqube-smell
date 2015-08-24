@@ -1,0 +1,58 @@
+<%
+  wtf_debt=measure('WTF_DEBT')
+  wtf_count=measure('WTF_COUNT')
+  wtf_count_wrong_algorithm=measure('WTF_COUNT_WRONG_ALGORITHM')
+  wtf_count_anti_pattern=measure('WTF_COUNT_ANTI_PATTERN')
+  wtf_count_bad_design=measure('WTF_COUNT_BAD_DESIGN')
+  wtf_count_useless_test=measure('WTF_COUNT_USELESS_TEST')
+  
+%>
+<div class="widget-row widget-row-x">
+  <div class="widget-span widget-span-3">
+    <div class="widget-measure-container">
+      <p class="widget-measure widget-measure-main">
+        <span class="widget-label"><%= message('metric.wtf_count.name') -%></span>
+        <span class="nowrap">
+          <%= format_measure(wtf_count, :url => url_for_drilldown(wtf_count)) %>
+          <%= format_variation(wtf_count) if dashboard_configuration.selected_period? -%>
+        </span>
+      </p>
+      <p class="widget-measure">
+        <span class="widget-label"><%= message('metric.wtf_debt.name') -%></span>
+        <span class="nowrap">
+          <%= format_measure(wtf_debt, :url => url_for_drilldown(wtf_debt)) %>
+          <%= format_variation(wtf_debt) if dashboard_configuration.selected_period? -%>
+        </span>
+      </p>
+    </div>
+  </div>
+  <div class="widget-span widget-span-9">
+    <div class="widget-measure-container">
+      <div id="wtf-piechart" style="width: auto; height: auto;"></div>
+      <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+      <script type="text/javascript">
+        google.load("visualization", "1.1", {packages:["corechart"]});
+        google.setOnLoadCallback(drawChart);
+        function drawChart() {
+  
+          var data = google.visualization.arrayToDataTable([
+            ['WTF! Type', 'Issue Count'],
+            ['<%= message('metric.wtf_count_wrong_algorithm.name') -%>', <%= wtf_count_bad_conception.formatted_value -%>],
+            ['<%= message('metric.wtf_count_anti_pattern.name') -%>', <%= wtf_count_bad_conception.formatted_value -%>],
+            ['<%= message('metric.wtf_count_bad_design.name') -%>', <%= wtf_count_bad_design.formatted_value -%>],
+            ['<%= message('metric.wtf_count_useless_test.name') -%>', <%= wtf_count_useless_test.formatted_value -%>]
+          ]);
+          
+          var options = {
+            pieHole: 0.5,
+            pieSliceText: 'none',
+          };
+          
+          var chart = new google.visualization.PieChart(document.getElementById('wtf-piechart'));
+  
+          chart.draw(data, options);
+        }
+      </script>
+    </div>
+  </div>
+</div>
