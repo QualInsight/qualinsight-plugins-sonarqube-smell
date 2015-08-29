@@ -29,11 +29,18 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.sonar.api.batch.SensorContext;
 import org.sonar.api.batch.fs.InputFile;
+import org.sonar.api.measures.Measure;
 import com.google.common.io.Files;
+import com.qualinsight.plugins.sonarqube.wtf.api.annotation.WTF;
 import com.qualinsight.plugins.sonarqube.wtf.api.model.WTFType;
 import com.qualinsight.plugins.sonarqube.wtf.internal.extension.WTFMetrics;
 
-public class WTFMeasurer {
+/**
+ * Helper class that scans {@link InputFile}s for the presence of {@link WTF} annotations and saves {@link Measure}s accordingly.
+ *
+ * @author Michel Pawlak
+ */
+public final class WTFMeasurer {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(WTFMeasurer.class);
 
@@ -45,10 +52,20 @@ public class WTFMeasurer {
 
     private SensorContext context;
 
+    /**
+     * {@link WTFMeasurer} constructor
+     *
+     * @param context context to be used to save {@link Measure}.
+     */
     public WTFMeasurer(final SensorContext context) {
         this.context = context;
     }
 
+    /**
+     * Launches the measuring of a give {@link InputFile}.
+     * 
+     * @param inputFile {@link InputFile} to be scanned for {@link WTF} annotation presence.
+     */
     public void measure(final InputFile inputFile) {
         final String fileContent = getFileAsString(inputFile.file(), Charsets.UTF_8);
         measureWTFTypes(inputFile, fileContent);
@@ -102,7 +119,7 @@ public class WTFMeasurer {
         this.context.saveMeasure(inputFile, WTFMetrics.WTF_DEBT, debt);
     }
 
-    private String getFileAsString(final File file, final Charset charset) {
+    private static String getFileAsString(final File file, final Charset charset) {
         try {
             return Files.toString(file, charset);
         } catch (final IOException e) {

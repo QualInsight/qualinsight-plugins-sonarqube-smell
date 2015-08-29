@@ -26,9 +26,18 @@ import org.sonar.api.measures.Metric.ValueType;
 import org.sonar.api.measures.Metrics;
 import org.sonar.api.measures.SumChildValuesFormula;
 import com.google.common.collect.ImmutableList;
+import com.qualinsight.plugins.sonarqube.wtf.api.annotation.WTF;
 
-public class WTFMetrics implements Metrics {
+/**
+ * Provides the {@link Metric}s related to WTF! measurement.
+ *
+ * @author Michel Pawlak
+ */
+public final class WTFMetrics implements Metrics {
 
+    /**
+     * Metric that tracks the debt related to WTF! issues.
+     */
     public static final Metric<Integer> WTF_DEBT = new Metric.Builder("WTF_DEBT", "WTF Debt", ValueType.WORK_DUR).setBestValue(0d)
         .setDescription("WTF technical debt reported by developers.")
         .setDirection(Metric.DIRECTION_WORST)
@@ -37,6 +46,9 @@ public class WTFMetrics implements Metrics {
         .setFormula(new SumChildValuesFormula(true))
         .create();
 
+    /**
+     * Metric that tracks the count of {@link WTF} annotations.
+     */
     public static final Metric<Integer> WTF_COUNT = new Metric.Builder("WTF_COUNT", "WTF issues count", ValueType.INT).setBestValue(0d)
         .setDescription("Total number of reported WTF issues")
         .setDirection(Metric.DIRECTION_WORST)
@@ -45,6 +57,9 @@ public class WTFMetrics implements Metrics {
         .setFormula(new SumChildValuesFormula(true))
         .create();
 
+    /**
+     * Metric that tracks the count of WTF! related to a wrong logic.
+     */
     public static final Metric<Integer> WTF_COUNT_WRONG_LOGIC = new Metric.Builder("WTF_COUNT_WRONG_LOGIC", "WTF wrong logic count", ValueType.INT).setBestValue(0d)
         .setDescription("Total number of wrong logic cases reported by developers.")
         .setDirection(Metric.DIRECTION_WORST)
@@ -53,6 +68,9 @@ public class WTFMetrics implements Metrics {
         .setFormula(new SumChildValuesFormula(true))
         .create();
 
+    /**
+     * Metric that tracks the count of WTF! related to the usage of an overcomplicated alogrithm.
+     */
     public static final Metric<Integer> WTF_COUNT_OVERCOMPLICATED_ALGORITHM = new Metric.Builder("WTF_COUNT_OVERCOMPLICATED_ALGORITHM", "WTF overcomplicated algorithms count", ValueType.INT).setBestValue(
         0d)
         .setDescription("Number of overcompllicated algorithms reported by developers.")
@@ -62,6 +80,9 @@ public class WTFMetrics implements Metrics {
         .setFormula(new SumChildValuesFormula(true))
         .create();
 
+    /**
+     * Metric that tracks the count of WTF! related to the usage of an antipattern.
+     */
     public static final Metric<Integer> WTF_COUNT_ANTI_PATTERN = new Metric.Builder("WTF_COUNT_ANTI_PATTERN", "WTF anti-patterns count", ValueType.INT).setBestValue(0d)
         .setDescription("Number of anti-paterns reported by developers.")
         .setDirection(Metric.DIRECTION_WORST)
@@ -70,6 +91,9 @@ public class WTFMetrics implements Metrics {
         .setFormula(new SumChildValuesFormula(true))
         .create();
 
+    /**
+     * Metric that tracks the count of WTF! related to bad or poor design.
+     */
     public static final Metric<Integer> WTF_COUNT_BAD_DESIGN = new Metric.Builder("WTF_COUNT_BAD_DESIGN", "WTF bad designs count", ValueType.INT).setBestValue(0d)
         .setDescription("Number of bad design reported by developers.")
         .setDirection(Metric.DIRECTION_WORST)
@@ -78,6 +102,9 @@ public class WTFMetrics implements Metrics {
         .setFormula(new SumChildValuesFormula(true))
         .create();
 
+    /**
+     * Metric that tracks the count of useless tests.
+     */
     public static final Metric<Integer> WTF_COUNT_USELESS_TEST = new Metric.Builder("WTF_COUNT_USELESS_TEST", "WTF useless tests count", ValueType.INT).setBestValue(0d)
         .setDescription("Number of useless tests reported by developers.")
         .setDirection(Metric.DIRECTION_WORST)
@@ -88,6 +115,9 @@ public class WTFMetrics implements Metrics {
 
     private static final List<Metric> WTF_METRICS;
 
+    /*
+     * Blocks that populates the list of WTF! Metrics using reflection.
+     */
     static {
         WTF_METRICS = new LinkedList<Metric>();
         for (final Field field : WTFMetrics.class.getFields()) {

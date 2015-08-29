@@ -26,7 +26,12 @@ import com.qualinsight.plugins.sonarqube.wtf.internal.extension.WTFMetrics;
 import com.qualinsight.plugins.sonarqube.wtf.internal.extension.WTFRulesDefinition;
 import com.qualinsight.plugins.sonarqube.wtf.internal.extension.WTFWidget;
 
-public class WTFPlugin extends SonarPlugin {
+/**
+ * Core WTF! SonarPlugin class. It declares all extensions used by the plugin.
+ * 
+ * @author Michel Pawlak
+ */
+public final class WTFPlugin extends SonarPlugin {
 
     @SuppressWarnings("rawtypes")
     @Override

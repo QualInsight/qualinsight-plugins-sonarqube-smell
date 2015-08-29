@@ -21,11 +21,16 @@ import org.sonar.api.web.RubyRailsWidget;
 import org.sonar.api.web.WidgetCategory;
 import org.sonar.api.web.WidgetScope;
 
+/**
+ * WTF! widget to be displayed on SonarQube dashboard.
+ * 
+ * @author Michel Pawlak
+ */
 @WidgetCategory("QualInsight")
 @WidgetScope({
     "PROJECT"
 })
-public class WTFWidget extends AbstractRubyTemplate implements RubyRailsWidget {
+public final class WTFWidget extends AbstractRubyTemplate implements RubyRailsWidget {
 
     @Override
     public String getId() {

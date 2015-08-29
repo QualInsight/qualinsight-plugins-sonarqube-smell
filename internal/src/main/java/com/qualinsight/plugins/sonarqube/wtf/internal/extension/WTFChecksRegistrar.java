@@ -20,9 +20,15 @@ import java.util.List;
 import org.sonar.plugins.java.api.CheckRegistrar;
 import org.sonar.plugins.java.api.JavaCheck;
 import com.google.common.collect.Lists;
+import com.qualinsight.plugins.sonarqube.wtf.api.annotation.WTF;
 import com.qualinsight.plugins.sonarqube.wtf.internal.check.WTFCheck;
 
-public class WTFChecksRegistrar implements CheckRegistrar {
+/**
+ * WTF! plugin {@link CheckRegistrar} that registers all WTF! related checks. Current implementation registers the {@link WTF} annotation detection check for both source and test classes.
+ *
+ * @author Michel Pawlak
+ */
+public final class WTFChecksRegistrar implements CheckRegistrar {
 
     private static final List<Class<? extends JavaCheck>> checkClasses;
 
@@ -43,10 +49,20 @@ public class WTFChecksRegistrar implements CheckRegistrar {
         registrarContext.registerClassesForRepository(WTFRulesDefinition.REPOSITORY_KEY, checkClasses(), testCheckClasses());
     }
 
+    /**
+     * Returns all {@link JavaCheck} that need to be applied to source code.
+     * 
+     * @return checks to be applied to source code
+     */
     public static Iterable<Class<? extends JavaCheck>> checkClasses() {
         return checkClasses;
     }
 
+    /**
+     * Returns all {@link JavaCheck} that need to be applied to test code.
+     * 
+     * @return checks to be applied to test code
+     */
     public static Iterable<Class<? extends JavaCheck>> testCheckClasses() {
         return testCheckClasses;
     }

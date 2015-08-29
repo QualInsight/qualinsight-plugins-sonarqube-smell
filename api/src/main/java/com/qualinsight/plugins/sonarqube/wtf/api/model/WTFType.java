@@ -16,10 +16,30 @@
  */
 package com.qualinsight.plugins.sonarqube.wtf.api.model;
 
+/**
+ * Types of WTF! that can be measured by the plugin.
+ *
+ * @author Michel Pawlak
+ */
 public enum WTFType {
+    /**
+     * Indicates that an anti-pattern has been used.
+     */
     ANTI_PATTERN,
+    /**
+     * Indicates that the design is really bad and should be modified.
+     */
     BAD_DESIGN,
+    /**
+     * Indicates an algorithm that can be simplified.
+     */
     OVERCOMPLICATED_ALGORITHM,
+    /**
+     * Indicates that the test is useless (it tests nothing)
+     */
     USELESS_TEST,
+    /**
+     * Indicates a wrong (business) logic.
+     */
     WRONG_LOGIC,
 }

@@ -22,6 +22,11 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 import com.qualinsight.plugins.sonarqube.wtf.api.model.WTFType;
 
+/**
+ * Source retention annotation that can be used to report a WTF!, i.e. a code smell that needs to be reported in SonarQube.
+ * 
+ * @author Michel Pawlak
+ */
 @Retention(RetentionPolicy.SOURCE)
 @Target({
     ElementType.PACKAGE,
@@ -34,9 +39,24 @@ import com.qualinsight.plugins.sonarqube.wtf.api.model.WTFType;
 })
 public @interface WTF {
 
+    /**
+     * Evaluation of the time in minutes that would be needed to remove the code smell.
+     * 
+     * @return time in minutes that would be needed to remove the code smell.
+     */
     public int minutes();
 
+    /**
+     * Provides the reason why the developper marked the code as being a code smell.
+     * 
+     * @return the reason that led to reporting the code smell.
+     */
     public String reason();
 
+    /**
+     * Indicates the category the code smell belongs to.
+     * 
+     * @return the WTF! category the code smell is member of
+     */
     public WTFType type();
 }

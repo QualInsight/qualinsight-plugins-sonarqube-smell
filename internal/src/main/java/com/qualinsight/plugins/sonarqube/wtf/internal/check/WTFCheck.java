@@ -35,6 +35,11 @@ import org.sonar.squidbridge.annotations.SqaleLinearRemediation;
 import org.sonar.squidbridge.annotations.SqaleSubCharacteristic;
 import com.google.common.collect.ImmutableList;
 
+/**
+ * SonarQube {@link Rule} to be used to report WTF! code smells as SonarQube issues.
+ *
+ * @author Michel Pawlak
+ */
 @Rule(
     key = WTFCheck.KEY,
     name = "WTF!",
@@ -46,10 +51,13 @@ import com.google.common.collect.ImmutableList;
     })
 @SqaleLinearRemediation(coeff = "1min", effortToFixDescription = "")
 @SqaleSubCharacteristic(value = RulesDefinition.SubCharacteristics.ERRORS)
-public class WTFCheck extends IssuableSubscriptionVisitor {
+public final class WTFCheck extends IssuableSubscriptionVisitor {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(WTFCheck.class);
 
+    /**
+     * Key of the check
+     */
     public static final String KEY = "W0001";
 
     @Override

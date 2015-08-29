@@ -28,7 +28,12 @@ import org.sonar.api.resources.Resource;
 import org.sonar.api.resources.ResourceUtils;
 import org.sonar.plugins.java.Java;
 
-public class WTFMeasuresDecorator implements Decorator {
+/**
+ * {@link Decorator} that aggregates WTF! measures at project level.
+ * 
+ * @author Michel Pawlak
+ */
+public final class WTFMeasuresDecorator implements Decorator {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(WTFMeasuresDecorator.class);
 

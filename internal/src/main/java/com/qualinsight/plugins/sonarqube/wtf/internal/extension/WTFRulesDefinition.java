@@ -22,10 +22,21 @@ import org.sonar.plugins.java.Java;
 import org.sonar.squidbridge.annotations.AnnotationBasedRulesDefinition;
 import com.google.common.collect.ImmutableList;
 
-public class WTFRulesDefinition implements RulesDefinition {
+/**
+ * Defines all {@link org.sonar.check.Rule}s provided by the WTF! plugin
+ * 
+ * @author Michel Pawlak
+ */
+public final class WTFRulesDefinition implements RulesDefinition {
 
+    /**
+     * Repository key.
+     */
     public static final String REPOSITORY_KEY = "qualinsight-wtf";
 
+    /**
+     * Repository name.
+     */
     public static final String REPOSITORY_NAME = "QualInsight";
 
     @SuppressWarnings("rawtypes")
