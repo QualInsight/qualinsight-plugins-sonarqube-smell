@@ -5,13 +5,13 @@ The QualInsight "What the fuck!" (WTF!) plugin for SonarQube is a simple plugin 
 
 The great thing about SonarQube is that it reports in an objective and non disputable way issues based on a predefined set of rules or checks that need to be activated. Depending on the rules SonarQube administrators activate, reported issues will differ and so will reported technical debt.
 
-This is a (really) great way to tackle coding issues, my experience showed that it is not perfect due to two main reasons. 
+While this is a (really) great way to report coding issues and, my experience showed that it is not perfect due to two main reasons. 
 
 1. SonarQube only reports issues and technical debt for the rules that have been activated. In other words, deactivate all rules and you'll obtain a project with a "A" SQALE rating and zero issues. 
 
-2. Even if you do a great (and honest) job in selecting the rules to be activated, SonarQube is "only" a tool that does what it is told to do: applies those rules. If the rules are not precise enough or not smart enough you'll end up with a project that shines in SonarQube (i.e. great rating, no issues, high coverage, documentation) but if you scratch the surface a bit and ask a human to review it, you may have another feedback, far from being "shiny". Something that sounds like "what the fuck!" 
+2. Even if you do a great (and honest) job in selecting the rules to be activated, SonarQube is "only" a tool that does what it is told to do: applies those rules. If the rules are not precise enough or not smart enough you'll end up with a project that shines in SonarQube (i.e. great rating, no issues, high coverage, good documentation, nothing to worry about) but if you scratch the surface a bit and ask a human to review it, you may have another feedback, far from being "shiny". Something that may sound like "what the fuck!" 
 
-Thom Holwerda [posted a great comic strip](http://www.osnews.com/story/19266/WTFs_m) a few years ago stating that the only valid measurement of code quality is the WTF count per minute. While being humoristic, this observation is really realistic. If you've heard a team member say "WTF!" in the open space, you should understand what we are talking about.
+Thom Holwerda [posted a great comic strip](http://www.osnews.com/story/19266/WTFs_m) a few years ago stating that the only valid measurement of code quality is the WTF count per minute. While being humoristic, this observation is really realistic. If you've heard a team member say "WTF!" in your open space, I'm pretty sure you understand what we are talking about.
 
 This comic strip and the underlying question of how to improve code quality was discussed in this [interesting blog post](http://www.gridshore.nl/2008/03/29/how-wtfs-improve-code-quality-awareness/). Here is a excerpt from this blog post:
 
@@ -21,9 +21,9 @@ This comic strip and the underlying question of how to improve code quality was 
 
 This is what motivated the creation of the WTF! plugin. It has three major objectives :
 
-1. Give voice to developers to unhide hidden bad practices that cannot be usually detected with SonarQube and share them with the development team,
+1. Give voice to developers to unhide hidden code smells that cannot be usually detected with SonarQube and share them with the development team,
 
-2. Let developers provide useful information such as an evaluation of the remediation cost, the "WTF!" category that has been detected, a message that will appear directly in SonarQube and aims at making those "WTF!" contribute to the overall technical debt reported by SonarQube.
+2. Let developers provide useful information such as an evaluation of the remediation cost, the "WTF!" category that has been detected, a message that will appear directly in SonarQube and aims at making those "WTF!" contribute to the overall technical debt reported by SonarQube,
 
 3. Let development teams access easily detected "WTF!" issues to be able to use this information during sprint plannings and code reviews.
 
