@@ -1,23 +1,25 @@
-# WTF! SonarQube plugin
+# WTF! plugin for SonarQube
 The QualInsight "What the fuck!" (WTF!) plugin for SonarQube is a simple plugin that allows developers to report, in a humoristic way, issues not seen by SonarQube but which should be considered when evaluating a project's technical debt.
 
 ## Rationale
 
 The great thing about SonarQube is that it reports in an objective and non disputable way issues based on a predefined set of rules or checks that need to be activated. Depending on the rules SonarQube administrators activate, reported issues will differ and so will reported technical debt.
 
-While this is a (really) great way to tackle coding issues, my experience showed that it is not perfect due to two main reasons. 
+This is a (really) great way to tackle coding issues, my experience showed that it is not perfect due to two main reasons. 
 
-1. SonarQube only reports issues and technical debt for the rules that have been activated. In other words, deactivate all rules and you'll obtain a project with a "A" SQALE rating and zero issues.
+1. SonarQube only reports issues and technical debt for the rules that have been activated. In other words, deactivate all rules and you'll obtain a project with a "A" SQALE rating and zero issues. 
 
-2. Even if you do a great (and honest) job in selecting the rules to be activated, SonarQube is "only" a tool that does what it is told to do: applies those rules. If the rules are not precise enough or not smart enough you'll end up with a project that shines in SonarQube (i.e. great rating, no issues, high coverage, documentation) but if you scratch the surface a bit and ask a human to review it, you may have another feedback, far from being "shiny".
+2. Even if you do a great (and honest) job in selecting the rules to be activated, SonarQube is "only" a tool that does what it is told to do: applies those rules. If the rules are not precise enough or not smart enough you'll end up with a project that shines in SonarQube (i.e. great rating, no issues, high coverage, documentation) but if you scratch the surface a bit and ask a human to review it, you may have another feedback, far from being "shiny". Something that sounds like "what the fuck!" 
 
-Thom Holwerda [posted a great comic strip](http://www.osnews.com/story/19266/WTFs_m) a few years ago about the WTF per minute metric. This comic strip and the underlying question of how to improve code quality was discussed in this [interesting blog post](http://www.gridshore.nl/2008/03/29/how-wtfs-improve-code-quality-awareness/). Here is a excerpt from this blog post:
+Thom Holwerda [posted a great comic strip](http://www.osnews.com/story/19266/WTFs_m) a few years ago stating that the only valid measurement of code quality is the WTF count per minute. While being humoristic, this observation is really realistic. If you've heard a team member say "WTF!" in the open space, you should understand what we are talking about.
+
+This comic strip and the underlying question of how to improve code quality was discussed in this [interesting blog post](http://www.gridshore.nl/2008/03/29/how-wtfs-improve-code-quality-awareness/). Here is a excerpt from this blog post:
 
 > A WTF is typically raised when a developer more or less accidentally opens a class file and sees something that just doesn’t seem right. It doesn’t have to be a formal review.
 
 > Getting code quality up after a WTF has been raised is easy. Just let the developer who found the WTF fix the code in such a way, that the WTF doesn’t apply to that code any more. However, the developer causing the bad code will not know, and continue with his habits.
 
-This is where this plugin jumps in. It has three major objectives :
+This is what motivated the creation of the WTF! plugin. It has three major objectives :
 
 1. Give voice to developers to unhide hidden bad practices that cannot be usually detected with SonarQube and share them with the development team,
 
@@ -37,7 +39,7 @@ The plugin is made of two parts:
 
 ### Requirements
 
-SonarQube's Java plugin version 3.5 must be installed. 
+SonarQube's Java plugin version 3.5. 
 
 ### Plugin installation
 
@@ -45,9 +47,11 @@ The plugin will be (hopefully) available shortly in SonarQube update center. Mea
 
 Once the plugin jar is located in {SONARQUBE_INSTALL_DIRECTORY}/extensions/plugins you need to restart your SonarQube instance.
 
-The last installation step is to add to your profile the rule named "WTF!" Its key is "qualinsight-wtf:W0001".
+The last installation step, if you want to have WTF! annotations to contribute to the project's technical debt, is to add to your profile the rule named "WTF!" Its key is "qualinsight-wtf:W0001".
 
 That's it !
+
+_Note_: If you don't add the WTF! rule, the plugin will still report WTF! related technical debt in its own widget, but WTF annotations will not be counted as issues, and as such they will not contribute to the project's technical debt. Do this if you don't want to mix automated debt discovery with "subjective" debt declaration.
 
 ### Adding WTF! to your code
 
@@ -55,7 +59,7 @@ Next step is to add WTF! to your code. This section explains how to do it.
 
 #### Maven dependency addition
 
-The following dependency (available from Maven central) must be added to your pom.xml file :
+In order to be able to use the WTF annotation, the following dependency must be added to your pom.xml file :
 
 ```
 <dependency>
@@ -64,6 +68,8 @@ The following dependency (available from Maven central) must be added to your po
     <version>1.0.0</version>
 </dependency>
 ```
+
+_Note_: The dependency is available in Maven central repository.
 
 #### Annotating code
 
@@ -74,7 +80,7 @@ For instance :
 ```
 @WTF(minutes=10,reason="This class should be redesigned in order to ...", type=WTFType.BAD_DESIGN)
 public class MyClass {
-   ...
+    ...
 }
 ```
 
@@ -115,3 +121,7 @@ The second screenshot shows that WTF! issues are added to regular SonarQube issu
 I hope you'll enjoy this small plugin as much as I enjoyed writing it ! Do not hesitate to request new WTF types and send comments as well as requests for improvement.
 
 Cheers !
+
+## Build status
+
+![Travis build status](https://travis-ci.org/QualInsight/qualinsight-plugins-sonarqube-wtf.svg?branch=master)
