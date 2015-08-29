@@ -52,4 +52,16 @@ To be written
 
 ## Example results
 
-Screenshots to be added.
+The first screenshot depicts the WTF! widget in action. It shows how many WTF! have been reported, their contribution to technical debt as well a distribution among possible WTF! issue types. 
+
+![WTF! Measures Widget](wtf_widget.png)
+
+The second screenshot shows that WTF! issues are added to regular SonarQube issues count. Note that in this case, as the WTF rule is the only one that has been activated the debt is equal to the one reported on previous screenshot.   
+
+![WTF! Measures Widget](wtf_widget.png)
+
+## Conclusion
+
+I hope you'll enjoy this small plugin as much as I enjoyed writing it ! Do not hesitate to request new WTF types and send comments.
+
+Cheers !
