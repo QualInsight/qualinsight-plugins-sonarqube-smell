@@ -57,9 +57,10 @@ public class WTFMeasuresDecorator implements Decorator {
         if (ResourceUtils.isProject(resource)) {
             LOGGER.info("decorating key: {}", resource.getKey());
             Double total = 0d;
+            total += MeasureUtils.sum(true, context.getChildrenMeasures(WTFMetrics.WTF_COUNT_WRONG_LOGIC));
             total += MeasureUtils.sum(true, context.getChildrenMeasures(WTFMetrics.WTF_COUNT_ANTI_PATTERN));
             total += MeasureUtils.sum(true, context.getChildrenMeasures(WTFMetrics.WTF_COUNT_BAD_DESIGN));
-            total += MeasureUtils.sum(true, context.getChildrenMeasures(WTFMetrics.WTF_COUNT_WRONG_ALGORITHM));
+            total += MeasureUtils.sum(true, context.getChildrenMeasures(WTFMetrics.WTF_COUNT_OVERCOMPLICATED_ALGORITHM));
             total += MeasureUtils.sum(true, context.getChildrenMeasures(WTFMetrics.WTF_COUNT_USELESS_TEST));
             context.saveMeasure(WTFMetrics.WTF_COUNT, total);
             LOGGER.debug("Saved measure for metric '{}' with value '{}'", WTFMetrics.WTF_COUNT.key(), total);

@@ -17,8 +17,9 @@
 package com.qualinsight.plugins.sonarqube.wtf.api.model;
 
 public enum WTFType {
-    WRONG_ALGORITHM,
     ANTI_PATTERN,
     BAD_DESIGN,
-    USELESS_TEST
+    OVERCOMPLICATED_ALGORITHM,
+    USELESS_TEST,
+    WRONG_LOGIC,
 }

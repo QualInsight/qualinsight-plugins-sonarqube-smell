@@ -1,7 +1,8 @@
 <%
   wtf_debt=measure('WTF_DEBT')
   wtf_count=measure('WTF_COUNT')
-  wtf_count_wrong_algorithm=measure('WTF_COUNT_WRONG_ALGORITHM')
+  wtf_count_overcomplicated_algorithm=measure('WTF_COUNT_OVERCOMPLICATED_ALGORITHM')
+  wtf_count_wrong_logic=measure('WTF_COUNT_WRONG_LOGIC')
   wtf_count_anti_pattern=measure('WTF_COUNT_ANTI_PATTERN')
   wtf_count_bad_design=measure('WTF_COUNT_BAD_DESIGN')
   wtf_count_useless_test=measure('WTF_COUNT_USELESS_TEST')
@@ -37,9 +38,10 @@
   
           var data = google.visualization.arrayToDataTable([
             ['WTF! Type', 'Issue Count'],
-            ['<%= message('metric.wtf_count_wrong_algorithm.name') -%>', <%= wtf_count_bad_conception.formatted_value -%>],
-            ['<%= message('metric.wtf_count_anti_pattern.name') -%>', <%= wtf_count_bad_conception.formatted_value -%>],
             ['<%= message('metric.wtf_count_bad_design.name') -%>', <%= wtf_count_bad_design.formatted_value -%>],
+            ['<%= message('metric.wtf_count_wrong_logic.name') -%>', <%= wtf_count_wrong_logic.formatted_value -%>],
+            ['<%= message('metric.wtf_count_overcomplicated_algorithm.name') -%>', <%= wtf_count_overcomplicated_algorithm.formatted_value -%>],
+            ['<%= message('metric.wtf_count_anti_pattern.name') -%>', <%= wtf_count_anti_pattern.formatted_value -%>],
             ['<%= message('metric.wtf_count_useless_test.name') -%>', <%= wtf_count_useless_test.formatted_value -%>]
           ]);
           

@@ -45,8 +45,17 @@ public class WTFMetrics implements Metrics {
         .setFormula(new SumChildValuesFormula(true))
         .create();
 
-    public static final Metric<Integer> WTF_COUNT_WRONG_ALGORITHM = new Metric.Builder("WTF_COUNT_WRONG_ALGORITHM", "WTF wrong algorithms count", ValueType.INT).setBestValue(0d)
-        .setDescription("Number of wrong algorithms reported by developers.")
+    public static final Metric<Integer> WTF_COUNT_WRONG_LOGIC = new Metric.Builder("WTF_COUNT_WRONG_LOGIC", "WTF wrong logic count", ValueType.INT).setBestValue(0d)
+        .setDescription("Total number of wrong logic cases reported by developers.")
+        .setDirection(Metric.DIRECTION_WORST)
+        .setDomain(CoreMetrics.DOMAIN_SIZE)
+        .setOptimizedBestValue(true)
+        .setFormula(new SumChildValuesFormula(true))
+        .create();
+
+    public static final Metric<Integer> WTF_COUNT_OVERCOMPLICATED_ALGORITHM = new Metric.Builder("WTF_COUNT_OVERCOMPLICATED_ALGORITHM", "WTF overcomplicated algorithms count", ValueType.INT).setBestValue(
+        0d)
+        .setDescription("Number of overcompllicated algorithms reported by developers.")
         .setDirection(Metric.DIRECTION_WORST)
         .setDomain(CoreMetrics.DOMAIN_SIZE)
         .setOptimizedBestValue(true)

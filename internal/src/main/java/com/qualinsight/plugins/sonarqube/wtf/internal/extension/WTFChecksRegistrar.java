@@ -20,15 +20,13 @@ import java.util.List;
 import org.sonar.plugins.java.api.CheckRegistrar;
 import org.sonar.plugins.java.api.JavaCheck;
 import com.google.common.collect.Lists;
-import com.qualinsight.plugins.sonarqube.wtf.api.annotation.WTF;
-import com.qualinsight.plugins.sonarqube.wtf.api.model.WTFType;
 import com.qualinsight.plugins.sonarqube.wtf.internal.check.WTFCheck;
 
-@WTF(minutes = 20, reason = "some reason", type = WTFType.ANTI_PATTERN)
 public class WTFChecksRegistrar implements CheckRegistrar {
 
-    @WTF(minutes = 10, reason = "some reason", type = WTFType.BAD_DESIGN)
     private static final List<Class<? extends JavaCheck>> checkClasses;
+
+    private static final List<Class<? extends JavaCheck>> testCheckClasses;
 
     /*
      * Block that builds the list of JavaCheck once and for all.
@@ -36,16 +34,21 @@ public class WTFChecksRegistrar implements CheckRegistrar {
     static {
         checkClasses = Lists.<Class<? extends JavaCheck>> newArrayList();
         checkClasses.add(WTFCheck.class);
+        testCheckClasses = Lists.<Class<? extends JavaCheck>> newArrayList();
+        testCheckClasses.add(WTFCheck.class);
     }
 
-    @WTF(minutes = 15, reason = "some reason", type = WTFType.WRONG_ALGORITHM)
     @Override
     public void register(final RegistrarContext registrarContext) {
-        registrarContext.registerClassesForRepository(WTFRulesDefinition.REPOSITORY_KEY, checkClasses());
+        registrarContext.registerClassesForRepository(WTFRulesDefinition.REPOSITORY_KEY, checkClasses(), testCheckClasses());
     }
 
     public static Iterable<Class<? extends JavaCheck>> checkClasses() {
         return checkClasses;
+    }
+
+    public static Iterable<Class<? extends JavaCheck>> testCheckClasses() {
+        return testCheckClasses;
     }
 
 }

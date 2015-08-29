@@ -19,6 +19,9 @@ package com.qualinsight.plugins.sonarqube.wtf.internal.model;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.apache.commons.io.Charsets;
@@ -55,23 +58,35 @@ public class WTFMeasurer {
     private void measureWTFTypes(final InputFile inputFile, final String fileContent) {
         final Pattern pattern = Pattern.compile(WTF_ANNOTATION_TYPE_DETECTION_REGULAR_EXPRESSION, Pattern.MULTILINE);
         final Matcher matcher = pattern.matcher(fileContent);
+        final Map<WTFType, Double> fileMeasures = new HashMap<WTFType, Double>();
         while (matcher.find()) {
             final WTFType type = WTFType.valueOf(matcher.group(3));
-            switch (type) {
+            if (fileMeasures.containsKey(type)) {
+                fileMeasures.put(type, fileMeasures.get(type) + 1);
+            } else {
+                fileMeasures.put(type, 1.0);
+            }
+        }
+        for (final Entry<WTFType, Double> measure : fileMeasures.entrySet()) {
+            final Double value = measure.getValue();
+            switch (measure.getKey()) {
                 case ANTI_PATTERN:
-                    this.context.saveMeasure(inputFile, WTFMetrics.WTF_COUNT_ANTI_PATTERN, 1.0);
+                    this.context.saveMeasure(inputFile, WTFMetrics.WTF_COUNT_ANTI_PATTERN, value);
                     break;
                 case BAD_DESIGN:
-                    this.context.saveMeasure(inputFile, WTFMetrics.WTF_COUNT_BAD_DESIGN, 1.0);
+                    this.context.saveMeasure(inputFile, WTFMetrics.WTF_COUNT_BAD_DESIGN, value);
                     break;
-                case WRONG_ALGORITHM:
-                    this.context.saveMeasure(inputFile, WTFMetrics.WTF_COUNT_WRONG_ALGORITHM, 1.0);
+                case WRONG_LOGIC:
+                    this.context.saveMeasure(inputFile, WTFMetrics.WTF_COUNT_WRONG_LOGIC, value);
                     break;
                 case USELESS_TEST:
-                    this.context.saveMeasure(inputFile, WTFMetrics.WTF_COUNT_USELESS_TEST, 1.0);
+                    this.context.saveMeasure(inputFile, WTFMetrics.WTF_COUNT_USELESS_TEST, value);
+                    break;
+                case OVERCOMPLICATED_ALGORITHM:
+                    this.context.saveMeasure(inputFile, WTFMetrics.WTF_COUNT_OVERCOMPLICATED_ALGORITHM, value);
                     break;
                 default:
-                    LOGGER.warn("Unexpected non measurable WTFType: {}", type);
+                    LOGGER.warn("Unexpected non measurable WTFType: {}", measure.getKey());
                     break;
             }
         }
