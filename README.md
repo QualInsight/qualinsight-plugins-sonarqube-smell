@@ -41,7 +41,7 @@ SonarQube's Java plugin version 3.5 must be installed.
 
 ### Plugin installation
 
-The plugin will be available shortly in SonarQube update center. Meantime it can be [downloaded from Maven central](http://search.maven.org/remotecontent?filepath=com/qualinsight/plugins/sonarqube/qualinsight-plugins-sonarqube-wtf-internal/1.0.0/qualinsight-plugins-sonarqube-wtf-internal-1.0.0.jar)
+The plugin will be (hopefully) available shortly in SonarQube update center. Meantime it can be [downloaded from Maven central](http://search.maven.org/remotecontent?filepath=com/qualinsight/plugins/sonarqube/qualinsight-plugins-sonarqube-wtf-internal/1.0.0/qualinsight-plugins-sonarqube-wtf-internal-1.0.0.jar)
 
 ### Adding WTF! to your code
 
