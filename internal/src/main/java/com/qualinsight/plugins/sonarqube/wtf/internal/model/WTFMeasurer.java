@@ -19,7 +19,7 @@ package com.qualinsight.plugins.sonarqube.wtf.internal.model;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
-import java.util.HashMap;
+import java.util.EnumMap;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.regex.Matcher;
@@ -63,7 +63,7 @@ public final class WTFMeasurer {
 
     /**
      * Launches the measuring of a give {@link InputFile}.
-     * 
+     *
      * @param inputFile {@link InputFile} to be scanned for {@link WTF} annotation presence.
      */
     public void measure(final InputFile inputFile) {
@@ -75,7 +75,7 @@ public final class WTFMeasurer {
     private void measureWTFTypes(final InputFile inputFile, final String fileContent) {
         final Pattern pattern = Pattern.compile(WTF_ANNOTATION_TYPE_DETECTION_REGULAR_EXPRESSION, Pattern.MULTILINE);
         final Matcher matcher = pattern.matcher(fileContent);
-        final Map<WTFType, Double> fileMeasures = new HashMap<WTFType, Double>();
+        final Map<WTFType, Double> fileMeasures = new EnumMap<WTFType, Double>(WTFType.class);
         while (matcher.find()) {
             final WTFType type = WTFType.valueOf(matcher.group(3));
             if (fileMeasures.containsKey(type)) {
