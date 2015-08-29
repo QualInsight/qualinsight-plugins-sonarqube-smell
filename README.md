@@ -48,7 +48,7 @@ To be written
 
 #### Maven dependency addition
 
-The followinf dependency must be added to your code :
+The following dependency (available from Maven central) must be added to your code :
 
 ```
 <dependency>
@@ -65,7 +65,7 @@ The @WTF annotation can be placed on Java packages, types, methods, constructors
 For instance :
 
 ```
-@WTF(minutes=10,reason="This class should be redesigned in order to ...", type=WTFTyp.BAD_DESIGN)
+@WTF(minutes=10,reason="This class should be redesigned in order to ...", type=WTFType.BAD_DESIGN)
 public class MyClass {
    ...
 }
@@ -73,7 +73,7 @@ public class MyClass {
 
 It takes three mandatory parameters :
 
-| Parameter | Type     | Mandatory ? | Example                                           |
+| Parameter | Type     | Mandatory   | Example                                           |
 ------------------------------------------------------------------------------------------
 | minutes   | int      | yes         | 10                                                |
 | reason    | String   | yes         | "This class should be redesigned in order to ..." |
