@@ -3,7 +3,7 @@
     <parent>
         <groupId>com.qualinsight.plugins.sonarqube</groupId>
         <artifactId>qualinsight-plugins-sonarqube-wtf</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>1.0.0</version>
     </parent>
     <artifactId>qualinsight-plugins-sonarqube-wtf-internal</artifactId>
     <description>QualInsight SonarQube "What the fuck!" plugin.</description>
@@ -40,7 +40,7 @@
                     <pluginKey>wtf</pluginKey>
                     <pluginName>WTF!</pluginName>
                     <finalName>qualinsight-sonarqube-wtf-plugin-${project.version}</finalName>
-                    <pluginDescription></pluginDescription>
+                    <pluginDescription />
                     <pluginTermsConditionsUrl>https://www.gnu.org/licenses/lgpl-3.0.txt</pluginTermsConditionsUrl>
                     <pluginUrl>http://www.qualinsight.com/tools/sonarqube-wtf/</pluginUrl>
                     <useChildFirstClassLoader>true</useChildFirstClassLoader>
