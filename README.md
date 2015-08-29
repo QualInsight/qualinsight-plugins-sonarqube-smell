@@ -27,6 +27,8 @@ This is what motivated the creation of the WTF! plugin. It has three major objec
 
 3. Let development teams access easily detected "WTF!" issues to be able to use this information during sprint plannings and code reviews.
 
+Yes, we want to make WTF! visible and *force* team members to discuss them and fix them.
+
 ## How does it work ?
 
 The plugin is made of two parts:
@@ -51,7 +53,7 @@ The last installation step, if you want to have WTF! annotations to contribute t
 
 That's it !
 
-_Note_: If you don't add the WTF! rule, the plugin will still report WTF! related technical debt in its own widget, but WTF annotations will not be counted as issues, and as such they will not contribute to the project's technical debt. Do this if you don't want to mix automated debt discovery with "subjective" debt declaration.
+_Note_: While we recommend activating the WTF! rule, you don't have to do it. If the rule is not activated, the plugin will still report WTF! related technical debt in its own widget, but WTF annotations will not be counted as issues, and as such they will not contribute to the project's technical debt, nor impact the SQALE rating. Do this if you don't want to mix automated debt discovery with "subjective" debt declaration.  
 
 ### Adding WTF! to your code
 
@@ -112,7 +114,7 @@ The first screenshot depicts the WTF! widget in action. It shows how many WTF! h
 
 ![WTF! Measures Widget](wtf_widget.png)
 
-The second screenshot shows that WTF! issues are added to regular SonarQube issues count. Note that in this case, as the WTF rule is the only one that has been activated the debt is equal to the one reported on previous screenshot.   
+The second screenshot shows that WTF! issues are added to regular SonarQube issues count. In this example the only activated rule is the WTF! one. Therefore, the technical debt is equal to the one reported on previous screenshot. If we hadn't activated the rule (see _installation_ section) the plugin wouldn't had contributed to the debt.
 
 ![WTF! Measures Widget](wtf_issues.png)
 
