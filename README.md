@@ -43,7 +43,15 @@ SonarQube's Java plugin version 3.5 must be installed.
 
 The plugin will be (hopefully) available shortly in SonarQube update center. Meantime it can be [downloaded from Maven central](http://search.maven.org/remotecontent?filepath=com/qualinsight/plugins/sonarqube/qualinsight-plugins-sonarqube-wtf-internal/1.0.0/qualinsight-plugins-sonarqube-wtf-internal-1.0.0.jar)
 
+Once the plugin jar is located in {SONARQUBE_INSTALL_DIRECTORY}/extensions/plugins you need to restart your SonarQube instance.
+
+The last installation step is to add to your profile the rule named "WTF!" Its key is "qualinsight-wtf:W0001".
+
+That's it !
+
 ### Adding WTF! to your code
+
+Next step is to add WTF! to your code. This section explains how to do it.
 
 #### Maven dependency addition
 
