@@ -76,7 +76,7 @@ It takes three mandatory parameters :
 | Parameter | Type     | Mandatory   | Example                                           |
 ------------------------------------------------------------------------------------------
 | minutes   | int      | yes         | 10                                                |
-| reason    | String   | yes         | "This class should be redesigned in order to ..." |
+| reason    | String   | yes         | This class should be redesigned in order to...    |
 | type      | WTFType  | yes         | WTFType.BAD_DESIGN                                |
 
 #### Available WTF Types
