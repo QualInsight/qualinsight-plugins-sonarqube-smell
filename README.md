@@ -5,7 +5,7 @@ The QualInsight "What the fuck!" (WTF!) plugin for SonarQube is a simple plugin 
 
 The great thing about SonarQube is that it reports in an objective and non disputable way issues based on a predefined set of rules or checks that need to be activated. Depending on the rules SonarQube administrators activate, reported issues will differ and so will reported technical debt.
 
-While this is a (really) great way to report coding issues and, my experience showed that it is not perfect due to two main reasons. 
+While this is a (really) great way to report coding issues, my experience showed that it is not perfect due to two main reasons. 
 
 1. SonarQube only reports issues and technical debt for the rules that have been activated. In other words, deactivate all rules and you'll obtain a project with a "A" SQALE rating and zero issues. 
 
