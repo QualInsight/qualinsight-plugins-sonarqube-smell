@@ -74,7 +74,7 @@ public class MyClass {
 It takes three mandatory parameters :
 
 | Parameter | Type     | Mandatory   | Example                                           |
-------------------------------------------------------------------------------------------
+|-----------|----------|-------------|---------------------------------------------------|
 | minutes   | int      | yes         | 10                                                |
 | reason    | String   | yes         | This class should be redesigned in order to...    |
 | type      | WTFType  | yes         | WTFType.BAD_DESIGN                                |
@@ -84,7 +84,7 @@ It takes three mandatory parameters :
 The WTFType enum currently can take the following values :
 
 | WTFType                    |
-------------------------------
+|----------------------------|
 | ANTI_PATTERN               |
 | BAD_DESIGN                 |
 | OVERCOMPLICATED_ALGORTÎTHM |
