@@ -3,7 +3,7 @@ The QualInsight "What the fuck!" (WTF!) plugin for SonarQube is a simple plugin 
 
 ## Rationale
 
-The great thing about SonarQube is that is reports in an objective, non disputable, way issues based on a predefined set of rules or checks that need to be activated. Depending on the rules SonarQube administrators activate reported issues will differ and so will technical debt.
+The great thing about SonarQube is that it reports in an objective, non disputable, way issues based on a predefined set of rules or checks that need to be activated. Depending on the rules SonarQube administrators activate reported issues will differ and so will technical debt.
 
 While this (really) is great, my experience showed that it is not perfect due to two reasons. 
 
@@ -36,19 +36,60 @@ The plugin is made of two parts:
 
 ## Usage
 
+### Requirements
+
+SonarQube's Java plugin version 3.5 must be installed. 
+
 ### Plugin installation
 
 To be written
 
-### Code
+### Adding WTF! to your code
 
 #### Maven dependency addition
 
-To be written
+The followinf dependency must be added to your code :
+
+```
+<dependency>
+    <groupId>com.qualinsight.plugins.sonarqube</groupId>
+    <artifactId>qualinsight-plugins-sonarqube-wtf-api</artifactId>
+    <version>1.0.0</version>
+</dependency>
+```
 
 #### Annotating code
 
-To be written
+The @WTF annotation can be placed on Java packages, types, methods, constructors, fields, parameters, local variables.
+
+For instance :
+
+```
+@WTF(minutes=10,reason="This class should be redesigned in order to ...", type=WTFTyp.BAD_DESIGN)
+public class MyClass {
+   ...
+}
+```
+
+It takes three mandatory parameters :
+
+| Parameter | Type     | Mandatory ? | Example                                           |
+------------------------------------------------------------------------------------------
+| minutes   | int      | yes         | 10                                                |
+| reason    | String   | yes         | "This class should be redesigned in order to ..." |
+| type      | WTFType  | yes         | WTFType.BAD_DESIGN                                |
+
+#### Available WTF Types
+
+The WTFType enum currently can take the following values :
+
+| WTFType                    |
+------------------------------
+| ANTI_PATTERN               |
+| BAD_DESIGN                 |
+| OVERCOMPLICATED_ALGORTÎTHM |
+| USELESS_TEST               |
+| WRONG_LOGIC                |
 
 ## Example results
 
