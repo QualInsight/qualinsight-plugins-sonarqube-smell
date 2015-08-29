@@ -1,5 +1,5 @@
 # WTF! plugin for SonarQube
-The QualInsight "What the fuck!" (WTF!) plugin for SonarQube is a simple plugin that allows developers to report, in a humoristic way, issues not seen by SonarQube but which should be considered when evaluating a project's technical debt.
+The QualInsight "What the fuck!" (WTF!) plugin for SonarQube is a simple plugin that allows developers to report, in a humoristic way, issues not seen by SonarQube but which should be taken into consideration when evaluating a project's technical debt.
 
 ## Rationale
 
