@@ -58,7 +58,7 @@ The first screenshot depicts the WTF! widget in action. It shows how many WTF! h
 
 The second screenshot shows that WTF! issues are added to regular SonarQube issues count. Note that in this case, as the WTF rule is the only one that has been activated the debt is equal to the one reported on previous screenshot.   
 
-![WTF! Measures Widget](wtf_widget.png)
+![WTF! Measures Widget](wtf_issues.png)
 
 ## Conclusion
 
