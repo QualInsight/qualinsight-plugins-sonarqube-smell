@@ -1,5 +1,5 @@
 # WTF! plugin for SonarQube
-The "What the fuck!" (WTF!) plugin for SonarQube is a simple plugin that allows developers to report issues usually not seen by SonarQube but which should be taken into consideration when evaluating a project's technical debt.
+The "What the fuck!" (WTF!) plugin for [SonarQube](http://www.sonarqube.org) is a simple plugin that allows developers to report issues usually not seen by SonarQube but which should be taken into consideration when evaluating a project's technical debt.
 
 ## Rationale
 
@@ -33,15 +33,15 @@ Yes, we want to make WTF! visible and *force* team members to discuss them and f
 
 The plugin is made of two parts:
 
-1. A Java annotation named... @WTF that has a source retention that has to be used to report bad practices.
+1. A Java annotation named... `@WTF` that has a source retention that has to be used to report bad practices.
 
-2. A SonarQube plugin that provides a single rule that analyzes both source code and test code and searches for @WTF annotations. 
+2. A SonarQube plugin that provides a single rule that analyzes both source code and test code and searches for `@WTF` annotations. 
 
 ## Usage
 
 ### Requirements
 
-SonarQube's Java plugin version 3.5. 
+SonarQube's [Java plugin](http://docs.sonarqube.org/display/PLUG/Java+Plugin) version 3.5. 
 
 ### Plugin installation
 
@@ -77,7 +77,7 @@ _Note_: The dependency is available in Maven central repository.
 
 #### Annotating code
 
-The @WTF annotation can be placed on Java packages, types, methods, constructors, fields, parameters, local variables.
+The `@WTF` annotation can be placed on Java packages, types, methods, constructors, fields, parameters, local variables.
 
 For instance :
 
