@@ -49,7 +49,7 @@ The plugin will be (hopefully) available shortly in SonarQube update center. Mea
 
 After having placed the plugin's jar in `{SONARQUBE_INSTALL_DIRECTORY}/extensions/plugins` you need to restart your SonarQube instance.
 
-You have then to add the WTF widget to your project or view dashboard.
+You have then to add the "WTF! Measures" widget to your project or view dashboard.
 
 The last installation step, if you want to have WTF! annotations to contribute to the project's technical debt, is to add to your profile the rule named "WTF!" Its key is "`qualinsight-wtf:W0001`".
 
