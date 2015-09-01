@@ -20,7 +20,7 @@ package com.qualinsight.plugins.sonarqube.wtf.api.model;
  * Types of WTF! that can be measured by the plugin. They have been inspired by multiple sources (see links)
  *
  * @see <a href="http://www.industriallogic.com/wp-content/uploads/2005/09/smellstorefactorings.pdf">smells to refactorings</a>
- * @see <a href=""http://blog.codinghorror.com/code-smells/">code smells</a>
+ * @see <a href="http://blog.codinghorror.com/code-smells/">code smells</a>
  *
  * @author Michel Pawlak
  */
