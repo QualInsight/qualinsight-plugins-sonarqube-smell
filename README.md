@@ -1,5 +1,5 @@
 # WTF! plugin for SonarQube
-The "What the fuck!" (WTF!) plugin for [SonarQube](http://www.sonarqube.org) is a simple plugin that allows developers to report issues usually not seen by SonarQube but which should be taken into consideration when evaluating a project's technical debt.
+The "What the fuck!" (WTF!) plugin for [SonarQube](http://www.sonarqube.org) allows developers to report issues usually not seen by SonarQube but which should be taken into consideration when evaluating a project's technical debt.
 
 ## Rationale
 
@@ -45,7 +45,7 @@ SonarQube's [Java plugin](http://docs.sonarqube.org/display/PLUG/Java+Plugin) ve
 
 ### Plugin installation
 
-The plugin will be (hopefully) available shortly in SonarQube update center. Meantime it can be [downloaded from Maven central](http://search.maven.org/remotecontent?filepath=com/qualinsight/plugins/sonarqube/qualinsight-plugins-sonarqube-wtf-internal/1.0.0/qualinsight-plugins-sonarqube-wtf-internal-1.0.0.jar)
+The plugin will be (hopefully) available shortly in SonarQube update center. Meantime it can be [downloaded from Maven central](http://search.maven.org/remotecontent?filepath=com/qualinsight/plugins/sonarqube/qualinsight-plugins-sonarqube-wtf-internal/1.0.1/qualinsight-plugins-sonarqube-wtf-internal-1.0.1.jar)
 
 After having placed the plugin's jar in `{SONARQUBE_INSTALL_DIRECTORY}/extensions/plugins` you need to restart your SonarQube instance.
 
@@ -110,7 +110,7 @@ The WTFType enum currently can take the following values (greatly inspired by Co
 | ODDBALL_SOLUTION           | The problem is solved in multiple ways throughout the system.          |
 | OVERCOMPLICATED_ALGORITHM  | There is a way to simplify an algorithm.                               |
 | PRIMITIVES_OBSESSION       | The code relies too much on primitives instead of classes.             |
-| REFUSED_BEQUEST            | The class extends another classes' methods but does not use them.      |
+| REFUSED_BEQUEST            | The class extends another class but does not use its methods.          |
 | SOLUTION_SPRAWL            | It takes too many classes to do anything useful.                       |
 | SPECULATIVE_GENERALITY     | The code is written thinking about tomorrow's problems.                |
 | UNCOMMUNICATIVE_NAME       | The name does not communicate the purpose of the class, field, method. |
