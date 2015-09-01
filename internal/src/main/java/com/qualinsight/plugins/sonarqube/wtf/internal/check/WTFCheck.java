@@ -86,11 +86,11 @@ public final class WTFCheck extends IssuableSubscriptionVisitor {
                 switch (variable) {
                     case "minutes":
                         minutes += Integer.valueOf(((LiteralTree) aet.expression()).value());
-                        LOGGER.info("{} = {}", variable, minutes);
+                        LOGGER.debug("{} = {}", variable, minutes);
                         break;
                     case "reason":
                         message = ((LiteralTree) aet.expression()).value();
-                        LOGGER.info("{} = {}", variable, message);
+                        LOGGER.debug("{} = {}", variable, message);
                         break;
                     default:
                         break;
