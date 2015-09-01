@@ -93,14 +93,41 @@ public final class WTFMeasurer {
                 case BAD_DESIGN:
                     this.context.saveMeasure(inputFile, WTFMetrics.WTF_COUNT_BAD_DESIGN, value);
                     break;
-                case WRONG_LOGIC:
-                    this.context.saveMeasure(inputFile, WTFMetrics.WTF_COUNT_WRONG_LOGIC, value);
+                case INDECENT_EXPOSURE:
+                    this.context.saveMeasure(inputFile, WTFMetrics.WTF_COUNT_INDECENT_EXPOSURE, value);
+                    break;
+                case MEANINGLESS_COMMENT:
+                    this.context.saveMeasure(inputFile, WTFMetrics.WTF_COUNT_MEANINGLESS_COMMENT, value);
+                    break;
+                case MIDDLE_MAN:
+                    this.context.saveMeasure(inputFile, WTFMetrics.WTF_COUNT_MIDDLE_MAN, value);
+                    break;
+                case ODDBALL_SOLUTION:
+                    this.context.saveMeasure(inputFile, WTFMetrics.WTF_COUNT_ODDBALL_SOLUTION, value);
+                    break;
+                case OVERCOMPLICATED_ALGORITHM:
+                    this.context.saveMeasure(inputFile, WTFMetrics.WTF_COUNT_OVERCOMPLICATED_ALGORITHM, value);
+                    break;
+                case PRIMITIVES_OBSESSION:
+                    this.context.saveMeasure(inputFile, WTFMetrics.WTF_COUNT_PRIMITIVES_OBSESSION, value);
+                    break;
+                case REFUSED_BEQUEST:
+                    this.context.saveMeasure(inputFile, WTFMetrics.WTF_COUNT_REFUSED_BEQUEST, value);
+                    break;
+                case SOLUTION_SPRAWL:
+                    this.context.saveMeasure(inputFile, WTFMetrics.WTF_COUNT_SOLUTION_SPRAWL, value);
+                    break;
+                case SPECULATIVE_GENERALITY:
+                    this.context.saveMeasure(inputFile, WTFMetrics.WTF_COUNT_SPECULATIVE_GENERALITY, value);
+                    break;
+                case UNCOMMUNICATIVE_NAME:
+                    this.context.saveMeasure(inputFile, WTFMetrics.WTF_COUNT_UNCOMMUNICATIVE_NAME, value);
                     break;
                 case USELESS_TEST:
                     this.context.saveMeasure(inputFile, WTFMetrics.WTF_COUNT_USELESS_TEST, value);
                     break;
-                case OVERCOMPLICATED_ALGORITHM:
-                    this.context.saveMeasure(inputFile, WTFMetrics.WTF_COUNT_OVERCOMPLICATED_ALGORITHM, value);
+                case WRONG_LOGIC:
+                    this.context.saveMeasure(inputFile, WTFMetrics.WTF_COUNT_WRONG_LOGIC, value);
                     break;
                 default:
                     LOGGER.warn("Unexpected non measurable WTFType: {}", measure.getKey());
