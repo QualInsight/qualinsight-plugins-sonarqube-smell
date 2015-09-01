@@ -6,7 +6,7 @@
         <version>1.0.0</version>
     </parent>
     <artifactId>qualinsight-plugins-sonarqube-wtf</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.0.1</version>
     <description>QualInsight "What the fuck!" plugin for SonarQube and Java library parent pom.</description>
     <url>https://github.com/QualInsight/qualinsight-plugins-sonarqube-wtf</url>
     <organization>
@@ -36,7 +36,7 @@
         <connection>scm:git:git@github.com:QualInsight/qualinsight-plugins-sonarqube-wtf.git</connection>
         <developerConnection>scm:git:git@github.com:QualInsight/qualinsight-plugins-sonarqube-wtf.git</developerConnection>
         <url>https://github.com/QualInsight/qualinsight-plugins-sonarqube-wtf.git</url>
-      <tag>HEAD</tag>
+      <tag>qualinsight-plugins-sonarqube-wtf-1.0.1</tag>
   </scm>
     <modules>
         <module>internal</module>
