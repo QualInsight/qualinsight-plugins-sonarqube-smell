@@ -41,7 +41,8 @@ The plugin is made of two parts:
 
 ### Requirements
 
-SonarQube's [Java plugin](http://docs.sonarqube.org/display/PLUG/Java+Plugin) version 3.5. 
+* SonarQube 4.5.4+
+* SonarQube's [Java plugin](http://docs.sonarqube.org/display/PLUG/Java+Plugin) version 3.5. 
 
 ### Plugin installation
 
