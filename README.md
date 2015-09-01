@@ -98,15 +98,24 @@ It takes three mandatory parameters :
 
 #### Available WTF Types
 
-The WTFType enum currently can take the following values :
+The WTFType enum currently can take the following values (greatly inspired by Coding Horrors' [code smells](http://blog.codinghorror.com/code-smells/) and Industrial Logic's [smells to refactorings](http://www.industriallogic.com/wp-content/uploads/2005/09/smellstorefactorings.pdf)) :
 
-| WTFType                    |
-|----------------------------|
-| ANTI_PATTERN               |
-| BAD_DESIGN                 |
-| OVERCOMPLICATED_ALGORTÎTHM |
-| USELESS_TEST               |
-| WRONG_LOGIC                |
+| WTFType                    | When should I use it ?                                                 |
+|----------------------------|------------------------------------------------------------------------|
+| ANTI_PATTERN               | An anti-pattern has been used.                                         |
+| BAD_DESIGN                 | The design is really bad and should be improved.                       |
+| INDECENT_EXPOSURE          | The class unnecessarily exposes its internals.                         |
+| MEANINGLESS_COMMENT        | The comment or javadoc text should be rewritten.                       |
+| MIDDLE_MAN                 | The class delegates all its work, is it really needed ?                |
+| ODDBALL_SOLUTION           | The problem is solved in multiple ways throughout the system.          |
+| OVERCOMPLICATED_ALGORITHM  | There is a way to simplify an algorithm.                               |
+| PRIMITIVES_OBSESSION       | The code relies too much on primitives instead of classes.             |
+| REFUSED_BEQUEST            | The class extends another classes' methods but does not use them.      |
+| SOLUTION_SPRAWL            | It takes too many classes to do anything useful.                       |
+| SPECULATIVE_GENERALITY     | The code is written thinking about tomorrow's problems.                |
+| UNCOMMUNICATIVE_NAME       | The name does not communicate the purpose of the class, field, method. |
+| USELESS_TEST               | The test is useless (it tests nothing)                                 |
+| WRONG_LOGIC                | Wrong (business) logic is being used.                                  |
 
 Feel free to ask for new values!
 
