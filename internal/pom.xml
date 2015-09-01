@@ -16,7 +16,7 @@
         <dependency>
             <groupId>org.codehaus.sonar</groupId>
             <artifactId>sonar-plugin-api</artifactId>
-            <scope>compile</scope>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.codehaus.sonar.sslr-squid-bridge</groupId>
@@ -26,7 +26,7 @@
         <dependency>
             <groupId>org.sonarsource.java</groupId>
             <artifactId>sonar-java-plugin</artifactId>
-            <scope>compile</scope>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
     <build>
@@ -44,6 +44,7 @@
                     <pluginTermsConditionsUrl>https://www.gnu.org/licenses/lgpl-3.0.txt</pluginTermsConditionsUrl>
                     <pluginUrl>http://www.qualinsight.com/tools/sonarqube-wtf/</pluginUrl>
                     <useChildFirstClassLoader>true</useChildFirstClassLoader>
+                    <requirePlugins>java:3.5</requirePlugins>
                 </configuration>
             </plugin>
         </plugins>
