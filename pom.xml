@@ -7,7 +7,7 @@
   </parent>
   <artifactId>qualinsight-plugins-sonarqube-wtf</artifactId>
   <version>1.0.2-SNAPSHOT</version>
-  <description>QualInsight "What the fuck!" plugin for SonarQube and Java library parent pom.</description>
+  <description>Parent pom of QualInsight &quot;What the fuck!&quot; plugin for SonarQube and its companion Java api library.</description>
   <url>https://github.com/QualInsight/qualinsight-plugins-sonarqube-wtf</url>
   <organization>
     <url>http://www.qualinsight.com/</url>
@@ -61,4 +61,5 @@
     </plugins>
   </build>
   <packaging>pom</packaging>
+  <name>SonarQube WTF! Plugin</name>
 </project>
