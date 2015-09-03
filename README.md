@@ -70,7 +70,7 @@ In order to be able to use the `@WTF` annotation, the following dependency must 
 <dependency>
     <groupId>com.qualinsight.plugins.sonarqube</groupId>
     <artifactId>qualinsight-plugins-sonarqube-wtf-api</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.2</version>
 </dependency>
 ```
 
@@ -101,22 +101,30 @@ It takes three mandatory parameters :
 
 The WTFType enum currently can take the following values (greatly inspired by Coding Horrors' [code smells](http://blog.codinghorror.com/code-smells/) and Industrial Logic's [smells to refactorings](http://www.industriallogic.com/wp-content/uploads/2005/09/smellstorefactorings.pdf)) :
 
-| WTFType                    | When should I use it ?                                                 |
-|----------------------------|------------------------------------------------------------------------|
-| ANTI_PATTERN               | An anti-pattern has been used.                                         |
-| BAD_DESIGN                 | The design is really bad and should be improved.                       |
-| INDECENT_EXPOSURE          | The class unnecessarily exposes its internals.                         |
-| MEANINGLESS_COMMENT        | The comment or javadoc text should be rewritten.                       |
-| MIDDLE_MAN                 | The class delegates all its work, is it really needed ?                |
-| ODDBALL_SOLUTION           | The problem is solved in multiple ways throughout the system.          |
-| OVERCOMPLICATED_ALGORITHM  | There is a way to simplify an algorithm.                               |
-| PRIMITIVES_OBSESSION       | The code relies too much on primitives instead of classes.             |
-| REFUSED_BEQUEST            | The class extends another class but does not use its methods.          |
-| SOLUTION_SPRAWL            | It takes too many classes to do anything useful.                       |
-| SPECULATIVE_GENERALITY     | The code is written thinking about tomorrow's problems.                |
-| UNCOMMUNICATIVE_NAME       | The name does not communicate the purpose of the class, field, method. |
-| USELESS_TEST               | The test is useless (it tests nothing)                                 |
-| WRONG_LOGIC                | Wrong (business) logic is being used.                                  |
+| WTFType                    | When should I use it ?                                                     |
+|----------------------------|----------------------------------------------------------------------------|
+| ANTI_PATTERN               | An anti-pattern has been used.                                             |
+| ABBREVIATIONS_USAGE        | Confusing abbreviations are being used instead of explicit names           |
+| BAD_DESIGN                 | The design is really bad and should be improved.                           |
+| BAD_LOGGING                | The logging message, level, is inappropriate or the log is redundant.      |
+| NON_EXCEPTION              | The exceptions mechanism is used for non exceptional cases.                |
+| HOW_COMMENT                | The comment or documentation focuses on the "how" instead of the "what"    |
+| INDECENT_EXPOSURE          | The class unnecessarily exposes its internals.                             |
+| MEANINGLESS_COMMENT        | The comment or documentation text is meaningless.                          |
+| MIDDLE_MAN                 | The class delegates all its work, is it really needed ?                    |
+| MISSING_IMPLEMENTATION     | A method's implementation is missing.                                      |
+| ODDBALL_SOLUTION           | The problem is solved in multiple ways throughout the system.              |
+| OVERCOMPLICATED_ALGORITHM  | There is a way to simplify an algorithm.                                   |
+| PRIMITIVES_OBSESSION       | The code relies too much on primitives instead of classes.                 |
+| REFUSED_BEQUEST            | The class extends another class but does not use its methods.              |
+| REINVENTED_WHEEL           | A library does the same job, probably better                               |
+| SOLUTION_SPRAWL            | It takes too many classes to do anything useful.                           |
+| SPECULATIVE_GENERALITY     | The code is written thinking about tomorrow's problems.                    |
+| UNCOMMUNICATIVE_NAME       | The name does not communicate the purpose of the class, field, method.     |
+| UNCORRECT_FRAMEWORK_USAGE  | A framework is not used the way it should                                  |
+| USELESS_TEST               | The test is useless (it tests nothing)                                     |
+| WRONG_LANGUAGE             | Wrong language (french, english, german...) is being used                  |
+| WRONG_LOGIC                | Wrong (business) logic is being used.                                      |
 
 Feel free to ask for new values!
 
