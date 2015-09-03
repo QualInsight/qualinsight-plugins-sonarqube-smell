@@ -73,6 +73,14 @@ public final class WTFMeasurer {
     }
 
     private void measureWTFTypes(final InputFile inputFile, final String fileContent) {
+        final Map<WTFType, Double> fileMeasures = parseAnnotations(fileContent);
+        for (final Entry<WTFType, Double> measure : fileMeasures.entrySet()) {
+            final Double value = measure.getValue();
+            this.context.saveMeasure(inputFile, WTFMetrics.fromWTFType(measure.getKey()), value);
+        }
+    }
+
+    private Map<WTFType, Double> parseAnnotations(final String fileContent) {
         final Pattern pattern = Pattern.compile(WTF_ANNOTATION_TYPE_DETECTION_REGULAR_EXPRESSION, Pattern.MULTILINE);
         final Matcher matcher = pattern.matcher(fileContent);
         final Map<WTFType, Double> fileMeasures = new EnumMap<WTFType, Double>(WTFType.class);
@@ -84,56 +92,7 @@ public final class WTFMeasurer {
                 fileMeasures.put(type, 1.0);
             }
         }
-        for (final Entry<WTFType, Double> measure : fileMeasures.entrySet()) {
-            final Double value = measure.getValue();
-            switch (measure.getKey()) {
-                case ANTI_PATTERN:
-                    this.context.saveMeasure(inputFile, WTFMetrics.WTF_COUNT_ANTI_PATTERN, value);
-                    break;
-                case BAD_DESIGN:
-                    this.context.saveMeasure(inputFile, WTFMetrics.WTF_COUNT_BAD_DESIGN, value);
-                    break;
-                case INDECENT_EXPOSURE:
-                    this.context.saveMeasure(inputFile, WTFMetrics.WTF_COUNT_INDECENT_EXPOSURE, value);
-                    break;
-                case MEANINGLESS_COMMENT:
-                    this.context.saveMeasure(inputFile, WTFMetrics.WTF_COUNT_MEANINGLESS_COMMENT, value);
-                    break;
-                case MIDDLE_MAN:
-                    this.context.saveMeasure(inputFile, WTFMetrics.WTF_COUNT_MIDDLE_MAN, value);
-                    break;
-                case ODDBALL_SOLUTION:
-                    this.context.saveMeasure(inputFile, WTFMetrics.WTF_COUNT_ODDBALL_SOLUTION, value);
-                    break;
-                case OVERCOMPLICATED_ALGORITHM:
-                    this.context.saveMeasure(inputFile, WTFMetrics.WTF_COUNT_OVERCOMPLICATED_ALGORITHM, value);
-                    break;
-                case PRIMITIVES_OBSESSION:
-                    this.context.saveMeasure(inputFile, WTFMetrics.WTF_COUNT_PRIMITIVES_OBSESSION, value);
-                    break;
-                case REFUSED_BEQUEST:
-                    this.context.saveMeasure(inputFile, WTFMetrics.WTF_COUNT_REFUSED_BEQUEST, value);
-                    break;
-                case SOLUTION_SPRAWL:
-                    this.context.saveMeasure(inputFile, WTFMetrics.WTF_COUNT_SOLUTION_SPRAWL, value);
-                    break;
-                case SPECULATIVE_GENERALITY:
-                    this.context.saveMeasure(inputFile, WTFMetrics.WTF_COUNT_SPECULATIVE_GENERALITY, value);
-                    break;
-                case UNCOMMUNICATIVE_NAME:
-                    this.context.saveMeasure(inputFile, WTFMetrics.WTF_COUNT_UNCOMMUNICATIVE_NAME, value);
-                    break;
-                case USELESS_TEST:
-                    this.context.saveMeasure(inputFile, WTFMetrics.WTF_COUNT_USELESS_TEST, value);
-                    break;
-                case WRONG_LOGIC:
-                    this.context.saveMeasure(inputFile, WTFMetrics.WTF_COUNT_WRONG_LOGIC, value);
-                    break;
-                default:
-                    LOGGER.warn("Unexpected non measurable WTFType: {}", measure.getKey());
-                    break;
-            }
-        }
+        return fileMeasures;
     }
 
     private void measureWTFDebt(final InputFile inputFile, final String fileContent) {

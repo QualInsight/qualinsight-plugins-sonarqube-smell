@@ -20,6 +20,8 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.LinkedList;
 import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.sonar.api.measures.CoreMetrics;
 import org.sonar.api.measures.Metric;
 import org.sonar.api.measures.Metric.ValueType;
@@ -34,7 +36,10 @@ import com.qualinsight.plugins.sonarqube.wtf.api.model.WTFType;
  *
  * @author Michel Pawlak
  */
+@SuppressWarnings("unchecked")
 public final class WTFMetrics implements Metrics {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(Metrics.class);
 
     /**
      * Metric that tracks the debt related to WTF! issues.
@@ -213,13 +218,13 @@ public final class WTFMetrics implements Metrics {
         .setFormula(new SumChildValuesFormula(true))
         .create();
 
-    private static final List<Metric> WTF_METRICS;
+    private static final List<Metric<Integer>> WTF_METRICS;
 
     /*
      * Blocks that populates the list of WTF! Metrics using reflection.
      */
     static {
-        WTF_METRICS = new LinkedList<Metric>();
+        WTF_METRICS = new LinkedList<Metric<Integer>>();
         for (final Field field : WTFMetrics.class.getFields()) {
             if (!Modifier.isTransient(field.getModifiers()) && Metric.class.isAssignableFrom(field.getType())) {
                 try {
@@ -235,6 +240,64 @@ public final class WTFMetrics implements Metrics {
     @Override
     public List<Metric> getMetrics() {
         return ImmutableList.<Metric> copyOf(WTF_METRICS);
+    }
+
+    /**
+     * Returns a {@link Metric} from a {@link WTFType}
+     * 
+     * @param type {@link WTFType} to convert to a metric
+     * @return a {@link Metric} corresponding to the {@link WTFType}
+     */
+    public static final Metric<Integer> fromWTFType(final WTFType type) {
+        Metric<Integer> result = null;
+        switch (type) {
+            case ANTI_PATTERN:
+                result = WTFMetrics.WTF_COUNT_ANTI_PATTERN;
+                break;
+            case BAD_DESIGN:
+                result = WTFMetrics.WTF_COUNT_BAD_DESIGN;
+                break;
+            case INDECENT_EXPOSURE:
+                result = WTFMetrics.WTF_COUNT_INDECENT_EXPOSURE;
+                break;
+            case MEANINGLESS_COMMENT:
+                result = WTFMetrics.WTF_COUNT_MEANINGLESS_COMMENT;
+                break;
+            case MIDDLE_MAN:
+                result = WTFMetrics.WTF_COUNT_MIDDLE_MAN;
+                break;
+            case ODDBALL_SOLUTION:
+                result = WTFMetrics.WTF_COUNT_ODDBALL_SOLUTION;
+                break;
+            case OVERCOMPLICATED_ALGORITHM:
+                result = WTFMetrics.WTF_COUNT_OVERCOMPLICATED_ALGORITHM;
+                break;
+            case PRIMITIVES_OBSESSION:
+                result = WTFMetrics.WTF_COUNT_PRIMITIVES_OBSESSION;
+                break;
+            case REFUSED_BEQUEST:
+                result = WTFMetrics.WTF_COUNT_REFUSED_BEQUEST;
+                break;
+            case SOLUTION_SPRAWL:
+                result = WTFMetrics.WTF_COUNT_SOLUTION_SPRAWL;
+                break;
+            case SPECULATIVE_GENERALITY:
+                result = WTFMetrics.WTF_COUNT_SPECULATIVE_GENERALITY;
+                break;
+            case UNCOMMUNICATIVE_NAME:
+                result = WTFMetrics.WTF_COUNT_UNCOMMUNICATIVE_NAME;
+                break;
+            case USELESS_TEST:
+                result = WTFMetrics.WTF_COUNT_USELESS_TEST;
+                break;
+            case WRONG_LOGIC:
+                result = WTFMetrics.WTF_COUNT_WRONG_LOGIC;
+                break;
+            default:
+                LOGGER.warn("Unexpected non measurable WTFType: {}", type);
+                break;
+        }
+        return result;
     }
 
 }
