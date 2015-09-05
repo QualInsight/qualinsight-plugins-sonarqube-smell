@@ -1,28 +1,28 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>com.qualinsight.plugins.sonarqube</groupId>
-        <artifactId>qualinsight-plugins-sonarqube-wtf</artifactId>
-        <version>1.0.2-SNAPSHOT</version>
-    </parent>
-    <artifactId>qualinsight-plugins-sonarqube-wtf-api</artifactId>
-    <description>QualInsight "What the fuck!" annotation api.</description>
-    <packaging>jar</packaging>
-    <dependencies>
-        <dependency>
-            <groupId>org.codehaus.sonar</groupId>
-            <artifactId>sonar-plugin-api</artifactId>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.codehaus.sonar.sslr-squid-bridge</groupId>
-            <artifactId>sslr-squid-bridge</artifactId>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.sonarsource.java</groupId>
-            <artifactId>sonar-java-plugin</artifactId>
-            <scope>compile</scope>
-        </dependency>
-    </dependencies>
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.qualinsight.plugins.sonarqube</groupId>
+    <artifactId>qualinsight-plugins-sonarqube-wtf</artifactId>
+    <version>1.0.3-SNAPSHOT</version>
+  </parent>
+  <artifactId>qualinsight-plugins-sonarqube-wtf-api</artifactId>
+  <description>QualInsight "What the fuck!" annotation api.</description>
+  <packaging>jar</packaging>
+  <dependencies>
+    <dependency>
+      <groupId>org.codehaus.sonar</groupId>
+      <artifactId>sonar-plugin-api</artifactId>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.codehaus.sonar.sslr-squid-bridge</groupId>
+      <artifactId>sslr-squid-bridge</artifactId>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.sonarsource.java</groupId>
+      <artifactId>sonar-java-plugin</artifactId>
+      <scope>compile</scope>
+    </dependency>
+  </dependencies>
 </project>

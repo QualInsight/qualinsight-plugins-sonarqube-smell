@@ -3,6 +3,7 @@
   wtf_count=measure('WTF_COUNT')
   wtf_count_overcomplicated_algorithm=measure('WTF_COUNT_OVERCOMPLICATED_ALGORITHM')
   wtf_count_wrong_logic=measure('WTF_COUNT_WRONG_LOGIC')
+  wtf_count_wrong_language=measure('WTF_COUNT_WRONG_LANGUAGE')
   wtf_count_anti_pattern=measure('WTF_COUNT_ANTI_PATTERN')
   wtf_count_bad_design=measure('WTF_COUNT_BAD_DESIGN')
   wtf_count_useless_test=measure('WTF_COUNT_USELESS_TEST')
@@ -15,6 +16,9 @@
   wtf_count_solution_sprawl=measure('WTF_COUNT_SOLUTION_SPRAWL')
   wtf_count_middle_man=measure('WTF_COUNT_MIDDLE_MAN')
   wtf_count_refused_bequest=measure('WTF_COUNT_REFUSED_BEQUEST')
+  wtf_count_missing_implementation=measure('WTF_COUNT_MISSING_IMPLEMENTATION')
+  wtf_count_non_exception=measure('WTF_COUNT_NON_EXCEPTION')
+  wtf_count_how_comment=measure('WTF_COUNT_HOW_COMMENT')
   
 %>
 <div class="widget-row widget-row-x">
@@ -49,6 +53,7 @@
             ['WTF! Type', 'Issue Count'],
             ['<%= message('metric.wtf_count_bad_design.name') -%>', <%= wtf_count_bad_design.formatted_value -%>],
             ['<%= message('metric.wtf_count_wrong_logic.name') -%>', <%= wtf_count_wrong_logic.formatted_value -%>],
+            ['<%= message('metric.wtf_count_wrong_language.name') -%>', <%= wtf_count_wrong_language.formatted_value -%>],
             ['<%= message('metric.wtf_count_overcomplicated_algorithm.name') -%>', <%= wtf_count_overcomplicated_algorithm.formatted_value -%>],
             ['<%= message('metric.wtf_count_anti_pattern.name') -%>', <%= wtf_count_anti_pattern.formatted_value -%>],
             ['<%= message('metric.wtf_count_useless_test.name') -%>', <%= wtf_count_useless_test.formatted_value -%>],
@@ -60,7 +65,10 @@
             ['<%= message('metric.wtf_count_indecent_exposure.name') -%>', <%= wtf_count_indecent_exposure.formatted_value -%>],
             ['<%= message('metric.wtf_count_solution_sprawl.name') -%>', <%= wtf_count_solution_sprawl.formatted_value -%>],
             ['<%= message('metric.wtf_count_middle_man.name') -%>', <%= wtf_count_middle_man.formatted_value -%>],
-            ['<%= message('metric.wtf_count_refused_bequest.name') -%>', <%= wtf_count_refused_bequest.formatted_value -%>]
+            ['<%= message('metric.wtf_count_refused_bequest.name') -%>', <%= wtf_count_refused_bequest.formatted_value -%>],
+            ['<%= message('metric.wtf_count_missing_implementation.name') -%>', <%= wtf_count_missing_implementation.formatted_value -%>],
+            ['<%= message('metric.wtf_count_non_exception.name') -%>', <%= wtf_count_non_exception.formatted_value -%>],
+            ['<%= message('metric.wtf_count_how_comment.name') -%>', <%= wtf_count_how_comment.formatted_value -%>]
           ]);
           
           var options = {

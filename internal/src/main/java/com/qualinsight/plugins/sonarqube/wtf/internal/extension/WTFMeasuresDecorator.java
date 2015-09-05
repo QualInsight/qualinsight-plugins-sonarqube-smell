@@ -27,6 +27,7 @@ import org.sonar.api.resources.Project;
 import org.sonar.api.resources.Resource;
 import org.sonar.api.resources.ResourceUtils;
 import org.sonar.plugins.java.Java;
+import com.google.common.annotations.VisibleForTesting;
 
 /**
  * {@link Decorator} that aggregates WTF! measures at project level.
@@ -60,25 +61,39 @@ public final class WTFMeasuresDecorator implements Decorator {
     @Override
     public void decorate(final Resource resource, final DecoratorContext context) {
         if (ResourceUtils.isProject(resource)) {
-            LOGGER.info("decorating key: {}", resource.getKey());
-            Double total = 0d;
-            total += MeasureUtils.sum(true, context.getChildrenMeasures(WTFMetrics.WTF_COUNT_ANTI_PATTERN));
-            total += MeasureUtils.sum(true, context.getChildrenMeasures(WTFMetrics.WTF_COUNT_BAD_DESIGN));
-            total += MeasureUtils.sum(true, context.getChildrenMeasures(WTFMetrics.WTF_COUNT_INDECENT_EXPOSURE));
-            total += MeasureUtils.sum(true, context.getChildrenMeasures(WTFMetrics.WTF_COUNT_MEANINGLESS_COMMENT));
-            total += MeasureUtils.sum(true, context.getChildrenMeasures(WTFMetrics.WTF_COUNT_MIDDLE_MAN));
-            total += MeasureUtils.sum(true, context.getChildrenMeasures(WTFMetrics.WTF_COUNT_ODDBALL_SOLUTION));
-            total += MeasureUtils.sum(true, context.getChildrenMeasures(WTFMetrics.WTF_COUNT_OVERCOMPLICATED_ALGORITHM));
-            total += MeasureUtils.sum(true, context.getChildrenMeasures(WTFMetrics.WTF_COUNT_PRIMITIVES_OBSESSION));
-            total += MeasureUtils.sum(true, context.getChildrenMeasures(WTFMetrics.WTF_COUNT_REFUSED_BEQUEST));
-            total += MeasureUtils.sum(true, context.getChildrenMeasures(WTFMetrics.WTF_COUNT_SOLUTION_SPRAWL));
-            total += MeasureUtils.sum(true, context.getChildrenMeasures(WTFMetrics.WTF_COUNT_SPECULATIVE_GENERALITY));
-            total += MeasureUtils.sum(true, context.getChildrenMeasures(WTFMetrics.WTF_COUNT_UNCOMMUNICATIVE_NAME));
-            total += MeasureUtils.sum(true, context.getChildrenMeasures(WTFMetrics.WTF_COUNT_USELESS_TEST));
-            total += MeasureUtils.sum(true, context.getChildrenMeasures(WTFMetrics.WTF_COUNT_WRONG_LOGIC));
-            context.saveMeasure(WTFMetrics.WTF_COUNT, total);
-            LOGGER.debug("Saved measure for metric '{}' with value '{}'", WTFMetrics.WTF_COUNT.key(), total);
+            LOGGER.debug("decorating key: {}", resource.getKey());
+            decorate(context);
         }
+    }
+
+    /**
+     * Computes WTF_COUNT metric by summing all children WTF measures.
+     *
+     * @param context {@link DecoratorContext} to which the measure has to be saved to.
+     */
+    @VisibleForTesting
+    public void decorate(final DecoratorContext context) {
+        Double total = 0d;
+        total += MeasureUtils.sum(true, context.getChildrenMeasures(WTFMetrics.WTF_COUNT_ANTI_PATTERN));
+        total += MeasureUtils.sum(true, context.getChildrenMeasures(WTFMetrics.WTF_COUNT_BAD_DESIGN));
+        total += MeasureUtils.sum(true, context.getChildrenMeasures(WTFMetrics.WTF_COUNT_HOW_COMMENT));
+        total += MeasureUtils.sum(true, context.getChildrenMeasures(WTFMetrics.WTF_COUNT_INDECENT_EXPOSURE));
+        total += MeasureUtils.sum(true, context.getChildrenMeasures(WTFMetrics.WTF_COUNT_MEANINGLESS_COMMENT));
+        total += MeasureUtils.sum(true, context.getChildrenMeasures(WTFMetrics.WTF_COUNT_MIDDLE_MAN));
+        total += MeasureUtils.sum(true, context.getChildrenMeasures(WTFMetrics.WTF_COUNT_MISSING_IMPLEMENTATION));
+        total += MeasureUtils.sum(true, context.getChildrenMeasures(WTFMetrics.WTF_COUNT_NON_EXCEPTION));
+        total += MeasureUtils.sum(true, context.getChildrenMeasures(WTFMetrics.WTF_COUNT_ODDBALL_SOLUTION));
+        total += MeasureUtils.sum(true, context.getChildrenMeasures(WTFMetrics.WTF_COUNT_OVERCOMPLICATED_ALGORITHM));
+        total += MeasureUtils.sum(true, context.getChildrenMeasures(WTFMetrics.WTF_COUNT_PRIMITIVES_OBSESSION));
+        total += MeasureUtils.sum(true, context.getChildrenMeasures(WTFMetrics.WTF_COUNT_REFUSED_BEQUEST));
+        total += MeasureUtils.sum(true, context.getChildrenMeasures(WTFMetrics.WTF_COUNT_SOLUTION_SPRAWL));
+        total += MeasureUtils.sum(true, context.getChildrenMeasures(WTFMetrics.WTF_COUNT_SPECULATIVE_GENERALITY));
+        total += MeasureUtils.sum(true, context.getChildrenMeasures(WTFMetrics.WTF_COUNT_UNCOMMUNICATIVE_NAME));
+        total += MeasureUtils.sum(true, context.getChildrenMeasures(WTFMetrics.WTF_COUNT_USELESS_TEST));
+        total += MeasureUtils.sum(true, context.getChildrenMeasures(WTFMetrics.WTF_COUNT_WRONG_LANGUAGE));
+        total += MeasureUtils.sum(true, context.getChildrenMeasures(WTFMetrics.WTF_COUNT_WRONG_LOGIC));
+        context.saveMeasure(WTFMetrics.WTF_COUNT, total);
+        LOGGER.debug("Saved measure for metric '{}' with value '{}'", WTFMetrics.WTF_COUNT.key(), total);
     }
 
     @Override
