@@ -46,7 +46,7 @@ The plugin is made of two parts:
 
 ### Plugin installation
 
-The plugin will be (hopefully) available shortly in SonarQube update center. Meantime it can be [downloaded from Maven central](http://search.maven.org/remotecontent?filepath=com/qualinsight/plugins/sonarqube/qualinsight-plugins-sonarqube-wtf-internal/1.0.1/qualinsight-plugins-sonarqube-wtf-internal-1.0.1.jar)
+The plugin will be (hopefully) available shortly in SonarQube update center. Meantime it can be [downloaded from Maven central](http://search.maven.org/remotecontent?filepath=com/qualinsight/plugins/sonarqube/qualinsight-plugins-sonarqube-wtf-internal/1.0.2/qualinsight-plugins-sonarqube-wtf-internal-1.0.2.jar)
 
 After having placed the plugin's jar in `{SONARQUBE_INSTALL_DIRECTORY}/extensions/plugins` you need to restart your SonarQube instance.
 
@@ -96,6 +96,19 @@ It takes three mandatory parameters :
 | minutes   | int      | yes         | 10                                                |
 | reason    | String   | yes         | This class should be redesigned in order to...    |
 | type      | WTFType  | yes         | WTFType.BAD_DESIGN                                |
+
+Multiple WTFs can be declared using the `@WTFs` annotation as follows:
+
+```
+@WTFs({
+    @WTF(minutes=20,reason="This class should be redesigned in order to ...", type=WTFType.BAD_DESIGN),
+    @WTF(minutes=5,reason="This class should be renamed in order to highlight its responsibility", type=WTFType.UNCOMMUNICATIVE_NAME)
+})
+public class MyClass {
+    ...
+}
+```
+
 
 #### Available WTF Types
 
