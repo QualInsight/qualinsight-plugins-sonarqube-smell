@@ -50,12 +50,6 @@
   <dependencyManagement>
     <dependencies>
       <dependency>
-        <groupId>com.qualinsight.plugins.sonarqube</groupId>
-        <artifactId>qualinsight-plugins-sonarqube-wtf-api</artifactId>
-        <version>${lib.version.qualinsight-plugins-sonarqube-wtf-api}</version>
-        <scope>compile</scope>
-      </dependency>
-      <dependency>
         <groupId>com.qualinsight.libs.sonarqube</groupId>
         <artifactId>qualinsight-libs-sonarqube-test</artifactId>
         <version>${lib.version.qualinsight-libs-sonarqube-test}</version>
