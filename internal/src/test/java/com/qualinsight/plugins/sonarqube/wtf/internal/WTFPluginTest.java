@@ -34,6 +34,7 @@ public class WTFPluginTest {
     @Test
     public void getExtensions_should_return_expectedExtensions() {
         final WTFPlugin sut = new WTFPlugin();
+        @SuppressWarnings("rawtypes")
         final List actualExtensions = sut.getExtensions();
         final SoftAssertions softly = new SoftAssertions();
         softly.assertThat(actualExtensions)

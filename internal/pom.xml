@@ -7,6 +7,7 @@
   </parent>
   <artifactId>qualinsight-plugins-sonarqube-wtf-internal</artifactId>
   <description>QualInsight SonarQube "What the fuck!" plugin.</description>
+  <packaging>sonar-plugin</packaging>
   <dependencies>
     <dependency>
       <groupId>com.qualinsight.plugins.sonarqube</groupId>
@@ -33,6 +34,31 @@
       <artifactId>assertj-core</artifactId>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>pl.pragmatists</groupId>
+      <artifactId>JUnitParams</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.powermock</groupId>
+      <artifactId>powermock-api-mockito</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-all</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.powermock</groupId>
+      <artifactId>powermock-module-junit4</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.qualinsight.libs.sonarqube</groupId>
+      <artifactId>qualinsight-libs-sonarqube-test</artifactId>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
   <build>
     <plugins>
@@ -54,5 +80,4 @@
       </plugin>
     </plugins>
   </build>
-  <packaging>sonar-plugin</packaging>
 </project>
