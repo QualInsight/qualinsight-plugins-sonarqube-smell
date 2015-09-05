@@ -34,6 +34,10 @@ public enum WTFType {
      */
     BAD_DESIGN,
     /**
+     * The comment or documentation text focuses on the "how" instead of the why".
+     */
+    HOW_COMMENT,
+    /**
      * The class unnecessarily exposes its internals. Aggressively refactor classes to minimize its public surface. You should have a compelling reason for every item you make public. If you don't, hide it.
      */
     INDECENT_EXPOSURE,
@@ -45,6 +49,14 @@ public enum WTFType {
      * The class delegates all its work, is it really needed ? Cut out the middle man unless you really need a wrapper.
      */
     MIDDLE_MAN,
+    /**
+     * A method's implementation is missing.
+     */
+    MISSING_IMPLEMENTATION,
+    /**
+     * Execption mechanism usage for non exceptional cases
+     */
+    NON_EXCEPTION,
     /**
      * The problem is solved one way throughout the system and the same problem is solved another way in the same system. One of the solutions is the oddball or the inconsistent solution and has to be eliminated.
      */
@@ -78,7 +90,12 @@ public enum WTFType {
      */
     USELESS_TEST,
     /**
+     * Wrong language (french, english, german...) is being used
+     */
+    WRONG_LANGUAGE,
+    /**
      * Wrong (business) logic is being used.
      */
     WRONG_LOGIC;
+
 }

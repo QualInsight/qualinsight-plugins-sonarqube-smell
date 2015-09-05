@@ -17,12 +17,15 @@
 package com.qualinsight.plugins.sonarqube.wtf.internal.check;
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.sonar.api.server.rule.RulesDefinition;
 import org.sonar.check.Priority;
 import org.sonar.check.Rule;
 import org.sonar.plugins.java.api.IssuableSubscriptionVisitor;
+import org.sonar.plugins.java.api.semantic.Type;
 import org.sonar.plugins.java.api.tree.AnnotationTree;
 import org.sonar.plugins.java.api.tree.Arguments;
 import org.sonar.plugins.java.api.tree.AssignmentExpressionTree;
@@ -55,6 +58,8 @@ public final class WTFCheck extends IssuableSubscriptionVisitor {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(WTFCheck.class);
 
+    private static final Pattern PATTERN = Pattern.compile("^\"(.*)\"$");
+
     /**
      * Key of the check
      */
@@ -68,9 +73,9 @@ public final class WTFCheck extends IssuableSubscriptionVisitor {
     @Override
     public void visitNode(final Tree tree) {
         final AnnotationTree annotationTree = (AnnotationTree) tree;
-        if (annotationTree.annotationType()
-            .symbolType()
-            .is("com.qualinsight.plugins.sonarqube.wtf.api.annotation.WTF")) {
+        final Type symbolType = annotationTree.annotationType()
+            .symbolType();
+        if (symbolType.is("com.qualinsight.plugins.sonarqube.wtf.api.annotation.WTF")) {
             handleWTFAnnotation(annotationTree);
         }
     }
@@ -96,6 +101,10 @@ public final class WTFCheck extends IssuableSubscriptionVisitor {
                         break;
                 }
             }
+        }
+        final Matcher matcher = PATTERN.matcher(message);
+        if (matcher.matches()) {
+            message = matcher.group(1);
         }
         addIssue(annotationTree, message, minutes);
     }

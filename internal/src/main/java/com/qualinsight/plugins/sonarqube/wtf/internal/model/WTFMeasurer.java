@@ -76,7 +76,7 @@ public final class WTFMeasurer {
         final Map<WTFType, Double> fileMeasures = parseAnnotations(fileContent);
         for (final Entry<WTFType, Double> measure : fileMeasures.entrySet()) {
             final Double value = measure.getValue();
-            this.context.saveMeasure(inputFile, WTFMetrics.fromWTFType(measure.getKey()), value);
+            this.context.saveMeasure(inputFile, WTFMetrics.metricFor(measure.getKey()), value);
         }
     }
 
