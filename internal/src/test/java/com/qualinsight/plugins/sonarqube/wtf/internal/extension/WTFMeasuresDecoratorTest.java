@@ -19,6 +19,7 @@ package com.qualinsight.plugins.sonarqube.wtf.internal.extension;
 import java.util.Collection;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
+import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -42,22 +43,22 @@ import com.google.common.collect.ImmutableList;
 @RunWith(JUnitParamsRunner.class)
 public class WTFMeasuresDecoratorTest {
 
-    private static final Metric DUMMY_METRIC = new Metric.Builder("DUMMY", "DUMMY", ValueType.INT).create();
+    private static final Metric<Integer> DUMMY_METRIC = new Metric.Builder("DUMMY", "DUMMY", ValueType.INT).create();
 
     @Rule
     public MockitoRule rule = MockitoJUnit.rule();
 
     @Mock
-    DecoratorContext context;
+    public DecoratorContext context;
 
     @Mock
-    FileSystem fs;
+    public FileSystem fs;
 
     @Mock
-    FilePredicates predicates;
+    public FilePredicates predicates;
 
     @Mock
-    FilePredicate predicate;
+    public FilePredicate predicate;
 
     @Before
     public void setUp() {
@@ -162,10 +163,6 @@ public class WTFMeasuresDecoratorTest {
         };
     }
 
-    @SuppressWarnings({
-        "unchecked",
-        "rawtypes"
-    })
     @Test
     public void decorate_should_saveExpectedMeasureTotal_when_usingAllMetrics() {
         Mockito.when(this.context.getChildrenMeasures(Matchers.any(Metric.class)))
@@ -186,4 +183,9 @@ public class WTFMeasuresDecoratorTest {
         return ImmutableList.<Measure> of(measure, measure, measure);
     }
 
+    @Test
+    public void toString_should_return_simpleClassName() {
+        Assertions.assertThat(new WTFMeasuresDecorator(this.fs).toString())
+            .isEqualTo(WTFMeasuresDecorator.class.getSimpleName());
+    }
 }
