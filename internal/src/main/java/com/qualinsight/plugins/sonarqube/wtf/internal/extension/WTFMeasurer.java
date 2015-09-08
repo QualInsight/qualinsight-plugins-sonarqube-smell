@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with qualinsight-plugins-sonarqube-wtf-internal.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.qualinsight.plugins.sonarqube.wtf.internal.model;
+package com.qualinsight.plugins.sonarqube.wtf.internal.extension;
 
 import java.io.File;
 import java.io.IOException;
@@ -33,7 +33,6 @@ import org.sonar.api.measures.Measure;
 import com.google.common.io.Files;
 import com.qualinsight.plugins.sonarqube.wtf.api.annotation.WTF;
 import com.qualinsight.plugins.sonarqube.wtf.api.model.WTFType;
-import com.qualinsight.plugins.sonarqube.wtf.internal.extension.WTFMetrics;
 
 /**
  * Helper class that scans {@link InputFile}s for the presence of {@link WTF} annotations and saves {@link Measure}s accordingly.

@@ -28,7 +28,6 @@ import org.sonar.plugins.java.Java;
 import com.google.common.collect.Lists;
 import com.qualinsight.plugins.sonarqube.wtf.api.annotation.WTF;
 import com.qualinsight.plugins.sonarqube.wtf.internal.check.WTFCheck;
-import com.qualinsight.plugins.sonarqube.wtf.internal.model.WTFMeasurer;
 
 /**
  * {@link Sensor} that launches the scan of Java source files in order to detect {@link WTF} annotations regardless of the activation of the {@link WTFCheck} {@link Rule}.

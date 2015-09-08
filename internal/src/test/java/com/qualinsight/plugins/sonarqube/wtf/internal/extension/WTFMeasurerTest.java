@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with qualinsight-plugins-sonarqube-wtf-internal.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.qualinsight.plugins.sonarqube.wtf.internal.model;
+package com.qualinsight.plugins.sonarqube.wtf.internal.extension;
 
 import java.io.File;
 import org.junit.Test;
@@ -26,6 +26,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 import org.sonar.api.batch.SensorContext;
 import org.sonar.api.batch.fs.InputFile;
 import org.sonar.api.measures.Metric;
+import com.qualinsight.plugins.sonarqube.wtf.internal.extension.WTFMeasurer;
 
 @RunWith(MockitoJUnitRunner.class)
 public class WTFMeasurerTest {
