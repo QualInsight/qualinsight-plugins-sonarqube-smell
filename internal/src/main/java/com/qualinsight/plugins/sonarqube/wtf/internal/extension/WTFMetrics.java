@@ -17,7 +17,6 @@
 package com.qualinsight.plugins.sonarqube.wtf.internal.extension;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
 import java.util.EnumMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -273,7 +272,7 @@ public final class WTFMetrics implements Metrics {
         for (final Field field : WTFMetrics.class.getFields()) {
             final String fieldName = field.getName();
             final Metric metric;
-            if (!Modifier.isTransient(field.getModifiers()) && Metric.class.isAssignableFrom(field.getType())) {
+            if (Metric.class.isAssignableFrom(field.getType())) {
                 try {
                     metric = (Metric) field.get(null);
                     WTF_METRICS.add(metric);
