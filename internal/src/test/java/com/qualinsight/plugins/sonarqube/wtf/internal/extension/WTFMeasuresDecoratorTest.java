@@ -16,6 +16,7 @@
  */
 package com.qualinsight.plugins.sonarqube.wtf.internal.extension;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
@@ -37,6 +38,8 @@ import org.sonar.api.batch.fs.FileSystem;
 import org.sonar.api.measures.Measure;
 import org.sonar.api.measures.Metric;
 import org.sonar.api.measures.Metric.ValueType;
+import org.sonar.api.resources.Resource;
+import org.sonar.api.resources.Scopes;
 import org.sonar.plugins.java.Java;
 import com.google.common.collect.ImmutableList;
 
@@ -45,11 +48,19 @@ public class WTFMeasuresDecoratorTest {
 
     private static final Metric<Integer> DUMMY_METRIC = new Metric.Builder("DUMMY", "DUMMY", ValueType.INT).create();
 
+    @SuppressWarnings("rawtypes")
+    private static final Collection<Measure> DUMMY_METRIC_COLLECTION = new ArrayList<Measure>();
+
+    private static final Integer METRICS_COUNT = 18;
+
     @Rule
     public MockitoRule rule = MockitoJUnit.rule();
 
     @Mock
     public DecoratorContext context;
+
+    @Mock
+    public Resource resource;
 
     @Mock
     public FileSystem fs;
@@ -69,6 +80,46 @@ public class WTFMeasuresDecoratorTest {
     }
 
     @Test
+    public void decorate_should_saveMeasures_when_resourceIsAProject() {
+        Mockito.when(this.resource.getScope())
+            .thenReturn(Scopes.PROJECT);
+        Mockito.when(this.context.getChildrenMeasures(Matchers.any(Metric.class)))
+            .thenReturn(DUMMY_METRIC_COLLECTION);
+        final WTFMeasuresDecorator sut = new WTFMeasuresDecorator(this.fs);
+        sut.decorate(this.resource, this.context);
+        Mockito.verify(this.resource, Mockito.times(1))
+            .getScope();
+        Mockito.verify(this.context, Mockito.times(METRICS_COUNT))
+            .getChildrenMeasures(Matchers.any(Metric.class));
+        Mockito.verify(this.context, Mockito.times(1))
+            .saveMeasure(Matchers.eq(WTFMetrics.WTF_COUNT), Matchers.eq(0d));
+        Mockito.verifyNoMoreInteractions(this.context);
+
+    }
+
+    @Test
+    @Parameters
+    public void decorate_shouldNot_saveMeasures_when_resourceIsNotAProject(final String scope) {
+        Mockito.when(this.resource.getScope())
+            .thenReturn(scope);
+        Mockito.when(this.context.getChildrenMeasures(Matchers.any(Metric.class)))
+            .thenReturn(DUMMY_METRIC_COLLECTION);
+        final WTFMeasuresDecorator sut = new WTFMeasuresDecorator(this.fs);
+        sut.decorate(this.resource, this.context);
+        Mockito.verify(this.resource, Mockito.times(1))
+            .getScope();
+        Mockito.verifyNoMoreInteractions(this.resource, this.context);
+    }
+
+    @SuppressWarnings("unused")
+    private Object[] parametersForDecorate_shouldNot_saveMeasures_when_resourceIsNotAProject() {
+        return new Object[] {
+            Scopes.DIRECTORY,
+            Scopes.FILE,
+        };
+    }
+
+    @Test
     @Parameters
     public void decorate_should_saveExpectedMeasureTotal_when_usingAnyMetric(final Metric<Integer> metric, @SuppressWarnings("rawtypes") final Collection<Measure> measures) {
         Mockito.when(this.context.getChildrenMeasures(Matchers.eq(metric)))
@@ -78,7 +129,7 @@ public class WTFMeasuresDecoratorTest {
         final WTFMeasuresDecorator sut = new WTFMeasuresDecorator(this.fs);
         sut.decorate(this.context);
         // There are 18 metrics in total
-        Mockito.verify(this.context, Mockito.times(18))
+        Mockito.verify(this.context, Mockito.times(METRICS_COUNT))
             .getChildrenMeasures(Matchers.any(Metric.class));
         Mockito.verify(this.context, Mockito.times(1))
             .saveMeasure(Matchers.eq(WTFMetrics.WTF_COUNT), Matchers.eq(3d));
@@ -170,7 +221,7 @@ public class WTFMeasuresDecoratorTest {
         final WTFMeasuresDecorator sut = new WTFMeasuresDecorator(this.fs);
         sut.decorate(this.context);
         // There are 18 metrics in total
-        Mockito.verify(this.context, Mockito.times(18))
+        Mockito.verify(this.context, Mockito.times(METRICS_COUNT))
             .getChildrenMeasures(Matchers.any(Metric.class));
         Mockito.verify(this.context, Mockito.times(1))
             .saveMeasure(Matchers.eq(WTFMetrics.WTF_COUNT), Matchers.eq(54d));
