@@ -8,6 +8,7 @@
   wtf_count_bad_design=measure('WTF_COUNT_BAD_DESIGN')
   wtf_count_useless_test=measure('WTF_COUNT_USELESS_TEST')
   wtf_count_meaningless_comment=measure('WTF_COUNT_MEANINGLESS_COMMENT')
+  wtf_count_multiple_responsibilities=measure('WTF_COUNT_MULTIPLE_RESPONSIBILITIES')
   wtf_count_uncommunicative_name=measure('WTF_COUNT_UNCOMMUNICATIVE_NAME')
   wtf_count_speculative_generality=measure('WTF_COUNT_SPECULATIVE_GENERALITY')
   wtf_count_oddball_solution=measure('WTF_COUNT_ODDBALL_SOLUTION')
@@ -19,6 +20,10 @@
   wtf_count_missing_implementation=measure('WTF_COUNT_MISSING_IMPLEMENTATION')
   wtf_count_non_exception=measure('WTF_COUNT_NON_EXCEPTION')
   wtf_count_how_comment=measure('WTF_COUNT_HOW_COMMENT')
+  wtf_count_bad_logging=measure('WTF_COUNT_BAD_LOGGING')
+  wtf_count_abbreviations_usage=measure('WTF_COUNT_ABBREVIATIONS_USAGE')
+  wtf_count_reinvented_wheel=measure('WTF_COUNT_REINVENTED_WHEEL')
+  wtf_count_bad_framework_usage=measure('WTF_COUNT_BAD_FRAMEWORK_USAGE')
   
 %>
 <div class="widget-row widget-row-x">
@@ -51,24 +56,29 @@
   
           var data = google.visualization.arrayToDataTable([
             ['WTF! Type', 'Issue Count'],
-            ['<%= message('metric.wtf_count_bad_design.name') -%>', <%= wtf_count_bad_design.formatted_value -%>],
-            ['<%= message('metric.wtf_count_wrong_logic.name') -%>', <%= wtf_count_wrong_logic.formatted_value -%>],
-            ['<%= message('metric.wtf_count_wrong_language.name') -%>', <%= wtf_count_wrong_language.formatted_value -%>],
-            ['<%= message('metric.wtf_count_overcomplicated_algorithm.name') -%>', <%= wtf_count_overcomplicated_algorithm.formatted_value -%>],
+            ['<%= message('metric.wtf_count_abbreviations_usage.name') -%>', <%= wtf_count_abbreviations_usage.formatted_value -%>],
             ['<%= message('metric.wtf_count_anti_pattern.name') -%>', <%= wtf_count_anti_pattern.formatted_value -%>],
-            ['<%= message('metric.wtf_count_useless_test.name') -%>', <%= wtf_count_useless_test.formatted_value -%>],
-            ['<%= message('metric.wtf_count_meaningless_comment.name') -%>', <%= wtf_count_meaningless_comment.formatted_value -%>],
-            ['<%= message('metric.wtf_count_uncommunicative_name.name') -%>', <%= wtf_count_uncommunicative_name.formatted_value -%>],
-            ['<%= message('metric.wtf_count_speculative_generality.name') -%>', <%= wtf_count_speculative_generality.formatted_value -%>],
-            ['<%= message('metric.wtf_count_oddball_solution.name') -%>', <%= wtf_count_oddball_solution.formatted_value -%>],
-            ['<%= message('metric.wtf_count_primitives_obsession.name') -%>', <%= wtf_count_primitives_obsession.formatted_value -%>],
+            ['<%= message('metric.wtf_count_bad_design.name') -%>', <%= wtf_count_bad_design.formatted_value -%>],
+            ['<%= message('metric.wtf_count_bad_framework_usage.name') -%>', <%= wtf_count_bad_framework_usage.formatted_value -%>],
+            ['<%= message('metric.wtf_count_bad_logging.name') -%>', <%= wtf_count_bad_logging.formatted_value -%>],
+            ['<%= message('metric.wtf_count_how_comment.name') -%>', <%= wtf_count_how_comment.formatted_value -%>],
             ['<%= message('metric.wtf_count_indecent_exposure.name') -%>', <%= wtf_count_indecent_exposure.formatted_value -%>],
-            ['<%= message('metric.wtf_count_solution_sprawl.name') -%>', <%= wtf_count_solution_sprawl.formatted_value -%>],
+            ['<%= message('metric.wtf_count_meaningless_comment.name') -%>', <%= wtf_count_meaningless_comment.formatted_value -%>],
             ['<%= message('metric.wtf_count_middle_man.name') -%>', <%= wtf_count_middle_man.formatted_value -%>],
-            ['<%= message('metric.wtf_count_refused_bequest.name') -%>', <%= wtf_count_refused_bequest.formatted_value -%>],
             ['<%= message('metric.wtf_count_missing_implementation.name') -%>', <%= wtf_count_missing_implementation.formatted_value -%>],
+            ['<%= message('metric.wtf_count_multiple_responsibilities.name') -%>', <%= wtf_count_multiple_responsibilities.formatted_value -%>],
             ['<%= message('metric.wtf_count_non_exception.name') -%>', <%= wtf_count_non_exception.formatted_value -%>],
-            ['<%= message('metric.wtf_count_how_comment.name') -%>', <%= wtf_count_how_comment.formatted_value -%>]
+            ['<%= message('metric.wtf_count_oddball_solution.name') -%>', <%= wtf_count_oddball_solution.formatted_value -%>],
+            ['<%= message('metric.wtf_count_overcomplicated_algorithm.name') -%>', <%= wtf_count_overcomplicated_algorithm.formatted_value -%>],
+            ['<%= message('metric.wtf_count_primitives_obsession.name') -%>', <%= wtf_count_primitives_obsession.formatted_value -%>],
+            ['<%= message('metric.wtf_count_refused_bequest.name') -%>', <%= wtf_count_refused_bequest.formatted_value -%>],
+            ['<%= message('metric.wtf_count_reinvented_wheel.name') -%>', <%= wtf_count_reinvented_wheel.formatted_value -%>],
+            ['<%= message('metric.wtf_count_solution_sprawl.name') -%>', <%= wtf_count_solution_sprawl.formatted_value -%>],
+            ['<%= message('metric.wtf_count_speculative_generality.name') -%>', <%= wtf_count_speculative_generality.formatted_value -%>],
+            ['<%= message('metric.wtf_count_uncommunicative_name.name') -%>', <%= wtf_count_uncommunicative_name.formatted_value -%>],
+            ['<%= message('metric.wtf_count_useless_test.name') -%>', <%= wtf_count_useless_test.formatted_value -%>],
+            ['<%= message('metric.wtf_count_wrong_logic.name') -%>', <%= wtf_count_wrong_logic.formatted_value -%>],
+            ['<%= message('metric.wtf_count_wrong_language.name') -%>', <%= wtf_count_wrong_language.formatted_value -%>]
           ]);
           
           var options = {

@@ -26,10 +26,16 @@ import org.mockito.runners.MockitoJUnitRunner;
 import org.sonar.api.batch.SensorContext;
 import org.sonar.api.batch.fs.InputFile;
 import org.sonar.api.measures.Metric;
-import com.qualinsight.plugins.sonarqube.wtf.internal.extension.WTFMeasurer;
+import com.qualinsight.plugins.sonarqube.wtf.api.model.WTFType;
 
 @RunWith(MockitoJUnitRunner.class)
 public class WTFMeasurerTest {
+
+    private static final double EXPECTED_WTFTYPE_COUNT = WTFType.values().length;
+
+    private static final double EXPECTED_DEBT_PER_WTF_TYPE = 10d;
+
+    private static final double EXPECTED_WTFTYPE_DEBT = EXPECTED_WTFTYPE_COUNT * EXPECTED_DEBT_PER_WTF_TYPE;
 
     @Mock
     InputFile inputFile;
@@ -43,12 +49,12 @@ public class WTFMeasurerTest {
             .thenReturn(new File("src/test/resources/WTFMeasurerTest_1.java"));
         final WTFMeasurer sut = new WTFMeasurer(this.sensorContext);
         sut.measure(this.inputFile);
-        // 14 different metrics should be saved, one for each WTFType
-        Mockito.verify(this.sensorContext, Mockito.times(14))
+        // different metrics should be saved, one for each WTFType
+        Mockito.verify(this.sensorContext, Mockito.times(WTFType.values().length))
             .saveMeasure(Matchers.eq(this.inputFile), Matchers.any(Metric.class), Matchers.eq(1d));
         // total debt should be saved once with sum of annotations minutes
         Mockito.verify(this.sensorContext, Mockito.times(1))
-            .saveMeasure(Matchers.eq(this.inputFile), Matchers.any(Metric.class), Matchers.eq(140d));
+            .saveMeasure(Matchers.eq(this.inputFile), Matchers.any(Metric.class), Matchers.eq(EXPECTED_WTFTYPE_DEBT));
         Mockito.verifyNoMoreInteractions(this.sensorContext);
     }
 
