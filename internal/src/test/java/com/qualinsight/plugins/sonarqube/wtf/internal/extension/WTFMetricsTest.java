@@ -208,7 +208,7 @@ public class WTFMetricsTest {
                 0d,
                 "Total number of reported WTF issues.",
                 Metric.DIRECTION_WORST,
-                CoreMetrics.DOMAIN_SIZE,
+                WTFMetrics.DOMAIN,
                 SumChildValuesFormula.class
             },
             new Object[] {
@@ -230,7 +230,7 @@ public class WTFMetricsTest {
                 0d,
                 "Number of anti-patterns reported by developers.",
                 Metric.DIRECTION_WORST,
-                CoreMetrics.DOMAIN_SIZE,
+                WTFMetrics.DOMAIN,
                 SumChildValuesFormula.class
             },
             new Object[] {
@@ -241,7 +241,7 @@ public class WTFMetricsTest {
                 0d,
                 "Number of bad designs reported by developers.",
                 Metric.DIRECTION_WORST,
-                CoreMetrics.DOMAIN_SIZE,
+                WTFMetrics.DOMAIN,
                 SumChildValuesFormula.class
             },
             new Object[] {
@@ -252,7 +252,7 @@ public class WTFMetricsTest {
                 0d,
                 "Number of indecent exposures reported by developers.",
                 Metric.DIRECTION_WORST,
-                CoreMetrics.DOMAIN_SIZE,
+                WTFMetrics.DOMAIN,
                 SumChildValuesFormula.class
             },
             new Object[] {
@@ -263,7 +263,7 @@ public class WTFMetricsTest {
                 0d,
                 "Number of meaningless comments reported by developers.",
                 Metric.DIRECTION_WORST,
-                CoreMetrics.DOMAIN_SIZE,
+                WTFMetrics.DOMAIN,
                 SumChildValuesFormula.class
             },
             new Object[] {
@@ -274,7 +274,7 @@ public class WTFMetricsTest {
                 0d,
                 "Number of middle men reported by developers.",
                 Metric.DIRECTION_WORST,
-                CoreMetrics.DOMAIN_SIZE,
+                WTFMetrics.DOMAIN,
                 SumChildValuesFormula.class
             },
             new Object[] {
@@ -285,7 +285,7 @@ public class WTFMetricsTest {
                 0d,
                 "Number of oddball solutions reported by developers.",
                 Metric.DIRECTION_WORST,
-                CoreMetrics.DOMAIN_SIZE,
+                WTFMetrics.DOMAIN,
                 SumChildValuesFormula.class
             },
             new Object[] {
@@ -296,7 +296,7 @@ public class WTFMetricsTest {
                 0d,
                 "Number of overcomplicated algorithms reported by developers.",
                 Metric.DIRECTION_WORST,
-                CoreMetrics.DOMAIN_SIZE,
+                WTFMetrics.DOMAIN,
                 SumChildValuesFormula.class
             },
             new Object[] {
@@ -307,7 +307,7 @@ public class WTFMetricsTest {
                 0d,
                 "Number of primitives obsessions reported by developers.",
                 Metric.DIRECTION_WORST,
-                CoreMetrics.DOMAIN_SIZE,
+                WTFMetrics.DOMAIN,
                 SumChildValuesFormula.class
             },
             new Object[] {
@@ -318,7 +318,7 @@ public class WTFMetricsTest {
                 0d,
                 "Number of refused bequests reported by developers.",
                 Metric.DIRECTION_WORST,
-                CoreMetrics.DOMAIN_SIZE,
+                WTFMetrics.DOMAIN,
                 SumChildValuesFormula.class
             },
             new Object[] {
@@ -329,7 +329,7 @@ public class WTFMetricsTest {
                 0d,
                 "Number of solution sprawls reported by developers.",
                 Metric.DIRECTION_WORST,
-                CoreMetrics.DOMAIN_SIZE,
+                WTFMetrics.DOMAIN,
                 SumChildValuesFormula.class
             },
             new Object[] {
@@ -340,7 +340,7 @@ public class WTFMetricsTest {
                 0d,
                 "Number of speculative generalities reported by developers.",
                 Metric.DIRECTION_WORST,
-                CoreMetrics.DOMAIN_SIZE,
+                WTFMetrics.DOMAIN,
                 SumChildValuesFormula.class
             },
             new Object[] {
@@ -351,7 +351,7 @@ public class WTFMetricsTest {
                 0d,
                 "Number of uncommunicative names reported by developers.",
                 Metric.DIRECTION_WORST,
-                CoreMetrics.DOMAIN_SIZE,
+                WTFMetrics.DOMAIN,
                 SumChildValuesFormula.class
             },
             new Object[] {
@@ -362,7 +362,7 @@ public class WTFMetricsTest {
                 0d,
                 "Number of useless tests reported by developers.",
                 Metric.DIRECTION_WORST,
-                CoreMetrics.DOMAIN_SIZE,
+                WTFMetrics.DOMAIN,
                 SumChildValuesFormula.class
             },
             new Object[] {
@@ -373,7 +373,7 @@ public class WTFMetricsTest {
                 0d,
                 "Number of wrong logics reported by developers.",
                 Metric.DIRECTION_WORST,
-                CoreMetrics.DOMAIN_SIZE,
+                WTFMetrics.DOMAIN,
                 SumChildValuesFormula.class
             },
             new Object[] {
@@ -384,7 +384,7 @@ public class WTFMetricsTest {
                 0d,
                 "Number of how comments reported by developers.",
                 Metric.DIRECTION_WORST,
-                CoreMetrics.DOMAIN_SIZE,
+                WTFMetrics.DOMAIN,
                 SumChildValuesFormula.class
             },
             new Object[] {
@@ -395,7 +395,7 @@ public class WTFMetricsTest {
                 0d,
                 "Number of missing implementations reported by developers.",
                 Metric.DIRECTION_WORST,
-                CoreMetrics.DOMAIN_SIZE,
+                WTFMetrics.DOMAIN,
                 SumChildValuesFormula.class
             },
             new Object[] {
@@ -406,7 +406,7 @@ public class WTFMetricsTest {
                 0d,
                 "Number of non exceptions reported by developers.",
                 Metric.DIRECTION_WORST,
-                CoreMetrics.DOMAIN_SIZE,
+                WTFMetrics.DOMAIN,
                 SumChildValuesFormula.class
             },
             new Object[] {
@@ -417,7 +417,7 @@ public class WTFMetricsTest {
                 0d,
                 "Number of wrong languages reported by developers.",
                 Metric.DIRECTION_WORST,
-                CoreMetrics.DOMAIN_SIZE,
+                WTFMetrics.DOMAIN,
                 SumChildValuesFormula.class
             },
         };
