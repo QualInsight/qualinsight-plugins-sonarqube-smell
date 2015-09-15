@@ -29,11 +29,13 @@ import org.sonar.plugins.java.api.semantic.Type;
 import org.sonar.plugins.java.api.tree.AnnotationTree;
 import org.sonar.plugins.java.api.tree.Arguments;
 import org.sonar.plugins.java.api.tree.AssignmentExpressionTree;
+import org.sonar.plugins.java.api.tree.BinaryExpressionTree;
 import org.sonar.plugins.java.api.tree.ExpressionTree;
 import org.sonar.plugins.java.api.tree.IdentifierTree;
 import org.sonar.plugins.java.api.tree.LiteralTree;
 import org.sonar.plugins.java.api.tree.Tree;
 import org.sonar.plugins.java.api.tree.Tree.Kind;
+import org.sonar.plugins.java.api.tree.VariableTree;
 import org.sonar.squidbridge.annotations.SqaleLinearRemediation;
 import org.sonar.squidbridge.annotations.SqaleSubCharacteristic;
 import com.google.common.collect.ImmutableList;
@@ -94,7 +96,7 @@ public final class WTFCheck extends IssuableSubscriptionVisitor {
                         LOGGER.debug("{} = {}", variable, minutes);
                         break;
                     case "reason":
-                        message = ((LiteralTree) aet.expression()).value();
+                        message = extractMessage(aet.expression());
                         LOGGER.debug("{} = {}", variable, message);
                         break;
                     default:
@@ -107,5 +109,36 @@ public final class WTFCheck extends IssuableSubscriptionVisitor {
             message = matcher.group(1);
         }
         addIssue(annotationTree, message, minutes);
+    }
+
+    private static final String extractMessage(final ExpressionTree expressionTree) {
+        String message = "";
+        switch (expressionTree.kind()) {
+            case STRING_LITERAL:
+                message = ((LiteralTree) expressionTree).value();
+                break;
+            case PLUS:
+                final BinaryExpressionTree bet = (BinaryExpressionTree) expressionTree;
+                message = extractMessage(bet.leftOperand()) + extractMessage(bet.rightOperand());
+                break;
+            case IDENTIFIER:
+                final IdentifierTree it = (IdentifierTree) expressionTree;
+                message = extractMessage(((VariableTree) (it.symbol().declaration())).initializer());
+                break;
+            default:
+                LOGGER.warn("Cannot extract message due to unexpected expressionTree kind: {}", expressionTree.kind());
+                break;
+        }
+        return trimQuotes(message);
+    }
+
+    private static final String trimQuotes(final String message) {
+        String result = message;
+        final Pattern pattern = Pattern.compile("\"(.*)\"");
+        final Matcher matcher = pattern.matcher(message);
+        if (matcher.matches()) {
+            result = matcher.group(1);
+        }
+        return result;
     }
 }

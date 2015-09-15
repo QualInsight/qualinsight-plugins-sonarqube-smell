@@ -3,7 +3,7 @@
   <parent>
     <groupId>com.qualinsight.plugins.sonarqube</groupId>
     <artifactId>qualinsight-plugins-sonarqube-wtf</artifactId>
-    <version>1.0.3-SNAPSHOT</version>
+    <version>1.1.0-SNAPSHOT</version>
   </parent>
   <artifactId>qualinsight-plugins-sonarqube-wtf-api</artifactId>
   <description>QualInsight "What the fuck!" annotation api.</description>

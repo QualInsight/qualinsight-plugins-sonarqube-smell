@@ -39,6 +39,8 @@ import com.qualinsight.plugins.sonarqube.wtf.api.model.WTFType;
 @SuppressWarnings("unchecked")
 public final class WTFMetrics implements Metrics {
 
+    public static final String DOMAIN = "WTF!";
+
     private static final List<Metric<Integer>> WTF_METRICS;
 
     private static final Map<WTFType, Metric<Integer>> WTF_METRICS_BY_WTFTYPE = new EnumMap<WTFType, Metric<Integer>>(WTFType.class);
@@ -60,7 +62,7 @@ public final class WTFMetrics implements Metrics {
     public static final Metric<Integer> WTF_COUNT = new Metric.Builder("WTF_COUNT", "WTF issues count", ValueType.INT).setBestValue(0d)
         .setDescription("Total number of reported WTF issues.")
         .setDirection(Metric.DIRECTION_WORST)
-        .setDomain(CoreMetrics.DOMAIN_SIZE)
+        .setDomain(DOMAIN)
         .setOptimizedBestValue(true)
         .setFormula(new SumChildValuesFormula(true))
         .create();
@@ -71,7 +73,7 @@ public final class WTFMetrics implements Metrics {
     public static final Metric<Integer> WTF_COUNT_WRONG_LOGIC = new Metric.Builder("WTF_COUNT_WRONG_LOGIC", "WTF wrong logic count", ValueType.INT).setBestValue(0d)
         .setDescription("Number of wrong logics reported by developers.")
         .setDirection(Metric.DIRECTION_WORST)
-        .setDomain(CoreMetrics.DOMAIN_SIZE)
+        .setDomain(DOMAIN)
         .setOptimizedBestValue(true)
         .setFormula(new SumChildValuesFormula(true))
         .create();
@@ -82,7 +84,7 @@ public final class WTFMetrics implements Metrics {
     public static final Metric<Integer> WTF_COUNT_WRONG_LANGUAGE = new Metric.Builder("WTF_COUNT_WRONG_LANGUAGE", "WTF wrong language count", ValueType.INT).setBestValue(0d)
         .setDescription("Number of wrong languages reported by developers.")
         .setDirection(Metric.DIRECTION_WORST)
-        .setDomain(CoreMetrics.DOMAIN_SIZE)
+        .setDomain(DOMAIN)
         .setOptimizedBestValue(true)
         .setFormula(new SumChildValuesFormula(true))
         .create();
@@ -94,7 +96,7 @@ public final class WTFMetrics implements Metrics {
         0d)
         .setDescription("Number of overcomplicated algorithms reported by developers.")
         .setDirection(Metric.DIRECTION_WORST)
-        .setDomain(CoreMetrics.DOMAIN_SIZE)
+        .setDomain(DOMAIN)
         .setOptimizedBestValue(true)
         .setFormula(new SumChildValuesFormula(true))
         .create();
@@ -105,7 +107,7 @@ public final class WTFMetrics implements Metrics {
     public static final Metric<Integer> WTF_COUNT_ANTI_PATTERN = new Metric.Builder("WTF_COUNT_ANTI_PATTERN", "WTF anti-pattern count", ValueType.INT).setBestValue(0d)
         .setDescription("Number of anti-patterns reported by developers.")
         .setDirection(Metric.DIRECTION_WORST)
-        .setDomain(CoreMetrics.DOMAIN_SIZE)
+        .setDomain(DOMAIN)
         .setOptimizedBestValue(true)
         .setFormula(new SumChildValuesFormula(true))
         .create();
@@ -116,7 +118,7 @@ public final class WTFMetrics implements Metrics {
     public static final Metric<Integer> WTF_COUNT_BAD_DESIGN = new Metric.Builder("WTF_COUNT_BAD_DESIGN", "WTF bad design count", ValueType.INT).setBestValue(0d)
         .setDescription("Number of bad designs reported by developers.")
         .setDirection(Metric.DIRECTION_WORST)
-        .setDomain(CoreMetrics.DOMAIN_SIZE)
+        .setDomain(DOMAIN)
         .setOptimizedBestValue(true)
         .setFormula(new SumChildValuesFormula(true))
         .create();
@@ -127,7 +129,7 @@ public final class WTFMetrics implements Metrics {
     public static final Metric<Integer> WTF_COUNT_USELESS_TEST = new Metric.Builder("WTF_COUNT_USELESS_TEST", "WTF useless test count", ValueType.INT).setBestValue(0d)
         .setDescription("Number of useless tests reported by developers.")
         .setDirection(Metric.DIRECTION_WORST)
-        .setDomain(CoreMetrics.DOMAIN_SIZE)
+        .setDomain(DOMAIN)
         .setOptimizedBestValue(true)
         .setFormula(new SumChildValuesFormula(true))
         .create();
@@ -138,7 +140,7 @@ public final class WTFMetrics implements Metrics {
     public static final Metric<Integer> WTF_COUNT_MEANINGLESS_COMMENT = new Metric.Builder("WTF_COUNT_MEANINGLESS_COMMENT", "WTF meaningless comment count", ValueType.INT).setBestValue(0d)
         .setDescription("Number of meaningless comments reported by developers.")
         .setDirection(Metric.DIRECTION_WORST)
-        .setDomain(CoreMetrics.DOMAIN_SIZE)
+        .setDomain(DOMAIN)
         .setOptimizedBestValue(true)
         .setFormula(new SumChildValuesFormula(true))
         .create();
@@ -149,7 +151,7 @@ public final class WTFMetrics implements Metrics {
     public static final Metric<Integer> WTF_COUNT_UNCOMMUNICATIVE_NAME = new Metric.Builder("WTF_COUNT_UNCOMMUNICATIVE_NAME", "WTF uncommunicative name count", ValueType.INT).setBestValue(0d)
         .setDescription("Number of uncommunicative names reported by developers.")
         .setDirection(Metric.DIRECTION_WORST)
-        .setDomain(CoreMetrics.DOMAIN_SIZE)
+        .setDomain(DOMAIN)
         .setOptimizedBestValue(true)
         .setFormula(new SumChildValuesFormula(true))
         .create();
@@ -160,7 +162,7 @@ public final class WTFMetrics implements Metrics {
     public static final Metric<Integer> WTF_COUNT_SPECULATIVE_GENERALITY = new Metric.Builder("WTF_COUNT_SPECULATIVE_GENERALITY", "WTF speculative generality count", ValueType.INT).setBestValue(0d)
         .setDescription("Number of speculative generalities reported by developers.")
         .setDirection(Metric.DIRECTION_WORST)
-        .setDomain(CoreMetrics.DOMAIN_SIZE)
+        .setDomain(DOMAIN)
         .setOptimizedBestValue(true)
         .setFormula(new SumChildValuesFormula(true))
         .create();
@@ -171,7 +173,7 @@ public final class WTFMetrics implements Metrics {
     public static final Metric<Integer> WTF_COUNT_ODDBALL_SOLUTION = new Metric.Builder("WTF_COUNT_ODDBALL_SOLUTION", "WTF oddball solution count", ValueType.INT).setBestValue(0d)
         .setDescription("Number of oddball solutions reported by developers.")
         .setDirection(Metric.DIRECTION_WORST)
-        .setDomain(CoreMetrics.DOMAIN_SIZE)
+        .setDomain(DOMAIN)
         .setOptimizedBestValue(true)
         .setFormula(new SumChildValuesFormula(true))
         .create();
@@ -182,7 +184,7 @@ public final class WTFMetrics implements Metrics {
     public static final Metric<Integer> WTF_COUNT_PRIMITIVES_OBSESSION = new Metric.Builder("WTF_COUNT_PRIMITIVES_OBSESSION", "WTF primitives obsession count", ValueType.INT).setBestValue(0d)
         .setDescription("Number of primitives obsessions reported by developers.")
         .setDirection(Metric.DIRECTION_WORST)
-        .setDomain(CoreMetrics.DOMAIN_SIZE)
+        .setDomain(DOMAIN)
         .setOptimizedBestValue(true)
         .setFormula(new SumChildValuesFormula(true))
         .create();
@@ -193,7 +195,7 @@ public final class WTFMetrics implements Metrics {
     public static final Metric<Integer> WTF_COUNT_INDECENT_EXPOSURE = new Metric.Builder("WTF_COUNT_INDECENT_EXPOSURE", "WTF indecent exposure count", ValueType.INT).setBestValue(0d)
         .setDescription("Number of indecent exposures reported by developers.")
         .setDirection(Metric.DIRECTION_WORST)
-        .setDomain(CoreMetrics.DOMAIN_SIZE)
+        .setDomain(DOMAIN)
         .setOptimizedBestValue(true)
         .setFormula(new SumChildValuesFormula(true))
         .create();
@@ -204,7 +206,7 @@ public final class WTFMetrics implements Metrics {
     public static final Metric<Integer> WTF_COUNT_SOLUTION_SPRAWL = new Metric.Builder("WTF_COUNT_SOLUTION_SPRAWL", "WTF solution sprawl count", ValueType.INT).setBestValue(0d)
         .setDescription("Number of solution sprawls reported by developers.")
         .setDirection(Metric.DIRECTION_WORST)
-        .setDomain(CoreMetrics.DOMAIN_SIZE)
+        .setDomain(DOMAIN)
         .setOptimizedBestValue(true)
         .setFormula(new SumChildValuesFormula(true))
         .create();
@@ -215,7 +217,7 @@ public final class WTFMetrics implements Metrics {
     public static final Metric<Integer> WTF_COUNT_MIDDLE_MAN = new Metric.Builder("WTF_COUNT_MIDDLE_MAN", "WTF middle man count", ValueType.INT).setBestValue(0d)
         .setDescription("Number of middle men reported by developers.")
         .setDirection(Metric.DIRECTION_WORST)
-        .setDomain(CoreMetrics.DOMAIN_SIZE)
+        .setDomain(DOMAIN)
         .setOptimizedBestValue(true)
         .setFormula(new SumChildValuesFormula(true))
         .create();
@@ -226,7 +228,7 @@ public final class WTFMetrics implements Metrics {
     public static final Metric<Integer> WTF_COUNT_REFUSED_BEQUEST = new Metric.Builder("WTF_COUNT_REFUSED_BEQUEST", "WTF refused bequest count", ValueType.INT).setBestValue(0d)
         .setDescription("Number of refused bequests reported by developers.")
         .setDirection(Metric.DIRECTION_WORST)
-        .setDomain(CoreMetrics.DOMAIN_SIZE)
+        .setDomain(DOMAIN)
         .setOptimizedBestValue(true)
         .setFormula(new SumChildValuesFormula(true))
         .create();
@@ -237,7 +239,7 @@ public final class WTFMetrics implements Metrics {
     public static final Metric<Integer> WTF_COUNT_NON_EXCEPTION = new Metric.Builder("WTF_COUNT_NON_EXCEPTION", "WTF non exception count", ValueType.INT).setBestValue(0d)
         .setDescription("Number of non exceptions reported by developers.")
         .setDirection(Metric.DIRECTION_WORST)
-        .setDomain(CoreMetrics.DOMAIN_SIZE)
+        .setDomain(DOMAIN)
         .setOptimizedBestValue(true)
         .setFormula(new SumChildValuesFormula(true))
         .create();
@@ -248,7 +250,7 @@ public final class WTFMetrics implements Metrics {
     public static final Metric<Integer> WTF_COUNT_HOW_COMMENT = new Metric.Builder("WTF_COUNT_HOW_COMMENT", "WTF how comment count", ValueType.INT).setBestValue(0d)
         .setDescription("Number of how comments reported by developers.")
         .setDirection(Metric.DIRECTION_WORST)
-        .setDomain(CoreMetrics.DOMAIN_SIZE)
+        .setDomain(DOMAIN)
         .setOptimizedBestValue(true)
         .setFormula(new SumChildValuesFormula(true))
         .create();
@@ -259,7 +261,63 @@ public final class WTFMetrics implements Metrics {
     public static final Metric<Integer> WTF_COUNT_MISSING_IMPLEMENTATION = new Metric.Builder("WTF_COUNT_MISSING_IMPLEMENTATION", "WTF missing implementation count", ValueType.INT).setBestValue(0d)
         .setDescription("Number of missing implementations reported by developers.")
         .setDirection(Metric.DIRECTION_WORST)
-        .setDomain(CoreMetrics.DOMAIN_SIZE)
+        .setDomain(DOMAIN)
+        .setOptimizedBestValue(true)
+        .setFormula(new SumChildValuesFormula(true))
+        .create();
+
+    /**
+     * Metric that counts MULTIPLE_RESPONSIBILITIES {@link WTFType}
+     */
+    public static final Metric<Integer> WTF_COUNT_MULTIPLE_RESPONSIBILITIES = new Metric.Builder("WTF_COUNT_MULTIPLE_RESPONSIBILITIES", "WTF multiple responsibilities count", ValueType.INT).setBestValue(
+        0d)
+        .setDescription("Number of multiple responsibilities reported by developers.")
+        .setDirection(Metric.DIRECTION_WORST)
+        .setDomain(DOMAIN)
+        .setOptimizedBestValue(true)
+        .setFormula(new SumChildValuesFormula(true))
+        .create();
+
+    /**
+     * Metric that counts ABBREVIATIONS_USAGE {@link WTFType}
+     */
+    public static final Metric<Integer> WTF_COUNT_ABBREVIATIONS_USAGE = new Metric.Builder("WTF_COUNT_ABBREVIATIONS_USAGE", "WTF abbreviations usage count", ValueType.INT).setBestValue(0d)
+        .setDescription("Number of abbreviations usages reported by developers.")
+        .setDirection(Metric.DIRECTION_WORST)
+        .setDomain(DOMAIN)
+        .setOptimizedBestValue(true)
+        .setFormula(new SumChildValuesFormula(true))
+        .create();
+
+    /**
+     * Metric that counts BAD_LOGGING {@link WTFType}
+     */
+    public static final Metric<Integer> WTF_COUNT_BAD_LOGGING = new Metric.Builder("WTF_COUNT_BAD_LOGGING", "WTF bad logging count", ValueType.INT).setBestValue(0d)
+        .setDescription("Number of bad loggings reported by developers.")
+        .setDirection(Metric.DIRECTION_WORST)
+        .setDomain(DOMAIN)
+        .setOptimizedBestValue(true)
+        .setFormula(new SumChildValuesFormula(true))
+        .create();
+
+    /**
+     * Metric that counts REINVENTED_WHEEL {@link WTFType}
+     */
+    public static final Metric<Integer> WTF_COUNT_REINVENTED_WHEEL = new Metric.Builder("WTF_COUNT_REINVENTED_WHEEL", "WTF reinvented wheel count", ValueType.INT).setBestValue(0d)
+        .setDescription("Number of reinvented wheels reported by developers.")
+        .setDirection(Metric.DIRECTION_WORST)
+        .setDomain(DOMAIN)
+        .setOptimizedBestValue(true)
+        .setFormula(new SumChildValuesFormula(true))
+        .create();
+
+    /**
+     * Metric that counts BAD_FRAMEWORK_USAGE {@link WTFType}
+     */
+    public static final Metric<Integer> WTF_COUNT_BAD_FRAMEWORK_USAGE = new Metric.Builder("WTF_COUNT_BAD_FRAMEWORK_USAGE", "WTF bad framework usage count", ValueType.INT).setBestValue(0d)
+        .setDescription("Number of bad framework usages reported by developers.")
+        .setDirection(Metric.DIRECTION_WORST)
+        .setDomain(DOMAIN)
         .setOptimizedBestValue(true)
         .setFormula(new SumChildValuesFormula(true))
         .create();

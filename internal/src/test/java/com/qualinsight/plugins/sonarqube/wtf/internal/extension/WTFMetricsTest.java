@@ -33,7 +33,23 @@ import com.qualinsight.plugins.sonarqube.wtf.api.model.WTFType;
 @RunWith(JUnitParamsRunner.class)
 public class WTFMetricsTest {
 
-    private static final int EXPECTED_METRICS_COUNT = 20;
+    private static final int WTF_CORE_METRICS_COUNT = 2;
+
+    private static final int WTF_TYPE_COUNT = WTFType.values().length;
+
+    private static final int EXPECTED_METRICS_COUNT = WTF_TYPE_COUNT + WTF_CORE_METRICS_COUNT;
+
+    @Test
+    public void parameterizedTests_should_useCorrectMetricsCount() {
+        final SoftAssertions softly = new SoftAssertions();
+        softly.assertThat(parametersForMetricFor_should_return_expectedMetric().length)
+            .as("Count of tested entries of WTFType to WTFMetric map")
+            .isEqualTo(WTF_TYPE_COUNT);
+        softly.assertThat(parametersForGetMetrics_should_return_correctlyConfiguredMetrics().length)
+            .as("Count of tested metrics configurations")
+            .isEqualTo(EXPECTED_METRICS_COUNT);
+        softly.assertAll();
+    }
 
     @SuppressWarnings("unchecked")
     @Test
@@ -48,17 +64,29 @@ public class WTFMetricsTest {
         softly.assertThat(actualMetrics)
             .contains(WTFMetrics.WTF_DEBT);
         softly.assertThat(actualMetrics)
+            .contains(WTFMetrics.WTF_COUNT_ABBREVIATIONS_USAGE);
+        softly.assertThat(actualMetrics)
             .contains(WTFMetrics.WTF_COUNT_ANTI_PATTERN);
         softly.assertThat(actualMetrics)
             .contains(WTFMetrics.WTF_COUNT_BAD_DESIGN);
+        softly.assertThat(actualMetrics)
+            .contains(WTFMetrics.WTF_COUNT_BAD_FRAMEWORK_USAGE);
+        softly.assertThat(actualMetrics)
+            .contains(WTFMetrics.WTF_COUNT_BAD_LOGGING);
+        softly.assertThat(actualMetrics)
+            .contains(WTFMetrics.WTF_COUNT_HOW_COMMENT);
         softly.assertThat(actualMetrics)
             .contains(WTFMetrics.WTF_COUNT_INDECENT_EXPOSURE);
         softly.assertThat(actualMetrics)
             .contains(WTFMetrics.WTF_COUNT_MEANINGLESS_COMMENT);
         softly.assertThat(actualMetrics)
-            .contains(WTFMetrics.WTF_COUNT_MEANINGLESS_COMMENT);
-        softly.assertThat(actualMetrics)
             .contains(WTFMetrics.WTF_COUNT_MIDDLE_MAN);
+        softly.assertThat(actualMetrics)
+            .contains(WTFMetrics.WTF_COUNT_MISSING_IMPLEMENTATION);
+        softly.assertThat(actualMetrics)
+            .contains(WTFMetrics.WTF_COUNT_MULTIPLE_RESPONSIBILITIES);
+        softly.assertThat(actualMetrics)
+            .contains(WTFMetrics.WTF_COUNT_NON_EXCEPTION);
         softly.assertThat(actualMetrics)
             .contains(WTFMetrics.WTF_COUNT_ODDBALL_SOLUTION);
         softly.assertThat(actualMetrics)
@@ -67,6 +95,8 @@ public class WTFMetricsTest {
             .contains(WTFMetrics.WTF_COUNT_PRIMITIVES_OBSESSION);
         softly.assertThat(actualMetrics)
             .contains(WTFMetrics.WTF_COUNT_REFUSED_BEQUEST);
+        softly.assertThat(actualMetrics)
+            .contains(WTFMetrics.WTF_COUNT_REINVENTED_WHEEL);
         softly.assertThat(actualMetrics)
             .contains(WTFMetrics.WTF_COUNT_SOLUTION_SPRAWL);
         softly.assertThat(actualMetrics)
@@ -79,12 +109,6 @@ public class WTFMetricsTest {
             .contains(WTFMetrics.WTF_COUNT_WRONG_LOGIC);
         softly.assertThat(actualMetrics)
             .contains(WTFMetrics.WTF_COUNT_WRONG_LANGUAGE);
-        softly.assertThat(actualMetrics)
-            .contains(WTFMetrics.WTF_COUNT_NON_EXCEPTION);
-        softly.assertThat(actualMetrics)
-            .contains(WTFMetrics.WTF_COUNT_MISSING_IMPLEMENTATION);
-        softly.assertThat(actualMetrics)
-            .contains(WTFMetrics.WTF_COUNT_HOW_COMMENT);
         softly.assertAll();
     }
 
@@ -95,9 +119,12 @@ public class WTFMetricsTest {
             .isEqualTo(expectedMetric);
     }
 
-    @SuppressWarnings("unused")
     private Object[] parametersForMetricFor_should_return_expectedMetric() {
         return new Object[] {
+            new Object[] {
+                WTFType.ABBREVIATIONS_USAGE,
+                WTFMetrics.WTF_COUNT_ABBREVIATIONS_USAGE
+            },
             new Object[] {
                 WTFType.ANTI_PATTERN,
                 WTFMetrics.WTF_COUNT_ANTI_PATTERN
@@ -105,6 +132,18 @@ public class WTFMetricsTest {
             new Object[] {
                 WTFType.BAD_DESIGN,
                 WTFMetrics.WTF_COUNT_BAD_DESIGN
+            },
+            new Object[] {
+                WTFType.BAD_FRAMEWORK_USAGE,
+                WTFMetrics.WTF_COUNT_BAD_FRAMEWORK_USAGE
+            },
+            new Object[] {
+                WTFType.BAD_LOGGING,
+                WTFMetrics.WTF_COUNT_BAD_LOGGING
+            },
+            new Object[] {
+                WTFType.HOW_COMMENT,
+                WTFMetrics.WTF_COUNT_HOW_COMMENT
             },
             new Object[] {
                 WTFType.INDECENT_EXPOSURE,
@@ -117,6 +156,18 @@ public class WTFMetricsTest {
             new Object[] {
                 WTFType.MIDDLE_MAN,
                 WTFMetrics.WTF_COUNT_MIDDLE_MAN
+            },
+            new Object[] {
+                WTFType.MISSING_IMPLEMENTATION,
+                WTFMetrics.WTF_COUNT_MISSING_IMPLEMENTATION
+            },
+            new Object[] {
+                WTFType.MULTIPLE_RESPONSIBILITIES,
+                WTFMetrics.WTF_COUNT_MULTIPLE_RESPONSIBILITIES
+            },
+            new Object[] {
+                WTFType.NON_EXCEPTION,
+                WTFMetrics.WTF_COUNT_NON_EXCEPTION
             },
             new Object[] {
                 WTFType.ODDBALL_SOLUTION,
@@ -135,6 +186,10 @@ public class WTFMetricsTest {
                 WTFMetrics.WTF_COUNT_REFUSED_BEQUEST
             },
             new Object[] {
+                WTFType.REINVENTED_WHEEL,
+                WTFMetrics.WTF_COUNT_REINVENTED_WHEEL
+            },
+            new Object[] {
                 WTFType.SOLUTION_SPRAWL,
                 WTFMetrics.WTF_COUNT_SOLUTION_SPRAWL
             },
@@ -151,24 +206,12 @@ public class WTFMetricsTest {
                 WTFMetrics.WTF_COUNT_USELESS_TEST
             },
             new Object[] {
-                WTFType.WRONG_LOGIC,
-                WTFMetrics.WTF_COUNT_WRONG_LOGIC
-            },
-            new Object[] {
-                WTFType.HOW_COMMENT,
-                WTFMetrics.WTF_COUNT_HOW_COMMENT
-            },
-            new Object[] {
-                WTFType.MISSING_IMPLEMENTATION,
-                WTFMetrics.WTF_COUNT_MISSING_IMPLEMENTATION
-            },
-            new Object[] {
-                WTFType.NON_EXCEPTION,
-                WTFMetrics.WTF_COUNT_NON_EXCEPTION
-            },
-            new Object[] {
                 WTFType.WRONG_LANGUAGE,
                 WTFMetrics.WTF_COUNT_WRONG_LANGUAGE
+            },
+            new Object[] {
+                WTFType.WRONG_LOGIC,
+                WTFMetrics.WTF_COUNT_WRONG_LOGIC
             },
         };
     }
@@ -197,7 +240,6 @@ public class WTFMetricsTest {
         softly.assertAll();
     }
 
-    @SuppressWarnings("unused")
     private Object[] parametersForGetMetrics_should_return_correctlyConfiguredMetrics() {
         return new Object[] {
             new Object[] {
@@ -208,7 +250,7 @@ public class WTFMetricsTest {
                 0d,
                 "Total number of reported WTF issues.",
                 Metric.DIRECTION_WORST,
-                CoreMetrics.DOMAIN_SIZE,
+                WTFMetrics.DOMAIN,
                 SumChildValuesFormula.class
             },
             new Object[] {
@@ -230,7 +272,7 @@ public class WTFMetricsTest {
                 0d,
                 "Number of anti-patterns reported by developers.",
                 Metric.DIRECTION_WORST,
-                CoreMetrics.DOMAIN_SIZE,
+                WTFMetrics.DOMAIN,
                 SumChildValuesFormula.class
             },
             new Object[] {
@@ -241,7 +283,7 @@ public class WTFMetricsTest {
                 0d,
                 "Number of bad designs reported by developers.",
                 Metric.DIRECTION_WORST,
-                CoreMetrics.DOMAIN_SIZE,
+                WTFMetrics.DOMAIN,
                 SumChildValuesFormula.class
             },
             new Object[] {
@@ -252,7 +294,7 @@ public class WTFMetricsTest {
                 0d,
                 "Number of indecent exposures reported by developers.",
                 Metric.DIRECTION_WORST,
-                CoreMetrics.DOMAIN_SIZE,
+                WTFMetrics.DOMAIN,
                 SumChildValuesFormula.class
             },
             new Object[] {
@@ -263,7 +305,7 @@ public class WTFMetricsTest {
                 0d,
                 "Number of meaningless comments reported by developers.",
                 Metric.DIRECTION_WORST,
-                CoreMetrics.DOMAIN_SIZE,
+                WTFMetrics.DOMAIN,
                 SumChildValuesFormula.class
             },
             new Object[] {
@@ -274,7 +316,18 @@ public class WTFMetricsTest {
                 0d,
                 "Number of middle men reported by developers.",
                 Metric.DIRECTION_WORST,
-                CoreMetrics.DOMAIN_SIZE,
+                WTFMetrics.DOMAIN,
+                SumChildValuesFormula.class
+            },
+            new Object[] {
+                WTFMetrics.WTF_COUNT_MULTIPLE_RESPONSIBILITIES,
+                "WTF_COUNT_MULTIPLE_RESPONSIBILITIES",
+                "WTF multiple responsibilities count",
+                ValueType.INT,
+                0d,
+                "Number of multiple responsibilities reported by developers.",
+                Metric.DIRECTION_WORST,
+                WTFMetrics.DOMAIN,
                 SumChildValuesFormula.class
             },
             new Object[] {
@@ -285,7 +338,7 @@ public class WTFMetricsTest {
                 0d,
                 "Number of oddball solutions reported by developers.",
                 Metric.DIRECTION_WORST,
-                CoreMetrics.DOMAIN_SIZE,
+                WTFMetrics.DOMAIN,
                 SumChildValuesFormula.class
             },
             new Object[] {
@@ -296,7 +349,7 @@ public class WTFMetricsTest {
                 0d,
                 "Number of overcomplicated algorithms reported by developers.",
                 Metric.DIRECTION_WORST,
-                CoreMetrics.DOMAIN_SIZE,
+                WTFMetrics.DOMAIN,
                 SumChildValuesFormula.class
             },
             new Object[] {
@@ -307,7 +360,7 @@ public class WTFMetricsTest {
                 0d,
                 "Number of primitives obsessions reported by developers.",
                 Metric.DIRECTION_WORST,
-                CoreMetrics.DOMAIN_SIZE,
+                WTFMetrics.DOMAIN,
                 SumChildValuesFormula.class
             },
             new Object[] {
@@ -318,7 +371,7 @@ public class WTFMetricsTest {
                 0d,
                 "Number of refused bequests reported by developers.",
                 Metric.DIRECTION_WORST,
-                CoreMetrics.DOMAIN_SIZE,
+                WTFMetrics.DOMAIN,
                 SumChildValuesFormula.class
             },
             new Object[] {
@@ -329,7 +382,7 @@ public class WTFMetricsTest {
                 0d,
                 "Number of solution sprawls reported by developers.",
                 Metric.DIRECTION_WORST,
-                CoreMetrics.DOMAIN_SIZE,
+                WTFMetrics.DOMAIN,
                 SumChildValuesFormula.class
             },
             new Object[] {
@@ -340,7 +393,7 @@ public class WTFMetricsTest {
                 0d,
                 "Number of speculative generalities reported by developers.",
                 Metric.DIRECTION_WORST,
-                CoreMetrics.DOMAIN_SIZE,
+                WTFMetrics.DOMAIN,
                 SumChildValuesFormula.class
             },
             new Object[] {
@@ -351,7 +404,7 @@ public class WTFMetricsTest {
                 0d,
                 "Number of uncommunicative names reported by developers.",
                 Metric.DIRECTION_WORST,
-                CoreMetrics.DOMAIN_SIZE,
+                WTFMetrics.DOMAIN,
                 SumChildValuesFormula.class
             },
             new Object[] {
@@ -362,7 +415,7 @@ public class WTFMetricsTest {
                 0d,
                 "Number of useless tests reported by developers.",
                 Metric.DIRECTION_WORST,
-                CoreMetrics.DOMAIN_SIZE,
+                WTFMetrics.DOMAIN,
                 SumChildValuesFormula.class
             },
             new Object[] {
@@ -373,7 +426,7 @@ public class WTFMetricsTest {
                 0d,
                 "Number of wrong logics reported by developers.",
                 Metric.DIRECTION_WORST,
-                CoreMetrics.DOMAIN_SIZE,
+                WTFMetrics.DOMAIN,
                 SumChildValuesFormula.class
             },
             new Object[] {
@@ -384,7 +437,7 @@ public class WTFMetricsTest {
                 0d,
                 "Number of how comments reported by developers.",
                 Metric.DIRECTION_WORST,
-                CoreMetrics.DOMAIN_SIZE,
+                WTFMetrics.DOMAIN,
                 SumChildValuesFormula.class
             },
             new Object[] {
@@ -395,7 +448,7 @@ public class WTFMetricsTest {
                 0d,
                 "Number of missing implementations reported by developers.",
                 Metric.DIRECTION_WORST,
-                CoreMetrics.DOMAIN_SIZE,
+                WTFMetrics.DOMAIN,
                 SumChildValuesFormula.class
             },
             new Object[] {
@@ -406,7 +459,7 @@ public class WTFMetricsTest {
                 0d,
                 "Number of non exceptions reported by developers.",
                 Metric.DIRECTION_WORST,
-                CoreMetrics.DOMAIN_SIZE,
+                WTFMetrics.DOMAIN,
                 SumChildValuesFormula.class
             },
             new Object[] {
@@ -417,7 +470,51 @@ public class WTFMetricsTest {
                 0d,
                 "Number of wrong languages reported by developers.",
                 Metric.DIRECTION_WORST,
-                CoreMetrics.DOMAIN_SIZE,
+                WTFMetrics.DOMAIN,
+                SumChildValuesFormula.class
+            },
+            new Object[] {
+                WTFMetrics.WTF_COUNT_ABBREVIATIONS_USAGE,
+                "WTF_COUNT_ABBREVIATIONS_USAGE",
+                "WTF abbreviations usage count",
+                ValueType.INT,
+                0d,
+                "Number of abbreviations usages reported by developers.",
+                Metric.DIRECTION_WORST,
+                WTFMetrics.DOMAIN,
+                SumChildValuesFormula.class
+            },
+            new Object[] {
+                WTFMetrics.WTF_COUNT_BAD_FRAMEWORK_USAGE,
+                "WTF_COUNT_BAD_FRAMEWORK_USAGE",
+                "WTF bad framework usage count",
+                ValueType.INT,
+                0d,
+                "Number of bad framework usages reported by developers.",
+                Metric.DIRECTION_WORST,
+                WTFMetrics.DOMAIN,
+                SumChildValuesFormula.class
+            },
+            new Object[] {
+                WTFMetrics.WTF_COUNT_BAD_LOGGING,
+                "WTF_COUNT_BAD_LOGGING",
+                "WTF bad logging count",
+                ValueType.INT,
+                0d,
+                "Number of bad loggings reported by developers.",
+                Metric.DIRECTION_WORST,
+                WTFMetrics.DOMAIN,
+                SumChildValuesFormula.class
+            },
+            new Object[] {
+                WTFMetrics.WTF_COUNT_REINVENTED_WHEEL,
+                "WTF_COUNT_REINVENTED_WHEEL",
+                "WTF reinvented wheel count",
+                ValueType.INT,
+                0d,
+                "Number of reinvented wheels reported by developers.",
+                Metric.DIRECTION_WORST,
+                WTFMetrics.DOMAIN,
                 SumChildValuesFormula.class
             },
         };

@@ -26,6 +26,10 @@ package com.qualinsight.plugins.sonarqube.wtf.api.model;
  */
 public enum WTFType {
     /**
+     * Confusing abbreviations are being used instead of explicit names.
+     */
+    ABBREVIATIONS_USAGE,
+    /**
      * An anti-pattern has been used.
      */
     ANTI_PATTERN,
@@ -33,6 +37,14 @@ public enum WTFType {
      * The design is really bad and should be improved.
      */
     BAD_DESIGN,
+    /**
+     * A framework is not used the way it should.
+     */
+    BAD_FRAMEWORK_USAGE,
+    /**
+     * The logging message, level, is inappropriate or the log is redundant.
+     */
+    BAD_LOGGING,
     /**
      * The comment or documentation text focuses on the "how" instead of the why".
      */
@@ -54,6 +66,10 @@ public enum WTFType {
      */
     MISSING_IMPLEMENTATION,
     /**
+     * A class or method has multiple responsibilities.
+     */
+    MULTIPLE_RESPONSIBILITIES,
+    /**
      * Execption mechanism usage for non exceptional cases
      */
     NON_EXCEPTION,
@@ -73,6 +89,10 @@ public enum WTFType {
      * The class extends another classes' methods but does not use them. Why extending the class then ?
      */
     REFUSED_BEQUEST,
+    /**
+     * A library does the same job, probably better.
+     */
+    REINVENTED_WHEEL,
     /**
      * It takes too many classes to do anything useful, you might have solution sprawl. Consider simplifying and consolidating your design.
      */
