@@ -29,7 +29,7 @@ public class WTFCheckTest_3 {
 
     // Noncompliant @+1 {{Anti-pattern}}
     @WTF(minutes = 10, reason = "Anti" + "-" + "pattern", type = WTFType.ANTI_PATTERN)
-    public void method2() {
+    public void method3() {
     }
 
     // Noncompliant @+1 {{Anti-pattern}}
@@ -39,17 +39,17 @@ public class WTFCheckTest_3 {
 
     // Noncompliant @+1 {{Anti-pattern}}
     @WTF(minutes = 10, reason = "Anti-" + CONSTANT2, type = WTFType.ANTI_PATTERN)
-    public void method3() {
-    }
-
-    // Noncompliant @+1 {{Anti-pattern}}
-    @WTF(minutes = 10, reason = CONSTANT1 + CONSTANT2, type = WTFType.ANTI_PATTERN)
     public void method5() {
     }
 
     // Noncompliant @+1 {{Anti-pattern}}
-    @WTF(minutes = 10, reason = CONSTANT3, type = WTFType.ANTI_PATTERN)
+    @WTF(minutes = 10, reason = CONSTANT1 + CONSTANT2, type = WTFType.ANTI_PATTERN)
     public void method6() {
+    }
+
+    // Noncompliant @+1 {{Anti-pattern}}
+    @WTF(minutes = 10, reason = CONSTANT3, type = WTFType.ANTI_PATTERN)
+    public void method7() {
     }
 
     // Noncompliant @+1 {{Anti-pattern}}
