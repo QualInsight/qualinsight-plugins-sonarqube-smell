@@ -58,7 +58,7 @@ That's it!
 
 _Note 1:_ While I recommend activating the WTF! rule, you don't have to do it. If the rule is not activated, the plugin will still report WTF! related technical debt in its own widget, but WTF annotations will not be counted as issues, and as such they will not contribute to the project's technical debt, nor impact the SQALE rating. Do this if you don't want to mix automated debt discovery with "subjective" debt declaration.  
 
-_Note 2:_ Unfortunately SonarSource has refused to add the plugin to SonarQube's update center. I invite you to read the [underlying reason on SonarQube's Google group](https://groups.google.com/forum/#!topic/sonarqube/d8vQyKxqPZk) and forge your own opinion about this decision.
+_Note 2:_ Unfortunately SonarSource refused to add the plugin to SonarQube's update center. I invite you to read the [underlying reason on SonarQube's Google group](https://groups.google.com/d/msg/sonarqube/d8vQyKxqPZk/fa2csHAVDwAJ) and forge your own opinion about this decision. My own reaction can be read [here](https://groups.google.com/d/msg/sonarqube/d8vQyKxqPZk/JzvV6LocDwAJ).
 
 ### Adding WTF! to your code
 
