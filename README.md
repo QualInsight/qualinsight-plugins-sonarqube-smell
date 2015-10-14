@@ -1,5 +1,5 @@
 # WTF! plugin for SonarQube
-The "What the fuck!" (WTF!) plugin for [SonarQube](http://www.sonarqube.org) allows developers to report issues usually not seen by SonarQube but which should be taken into consideration when evaluating a project's technical debt.
+The WTF! plugin for [SonarQube](http://www.sonarqube.org/) allows developers to report issues usually not seen by SonarQube but which should be taken into consideration when evaluating a project's technical debt. 
 
 ## Rationale
 
@@ -9,11 +9,11 @@ While this is a (really) great way to report coding issues, my experience showed
 
 1. SonarQube only reports issues and technical debt for the rules that have been activated. In other words, deactivate all rules and you'll obtain a project with a "A" SQALE rating and zero issues. 
 
-2. Even if you do a great (and honest) job in selecting the rules to be activated, SonarQube is "only" a tool that does what it is told to do: it applies those rules. If the rules are not precise enough or not smart enough you'll end up with a project that shines in SonarQube (i.e. great rating, no issues, high coverage, good documentation, nothing to worry about) but if you scratch the surface a bit and ask a human to review it, you may have another feedback, far from being "shiny". Something that may sound like "what the fuck!" 
+2. Even if you do a great (and honest) job in selecting the rules to be activated, SonarQube is "only" a tool that does what it is told to do: it applies those rules. If the rules are not precise enough or not smart enough you'll end up with a project that shines in SonarQube (i.e. great rating, no issues, high coverage, good documentation, nothing to worry about) but if you scratch the surface a bit and ask a human to review it, you may have another feedback, far from being "shiny". Something that may sound like "WTF!" 
 
 Thom Holwerda [posted a great comic strip](http://www.osnews.com/story/19266/WTFs_m) a few years ago stating that the only valid measurement of code quality is the WTF count per minute. While being humoristic, this observation is really realistic. If you've heard a team member say "WTF!" in your open space, I'm pretty sure you understand what I'm talking about.
 
-This comic strip and the underlying question of how to improve code quality was discussed in this [interesting blog post](http://www.gridshore.nl/2008/03/29/how-wtfs-improve-code-quality-awareness/). Here is a excerpt from this blog post:
+This comic strip and the underlying question of how to improve code quality was discussed in Robert C. Martin's ["Clean Code"](http://www.amazon.com/gp/product/0132350882) book as well as in this [interesting blog post](http://www.gridshore.nl/2008/03/29/how-wtfs-improve-code-quality-awareness/). Here is a excerpt from this blog post:
 
 > A WTF is typically raised when a developer more or less accidentally opens a class file and sees something that just doesn’t seem right. It doesn’t have to be a formal review.
 
@@ -42,11 +42,11 @@ The plugin is made of two parts:
 ### Requirements
 
 * SonarQube 4.5.4+
-* SonarQube's [Java plugin](http://docs.sonarqube.org/display/PLUG/Java+Plugin) version 3.5. 
+* SonarQube's [Java plugin](http://docs.sonarqube.org/display/PLUG/Java+Plugin) version 3.5+ 
 
 ### Plugin installation
 
-The plugin will be (hopefully) available shortly in SonarQube update center. Meantime it can be [downloaded from Maven central](http://search.maven.org/remotecontent?filepath=com/qualinsight/plugins/sonarqube/qualinsight-plugins-sonarqube-wtf-internal/1.0.2/qualinsight-plugins-sonarqube-wtf-internal-1.0.2.jar)
+The plugin can be [downloaded from GitHub releases](http://www.qualinsight.com/tools/sonarqube-wtf/latest).
 
 After having placed the plugin's jar in `{SONARQUBE_INSTALL_DIRECTORY}/extensions/plugins` you need to restart your SonarQube instance.
 
@@ -54,9 +54,11 @@ You have then to add the "WTF! Measures" widget to your project or view dashboar
 
 The last installation step, if you want to have WTF! annotations to contribute to the project's technical debt, is to add to your profile the rule named "WTF!" Its key is "`qualinsight-wtf:W0001`".
 
-That's it !
+That's it!
 
-_Note_: While I recommend activating the WTF! rule, you don't have to do it. If the rule is not activated, the plugin will still report WTF! related technical debt in its own widget, but WTF annotations will not be counted as issues, and as such they will not contribute to the project's technical debt, nor impact the SQALE rating. Do this if you don't want to mix automated debt discovery with "subjective" debt declaration.  
+_Note 1:_ While I recommend activating the WTF! rule, you don't have to do it. If the rule is not activated, the plugin will still report WTF! related technical debt in its own widget, but WTF annotations will not be counted as issues, and as such they will not contribute to the project's technical debt, nor impact the SQALE rating. Do this if you don't want to mix automated debt discovery with "subjective" debt declaration.  
+
+_Note 2:_ Unfortunately SonarSource refused to add the plugin to SonarQube's update center. I invite you to read the [underlying reason on SonarQube's Google group](https://groups.google.com/d/msg/sonarqube/d8vQyKxqPZk/fa2csHAVDwAJ) and forge your own opinion about this decision.
 
 ### Adding WTF! to your code
 
@@ -70,7 +72,7 @@ In order to be able to use the `@WTF` annotation, the following dependency must 
 <dependency>
     <groupId>com.qualinsight.plugins.sonarqube</groupId>
     <artifactId>qualinsight-plugins-sonarqube-wtf-api</artifactId>
-    <version>1.0.3</version>
+    <version>1.0.4</version>
 </dependency>
 ```
 
@@ -157,6 +159,12 @@ The second screenshot shows that WTF! issues are added to regular SonarQube issu
 I hope you'll enjoy this small plugin as much as I enjoyed writing it ! Do not hesitate to request new WTF types and send comments as well as requests for improvement.
 
 Cheers !
+
+## Links
+
+* [WTF! Java API](http://api.sonarqube.wtf) on Maven central
+* [WTF! SonarQube plugin](http://plugin.sonarqube.wtf) on Maven central
+* [WTF! Releases](http://releases.sonarqube.wtf) on GitHub
 
 ## Build status
 
