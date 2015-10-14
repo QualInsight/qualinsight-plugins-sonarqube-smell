@@ -19,5 +19,11 @@ target/
 .project
 .classpath
 
+# IntelliJ IDEA files
+*.iws
+*.iml
+*.ipr
+.idea/
+
 # MacOS X files
 .DS_Store
