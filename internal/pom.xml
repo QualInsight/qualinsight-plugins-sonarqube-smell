@@ -3,10 +3,10 @@
   <parent>
     <groupId>com.qualinsight.plugins.sonarqube</groupId>
     <artifactId>qualinsight-plugins-sonarqube-wtf</artifactId>
-    <version>1.1.0-SNAPSHOT</version>
+    <version>1.0.4-SNAPSHOT</version>
   </parent>
   <artifactId>qualinsight-plugins-sonarqube-wtf-internal</artifactId>
-  <description>QualInsight SonarQube "What the fuck!" plugin.</description>
+  <description>This plugin allows developers to programmatically report issues usually not seen by SonarQube but which should be taken into consideration when evaluating a project's technical debt. Usage documentation is available on http://sonarqube.wtf/</description>
   <packaging>sonar-plugin</packaging>
   <dependencies>
     <dependency>
@@ -87,7 +87,7 @@
           <finalName>qualinsight-sonarqube-wtf-plugin-${project.version}</finalName>
           <pluginDescription />
           <pluginTermsConditionsUrl>https://www.gnu.org/licenses/lgpl-3.0.txt</pluginTermsConditionsUrl>
-          <pluginUrl>http://www.qualinsight.com/tools/sonarqube-wtf/</pluginUrl>
+          <pluginUrl>http://sonarqube.wtf/</pluginUrl>
           <useChildFirstClassLoader>true</useChildFirstClassLoader>
           <requirePlugins>java:3.5</requirePlugins>
         </configuration>

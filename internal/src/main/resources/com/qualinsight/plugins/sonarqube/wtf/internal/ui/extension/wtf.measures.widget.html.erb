@@ -1,30 +1,29 @@
 <%
   wtf_debt=measure('WTF_DEBT')
   wtf_count=measure('WTF_COUNT')
-  wtf_count_overcomplicated_algorithm=measure('WTF_COUNT_OVERCOMPLICATED_ALGORITHM')
-  wtf_count_wrong_logic=measure('WTF_COUNT_WRONG_LOGIC')
-  wtf_count_wrong_language=measure('WTF_COUNT_WRONG_LANGUAGE')
+  wtf_count_abbreviations_usage=measure('WTF_COUNT_ABBREVIATIONS_USAGE')
   wtf_count_anti_pattern=measure('WTF_COUNT_ANTI_PATTERN')
   wtf_count_bad_design=measure('WTF_COUNT_BAD_DESIGN')
-  wtf_count_useless_test=measure('WTF_COUNT_USELESS_TEST')
-  wtf_count_meaningless_comment=measure('WTF_COUNT_MEANINGLESS_COMMENT')
-  wtf_count_multiple_responsibilities=measure('WTF_COUNT_MULTIPLE_RESPONSIBILITIES')
-  wtf_count_uncommunicative_name=measure('WTF_COUNT_UNCOMMUNICATIVE_NAME')
-  wtf_count_speculative_generality=measure('WTF_COUNT_SPECULATIVE_GENERALITY')
-  wtf_count_oddball_solution=measure('WTF_COUNT_ODDBALL_SOLUTION')
-  wtf_count_primitives_obsession=measure('WTF_COUNT_PRIMITIVES_OBSESSION')
-  wtf_count_indecent_exposure=measure('WTF_COUNT_INDECENT_EXPOSURE')
-  wtf_count_solution_sprawl=measure('WTF_COUNT_SOLUTION_SPRAWL')
-  wtf_count_middle_man=measure('WTF_COUNT_MIDDLE_MAN')
-  wtf_count_refused_bequest=measure('WTF_COUNT_REFUSED_BEQUEST')
-  wtf_count_missing_implementation=measure('WTF_COUNT_MISSING_IMPLEMENTATION')
-  wtf_count_non_exception=measure('WTF_COUNT_NON_EXCEPTION')
-  wtf_count_how_comment=measure('WTF_COUNT_HOW_COMMENT')
-  wtf_count_bad_logging=measure('WTF_COUNT_BAD_LOGGING')
-  wtf_count_abbreviations_usage=measure('WTF_COUNT_ABBREVIATIONS_USAGE')
-  wtf_count_reinvented_wheel=measure('WTF_COUNT_REINVENTED_WHEEL')
   wtf_count_bad_framework_usage=measure('WTF_COUNT_BAD_FRAMEWORK_USAGE')
-  
+  wtf_count_bad_logging=measure('WTF_COUNT_BAD_LOGGING')
+  wtf_count_how_comment=measure('WTF_COUNT_HOW_COMMENT')
+  wtf_count_indecent_exposure=measure('WTF_COUNT_INDECENT_EXPOSURE')
+  wtf_count_meaningless_comment=measure('WTF_COUNT_MEANINGLESS_COMMENT')
+  wtf_count_middle_man=measure('WTF_COUNT_MIDDLE_MAN')
+  wtf_count_missing_implementation=measure('WTF_COUNT_MISSING_IMPLEMENTATION')
+  wtf_count_multiple_responsibilities=measure('WTF_COUNT_MULTIPLE_RESPONSIBILITIES')
+  wtf_count_non_exception=measure('WTF_COUNT_NON_EXCEPTION')
+  wtf_count_oddball_solution=measure('WTF_COUNT_ODDBALL_SOLUTION')
+  wtf_count_overcomplicated_algorithm=measure('WTF_COUNT_OVERCOMPLICATED_ALGORITHM')
+  wtf_count_primitives_obsession=measure('WTF_COUNT_PRIMITIVES_OBSESSION')
+  wtf_count_refused_bequest=measure('WTF_COUNT_REFUSED_BEQUEST')
+  wtf_count_reinvented_wheel=measure('WTF_COUNT_REINVENTED_WHEEL')
+  wtf_count_solution_sprawl=measure('WTF_COUNT_SOLUTION_SPRAWL')
+  wtf_count_speculative_generality=measure('WTF_COUNT_SPECULATIVE_GENERALITY')
+  wtf_count_uncommunicative_name=measure('WTF_COUNT_UNCOMMUNICATIVE_NAME')
+  wtf_count_useless_test=measure('WTF_COUNT_USELESS_TEST')
+  wtf_count_wrong_logic=measure('WTF_COUNT_WRONG_LOGIC')
+  wtf_count_wrong_language=measure('WTF_COUNT_WRONG_LANGUAGE')
 %>
 <div class="widget-row widget-row-x">
   <div class="widget-span widget-span-3">
@@ -50,7 +49,7 @@
       <div id="wtf-piechart" style="width: auto; height: auto;"></div>
       <script type="text/javascript" src="https://www.google.com/jsapi"></script>
       <script type="text/javascript">
-        google.load("visualization", "1.1", {packages:["corechart"]});
+        google.load("visualization", "1.0", {packages:["corechart"]});
         google.setOnLoadCallback(drawChart);
         function drawChart() {
   
