@@ -15,8 +15,6 @@ Thom Holwerda [posted a great comic strip](http://www.osnews.com/story/19266/Sme
 
 > A [Smell] is typically raised when a developer more or less accidentally opens a class file and sees something that just doesn’t seem right. It doesn’t have to be a formal review. Getting code quality up after a [Smell] has been raised is easy. Just let the developer who found the [Smell] fix the code in such a way, that the [Smell] doesn’t apply to that code any more. However, the developer causing the bad code will not know, and continue with his habits
 
-_Note 1:_ As you may have seen it, the word "WTF" has been replaced by "Smell" in the excerpt. I wish we could use the term "WTF" in order to refer to code smells. However it seems that many people are offended by such a language. Therefore, by respect for these people, I'll use the less controversial (but still valid) "Smell" word instead of WTF from now on.
-
 This is what motivated the creation of the Code Smells plugin. It has three major objectives 
 
 1. Give voice to developers in order to unhide hidden code smells that cannot be usually detected with SonarQube and share them with the development team
@@ -24,6 +22,8 @@ This is what motivated the creation of the Code Smells plugin. It has three majo
 3. Let development teams access easily detected smells issues to be able to use this information during sprint plannings and code reviews.
 
 Yes, we want to make smells visible and *force* team members to discuss them and fix them.
+
+_Note 1:_ As you may have seen it, the word "WTF" has been replaced by "Smell" in the excerpt. I wish we could use the term "WTF" in order to refer to code smells. However it seems that many people are offended by such a language. Therefore, by respect for these people, I'll use the less controversial (but still valid) "Smell" word instead of WTF from now on.
 
 ## How does it work ?
 
@@ -65,8 +65,8 @@ In order to be able to use the `@Smell` annotation, the following dependency mus
 ```
 <dependency>
     <groupId>com.qualinsight.plugins.sonarqube</groupId>
-    <artifactId>qualinsight-plugins-sonarqube-Smell-api</artifactId>
-    <version>1.1.0</version>
+    <artifactId>qualinsight-plugins-sonarqube-smell-api</artifactId>
+    <version>2.0.0</version>
 </dependency>
 ```
 
