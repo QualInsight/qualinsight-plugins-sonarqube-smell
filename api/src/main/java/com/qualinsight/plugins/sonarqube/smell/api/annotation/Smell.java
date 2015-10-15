@@ -1,5 +1,5 @@
 /*
- * qualinsight-plugins-sonarqube-wtf
+ * qualinsight-plugins-sonarqube-smell
  * Copyright (c) 2015, QualInsight
  * http://www.qualinsight.com/
  *
@@ -17,15 +17,16 @@
  * License along with this program. If not, you can retrieve a copy
  * from <http://www.gnu.org/licenses/>.
  */
-package com.qualinsight.plugins.sonarqube.wtf.api.annotation;
+package com.qualinsight.plugins.sonarqube.smell.api.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+import com.qualinsight.plugins.sonarqube.smell.api.model.SmellType;
 
 /**
- * Source retention annotation that can be used to report multiple WTFs.
+ * Source retention annotation that can be used to report a Code Smell, i.e. a code smell that needs to be reported in SonarQube.
  *
  * @author Michel Pawlak
  */
@@ -39,13 +40,26 @@ import java.lang.annotation.Target;
     ElementType.PARAMETER,
     ElementType.LOCAL_VARIABLE
 })
-public @interface WTFs {
+public @interface Smell {
 
     /**
-     * All WTF annotations that have been put on the annotated element.
+     * Evaluation of the time in minutes that would be needed to remove the code smell.
      *
-     * @return Array of WTF annotations
+     * @return time in minutes that would be needed to remove the code smell.
      */
-    public WTF[] value();
+    public int minutes();
 
+    /**
+     * Provides the reason why the developer marked the code as being a code smell.
+     *
+     * @return the reason that led to reporting the code smell.
+     */
+    public String reason();
+
+    /**
+     * Indicates the category the code smell belongs to.
+     *
+     * @return the Smell category the code smell is member of
+     */
+    public SmellType type();
 }

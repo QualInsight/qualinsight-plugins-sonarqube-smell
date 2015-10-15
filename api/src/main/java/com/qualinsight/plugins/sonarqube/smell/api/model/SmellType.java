@@ -1,5 +1,5 @@
 /*
- * qualinsight-plugins-sonarqube-wtf
+ * qualinsight-plugins-sonarqube-smell
  * Copyright (c) 2015, QualInsight
  * http://www.qualinsight.com/
  *
@@ -17,17 +17,17 @@
  * License along with this program. If not, you can retrieve a copy
  * from <http://www.gnu.org/licenses/>.
  */
-package com.qualinsight.plugins.sonarqube.wtf.api.model;
+package com.qualinsight.plugins.sonarqube.smell.api.model;
 
 /**
- * Types of WTF! that can be measured by the plugin. They have been inspired by multiple sources (see links)
+ * Types of Smell that can be measured by the plugin. They have been inspired by multiple sources (see links)
  *
  * @see <a href="http://www.industriallogic.com/wp-content/uploads/2005/09/smellstorefactorings.pdf">smells to refactorings</a>
  * @see <a href="http://blog.codinghorror.com/code-smells/">code smells</a>
  *
  * @author Michel Pawlak
  */
-public enum WTFType {
+public enum SmellType {
     /**
      * Confusing abbreviations are being used instead of explicit names.
      */
