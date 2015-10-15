@@ -1,0 +1,95 @@
+<%
+  smells_debt=measure('SMELL_DEBT')
+  smells_count=measure('SMELL_COUNT')
+  smells_count_abbreviations_usage=measure('SMELL_COUNT_ABBREVIATIONS_USAGE')
+  smells_count_anti_pattern=measure('SMELL_COUNT_ANTI_PATTERN')
+  smells_count_bad_design=measure('SMELL_COUNT_BAD_DESIGN')
+  smells_count_bad_framework_usage=measure('SMELL_COUNT_BAD_FRAMEWORK_USAGE')
+  smells_count_bad_logging=measure('SMELL_COUNT_BAD_LOGGING')
+  smells_count_how_comment=measure('SMELL_COUNT_HOW_COMMENT')
+  smells_count_indecent_exposure=measure('SMELL_COUNT_INDECENT_EXPOSURE')
+  smells_count_meaningless_comment=measure('SMELL_COUNT_MEANINGLESS_COMMENT')
+  smells_count_middle_man=measure('SMELL_COUNT_MIDDLE_MAN')
+  smells_count_missing_implementation=measure('SMELL_COUNT_MISSING_IMPLEMENTATION')
+  smells_count_multiple_responsibilities=measure('SMELL_COUNT_MULTIPLE_RESPONSIBILITIES')
+  smells_count_non_exception=measure('SMELL_COUNT_NON_EXCEPTION')
+  smells_count_oddball_solution=measure('SMELL_COUNT_ODDBALL_SOLUTION')
+  smells_count_overcomplicated_algorithm=measure('SMELL_COUNT_OVERCOMPLICATED_ALGORITHM')
+  smells_count_primitives_obsession=measure('SMELL_COUNT_PRIMITIVES_OBSESSION')
+  smells_count_refused_bequest=measure('SMELL_COUNT_REFUSED_BEQUEST')
+  smells_count_reinvented_wheel=measure('SMELL_COUNT_REINVENTED_WHEEL')
+  smells_count_solution_sprawl=measure('SMELL_COUNT_SOLUTION_SPRAWL')
+  smells_count_speculative_generality=measure('SMELL_COUNT_SPECULATIVE_GENERALITY')
+  smells_count_uncommunicative_name=measure('SMELL_COUNT_UNCOMMUNICATIVE_NAME')
+  smells_count_useless_test=measure('SMELL_COUNT_USELESS_TEST')
+  smells_count_wrong_logic=measure('SMELL_COUNT_WRONG_LOGIC')
+  smells_count_wrong_language=measure('SMELL_COUNT_WRONG_LANGUAGE')
+%>
+<div class="widget-row widget-row-x">
+  <div class="widget-span widget-span-3">
+    <div class="widget-measure-container">
+      <p class="widget-measure widget-measure-main">
+        <span class="widget-label"><%= configuration('widget.smells.title') -%></span>
+        <span class="nowrap">
+          <%= format_measure(smells_count, :url => url_for_drilldown(smells_count)) %>
+          <%= format_variation(smells_count) if dashboard_configuration.selected_period? -%>
+        </span>
+      </p>
+      <p class="widget-measure">
+        <span class="widget-label"><%= message('metric.smells_debt.name') -%></span>
+        <span class="nowrap">
+          <%= format_measure(smells_debt, :url => url_for_drilldown(smells_debt)) %>
+          <%= format_variation(smells_debt) if dashboard_configuration.selected_period? -%>
+        </span>
+      </p>
+    </div>
+  </div>
+  <div class="widget-span widget-span-9">
+    <div class="widget-measure-container">
+      <div id="smells-chart" style="width: auto; height: auto;"></div>
+      <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+      <script type="text/javascript">
+        google.load("visualization", "1.0", {packages:["corechart"]});
+        google.setOnLoadCallback(drawChart);
+        function drawChart() {
+  
+          var data = google.visualization.arrayToDataTable([
+            ['Smell Type', 'Code Smells Count'],
+            ['<%= message('metric.smells_count_abbreviations_usage.name') -%>', <%= smells_count_abbreviations_usage.formatted_value -%>],
+            ['<%= message('metric.smells_count_anti_pattern.name') -%>', <%= smells_count_anti_pattern.formatted_value -%>],
+            ['<%= message('metric.smells_count_bad_design.name') -%>', <%= smells_count_bad_design.formatted_value -%>],
+            ['<%= message('metric.smells_count_bad_framework_usage.name') -%>', <%= smells_count_bad_framework_usage.formatted_value -%>],
+            ['<%= message('metric.smells_count_bad_logging.name') -%>', <%= smells_count_bad_logging.formatted_value -%>],
+            ['<%= message('metric.smells_count_how_comment.name') -%>', <%= smells_count_how_comment.formatted_value -%>],
+            ['<%= message('metric.smells_count_indecent_exposure.name') -%>', <%= smells_count_indecent_exposure.formatted_value -%>],
+            ['<%= message('metric.smells_count_meaningless_comment.name') -%>', <%= smells_count_meaningless_comment.formatted_value -%>],
+            ['<%= message('metric.smells_count_middle_man.name') -%>', <%= smells_count_middle_man.formatted_value -%>],
+            ['<%= message('metric.smells_count_missing_implementation.name') -%>', <%= smells_count_missing_implementation.formatted_value -%>],
+            ['<%= message('metric.smells_count_multiple_responsibilities.name') -%>', <%= smells_count_multiple_responsibilities.formatted_value -%>],
+            ['<%= message('metric.smells_count_non_exception.name') -%>', <%= smells_count_non_exception.formatted_value -%>],
+            ['<%= message('metric.smells_count_oddball_solution.name') -%>', <%= smells_count_oddball_solution.formatted_value -%>],
+            ['<%= message('metric.smells_count_overcomplicated_algorithm.name') -%>', <%= smells_count_overcomplicated_algorithm.formatted_value -%>],
+            ['<%= message('metric.smells_count_primitives_obsession.name') -%>', <%= smells_count_primitives_obsession.formatted_value -%>],
+            ['<%= message('metric.smells_count_refused_bequest.name') -%>', <%= smells_count_refused_bequest.formatted_value -%>],
+            ['<%= message('metric.smells_count_reinvented_wheel.name') -%>', <%= smells_count_reinvented_wheel.formatted_value -%>],
+            ['<%= message('metric.smells_count_solution_sprawl.name') -%>', <%= smells_count_solution_sprawl.formatted_value -%>],
+            ['<%= message('metric.smells_count_speculative_generality.name') -%>', <%= smells_count_speculative_generality.formatted_value -%>],
+            ['<%= message('metric.smells_count_uncommunicative_name.name') -%>', <%= smells_count_uncommunicative_name.formatted_value -%>],
+            ['<%= message('metric.smells_count_useless_test.name') -%>', <%= smells_count_useless_test.formatted_value -%>],
+            ['<%= message('metric.smells_count_wrong_logic.name') -%>', <%= smells_count_wrong_logic.formatted_value -%>],
+            ['<%= message('metric.smells_count_wrong_language.name') -%>', <%= smells_count_wrong_language.formatted_value -%>]
+          ]);
+          
+          var options = {
+            pieHole: 0.5,
+            pieSliceText: 'none',
+          };
+          
+          var chart = new google.visualization.PieChart(document.getElementById('smells-chart'));
+  
+          chart.draw(data, options);
+        }
+      </script>
+    </div>
+  </div>
+</div>
