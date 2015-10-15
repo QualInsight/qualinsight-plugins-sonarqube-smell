@@ -153,12 +153,6 @@ I hope you'll enjoy this small plugin as much as I enjoyed writing it ! Do not h
 
 Cheers !
 
-## Links
-
-* [Code Smells Java API](http://api.sonarqube.wtf) on Maven central
-* [Code Smells SonarQube plugin](http://plugin.sonarqube.wtf) on Maven central
-* [Code Smells Releases](http://releases.sonarqube.wtf) on GitHub
-
 ## Build status
 
 ![Travis build status](https://travis-ci.org/QualInsight/qualinsight-plugins-sonarqube-smell.svg?branch=master)
