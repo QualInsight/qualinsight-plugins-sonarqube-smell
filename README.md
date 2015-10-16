@@ -46,13 +46,13 @@ The plugin can be [downloaded from GitHub releases](http://www.qualinsight.com/t
 
 After having placed the plugin's jar in `{SONARQUBE_INSTALL_DIRECTORY}/extensions/plugins` you need to restart your SonarQube instance.
 
-You have then to add the "Smell Measures" widget to your project or view dashboard.
+You have then to add the `Code Smells` widget to your project or view dashboard.
 
-The last installation step, if you want to have Smell annotations to contribute to the project's technical debt, is to add to your profile the rule named `Smell` Its key is "`qualinsight-smell:S0001`".
+The last installation step, if you want to have Smell annotations to contribute to the project's technical debt, is to add to your profile the rule named `Code Smell` Its key is "`qualinsight-smell:S0001`".
 
 That's it!
 
-_Note 2:_ While I recommend activating the `Smell` rule, you don't have to do it. If the rule is not activated, the plugin will still report Smell related technical debt in its own widget, but Smell annotations will not be counted as issues, and as such they will not contribute to the project's technical debt, nor impact the SQALE rating. Do this if you don't want to mix automated debt discovery with "subjective" debt declaration.  
+_Note 2:_ While I recommend activating the `Code Smell` rule, you don't have to do it. If the rule is not activated, the plugin will still report Smell related technical debt in its own widget, but Smell annotations will not be counted as issues, and as such they will not contribute to the project's technical debt, nor impact the SQALE rating. Do this if you don't want to mix automated debt discovery with "subjective" debt declaration.  
 
 ### Adding Smells to your code
 
