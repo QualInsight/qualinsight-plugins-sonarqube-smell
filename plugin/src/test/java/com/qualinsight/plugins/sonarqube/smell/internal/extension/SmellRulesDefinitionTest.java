@@ -42,7 +42,7 @@ import com.qualinsight.plugins.sonarqube.smell.plugin.extension.SmellRulesDefini
 @RunWith(MockitoJUnitRunner.class)
 public class SmellRulesDefinitionTest {
 
-    private static final String EXPECTED_REPOSITORY_KEY = "qualinsight-smell";
+    private static final String EXPECTED_REPOSITORY_KEY = "qualinsight-smells";
 
     private static final String EXPECTED_REPOSITORY_NAME = "QualInsight";
 
