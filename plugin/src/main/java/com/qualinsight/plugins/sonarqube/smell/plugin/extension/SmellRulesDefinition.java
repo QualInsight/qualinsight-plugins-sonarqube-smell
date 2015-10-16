@@ -35,7 +35,7 @@ public final class SmellRulesDefinition implements RulesDefinition {
     /**
      * Repository key.
      */
-    public static final String REPOSITORY_KEY = "qualinsight-smell";
+    public static final String REPOSITORY_KEY = "qualinsight-smells";
 
     /**
      * Repository name.

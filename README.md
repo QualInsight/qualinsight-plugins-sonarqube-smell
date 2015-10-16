@@ -48,7 +48,7 @@ After having placed the plugin's jar in `{SONARQUBE_INSTALL_DIRECTORY}/extension
 
 You have then to add the `Code Smells` widget to your project or view dashboard.
 
-The last installation step, if you want to have Smell annotations to contribute to the project's technical debt, is to add to your profile the rule named `Code Smell` Its key is "`qualinsight-smell:S0001`".
+The last installation step, if you want to have Smell annotations to contribute to the project's technical debt, is to add to your profile the rule named `Code Smell` Its key is "`qualinsight-smells:S0001`".
 
 That's it!
 
