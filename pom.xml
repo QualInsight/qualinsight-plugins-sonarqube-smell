@@ -6,7 +6,7 @@
     <version>1.0.1</version>
   </parent>
   <artifactId>qualinsight-plugins-sonarqube-wtf</artifactId>
-  <version>1.0.5-SNAPSHOT</version>
+  <version>1.0.4-SNAPSHOT</version>
   <description>Parent pom of QualInsight "What the fuck!" plugin for SonarQube and its companion Java api library.</description>
   <url>https://github.com/QualInsight/qualinsight-plugins-sonarqube-wtf</url>
   <organization>
