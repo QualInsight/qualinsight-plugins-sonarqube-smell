@@ -46,7 +46,7 @@ The plugin is made of two parts:
 
 ### Plugin installation
 
-The plugin can be [downloaded from GitHub releases](http://www.qualinsight.com/tools/sonarqube-wtf/latest).
+The plugin can be [downloaded from GitHub releases](https://github.com/QualInsight/qualinsight-plugins-sonarqube-smell/releases).
 
 After having placed the plugin's jar in `{SONARQUBE_INSTALL_DIRECTORY}/extensions/plugins` you need to restart your SonarQube instance.
 
