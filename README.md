@@ -37,8 +37,9 @@ The plugin is made of two parts:
 
 ### Requirements
 
-* SonarQube version 4.5.4+
-* SonarQube's [Java plugin](http://docs.sonarqube.org/display/PLUG/Java+Plugin) version 3.5+ 
+* SonarQube version from 4.5.x up to 5.1.x 
+* SonarQube's [Java plugin](http://docs.sonarqube.org/display/PLUG/Java+Plugin) version 3.5+
+* Internet connection on client's side (required to retrieve Google's visualisation API that is used to draw "Code Smells" widget's chart. No data is sent over the network.) 
 
 ### Plugin installation
 
