@@ -64,7 +64,7 @@ public final class SmellWidget extends AbstractRubyTemplate implements RubyRails
 
     @Override
     public String getId() {
-        return "smells-widget-id";
+        return "smells";
     }
 
     @Override

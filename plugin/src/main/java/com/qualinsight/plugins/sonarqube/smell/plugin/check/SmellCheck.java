@@ -51,7 +51,7 @@ import org.sonar.squidbridge.annotations.SqaleSubCharacteristic;
 @Rule(
     key = SmellCheck.KEY,
     name = "Code Smell",
-    description = "The Smell annotation is meant to help developers inform their fellow team members of development issues and code smells that are not directly detectable by SonarQube. Indeed SonarQube is only able to show issues it has a rule for. It is not able to detect idiotic behaviors nor sad mistakes. Each Smell is a means provided to inform your fellow developers that you have detected a bad coding practice, and to inform them of your estimation for correcting the issue. Read carefuly the reason bound to this Smell annotation and try fixing this issue in an upcoming development Sprint.",
+    description = "The Smell annotation is meant to help developers inform their fellow team members of development issues and code smells that are not directly detectable by SonarQube. Indeed SonarQube is only able to show issues it has a rule for. It is not able to detect strange behaviors nor sad mistakes. Each Smell is a means provided to inform your fellow developers that you have detected a bad coding practice, and to inform them of your estimation for correcting the issue. Read carefuly the reason bound to this Smell annotation and try fixing this issue in an upcoming development Sprint.",
     priority = Priority.MAJOR,
     tags = {
         "smell"

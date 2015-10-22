@@ -32,7 +32,7 @@ import com.qualinsight.plugins.sonarqube.smell.plugin.SmellPropertyKeys;
 @RunWith(MockitoJUnitRunner.class)
 public class SmellWidgetTest {
 
-    private static final String EXPECTED_ID = "smells-widget-id";
+    private static final String EXPECTED_ID = "smells";
 
     private static final String EXPECTED_TITLE = "Code Smells";
 
