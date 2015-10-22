@@ -5,10 +5,10 @@
     <artifactId>qualinsight-plugins-sonarqube-parent</artifactId>
     <version>1.0.1</version>
   </parent>
-  <artifactId>qualinsight-plugins-sonarqube-wtf</artifactId>
-  <version>1.0.5-SNAPSHOT</version>
-  <description>Parent pom of QualInsight "What the fuck!" plugin for SonarQube and its companion Java api library.</description>
-  <url>https://github.com/QualInsight/qualinsight-plugins-sonarqube-wtf</url>
+  <artifactId>qualinsight-plugins-sonarqube-smell</artifactId>
+  <version>2.0.1-SNAPSHOT</version>
+  <description>Parent pom of QualInsight Code Smells plugin for SonarQube and its companion Java api library.</description>
+  <url>https://github.com/QualInsight/qualinsight-plugins-sonarqube-smell</url>
   <organization>
     <url>http://www.qualinsight.com/</url>
     <name>QualInsight</name>
@@ -33,24 +33,24 @@
     </developer>
   </developers>
   <scm>
-    <connection>scm:git:git@github.com:QualInsight/qualinsight-plugins-sonarqube-wtf.git</connection>
-    <developerConnection>scm:git:git@github.com:QualInsight/qualinsight-plugins-sonarqube-wtf.git</developerConnection>
-    <url>https://github.com/QualInsight/qualinsight-plugins-sonarqube-wtf.git</url>
+    <connection>scm:git:git@github.com:QualInsight/qualinsight-plugins-sonarqube-smell.git</connection>
+    <developerConnection>scm:git:git@github.com:QualInsight/qualinsight-plugins-sonarqube-smell.git</developerConnection>
+    <url>https://github.com/QualInsight/qualinsight-plugins-sonarqube-smell.git</url>
     <tag>HEAD</tag>
   </scm>
   <properties>
-    <lib.version.qualinsight-plugins-sonarqube-wtf-api>${project.version}</lib.version.qualinsight-plugins-sonarqube-wtf-api>
+    <lib.version.qualinsight-plugins-sonarqube-smell-api>${project.version}</lib.version.qualinsight-plugins-sonarqube-smell-api>
     <lib.version.qualinsight-libs-sonarqube-test>1.0.2</lib.version.qualinsight-libs-sonarqube-test>
     <plugin.version.maven-dependency-plugin>2.10</plugin.version.maven-dependency-plugin>
     <!-- License properties -->
     <license.name>QualInsight-LGPL3</license.name>
-    <license.project>qualinsight-plugins-sonarqube-wtf</license.project>
+    <license.project>qualinsight-plugins-sonarqube-smell</license.project>
     <license.period>${project.inceptionYear}</license.period>
     <license.owner>${project.organization.name}</license.owner>
     <license.url>${project.organization.url}</license.url>
   </properties>
   <modules>
-    <module>internal</module>
+    <module>plugin</module>
     <module>api</module>
   </modules>
   <dependencyManagement>
@@ -81,8 +81,8 @@
                 <artifactItems>
                   <artifactItem>
                     <groupId>com.qualinsight.plugins.sonarqube</groupId>
-                    <artifactId>qualinsight-plugins-sonarqube-wtf-api</artifactId>
-                    <version>${lib.version.qualinsight-plugins-sonarqube-wtf-api}</version>
+                    <artifactId>qualinsight-plugins-sonarqube-smell-api</artifactId>
+                    <version>${lib.version.qualinsight-plugins-sonarqube-smell-api}</version>
                     <type>jar</type>
                   </artifactItem>
                 </artifactItems>
@@ -101,5 +101,5 @@
     </plugins>
   </build>
   <packaging>pom</packaging>
-  <name>SonarQube WTF! Plugin</name>
+  <name>SonarQube Code Smells Plugin</name>
 </project>
