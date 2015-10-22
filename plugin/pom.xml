@@ -87,7 +87,7 @@
           <finalName>qualinsight-sonarqube-smell-plugin-${project.version}</finalName>
           <pluginDescription />
           <pluginTermsConditionsUrl>https://www.gnu.org/licenses/lgpl-3.0.txt</pluginTermsConditionsUrl>
-          <pluginUrl>https://github.com/QualInsight/qualinsight-plugins-sonarqube-wtf/</pluginUrl>
+          <pluginUrl>https://github.com/QualInsight/qualinsight-plugins-sonarqube-smell/</pluginUrl>
           <useChildFirstClassLoader>true</useChildFirstClassLoader>
           <requirePlugins>java:3.5</requirePlugins>
         </configuration>
