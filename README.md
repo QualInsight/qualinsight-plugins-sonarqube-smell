@@ -37,9 +37,11 @@ The plugin is made of two parts:
 
 ### Requirements
 
-* SonarQube version from 4.5.x up to 5.1.x 
+* SonarQube version 4.5.x up to 5.1.x 
 * SonarQube's [Java plugin](http://docs.sonarqube.org/display/PLUG/Java+Plugin) version 3.5+
 * Internet connection on client's side (required to retrieve Google's visualisation API that is used to draw "Code Smells" widget's chart. No data is sent over the network.) 
+
+_Note 2:_ SonarQube 5.2 having brought breaking changes to the ``sonar-plugin-api``, metrics computation is not working yet. A solution will be provided soon (see issue #29.)
 
 ### Plugin installation
 
@@ -53,7 +55,7 @@ The last installation step, if you want to have Smell annotations to contribute 
 
 That's it!
 
-_Note 2:_ While I recommend activating the `Code Smell` rule, you don't have to do it. If the rule is not activated, the plugin will still report Smell related technical debt in its own widget, but Smell annotations will not be counted as issues, and as such they will not contribute to the project's technical debt, nor impact the SQALE rating. Do this if you don't want to mix automated debt discovery with "subjective" debt declaration.  
+_Note 3:_ While I recommend activating the `Code Smell` rule, you don't have to do it. If the rule is not activated, the plugin will still report Smell related technical debt in its own widget, but Smell annotations will not be counted as issues, and as such they will not contribute to the project's technical debt, nor impact the SQALE rating. Do this if you don't want to mix automated debt discovery with "subjective" debt declaration.  
 
 ### Adding Smells to your code
 
@@ -67,7 +69,7 @@ In order to be able to use the `@Smell` annotation, the following dependency mus
 <dependency>
     <groupId>com.qualinsight.plugins.sonarqube</groupId>
     <artifactId>qualinsight-plugins-sonarqube-smell-api</artifactId>
-    <version>2.0.0-RC1</version>
+    <version>2.0.0</version>
 </dependency>
 ```
 
@@ -150,7 +152,9 @@ The second screenshot shows that Smell issues are added to regular SonarQube iss
 
 ## Conclusion
 
-I hope you'll enjoy this small plugin as much as I enjoyed writing it ! Do not hesitate to request new Code Smells types and send comments as well as requests for improvement.
+I hope you'll enjoy this small plugin as much as I enjoyed writing it ! Do not hesitate to request new Code Smells types and send comments as well as requests for improvement. 
+
+A [Google group](https://groups.google.com/forum/#!forum/code-smells) named [Code Smells](https://groups.google.com/forum/#!forum/code-smells) has been created in order to facilitate discussions about this plugin.
 
 Cheers !
 
