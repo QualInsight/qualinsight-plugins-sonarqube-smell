@@ -41,6 +41,7 @@
   <properties>
     <lib.version.qualinsight-plugins-sonarqube-smell-api>${project.version}</lib.version.qualinsight-plugins-sonarqube-smell-api>
     <lib.version.qualinsight-libs-sonarqube-test>1.0.2</lib.version.qualinsight-libs-sonarqube-test>
+    <lib.version.jcip-annotations>1.0-1</lib.version.jcip-annotations>
     <plugin.version.maven-dependency-plugin>2.10</plugin.version.maven-dependency-plugin>
     <!-- License properties -->
     <license.name>QualInsight-LGPL3</license.name>
@@ -59,6 +60,12 @@
         <groupId>com.qualinsight.libs.sonarqube</groupId>
         <artifactId>qualinsight-libs-sonarqube-test</artifactId>
         <version>${lib.version.qualinsight-libs-sonarqube-test}</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>com.github.stephenc.jcip</groupId>
+        <artifactId>jcip-annotations</artifactId>
+        <version>${lib.version.jcip-annotations}</version>
         <scope>test</scope>
       </dependency>
     </dependencies>

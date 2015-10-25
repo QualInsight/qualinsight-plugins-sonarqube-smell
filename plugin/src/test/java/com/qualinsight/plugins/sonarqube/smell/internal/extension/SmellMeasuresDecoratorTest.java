@@ -24,6 +24,7 @@ import java.util.Collection;
 import com.google.common.collect.ImmutableList;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
+import net.jcip.annotations.NotThreadSafe;
 import org.assertj.core.api.Assertions;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Before;
@@ -50,6 +51,7 @@ import com.qualinsight.plugins.sonarqube.smell.api.model.SmellType;
 import com.qualinsight.plugins.sonarqube.smell.plugin.extension.SmellMeasuresDecorator;
 import com.qualinsight.plugins.sonarqube.smell.plugin.extension.SmellMetrics;
 
+@NotThreadSafe
 @RunWith(JUnitParamsRunner.class)
 public class SmellMeasuresDecoratorTest {
 

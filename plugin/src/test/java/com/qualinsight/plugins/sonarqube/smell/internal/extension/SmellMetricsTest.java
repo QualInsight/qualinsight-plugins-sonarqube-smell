@@ -22,6 +22,7 @@ package com.qualinsight.plugins.sonarqube.smell.internal.extension;
 import java.util.List;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
+import net.jcip.annotations.NotThreadSafe;
 import org.assertj.core.api.Assertions;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Test;
@@ -34,6 +35,7 @@ import org.sonar.api.measures.SumChildValuesFormula;
 import com.qualinsight.plugins.sonarqube.smell.api.model.SmellType;
 import com.qualinsight.plugins.sonarqube.smell.plugin.extension.SmellMetrics;
 
+@NotThreadSafe
 @RunWith(JUnitParamsRunner.class)
 public class SmellMetricsTest {
 

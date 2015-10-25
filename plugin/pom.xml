@@ -60,18 +60,14 @@
       <artifactId>qualinsight-libs-sonarqube-test</artifactId>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>com.github.stephenc.jcip</groupId>
+      <artifactId>jcip-annotations</artifactId>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
   <build>
     <plugins>
-      <plugin>
-        <!-- Remove parallel test execution as used runners are not threadsafe -->
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <configuration>
-          <parallel>classesAndMethods</parallel>
-          <threadCount>1</threadCount>
-        </configuration>
-      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-dependency-plugin</artifactId>
