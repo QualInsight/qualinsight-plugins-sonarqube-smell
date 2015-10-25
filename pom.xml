@@ -101,5 +101,5 @@
     </plugins>
   </build>
   <packaging>pom</packaging>
-  <name>SonarQube Code Smells Plugin</name>
+  <name>Code Smells Plugin</name>
 </project>

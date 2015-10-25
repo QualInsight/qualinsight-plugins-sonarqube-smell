@@ -6,7 +6,7 @@
     <version>2.0.1-SNAPSHOT</version>
   </parent>
   <artifactId>qualinsight-plugins-sonarqube-smell-plugin</artifactId>
-  <description>This plugin allows developers to programmatically report code smells usually not seen by SonarQube but which should be taken into consideration when evaluating a project's technical debt. Usage documentation is available on the project's Homepage</description>
+  <description>This plugin for SonarQube allows developers to programmatically report code smells usually not seen by SonarQube but which should be taken into consideration when evaluating a project's technical debt. Usage documentation is available on the project's Homepage.</description>
   <packaging>sonar-plugin</packaging>
   <dependencies>
     <dependency>
