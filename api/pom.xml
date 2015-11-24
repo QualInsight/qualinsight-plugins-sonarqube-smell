@@ -8,4 +8,29 @@
   <artifactId>qualinsight-plugins-sonarqube-smell-api</artifactId>
   <description>QualInsight code smells annotation api.</description>
   <packaging>jar</packaging>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>maven-bundle-plugin</artifactId>
+        <version>2.5.4</version>
+        <extensions>true</extensions>
+        <configuration>
+          <instructions>
+            <Export-Package>com.qualinsight.plugins.sonarqube.smell.api.*</Export-Package>
+            <Private-Package>com.qualinsight.plugins.sonarqube.smell.*</Private-Package>
+          </instructions>
+        </configuration>
+        <executions>
+          <execution>
+            <id>osgi-manifest-generation</id>
+            <goals>
+              <goal>manifest</goal>
+            </goals>
+            <phase>validate</phase>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
 </project>
