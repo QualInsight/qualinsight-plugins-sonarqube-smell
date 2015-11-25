@@ -73,7 +73,9 @@ In order to be able to use the `@Smell` annotation, the following dependency mus
 </dependency>
 ```
 
-_Note_: The dependency is available in Maven central repository.
+_Note 4_: The dependency is available in Maven central repository.
+
+_Note 5:_ The API is packaged as an OSGi bundle.
 
 #### Annotating code
 
