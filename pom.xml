@@ -6,7 +6,7 @@
     <version>1.0.1</version>
   </parent>
   <artifactId>qualinsight-plugins-sonarqube-smell</artifactId>
-  <version>2.0.1-SNAPSHOT</version>
+  <version>2.0.2-SNAPSHOT</version>
   <description>Parent pom of QualInsight Code Smells plugin for SonarQube and its companion Java api library.</description>
   <url>https://github.com/QualInsight/qualinsight-plugins-sonarqube-smell</url>
   <organization>

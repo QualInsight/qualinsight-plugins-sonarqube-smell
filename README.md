@@ -69,11 +69,13 @@ In order to be able to use the `@Smell` annotation, the following dependency mus
 <dependency>
     <groupId>com.qualinsight.plugins.sonarqube</groupId>
     <artifactId>qualinsight-plugins-sonarqube-smell-api</artifactId>
-    <version>2.0.0</version>
+    <version>2.0.1</version>
 </dependency>
 ```
 
-_Note_: The dependency is available in Maven central repository.
+_Note 4_: The dependency is available in Maven central repository.
+
+_Note 5:_ The API is packaged as an OSGi bundle.
 
 #### Annotating code
 
