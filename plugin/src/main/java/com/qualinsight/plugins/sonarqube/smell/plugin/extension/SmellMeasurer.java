@@ -48,9 +48,9 @@ public final class SmellMeasurer {
 
     private static final String EMPTY_FILE_CONTENT = "";
 
-    private static final String SMELL_ANNOTATION_TYPE_DETECTION_REGULAR_EXPRESSION = "@(com\\.qualinsight\\.plugins\\.sonarqube\\.smell\\.api\\.annotation\\.)?Smell\\(.*type\\s?=\\s?(SmellType\\.)?([A-Z_]+).*?\\)";
+    private static final String SMELL_ANNOTATION_TYPE_DETECTION_REGULAR_EXPRESSION = "@(com\\.qualinsight\\.plugins\\.sonarqube\\.smell\\.api\\.annotation\\.)?Smell\\((?s).*type\\s?=\\s?(SmellType\\.)?([A-Z_]+).*?\\)";
 
-    private static final String SMELL_ANNOTATION_DEBT_DETECTION_REGULAR_EXPRESSION = "@(com\\.qualinsight\\.plugins\\.sonarqube\\.smell\\.api\\.annotation\\.)?Smell\\(.*minutes\\s?=\\s?(\\d+).*?\\)";
+    private static final String SMELL_ANNOTATION_DEBT_DETECTION_REGULAR_EXPRESSION = "@(com\\.qualinsight\\.plugins\\.sonarqube\\.smell\\.api\\.annotation\\.)?Smell\\((?s).*minutes\\s?=\\s?(\\d+).*?\\)";
 
     private SensorContext context;
 
