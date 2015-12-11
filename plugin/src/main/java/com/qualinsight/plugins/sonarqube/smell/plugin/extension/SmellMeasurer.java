@@ -19,6 +19,15 @@
  */
 package com.qualinsight.plugins.sonarqube.smell.plugin.extension;
 
+import com.google.common.io.Files;
+import com.qualinsight.plugins.sonarqube.smell.api.annotation.Smell;
+import com.qualinsight.plugins.sonarqube.smell.api.model.SmellType;
+import org.apache.commons.io.Charsets;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.sonar.api.batch.SensorContext;
+import org.sonar.api.batch.fs.InputFile;
+import org.sonar.api.measures.Measure;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -27,15 +36,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import com.google.common.io.Files;
-import org.apache.commons.io.Charsets;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.sonar.api.batch.SensorContext;
-import org.sonar.api.batch.fs.InputFile;
-import org.sonar.api.measures.Measure;
-import com.qualinsight.plugins.sonarqube.smell.api.annotation.Smell;
-import com.qualinsight.plugins.sonarqube.smell.api.model.SmellType;
 
 /**
  * Helper class that scans {@link InputFile}s for the presence of {@link Smell} annotations and saves {@link Measure}s accordingly.
@@ -48,9 +48,9 @@ public final class SmellMeasurer {
 
     private static final String EMPTY_FILE_CONTENT = "";
 
-    private static final String SMELL_ANNOTATION_TYPE_DETECTION_REGULAR_EXPRESSION = "@(com\\.qualinsight\\.plugins\\.sonarqube\\.smell\\.api\\.annotation\\.)?Smell\\((?s).*type\\s?=\\s?(SmellType\\.)?([A-Z_]+).*?\\)";
+    private static final String SMELL_ANNOTATION_TYPE_DETECTION_REGULAR_EXPRESSION = "@(com\\.qualinsight\\.plugins\\.sonarqube\\.smell\\.api\\.annotation\\.)?Smell\\((?s).*?type\\s?=\\s?(SmellType\\.)?([A-Z_]+).*?\\)";
 
-    private static final String SMELL_ANNOTATION_DEBT_DETECTION_REGULAR_EXPRESSION = "@(com\\.qualinsight\\.plugins\\.sonarqube\\.smell\\.api\\.annotation\\.)?Smell\\((?s).*minutes\\s?=\\s?(\\d+).*?\\)";
+    private static final String SMELL_ANNOTATION_DEBT_DETECTION_REGULAR_EXPRESSION = "@(com\\.qualinsight\\.plugins\\.sonarqube\\.smell\\.api\\.annotation\\.)?Smell\\((?s).*?minutes\\s?=\\s?(\\d+).*?\\)";
 
     private SensorContext context;
 

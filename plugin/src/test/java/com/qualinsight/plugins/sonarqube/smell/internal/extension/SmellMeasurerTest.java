@@ -19,7 +19,8 @@
  */
 package com.qualinsight.plugins.sonarqube.smell.internal.extension;
 
-import java.io.File;
+import com.qualinsight.plugins.sonarqube.smell.api.model.SmellType;
+import com.qualinsight.plugins.sonarqube.smell.plugin.extension.SmellMeasurer;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Matchers;
@@ -29,8 +30,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 import org.sonar.api.batch.SensorContext;
 import org.sonar.api.batch.fs.InputFile;
 import org.sonar.api.measures.Metric;
-import com.qualinsight.plugins.sonarqube.smell.api.model.SmellType;
-import com.qualinsight.plugins.sonarqube.smell.plugin.extension.SmellMeasurer;
+import java.io.File;
 
 @RunWith(MockitoJUnitRunner.class)
 public class SmellMeasurerTest {
@@ -100,6 +100,21 @@ public class SmellMeasurerTest {
         // total debt should be saved once with sum of annotations minutes
         Mockito.verify(this.sensorContext, Mockito.times(1))
             .saveMeasure(Matchers.eq(this.inputFile), Matchers.any(Metric.class), Matchers.eq(80d));
+        Mockito.verifyNoMoreInteractions(this.sensorContext);
+    }
+
+    @Test
+    public void measure_with_annotatedFile_should_saveExpectedMeasuresThatHaveLineBreaksInAnnotations() {
+        Mockito.when(this.inputFile.file())
+                .thenReturn(new File("src/test/resources/SmellMeasurerTest_5.java"));
+        final SmellMeasurer sut = new SmellMeasurer(this.sensorContext);
+        sut.measure(this.inputFile);
+        // different metrics should be saved, one for each SmellType
+        Mockito.verify(this.sensorContext, Mockito.times(SmellType.values().length))
+                .saveMeasure(Matchers.eq(this.inputFile), Matchers.any(Metric.class), Matchers.eq(1d));
+        // total debt should be saved once with sum of annotations minutes
+        Mockito.verify(this.sensorContext, Mockito.times(1))
+                .saveMeasure(Matchers.eq(this.inputFile), Matchers.any(Metric.class), Matchers.eq(EXPECTED_SmellTYPE_DEBT));
         Mockito.verifyNoMoreInteractions(this.sensorContext);
     }
 
