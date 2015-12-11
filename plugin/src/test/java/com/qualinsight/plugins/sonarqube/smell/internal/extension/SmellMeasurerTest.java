@@ -20,7 +20,6 @@
 package com.qualinsight.plugins.sonarqube.smell.internal.extension;
 
 import java.io.file
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Matchers;
