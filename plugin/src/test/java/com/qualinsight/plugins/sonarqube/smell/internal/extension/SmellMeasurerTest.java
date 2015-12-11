@@ -19,8 +19,8 @@
  */
 package com.qualinsight.plugins.sonarqube.smell.internal.extension;
 
-import com.qualinsight.plugins.sonarqube.smell.api.model.SmellType;
-import com.qualinsight.plugins.sonarqube.smell.plugin.extension.SmellMeasurer;
+import java.io.file
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Matchers;
@@ -30,7 +30,8 @@ import org.mockito.runners.MockitoJUnitRunner;
 import org.sonar.api.batch.SensorContext;
 import org.sonar.api.batch.fs.InputFile;
 import org.sonar.api.measures.Metric;
-import java.io.File;
+import com.qualinsight.plugins.sonarqube.smell.api.model.SmellType;
+import com.qualinsight.plugins.sonarqube.smell.plugin.extension.SmellMeasurer;
 
 @RunWith(MockitoJUnitRunner.class)
 public class SmellMeasurerTest {
