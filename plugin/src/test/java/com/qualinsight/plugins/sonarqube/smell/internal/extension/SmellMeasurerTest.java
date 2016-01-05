@@ -128,4 +128,25 @@ public class SmellMeasurerTest {
         Mockito.verifyNoMoreInteractions(this.sensorContext);
     }
 
+    @Test
+    public void measure_with_annotatedFile_should_saveExpectedMeasuresThatHaveLineBreaksInAnnotations() {
+        Mockito.when(this.inputFile.file())
+            .thenReturn(new File("src/test/resources/SmellMeasurerTest_5.java"));
+        final SmellMeasurer sut = new SmellMeasurer(this.sensorContext);
+        sut.measure(this.inputFile);
+        // different metrics should be saved, one for each SmellType
+        final ArgumentCaptor<Measure> captor = ArgumentCaptor.forClass(Measure.class);
+        Mockito.verify(this.sensorContext, Mockito.times(SmellType.values().length))
+            .saveMeasure(Matchers.eq(this.inputFile), captor.capture());
+        // total debt should be saved once with sum of annotations minutes
+        Mockito.verify(this.sensorContext, Mockito.times(1))
+            .saveMeasure(Matchers.eq(this.inputFile), captor.capture());
+        Mockito.verifyNoMoreInteractions(this.sensorContext);
+        final List<Measure> measures = captor.getAllValues();
+        assertEquals(Integer.valueOf(1), measures.get(0)
+            .getIntValue());
+        assertEquals(Matchers.eq(EXPECTED_SMELL_TYPE_DEBT), measures.get(1)
+            .getIntValue());
+    }
+
 }
