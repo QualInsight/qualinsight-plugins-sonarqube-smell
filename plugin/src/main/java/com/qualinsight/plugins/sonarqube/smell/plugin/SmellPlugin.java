@@ -25,7 +25,9 @@ import org.sonar.api.Properties;
 import org.sonar.api.Property;
 import org.sonar.api.SonarPlugin;
 import com.qualinsight.plugins.sonarqube.smell.plugin.extension.SmellChecksRegistrar;
-import com.qualinsight.plugins.sonarqube.smell.plugin.extension.SmellMeasuresDecorator;
+import com.qualinsight.plugins.sonarqube.smell.plugin.extension.SmellCountByTypeMeasuresComputer;
+import com.qualinsight.plugins.sonarqube.smell.plugin.extension.SmellCountTotalMeasureComputer;
+import com.qualinsight.plugins.sonarqube.smell.plugin.extension.SmellDebtComputer;
 import com.qualinsight.plugins.sonarqube.smell.plugin.extension.SmellMeasuresSensor;
 import com.qualinsight.plugins.sonarqube.smell.plugin.extension.SmellMetrics;
 import com.qualinsight.plugins.sonarqube.smell.plugin.extension.SmellRulesDefinition;
@@ -49,7 +51,9 @@ public final class SmellPlugin extends SonarPlugin {
             .add(SmellRulesDefinition.class)
             .add(SmellMetrics.class)
             .add(SmellMeasuresSensor.class)
-            .add(SmellMeasuresDecorator.class)
+            .add(SmellDebtComputer.class)
+            .add(SmellCountByTypeMeasuresComputer.class)
+            .add(SmellCountTotalMeasureComputer.class)
             .add(SmellWidget.class)
             .build();
     }

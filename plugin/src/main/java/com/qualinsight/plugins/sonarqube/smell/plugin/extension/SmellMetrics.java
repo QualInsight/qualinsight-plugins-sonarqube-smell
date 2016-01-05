@@ -30,7 +30,6 @@ import org.sonar.api.measures.CoreMetrics;
 import org.sonar.api.measures.Metric;
 import org.sonar.api.measures.Metric.ValueType;
 import org.sonar.api.measures.Metrics;
-import org.sonar.api.measures.SumChildValuesFormula;
 import com.qualinsight.plugins.sonarqube.smell.api.annotation.Smell;
 import com.qualinsight.plugins.sonarqube.smell.api.model.SmellType;
 
@@ -56,7 +55,6 @@ public final class SmellMetrics implements Metrics {
         .setDirection(Metric.DIRECTION_WORST)
         .setDomain(CoreMetrics.DOMAIN_TECHNICAL_DEBT)
         .setOptimizedBestValue(true)
-        .setFormula(new SumChildValuesFormula(true))
         .create();
 
     /**
@@ -67,7 +65,6 @@ public final class SmellMetrics implements Metrics {
         .setDirection(Metric.DIRECTION_WORST)
         .setDomain(DOMAIN)
         .setOptimizedBestValue(true)
-        .setFormula(new SumChildValuesFormula(true))
         .create();
 
     /**
@@ -78,7 +75,6 @@ public final class SmellMetrics implements Metrics {
         .setDirection(Metric.DIRECTION_WORST)
         .setDomain(DOMAIN)
         .setOptimizedBestValue(true)
-        .setFormula(new SumChildValuesFormula(true))
         .create();
 
     /**
@@ -89,7 +85,6 @@ public final class SmellMetrics implements Metrics {
         .setDirection(Metric.DIRECTION_WORST)
         .setDomain(DOMAIN)
         .setOptimizedBestValue(true)
-        .setFormula(new SumChildValuesFormula(true))
         .create();
 
     /**
@@ -101,7 +96,6 @@ public final class SmellMetrics implements Metrics {
         .setDirection(Metric.DIRECTION_WORST)
         .setDomain(DOMAIN)
         .setOptimizedBestValue(true)
-        .setFormula(new SumChildValuesFormula(true))
         .create();
 
     /**
@@ -112,7 +106,6 @@ public final class SmellMetrics implements Metrics {
         .setDirection(Metric.DIRECTION_WORST)
         .setDomain(DOMAIN)
         .setOptimizedBestValue(true)
-        .setFormula(new SumChildValuesFormula(true))
         .create();
 
     /**
@@ -123,7 +116,6 @@ public final class SmellMetrics implements Metrics {
         .setDirection(Metric.DIRECTION_WORST)
         .setDomain(DOMAIN)
         .setOptimizedBestValue(true)
-        .setFormula(new SumChildValuesFormula(true))
         .create();
 
     /**
@@ -134,7 +126,6 @@ public final class SmellMetrics implements Metrics {
         .setDirection(Metric.DIRECTION_WORST)
         .setDomain(DOMAIN)
         .setOptimizedBestValue(true)
-        .setFormula(new SumChildValuesFormula(true))
         .create();
 
     /**
@@ -145,7 +136,6 @@ public final class SmellMetrics implements Metrics {
         .setDirection(Metric.DIRECTION_WORST)
         .setDomain(DOMAIN)
         .setOptimizedBestValue(true)
-        .setFormula(new SumChildValuesFormula(true))
         .create();
 
     /**
@@ -156,7 +146,6 @@ public final class SmellMetrics implements Metrics {
         .setDirection(Metric.DIRECTION_WORST)
         .setDomain(DOMAIN)
         .setOptimizedBestValue(true)
-        .setFormula(new SumChildValuesFormula(true))
         .create();
 
     /**
@@ -167,7 +156,6 @@ public final class SmellMetrics implements Metrics {
         .setDirection(Metric.DIRECTION_WORST)
         .setDomain(DOMAIN)
         .setOptimizedBestValue(true)
-        .setFormula(new SumChildValuesFormula(true))
         .create();
 
     /**
@@ -178,7 +166,6 @@ public final class SmellMetrics implements Metrics {
         .setDirection(Metric.DIRECTION_WORST)
         .setDomain(DOMAIN)
         .setOptimizedBestValue(true)
-        .setFormula(new SumChildValuesFormula(true))
         .create();
 
     /**
@@ -189,7 +176,6 @@ public final class SmellMetrics implements Metrics {
         .setDirection(Metric.DIRECTION_WORST)
         .setDomain(DOMAIN)
         .setOptimizedBestValue(true)
-        .setFormula(new SumChildValuesFormula(true))
         .create();
 
     /**
@@ -200,7 +186,6 @@ public final class SmellMetrics implements Metrics {
         .setDirection(Metric.DIRECTION_WORST)
         .setDomain(DOMAIN)
         .setOptimizedBestValue(true)
-        .setFormula(new SumChildValuesFormula(true))
         .create();
 
     /**
@@ -211,7 +196,6 @@ public final class SmellMetrics implements Metrics {
         .setDirection(Metric.DIRECTION_WORST)
         .setDomain(DOMAIN)
         .setOptimizedBestValue(true)
-        .setFormula(new SumChildValuesFormula(true))
         .create();
 
     /**
@@ -222,7 +206,6 @@ public final class SmellMetrics implements Metrics {
         .setDirection(Metric.DIRECTION_WORST)
         .setDomain(DOMAIN)
         .setOptimizedBestValue(true)
-        .setFormula(new SumChildValuesFormula(true))
         .create();
 
     /**
@@ -233,7 +216,6 @@ public final class SmellMetrics implements Metrics {
         .setDirection(Metric.DIRECTION_WORST)
         .setDomain(DOMAIN)
         .setOptimizedBestValue(true)
-        .setFormula(new SumChildValuesFormula(true))
         .create();
 
     /**
@@ -244,7 +226,6 @@ public final class SmellMetrics implements Metrics {
         .setDirection(Metric.DIRECTION_WORST)
         .setDomain(DOMAIN)
         .setOptimizedBestValue(true)
-        .setFormula(new SumChildValuesFormula(true))
         .create();
 
     /**
@@ -255,7 +236,6 @@ public final class SmellMetrics implements Metrics {
         .setDirection(Metric.DIRECTION_WORST)
         .setDomain(DOMAIN)
         .setOptimizedBestValue(true)
-        .setFormula(new SumChildValuesFormula(true))
         .create();
 
     /**
@@ -266,7 +246,6 @@ public final class SmellMetrics implements Metrics {
         .setDirection(Metric.DIRECTION_WORST)
         .setDomain(DOMAIN)
         .setOptimizedBestValue(true)
-        .setFormula(new SumChildValuesFormula(true))
         .create();
 
     /**
@@ -278,7 +257,6 @@ public final class SmellMetrics implements Metrics {
         .setDirection(Metric.DIRECTION_WORST)
         .setDomain(DOMAIN)
         .setOptimizedBestValue(true)
-        .setFormula(new SumChildValuesFormula(true))
         .create();
 
     /**
@@ -289,7 +267,6 @@ public final class SmellMetrics implements Metrics {
         .setDirection(Metric.DIRECTION_WORST)
         .setDomain(DOMAIN)
         .setOptimizedBestValue(true)
-        .setFormula(new SumChildValuesFormula(true))
         .create();
 
     /**
@@ -300,7 +277,6 @@ public final class SmellMetrics implements Metrics {
         .setDirection(Metric.DIRECTION_WORST)
         .setDomain(DOMAIN)
         .setOptimizedBestValue(true)
-        .setFormula(new SumChildValuesFormula(true))
         .create();
 
     /**
@@ -311,7 +287,6 @@ public final class SmellMetrics implements Metrics {
         .setDirection(Metric.DIRECTION_WORST)
         .setDomain(DOMAIN)
         .setOptimizedBestValue(true)
-        .setFormula(new SumChildValuesFormula(true))
         .create();
 
     /**
@@ -322,7 +297,6 @@ public final class SmellMetrics implements Metrics {
         .setDirection(Metric.DIRECTION_WORST)
         .setDomain(DOMAIN)
         .setOptimizedBestValue(true)
-        .setFormula(new SumChildValuesFormula(true))
         .create();
 
     /*
@@ -364,6 +338,16 @@ public final class SmellMetrics implements Metrics {
     @CheckForNull
     public static final Metric<Integer> metricFor(final SmellType type) {
         return SMELL_METRICS_BY_TYPE.get(type);
+    }
+
+    /**
+     * Returns a {@link List} of all {@link Metric}s handled by the Smells plugin.
+     *
+     * @return
+     */
+    @CheckForNull
+    public static final List<Metric> metrics() {
+        return ImmutableList.<Metric> copyOf(SMELL_METRICS);
     }
 
 }
