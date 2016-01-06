@@ -82,12 +82,12 @@ public final class SmellMeasurer {
         final Resource resource = this.context.getResource(inputFile);
         for (final Entry<SmellType, Integer> measureEntry : fileMeasures.entrySet()) {
             final Integer value = measureEntry.getValue();
-            final Measure<Integer> measure = new Measure<Integer>(SmellMetrics.metricFor(measureEntry.getKey()));
+            final Measure<Integer> measure = new Measure<>(SmellMetrics.metricFor(measureEntry.getKey()));
             measure.setIntValue(value);
             LOGGER.debug("Measure for metric '{}': {} ", measureEntry.getKey(), value);
             this.context.saveMeasure(resource, measure);
         }
-        final Measure<Integer> smellCountMeasure = new Measure<Integer>(SmellMetrics.SMELL_COUNT);
+        final Measure<Integer> smellCountMeasure = new Measure<>(SmellMetrics.SMELL_COUNT);
         smellCountMeasure.setIntValue(smellCount);
         this.context.saveMeasure(resource, smellCountMeasure);
     }
@@ -95,7 +95,7 @@ public final class SmellMeasurer {
     private Map<SmellType, Integer> parseAnnotations(final String fileContent) {
         final Pattern pattern = Pattern.compile(SMELL_ANNOTATION_TYPE_DETECTION_REGULAR_EXPRESSION, Pattern.MULTILINE);
         final Matcher matcher = pattern.matcher(fileContent);
-        final Map<SmellType, Integer> fileMeasures = new EnumMap<SmellType, Integer>(SmellType.class);
+        final Map<SmellType, Integer> fileMeasures = new EnumMap<>(SmellType.class);
         while (matcher.find()) {
             final SmellType type = SmellType.valueOf(matcher.group(3));
             if (fileMeasures.containsKey(type)) {
@@ -114,7 +114,7 @@ public final class SmellMeasurer {
         while (matcher.find()) {
             debt += Integer.valueOf(matcher.group(2));
         }
-        final Measure<Integer> measure = new Measure<Integer>(SmellMetrics.SMELL_DEBT);
+        final Measure<Integer> measure = new Measure<>(SmellMetrics.SMELL_DEBT);
         measure.setIntValue(debt);
         LOGGER.debug("Smell debt: {} ", debt);
         final Resource resource = this.context.getResource(inputFile);

@@ -45,7 +45,7 @@ public final class SmellMetrics implements Metrics {
 
     private static final List<Metric<Integer>> SMELL_METRICS;
 
-    private static final Map<SmellType, Metric<Integer>> SMELL_METRICS_BY_TYPE = new EnumMap<SmellType, Metric<Integer>>(SmellType.class);
+    private static final Map<SmellType, Metric<Integer>> SMELL_METRICS_BY_TYPE = new EnumMap<>(SmellType.class);
 
     /**
      * Metric that tracks the debt related to Smell issues.
@@ -303,7 +303,7 @@ public final class SmellMetrics implements Metrics {
      * Blocks that populates the list of Smell Metrics using reflection as well as SmellType to Metric map.
      */
     static {
-        SMELL_METRICS = new LinkedList<Metric<Integer>>();
+        SMELL_METRICS = new LinkedList<>();
         for (final Field field : SmellMetrics.class.getFields()) {
             final String fieldName = field.getName();
             final Metric metric;
