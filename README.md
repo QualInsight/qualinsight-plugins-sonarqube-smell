@@ -37,15 +37,13 @@ The plugin is made of two parts:
 
 ### Requirements
 
-* SonarQube version 4.5.x up to 5.1.x 
+* SonarQube version 4.5.x+ 
 * SonarQube's [Java plugin](http://docs.sonarqube.org/display/PLUG/Java+Plugin) version 3.5+
 * Internet connection on client's side (required to retrieve Google's visualisation API that is used to draw "Code Smells" widget's chart. No data is sent over the network.) 
 
-_Note 2:_ SonarQube 5.2 having brought breaking changes to the ``sonar-plugin-api``, metrics computation is not working yet. A solution will be provided soon (see issue #29.)
-
 ### Plugin installation
 
-The plugin can be [downloaded from GitHub releases](https://github.com/QualInsight/qualinsight-plugins-sonarqube-smell/releases).
+The plugin can be directly installed from SonarQube's update center or [downloaded from GitHub releases](https://github.com/QualInsight/qualinsight-plugins-sonarqube-smell/releases).
 
 After having placed the plugin's jar in `{SONARQUBE_INSTALL_DIRECTORY}/extensions/plugins` you need to restart your SonarQube instance.
 
@@ -55,7 +53,7 @@ The last installation step, if you want to have Smell annotations to contribute 
 
 That's it!
 
-_Note 3:_ While I recommend activating the `Code Smell` rule, you don't have to do it. If the rule is not activated, the plugin will still report Smell related technical debt in its own widget, but Smell annotations will not be counted as issues, and as such they will not contribute to the project's technical debt, nor impact the SQALE rating. Do this if you don't want to mix automated debt discovery with "subjective" debt declaration.  
+_Note 2:_ While I recommend activating the `Code Smell` rule, you don't have to do it. If the rule is not activated, the plugin will still report Smell related technical debt in its own widget, but Smell annotations will not be counted as issues, and as such they will not contribute to the project's technical debt, nor impact the SQALE rating. Do this if you don't want to mix automated debt discovery with "subjective" debt declaration.  
 
 ### Adding Smells to your code
 
@@ -69,13 +67,13 @@ In order to be able to use the `@Smell` annotation, the following dependency mus
 <dependency>
     <groupId>com.qualinsight.plugins.sonarqube</groupId>
     <artifactId>qualinsight-plugins-sonarqube-smell-api</artifactId>
-    <version>2.0.1</version>
+    <version>3.0.0</version>
 </dependency>
 ```
 
-_Note 4_: The dependency is available in Maven central repository.
+_Note 3_: The dependency is available in Maven central repository.
 
-_Note 5:_ The API is packaged as an OSGi bundle.
+_Note 4:_ The API is packaged as an OSGi bundle.
 
 #### Annotating code
 
