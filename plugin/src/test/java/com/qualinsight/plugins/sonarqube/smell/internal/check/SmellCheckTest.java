@@ -19,12 +19,10 @@
  */
 package com.qualinsight.plugins.sonarqube.smell.internal.check;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import com.qualinsight.libs.sonarqube.test.check.JavaCheckAssertions;
 import com.qualinsight.plugins.sonarqube.smell.plugin.check.SmellCheck;
 
-@Ignore("Guava version clash due to sslr-squid-bridge dependency")
 public class SmellCheckTest {
 
     @Test
