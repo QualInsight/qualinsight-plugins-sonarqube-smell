@@ -77,13 +77,14 @@ public final class SmellMeasurer {
     }
 
     private void measureSmellTypes(final InputFile inputFile, final String fileContent) {
-        final Integer smellCount = 0;
+        Integer smellCount = 0;
         final Map<SmellType, Integer> fileMeasures = parseAnnotations(fileContent);
         final Resource resource = this.context.getResource(inputFile);
         for (final Entry<SmellType, Integer> measureEntry : fileMeasures.entrySet()) {
             final Integer value = measureEntry.getValue();
             final Measure<Integer> measure = new Measure<>(SmellMetrics.metricFor(measureEntry.getKey()));
             measure.setIntValue(value);
+            smellCount += value;
             LOGGER.debug("Measure for metric '{}': {} ", measureEntry.getKey(), value);
             this.context.saveMeasure(resource, measure);
         }

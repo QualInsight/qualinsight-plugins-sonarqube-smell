@@ -24,7 +24,7 @@ import org.junit.Test;
 import com.qualinsight.libs.sonarqube.test.check.JavaCheckAssertions;
 import com.qualinsight.plugins.sonarqube.smell.plugin.check.SmellCheck;
 
-@Ignore("Test need to be rewritten after migration to SQ 5.2")
+@Ignore("Guava version clash due to sslr-squid-bridge dependency")
 public class SmellCheckTest {
 
     @Test
