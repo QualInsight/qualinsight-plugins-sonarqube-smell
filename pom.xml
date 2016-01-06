@@ -40,7 +40,7 @@
   </scm>
   <properties>
     <lib.version.qualinsight-plugins-sonarqube-smell-api>${project.version}</lib.version.qualinsight-plugins-sonarqube-smell-api>
-    <lib.version.qualinsight-libs-sonarqube-test>1.0.3-SNAPSHOT</lib.version.qualinsight-libs-sonarqube-test>
+    <lib.version.qualinsight-libs-sonarqube-test>1.0.2</lib.version.qualinsight-libs-sonarqube-test>
     <lib.version.jcip-annotations>1.0-1</lib.version.jcip-annotations>
     <lib.version.guava>18.0</lib.version.guava>
     <plugin.version.maven-dependency-plugin>2.10</plugin.version.maven-dependency-plugin>
