@@ -42,7 +42,7 @@ The plugin is made of two parts:
 | 2.0.1             | 4.5.x up to 5.1.x | 3.5 and above         |
 | 3.0.0             | 5.2.x and above   | 3.7.1 and above       |
 
-Note_: An internet connection on client's side is required to retrieve Google's visualisation API that is used to draw "Code Smells" widget's chart. No data is sent over the network.
+_Note 2_: An internet connection on client's side is required to retrieve Google's visualisation API that is used to draw "Code Smells" widget's chart. No data is sent over the network.
 
 ### Plugin installation
 
@@ -56,7 +56,7 @@ The last installation step, if you want to have Smell annotations to contribute 
 
 That's it!
 
-_Note 2:_ While I recommend activating the `Code Smell` rule, you don't have to do it. If the rule is not activated, the plugin will still report Smell related technical debt in its own widget, but Smell annotations will not be counted as issues, and as such they will not contribute to the project's technical debt, nor impact the SQALE rating. Do this if you don't want to mix automated debt discovery with "subjective" debt declaration.  
+_Note 3:_ While I recommend activating the `Code Smell` rule, you don't have to do it. If the rule is not activated, the plugin will still report Smell related technical debt in its own widget, but Smell annotations will not be counted as issues, and as such they will not contribute to the project's technical debt, nor impact the SQALE rating. Do this if you don't want to mix automated debt discovery with "subjective" debt declaration.  
 
 ### Adding Smells to your code
 
@@ -74,9 +74,9 @@ In order to be able to use the `@Smell` annotation, the following dependency mus
 </dependency>
 ```
 
-_Note 3_: The dependency is available in Maven central repository.
+_Note 4_: The dependency is available in Maven central repository.
 
-_Note 4:_ The API is packaged as an OSGi bundle.
+_Note 5:_ The API is packaged as an OSGi bundle.
 
 #### Annotating code
 
