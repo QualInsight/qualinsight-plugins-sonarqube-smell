@@ -34,6 +34,7 @@ import org.slf4j.LoggerFactory;
 import org.sonar.api.batch.SensorContext;
 import org.sonar.api.batch.fs.InputFile;
 import org.sonar.api.measures.Measure;
+import org.sonar.api.resources.Resource;
 import com.qualinsight.plugins.sonarqube.smell.api.annotation.Smell;
 import com.qualinsight.plugins.sonarqube.smell.api.model.SmellType;
 
@@ -44,7 +45,7 @@ import com.qualinsight.plugins.sonarqube.smell.api.model.SmellType;
  */
 public final class SmellMeasurer {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(SmellMeasurer.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(SmellCountByTypeMeasuresComputer.class);
 
     private static final String EMPTY_FILE_CONTENT = "";
 
@@ -55,7 +56,7 @@ public final class SmellMeasurer {
     private SensorContext context;
 
     /**
-     * {@link SmellMeasurer} constructor
+     * {@link SmellCountByTypeMeasuresComputer} constructor
      *
      * @param context context to be used to save {@link Measure}.
      */
@@ -69,29 +70,39 @@ public final class SmellMeasurer {
      * @param inputFile {@link InputFile} to be scanned for {@link Smell} annotation presence.
      */
     public void measure(final InputFile inputFile) {
+        LOGGER.debug("Measuring code smells for file '{}'", inputFile.absolutePath());
         final String fileContent = getFileAsString(inputFile.file(), Charsets.UTF_8);
         measureSmellTypes(inputFile, fileContent);
         measureSmellDebt(inputFile, fileContent);
     }
 
     private void measureSmellTypes(final InputFile inputFile, final String fileContent) {
-        final Map<SmellType, Double> fileMeasures = parseAnnotations(fileContent);
-        for (final Entry<SmellType, Double> measure : fileMeasures.entrySet()) {
-            final Double value = measure.getValue();
-            this.context.saveMeasure(inputFile, SmellMetrics.metricFor(measure.getKey()), value);
+        Integer smellCount = 0;
+        final Map<SmellType, Integer> fileMeasures = parseAnnotations(fileContent);
+        final Resource resource = this.context.getResource(inputFile);
+        for (final Entry<SmellType, Integer> measureEntry : fileMeasures.entrySet()) {
+            final Integer value = measureEntry.getValue();
+            final Measure<Integer> measure = new Measure<>(SmellMetrics.metricFor(measureEntry.getKey()));
+            measure.setIntValue(value);
+            smellCount += value;
+            LOGGER.debug("Measure for metric '{}': {} ", measureEntry.getKey(), value);
+            this.context.saveMeasure(resource, measure);
         }
+        final Measure<Integer> smellCountMeasure = new Measure<>(SmellMetrics.SMELL_COUNT);
+        smellCountMeasure.setIntValue(smellCount);
+        this.context.saveMeasure(resource, smellCountMeasure);
     }
 
-    private Map<SmellType, Double> parseAnnotations(final String fileContent) {
+    private Map<SmellType, Integer> parseAnnotations(final String fileContent) {
         final Pattern pattern = Pattern.compile(SMELL_ANNOTATION_TYPE_DETECTION_REGULAR_EXPRESSION, Pattern.MULTILINE);
         final Matcher matcher = pattern.matcher(fileContent);
-        final Map<SmellType, Double> fileMeasures = new EnumMap<SmellType, Double>(SmellType.class);
+        final Map<SmellType, Integer> fileMeasures = new EnumMap<>(SmellType.class);
         while (matcher.find()) {
             final SmellType type = SmellType.valueOf(matcher.group(3));
             if (fileMeasures.containsKey(type)) {
                 fileMeasures.put(type, fileMeasures.get(type) + 1);
             } else {
-                fileMeasures.put(type, 1.0);
+                fileMeasures.put(type, 1);
             }
         }
         return fileMeasures;
@@ -100,11 +111,15 @@ public final class SmellMeasurer {
     private void measureSmellDebt(final InputFile inputFile, final String fileContent) {
         final Pattern pattern = Pattern.compile(SMELL_ANNOTATION_DEBT_DETECTION_REGULAR_EXPRESSION, Pattern.MULTILINE);
         final Matcher matcher = pattern.matcher(fileContent);
-        Double debt = 0.0;
+        Integer debt = 0;
         while (matcher.find()) {
             debt += Integer.valueOf(matcher.group(2));
         }
-        this.context.saveMeasure(inputFile, SmellMetrics.SMELL_DEBT, debt);
+        final Measure<Integer> measure = new Measure<>(SmellMetrics.SMELL_DEBT);
+        measure.setIntValue(debt);
+        LOGGER.debug("Smell debt: {} ", debt);
+        final Resource resource = this.context.getResource(inputFile);
+        this.context.saveMeasure(resource, measure);
     }
 
     private static String getFileAsString(final File file, final Charset charset) {
@@ -115,4 +130,5 @@ public final class SmellMeasurer {
             return EMPTY_FILE_CONTENT;
         }
     }
+
 }

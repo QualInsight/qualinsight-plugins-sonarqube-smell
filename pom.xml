@@ -3,10 +3,10 @@
   <parent>
     <groupId>com.qualinsight.plugins.sonarqube</groupId>
     <artifactId>qualinsight-plugins-sonarqube-parent</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
   </parent>
   <artifactId>qualinsight-plugins-sonarqube-smell</artifactId>
-  <version>2.0.2-SNAPSHOT</version>
+  <version>3.0.1-SNAPSHOT</version>
   <description>Parent pom of QualInsight Code Smells plugin for SonarQube and its companion Java api library.</description>
   <url>https://github.com/QualInsight/qualinsight-plugins-sonarqube-smell</url>
   <organization>
@@ -42,6 +42,7 @@
     <lib.version.qualinsight-plugins-sonarqube-smell-api>${project.version}</lib.version.qualinsight-plugins-sonarqube-smell-api>
     <lib.version.qualinsight-libs-sonarqube-test>1.0.2</lib.version.qualinsight-libs-sonarqube-test>
     <lib.version.jcip-annotations>1.0-1</lib.version.jcip-annotations>
+    <lib.version.guava>18.0</lib.version.guava>
     <plugin.version.maven-dependency-plugin>2.10</plugin.version.maven-dependency-plugin>
     <!-- License properties -->
     <license.name>QualInsight-LGPL3</license.name>
@@ -56,6 +57,12 @@
   </modules>
   <dependencyManagement>
     <dependencies>
+      <dependency>
+        <groupId>com.google.guava</groupId>
+        <artifactId>guava</artifactId>
+        <version>${lib.version.guava}</version>
+        <scope>compile</scope>
+      </dependency>
       <dependency>
         <groupId>com.qualinsight.libs.sonarqube</groupId>
         <artifactId>qualinsight-libs-sonarqube-test</artifactId>

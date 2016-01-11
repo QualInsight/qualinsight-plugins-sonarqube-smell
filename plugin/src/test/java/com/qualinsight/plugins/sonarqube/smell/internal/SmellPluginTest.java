@@ -24,7 +24,9 @@ import org.assertj.core.api.SoftAssertions;
 import org.junit.Test;
 import com.qualinsight.plugins.sonarqube.smell.plugin.SmellPlugin;
 import com.qualinsight.plugins.sonarqube.smell.plugin.extension.SmellChecksRegistrar;
-import com.qualinsight.plugins.sonarqube.smell.plugin.extension.SmellMeasuresDecorator;
+import com.qualinsight.plugins.sonarqube.smell.plugin.extension.SmellCountByTypeMeasuresComputer;
+import com.qualinsight.plugins.sonarqube.smell.plugin.extension.SmellCountTotalMeasureComputer;
+import com.qualinsight.plugins.sonarqube.smell.plugin.extension.SmellDebtComputer;
 import com.qualinsight.plugins.sonarqube.smell.plugin.extension.SmellMeasuresSensor;
 import com.qualinsight.plugins.sonarqube.smell.plugin.extension.SmellMetrics;
 import com.qualinsight.plugins.sonarqube.smell.plugin.extension.SmellRulesDefinition;
@@ -32,7 +34,7 @@ import com.qualinsight.plugins.sonarqube.smell.plugin.extension.SmellWidget;
 
 public class SmellPluginTest {
 
-    private static final int EXPECTED_EXTENSIONS_COUNT = 6;
+    private static final int EXPECTED_EXTENSIONS_COUNT = 8;
 
     @SuppressWarnings("unchecked")
     @Test
@@ -54,7 +56,11 @@ public class SmellPluginTest {
         softly.assertThat(actualExtensions)
             .contains(SmellMeasuresSensor.class);
         softly.assertThat(actualExtensions)
-            .contains(SmellMeasuresDecorator.class);
+            .contains(SmellDebtComputer.class);
+        softly.assertThat(actualExtensions)
+            .contains(SmellCountByTypeMeasuresComputer.class);
+        softly.assertThat(actualExtensions)
+            .contains(SmellCountTotalMeasureComputer.class);
         softly.assertAll();
     }
 

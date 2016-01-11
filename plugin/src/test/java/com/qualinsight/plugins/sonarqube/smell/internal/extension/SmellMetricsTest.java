@@ -28,10 +28,8 @@ import org.assertj.core.api.SoftAssertions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.sonar.api.measures.CoreMetrics;
-import org.sonar.api.measures.Formula;
 import org.sonar.api.measures.Metric;
 import org.sonar.api.measures.Metric.ValueType;
-import org.sonar.api.measures.SumChildValuesFormula;
 import com.qualinsight.plugins.sonarqube.smell.api.model.SmellType;
 import com.qualinsight.plugins.sonarqube.smell.plugin.extension.SmellMetrics;
 
@@ -225,7 +223,7 @@ public class SmellMetricsTest {
     @Test
     @Parameters
     public void getMetrics_should_return_correctlyConfiguredMetrics(final Metric<Integer> metric, final String expectedKey, final String expectedName, final ValueType expectedValueType,
-        final Double expectedBestValue, final String expectedDescription, final Integer expectedDirection, final String expectedDomain, final Class<? extends Formula> expectedFormula) {
+        final Double expectedBestValue, final String expectedDescription, final Integer expectedDirection, final String expectedDomain) {
         final SoftAssertions softly = new SoftAssertions();
         softly.assertThat(metric.getKey())
             .isEqualTo(expectedKey);
@@ -241,8 +239,6 @@ public class SmellMetricsTest {
             .isEqualTo(expectedDirection);
         softly.assertThat(metric.getDomain())
             .isEqualTo(expectedDomain);
-        softly.assertThat(metric.getFormula())
-            .isExactlyInstanceOf(expectedFormula);
         softly.assertAll();
     }
 
@@ -256,8 +252,7 @@ public class SmellMetricsTest {
                 0d,
                 "Total number of reported code smells.",
                 Metric.DIRECTION_WORST,
-                SmellMetrics.DOMAIN,
-                SumChildValuesFormula.class
+                SmellMetrics.DOMAIN
             },
             new Object[] {
                 SmellMetrics.SMELL_DEBT,
@@ -267,8 +262,7 @@ public class SmellMetricsTest {
                 0d,
                 "Technical debt reported by developers.",
                 Metric.DIRECTION_WORST,
-                CoreMetrics.DOMAIN_TECHNICAL_DEBT,
-                SumChildValuesFormula.class
+                CoreMetrics.DOMAIN_TECHNICAL_DEBT
             },
             new Object[] {
                 SmellMetrics.SMELL_COUNT_ANTI_PATTERN,
@@ -278,8 +272,7 @@ public class SmellMetricsTest {
                 0d,
                 "Number of anti-patterns reported by developers.",
                 Metric.DIRECTION_WORST,
-                SmellMetrics.DOMAIN,
-                SumChildValuesFormula.class
+                SmellMetrics.DOMAIN
             },
             new Object[] {
                 SmellMetrics.SMELL_COUNT_BAD_DESIGN,
@@ -289,8 +282,7 @@ public class SmellMetricsTest {
                 0d,
                 "Number of bad designs reported by developers.",
                 Metric.DIRECTION_WORST,
-                SmellMetrics.DOMAIN,
-                SumChildValuesFormula.class
+                SmellMetrics.DOMAIN
             },
             new Object[] {
                 SmellMetrics.SMELL_COUNT_INDECENT_EXPOSURE,
@@ -300,8 +292,7 @@ public class SmellMetricsTest {
                 0d,
                 "Number of indecent exposures reported by developers.",
                 Metric.DIRECTION_WORST,
-                SmellMetrics.DOMAIN,
-                SumChildValuesFormula.class
+                SmellMetrics.DOMAIN
             },
             new Object[] {
                 SmellMetrics.SMELL_COUNT_MEANINGLESS_COMMENT,
@@ -311,8 +302,7 @@ public class SmellMetricsTest {
                 0d,
                 "Number of meaningless comments reported by developers.",
                 Metric.DIRECTION_WORST,
-                SmellMetrics.DOMAIN,
-                SumChildValuesFormula.class
+                SmellMetrics.DOMAIN
             },
             new Object[] {
                 SmellMetrics.SMELL_COUNT_MIDDLE_MAN,
@@ -322,8 +312,7 @@ public class SmellMetricsTest {
                 0d,
                 "Number of middle men reported by developers.",
                 Metric.DIRECTION_WORST,
-                SmellMetrics.DOMAIN,
-                SumChildValuesFormula.class
+                SmellMetrics.DOMAIN
             },
             new Object[] {
                 SmellMetrics.SMELL_COUNT_MULTIPLE_RESPONSIBILITIES,
@@ -333,8 +322,7 @@ public class SmellMetricsTest {
                 0d,
                 "Number of multiple responsibilities reported by developers.",
                 Metric.DIRECTION_WORST,
-                SmellMetrics.DOMAIN,
-                SumChildValuesFormula.class
+                SmellMetrics.DOMAIN
             },
             new Object[] {
                 SmellMetrics.SMELL_COUNT_ODDBALL_SOLUTION,
@@ -344,8 +332,7 @@ public class SmellMetricsTest {
                 0d,
                 "Number of oddball solutions reported by developers.",
                 Metric.DIRECTION_WORST,
-                SmellMetrics.DOMAIN,
-                SumChildValuesFormula.class
+                SmellMetrics.DOMAIN
             },
             new Object[] {
                 SmellMetrics.SMELL_COUNT_OVERCOMPLICATED_ALGORITHM,
@@ -355,8 +342,7 @@ public class SmellMetricsTest {
                 0d,
                 "Number of overcomplicated algorithms reported by developers.",
                 Metric.DIRECTION_WORST,
-                SmellMetrics.DOMAIN,
-                SumChildValuesFormula.class
+                SmellMetrics.DOMAIN
             },
             new Object[] {
                 SmellMetrics.SMELL_COUNT_PRIMITIVES_OBSESSION,
@@ -366,8 +352,7 @@ public class SmellMetricsTest {
                 0d,
                 "Number of primitives obsessions reported by developers.",
                 Metric.DIRECTION_WORST,
-                SmellMetrics.DOMAIN,
-                SumChildValuesFormula.class
+                SmellMetrics.DOMAIN
             },
             new Object[] {
                 SmellMetrics.SMELL_COUNT_REFUSED_BEQUEST,
@@ -377,8 +362,7 @@ public class SmellMetricsTest {
                 0d,
                 "Number of refused bequests reported by developers.",
                 Metric.DIRECTION_WORST,
-                SmellMetrics.DOMAIN,
-                SumChildValuesFormula.class
+                SmellMetrics.DOMAIN
             },
             new Object[] {
                 SmellMetrics.SMELL_COUNT_SOLUTION_SPRAWL,
@@ -388,8 +372,7 @@ public class SmellMetricsTest {
                 0d,
                 "Number of solution sprawls reported by developers.",
                 Metric.DIRECTION_WORST,
-                SmellMetrics.DOMAIN,
-                SumChildValuesFormula.class
+                SmellMetrics.DOMAIN
             },
             new Object[] {
                 SmellMetrics.SMELL_COUNT_SPECULATIVE_GENERALITY,
@@ -399,8 +382,7 @@ public class SmellMetricsTest {
                 0d,
                 "Number of speculative generalities reported by developers.",
                 Metric.DIRECTION_WORST,
-                SmellMetrics.DOMAIN,
-                SumChildValuesFormula.class
+                SmellMetrics.DOMAIN
             },
             new Object[] {
                 SmellMetrics.SMELL_COUNT_UNCOMMUNICATIVE_NAME,
@@ -410,8 +392,7 @@ public class SmellMetricsTest {
                 0d,
                 "Number of uncommunicative names reported by developers.",
                 Metric.DIRECTION_WORST,
-                SmellMetrics.DOMAIN,
-                SumChildValuesFormula.class
+                SmellMetrics.DOMAIN
             },
             new Object[] {
                 SmellMetrics.SMELL_COUNT_USELESS_TEST,
@@ -421,8 +402,7 @@ public class SmellMetricsTest {
                 0d,
                 "Number of useless tests reported by developers.",
                 Metric.DIRECTION_WORST,
-                SmellMetrics.DOMAIN,
-                SumChildValuesFormula.class
+                SmellMetrics.DOMAIN
             },
             new Object[] {
                 SmellMetrics.SMELL_COUNT_WRONG_LOGIC,
@@ -432,8 +412,7 @@ public class SmellMetricsTest {
                 0d,
                 "Number of wrong logics reported by developers.",
                 Metric.DIRECTION_WORST,
-                SmellMetrics.DOMAIN,
-                SumChildValuesFormula.class
+                SmellMetrics.DOMAIN
             },
             new Object[] {
                 SmellMetrics.SMELL_COUNT_HOW_COMMENT,
@@ -443,8 +422,7 @@ public class SmellMetricsTest {
                 0d,
                 "Number of how comments reported by developers.",
                 Metric.DIRECTION_WORST,
-                SmellMetrics.DOMAIN,
-                SumChildValuesFormula.class
+                SmellMetrics.DOMAIN
             },
             new Object[] {
                 SmellMetrics.SMELL_COUNT_MISSING_IMPLEMENTATION,
@@ -454,8 +432,7 @@ public class SmellMetricsTest {
                 0d,
                 "Number of missing implementations reported by developers.",
                 Metric.DIRECTION_WORST,
-                SmellMetrics.DOMAIN,
-                SumChildValuesFormula.class
+                SmellMetrics.DOMAIN
             },
             new Object[] {
                 SmellMetrics.SMELL_COUNT_NON_EXCEPTION,
@@ -465,8 +442,7 @@ public class SmellMetricsTest {
                 0d,
                 "Number of non exceptions reported by developers.",
                 Metric.DIRECTION_WORST,
-                SmellMetrics.DOMAIN,
-                SumChildValuesFormula.class
+                SmellMetrics.DOMAIN
             },
             new Object[] {
                 SmellMetrics.SMELL_COUNT_WRONG_LANGUAGE,
@@ -476,8 +452,7 @@ public class SmellMetricsTest {
                 0d,
                 "Number of wrong languages reported by developers.",
                 Metric.DIRECTION_WORST,
-                SmellMetrics.DOMAIN,
-                SumChildValuesFormula.class
+                SmellMetrics.DOMAIN
             },
             new Object[] {
                 SmellMetrics.SMELL_COUNT_ABBREVIATIONS_USAGE,
@@ -487,8 +462,7 @@ public class SmellMetricsTest {
                 0d,
                 "Number of abbreviations usages reported by developers.",
                 Metric.DIRECTION_WORST,
-                SmellMetrics.DOMAIN,
-                SumChildValuesFormula.class
+                SmellMetrics.DOMAIN
             },
             new Object[] {
                 SmellMetrics.SMELL_COUNT_BAD_FRAMEWORK_USAGE,
@@ -498,8 +472,7 @@ public class SmellMetricsTest {
                 0d,
                 "Number of bad framework usages reported by developers.",
                 Metric.DIRECTION_WORST,
-                SmellMetrics.DOMAIN,
-                SumChildValuesFormula.class
+                SmellMetrics.DOMAIN
             },
             new Object[] {
                 SmellMetrics.SMELL_COUNT_BAD_LOGGING,
@@ -509,8 +482,7 @@ public class SmellMetricsTest {
                 0d,
                 "Number of bad loggings reported by developers.",
                 Metric.DIRECTION_WORST,
-                SmellMetrics.DOMAIN,
-                SumChildValuesFormula.class
+                SmellMetrics.DOMAIN
             },
             new Object[] {
                 SmellMetrics.SMELL_COUNT_REINVENTED_WHEEL,
@@ -520,8 +492,7 @@ public class SmellMetricsTest {
                 0d,
                 "Number of reinvented wheels reported by developers.",
                 Metric.DIRECTION_WORST,
-                SmellMetrics.DOMAIN,
-                SumChildValuesFormula.class
+                SmellMetrics.DOMAIN
             },
         };
     }

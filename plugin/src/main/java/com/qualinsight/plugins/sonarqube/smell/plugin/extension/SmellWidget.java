@@ -58,6 +58,11 @@ public final class SmellWidget extends AbstractRubyTemplate implements RubyRails
 
     private String title;
 
+    /**
+     * {@link SmellWidget} IoC constructor.
+     *
+     * @param settings SonarQube settings
+     */
     public SmellWidget(final Settings settings) {
         this.title = settings.getString(SmellPropertyKeys.WIDGET_TITLE_KEY);
     }

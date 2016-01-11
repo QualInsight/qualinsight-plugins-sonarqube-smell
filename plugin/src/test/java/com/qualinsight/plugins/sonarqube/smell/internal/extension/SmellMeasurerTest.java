@@ -19,27 +19,31 @@
  */
 package com.qualinsight.plugins.sonarqube.smell.internal.extension;
 
+import static org.junit.Assert.assertEquals;
 import java.io.File;
+import java.util.List;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.ArgumentCaptor;
 import org.mockito.Matchers;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.sonar.api.batch.SensorContext;
 import org.sonar.api.batch.fs.InputFile;
-import org.sonar.api.measures.Metric;
+import org.sonar.api.measures.Measure;
+import org.sonar.api.resources.Resource;
 import com.qualinsight.plugins.sonarqube.smell.api.model.SmellType;
 import com.qualinsight.plugins.sonarqube.smell.plugin.extension.SmellMeasurer;
 
 @RunWith(MockitoJUnitRunner.class)
 public class SmellMeasurerTest {
 
-    private static final double EXPECTED_SmellTYPE_COUNT = SmellType.values().length;
+    private static final Integer EXPECTED_SMELL_TYPE_COUNT = SmellType.values().length;
 
-    private static final double EXPECTED_DEBT_PER_SMELL_TYPE = 10d;
+    private static final Integer EXPECTED_DEBT_PER_SMELL_TYPE = 10;
 
-    private static final double EXPECTED_SmellTYPE_DEBT = EXPECTED_SmellTYPE_COUNT * EXPECTED_DEBT_PER_SMELL_TYPE;
+    private static final Integer EXPECTED_SMELL_TYPE_DEBT = EXPECTED_SMELL_TYPE_COUNT * EXPECTED_DEBT_PER_SMELL_TYPE;
 
     @Mock
     InputFile inputFile;
@@ -53,13 +57,22 @@ public class SmellMeasurerTest {
             .thenReturn(new File("src/test/resources/SmellMeasurerTest_1.java"));
         final SmellMeasurer sut = new SmellMeasurer(this.sensorContext);
         sut.measure(this.inputFile);
-        // different metrics should be saved, one for each SmellType
-        Mockito.verify(this.sensorContext, Mockito.times(SmellType.values().length))
-            .saveMeasure(Matchers.eq(this.inputFile), Matchers.any(Metric.class), Matchers.eq(1d));
-        // total debt should be saved once with sum of annotations minutes
-        Mockito.verify(this.sensorContext, Mockito.times(1))
-            .saveMeasure(Matchers.eq(this.inputFile), Matchers.any(Metric.class), Matchers.eq(EXPECTED_SmellTYPE_DEBT));
+        final ArgumentCaptor<Measure> captor = ArgumentCaptor.forClass(Measure.class);
+        final Resource resource = Mockito.verify(this.sensorContext, Mockito.times(2))
+            .getResource(Matchers.eq(this.inputFile));
+        Mockito.verify(this.sensorContext, Mockito.times(SmellType.values().length + 2))
+            .saveMeasure(Matchers.eq(resource), captor.capture());
         Mockito.verifyNoMoreInteractions(this.sensorContext);
+        final List<Measure> measures = captor.getAllValues();
+        int i = 0;
+        while (i < EXPECTED_SMELL_TYPE_COUNT) {
+            assertEquals(Integer.valueOf(1), measures.get(i++)
+                .getIntValue());
+        }
+        assertEquals(EXPECTED_SMELL_TYPE_COUNT, measures.get(i++)
+            .getIntValue());
+        assertEquals(EXPECTED_SMELL_TYPE_DEBT, measures.get(i++)
+            .getIntValue());
     }
 
     @Test
@@ -68,9 +81,19 @@ public class SmellMeasurerTest {
             .thenReturn(new File("src/test/resources/SmellMeasurerTest_2.java"));
         final SmellMeasurer sut = new SmellMeasurer(this.sensorContext);
         sut.measure(this.inputFile);
-        Mockito.verify(this.sensorContext, Mockito.times(1))
-            .saveMeasure(Matchers.eq(this.inputFile), Matchers.any(Metric.class), Matchers.eq(0d));
+        final ArgumentCaptor<Measure> captor = ArgumentCaptor.forClass(Measure.class);
+        final Resource resource = Mockito.verify(this.sensorContext, Mockito.times(2))
+            .getResource(Matchers.eq(this.inputFile));
+        Mockito.verify(this.sensorContext, Mockito.times(2))
+            .saveMeasure(Matchers.eq(resource), captor.capture());
         Mockito.verifyNoMoreInteractions(this.sensorContext);
+        final List<Measure> measures = captor.getAllValues();
+        int i = 0;
+        // 1 different metric should be saved 1 time but counted as 3
+        assertEquals(Integer.valueOf(0), measures.get(i++)
+            .getIntValue());
+        assertEquals(Integer.valueOf(0), measures.get(i++)
+            .getIntValue());
     }
 
     @Test
@@ -79,13 +102,21 @@ public class SmellMeasurerTest {
             .thenReturn(new File("src/test/resources/SmellMeasurerTest_3.java"));
         final SmellMeasurer sut = new SmellMeasurer(this.sensorContext);
         sut.measure(this.inputFile);
-        // 1 different metric should be saved 1 time but counted as 3
-        Mockito.verify(this.sensorContext, Mockito.times(1))
-            .saveMeasure(Matchers.eq(this.inputFile), Matchers.any(Metric.class), Matchers.eq(3d));
-        // total debt should be saved once with sum of annotations minutes
-        Mockito.verify(this.sensorContext, Mockito.times(1))
-            .saveMeasure(Matchers.eq(this.inputFile), Matchers.any(Metric.class), Matchers.eq(30d));
+        final ArgumentCaptor<Measure> captor = ArgumentCaptor.forClass(Measure.class);
+        final Resource resource = Mockito.verify(this.sensorContext, Mockito.times(2))
+            .getResource(Matchers.eq(this.inputFile));
+        Mockito.verify(this.sensorContext, Mockito.times(3))
+            .saveMeasure(Matchers.eq(resource), captor.capture());
         Mockito.verifyNoMoreInteractions(this.sensorContext);
+        final List<Measure> measures = captor.getAllValues();
+        int i = 0;
+        // 1 different metric should be saved 1 time but counted as 3
+        assertEquals(Integer.valueOf(3), measures.get(i++)
+            .getIntValue());
+        assertEquals(Integer.valueOf(3), measures.get(i++)
+            .getIntValue());
+        assertEquals(Integer.valueOf(30), measures.get(i++)
+            .getIntValue());
     }
 
     @Test
@@ -95,27 +126,46 @@ public class SmellMeasurerTest {
         final SmellMeasurer sut = new SmellMeasurer(this.sensorContext);
         sut.measure(this.inputFile);
         // 1 different metric should be saved 1 time but counted as 8
-        Mockito.verify(this.sensorContext, Mockito.times(1))
-            .saveMeasure(Matchers.eq(this.inputFile), Matchers.any(Metric.class), Matchers.eq(8d));
-        // total debt should be saved once with sum of annotations minutes
-        Mockito.verify(this.sensorContext, Mockito.times(1))
-            .saveMeasure(Matchers.eq(this.inputFile), Matchers.any(Metric.class), Matchers.eq(80d));
+        final ArgumentCaptor<Measure> captor = ArgumentCaptor.forClass(Measure.class);
+        final Resource resource = Mockito.verify(this.sensorContext, Mockito.times(2))
+            .getResource(Matchers.eq(this.inputFile));
+        Mockito.verify(this.sensorContext, Mockito.times(3))
+            .saveMeasure(Matchers.eq(resource), captor.capture());
         Mockito.verifyNoMoreInteractions(this.sensorContext);
+        final List<Measure> measures = captor.getAllValues();
+        int i = 0;
+        assertEquals(Integer.valueOf(8), measures.get(i++)
+            .getIntValue());
+        assertEquals(Integer.valueOf(8), measures.get(i++)
+            .getIntValue());
+        assertEquals(Integer.valueOf(80), measures.get(i++)
+            .getIntValue());
     }
 
     @Test
     public void measure_with_annotatedFile_should_saveExpectedMeasuresThatHaveLineBreaksInAnnotations() {
         Mockito.when(this.inputFile.file())
-                .thenReturn(new File("src/test/resources/SmellMeasurerTest_5.java"));
+            .thenReturn(new File("src/test/resources/SmellMeasurerTest_5.java"));
         final SmellMeasurer sut = new SmellMeasurer(this.sensorContext);
         sut.measure(this.inputFile);
         // different metrics should be saved, one for each SmellType
-        Mockito.verify(this.sensorContext, Mockito.times(SmellType.values().length))
-                .saveMeasure(Matchers.eq(this.inputFile), Matchers.any(Metric.class), Matchers.eq(1d));
-        // total debt should be saved once with sum of annotations minutes
-        Mockito.verify(this.sensorContext, Mockito.times(1))
-                .saveMeasure(Matchers.eq(this.inputFile), Matchers.any(Metric.class), Matchers.eq(EXPECTED_SmellTYPE_DEBT));
+        final ArgumentCaptor<Measure> captor = ArgumentCaptor.forClass(Measure.class);
+        final Resource resource = Mockito.verify(this.sensorContext, Mockito.times(2))
+            .getResource(Matchers.eq(this.inputFile));
+        // here +2 because of SMELL_COUNT + SMELL_DEBT measures
+        Mockito.verify(this.sensorContext, Mockito.times(SmellType.values().length + 2))
+            .saveMeasure(Matchers.eq(resource), captor.capture());
         Mockito.verifyNoMoreInteractions(this.sensorContext);
+        final List<Measure> measures = captor.getAllValues();
+        int i = 0;
+        while (i < EXPECTED_SMELL_TYPE_COUNT) {
+            assertEquals(Integer.valueOf(1), measures.get(i++)
+                .getIntValue());
+        }
+        assertEquals(EXPECTED_SMELL_TYPE_COUNT, measures.get(i++)
+            .getIntValue());
+        assertEquals(EXPECTED_SMELL_TYPE_DEBT, measures.get(i++)
+            .getIntValue());
     }
 
 }

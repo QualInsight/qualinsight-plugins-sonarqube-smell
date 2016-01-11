@@ -35,17 +35,18 @@ The plugin is made of two parts:
 
 ## Usage
 
-### Requirements
+### Requirements and Compatibility Matrix
 
-* SonarQube version 4.5.x up to 5.1.x 
-* SonarQube's [Java plugin](http://docs.sonarqube.org/display/PLUG/Java+Plugin) version 3.5+
-* Internet connection on client's side (required to retrieve Google's visualisation API that is used to draw "Code Smells" widget's chart. No data is sent over the network.) 
+| Code Smell Plugin | SonarQube         | SonarQube [Java plugin](http://docs.sonarqube.org/display/PLUG/Java+Plugin) |
+|-------------------|-------------------|-----------------------| 
+| 2.0.1             | 4.5.x up to 5.1.x | 3.5 and above         |
+| 3.0.0             | 5.2.x and above   | 3.7.1 and above       |
 
-_Note 2:_ SonarQube 5.2 having brought breaking changes to the ``sonar-plugin-api``, metrics computation is not working yet. A solution will be provided soon (see issue #29.)
+_Note 2_: An internet connection on client's side is required to retrieve Google's visualisation API that is used to draw "Code Smells" widget's chart. No data is sent over the network.
 
 ### Plugin installation
 
-The plugin can be [downloaded from GitHub releases](https://github.com/QualInsight/qualinsight-plugins-sonarqube-smell/releases).
+The plugin can be directly installed from SonarQube's update center or [downloaded from GitHub releases](https://github.com/QualInsight/qualinsight-plugins-sonarqube-smell/releases).
 
 After having placed the plugin's jar in `{SONARQUBE_INSTALL_DIRECTORY}/extensions/plugins` you need to restart your SonarQube instance.
 
@@ -69,7 +70,7 @@ In order to be able to use the `@Smell` annotation, the following dependency mus
 <dependency>
     <groupId>com.qualinsight.plugins.sonarqube</groupId>
     <artifactId>qualinsight-plugins-sonarqube-smell-api</artifactId>
-    <version>2.0.1</version>
+    <version>3.0.0</version>
 </dependency>
 ```
 
