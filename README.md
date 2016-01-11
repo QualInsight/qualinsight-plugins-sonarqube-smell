@@ -37,7 +37,7 @@ The plugin is made of two parts:
 
 ### Requirements and Compatibility Matrix
 
-| Code Smell Plugin | SonarQube version | SonarQube [Java plugin](http://docs.sonarqube.org/display/PLUG/Java+Plugin) |
+| Code Smell Plugin | SonarQube         | SonarQube [Java plugin](http://docs.sonarqube.org/display/PLUG/Java+Plugin) |
 |-------------------|-------------------|-----------------------| 
 | 2.0.1             | 4.5.x up to 5.1.x | 3.5 and above         |
 | 3.0.0             | 5.2.x and above   | 3.7.1 and above       |
