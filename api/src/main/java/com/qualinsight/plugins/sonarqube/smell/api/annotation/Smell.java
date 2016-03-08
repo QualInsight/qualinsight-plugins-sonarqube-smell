@@ -23,6 +23,8 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+
+import com.qualinsight.plugins.sonarqube.smell.api.model.Severity;
 import com.qualinsight.plugins.sonarqube.smell.api.model.SmellType;
 
 /**
@@ -42,6 +44,7 @@ import com.qualinsight.plugins.sonarqube.smell.api.model.SmellType;
 })
 public @interface Smell {
 
+    public Severity severity() default Severity.MAJOR;
     /**
      * Evaluation of the time in minutes that would be needed to remove the code smell.
      *
@@ -62,4 +65,5 @@ public @interface Smell {
      * @return the Smell category the code smell is member of
      */
     public SmellType type();
+
 }
