@@ -25,8 +25,6 @@ import java.util.regex.Pattern;
 import com.google.common.collect.ImmutableList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.sonar.api.server.rule.RulesDefinition;
-import org.sonar.check.Priority;
 import org.sonar.check.Rule;
 import org.sonar.plugins.java.api.IssuableSubscriptionVisitor;
 import org.sonar.plugins.java.api.semantic.Type;
@@ -37,37 +35,24 @@ import org.sonar.plugins.java.api.tree.BinaryExpressionTree;
 import org.sonar.plugins.java.api.tree.ExpressionTree;
 import org.sonar.plugins.java.api.tree.IdentifierTree;
 import org.sonar.plugins.java.api.tree.LiteralTree;
+import org.sonar.plugins.java.api.tree.MemberSelectExpressionTree;
 import org.sonar.plugins.java.api.tree.Tree;
 import org.sonar.plugins.java.api.tree.Tree.Kind;
 import org.sonar.plugins.java.api.tree.VariableTree;
-import org.sonar.squidbridge.annotations.SqaleLinearRemediation;
-import org.sonar.squidbridge.annotations.SqaleSubCharacteristic;
+import com.qualinsight.plugins.sonarqube.smell.api.model.SmellType;
 
 /**
  * SonarQube {@link Rule} to be used to report code smells as SonarQube issues.
  *
  * @author Michel Pawlak
  */
-@Rule(
-    key = SmellCheck.KEY,
-    name = "Code Smell",
-    description = "The Smell annotation is meant to help developers inform their fellow team members of development issues and code smells that are not directly detectable by SonarQube. Indeed SonarQube is only able to show issues it has a rule for. It is not able to detect strange behaviors nor sad mistakes. Each Smell is a means provided to inform your fellow developers that you have detected a bad coding practice, and to inform them of your estimation for correcting the issue. Read carefuly the reason bound to this Smell annotation and <a href=\"https://github.com/QualInsight/qualinsight-plugins-sonarqube-smell#available-smell-types\">documentation</a> then try fixing this issue in an upcoming development Sprint.",
-    priority = Priority.MAJOR,
-    tags = {
-        "smell"
-    })
-@SqaleLinearRemediation(coeff = "1min", effortToFixDescription = "")
-@SqaleSubCharacteristic(value = RulesDefinition.SubCharacteristics.ERRORS)
-public final class SmellCheck extends IssuableSubscriptionVisitor {
+public abstract class AbstractSmellCheck extends IssuableSubscriptionVisitor {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(SmellCheck.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(AbstractSmellCheck.class);
 
     private static final Pattern PATTERN = Pattern.compile("^\"(.*)\"$");
 
-    /**
-     * Key of the check
-     */
-    public static final String KEY = "S0001";
+    public abstract SmellType smellType();
 
     @Override
     public List<Kind> nodesToVisit() {
@@ -87,6 +72,7 @@ public final class SmellCheck extends IssuableSubscriptionVisitor {
     private void handleSmellAnnotation(final AnnotationTree annotationTree) {
         String message = "";
         Double minutes = 0.0;
+        SmellType type = null;
         final Arguments arguments = annotationTree.arguments();
         for (final ExpressionTree expressionTree : arguments) {
             if (expressionTree.is(Tree.Kind.ASSIGNMENT)) {
@@ -101,16 +87,21 @@ public final class SmellCheck extends IssuableSubscriptionVisitor {
                         message = extractMessage(aet.expression());
                         LOGGER.debug("{} = {}", variable, message);
                         break;
+                    case "type":
+                        type = SmellType.valueOf(((MemberSelectExpressionTree) aet.expression()).identifier()
+                            .name());
                     default:
                         break;
                 }
             }
         }
-        final Matcher matcher = PATTERN.matcher(message);
-        if (matcher.matches()) {
-            message = matcher.group(1);
+        if (smellType().equals(type)) {
+            final Matcher matcher = PATTERN.matcher(message);
+            if (matcher.matches()) {
+                message = matcher.group(1);
+            }
+            addIssue(annotationTree, message, minutes);
         }
-        addIssue(annotationTree, message, minutes);
     }
 
     private static final String extractMessage(final ExpressionTree expressionTree) {

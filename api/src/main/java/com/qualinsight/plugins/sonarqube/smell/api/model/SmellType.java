@@ -73,7 +73,7 @@ public enum SmellType {
      */
     MULTIPLE_RESPONSIBILITIES,
     /**
-     * Execption mechanism usage for non exceptional cases
+     * Exception mechanism usage for non exceptional cases.
      */
     NON_EXCEPTION,
     /**
@@ -101,7 +101,7 @@ public enum SmellType {
      */
     SOLUTION_SPRAWL,
     /**
-     * The code is written thinking about tomorrow's problems. Write code to solve today's problems, and worry about tomorrow's problems when they actually materialize. Everyone loses in the "what if.." school of design.
+     * The code is written thinking about tomorrow's problems. Write code to solve today's problems, and worry about tomorrow's problems when they actually materialize. Everyone loses in the "what if..." school of design.
      */
     SPECULATIVE_GENERALITY,
     /**
@@ -109,16 +109,15 @@ public enum SmellType {
      */
     UNCOMMUNICATIVE_NAME,
     /**
-     * The test is useless (it tests nothing)
+     * The test is useless (it tests nothing.)
      */
     USELESS_TEST,
     /**
-     * Wrong language (french, english, german...) is being used
+     * Wrong language (french, english, german...) is being used.
      */
     WRONG_LANGUAGE,
     /**
      * Wrong (business) logic is being used.
      */
     WRONG_LOGIC;
-
 }

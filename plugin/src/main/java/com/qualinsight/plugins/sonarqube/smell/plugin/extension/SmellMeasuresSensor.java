@@ -30,10 +30,10 @@ import org.sonar.api.resources.Project;
 import org.sonar.check.Rule;
 import org.sonar.plugins.java.Java;
 import com.qualinsight.plugins.sonarqube.smell.api.annotation.Smell;
-import com.qualinsight.plugins.sonarqube.smell.plugin.check.SmellCheck;
+import com.qualinsight.plugins.sonarqube.smell.plugin.check.AbstractSmellCheck;
 
 /**
- * {@link Sensor} that launches the scan of Java source files in order to detect {@link Smell} annotations regardless of the activation of the {@link SmellCheck} {@link Rule}.
+ * {@link Sensor} that launches the scan of Java source files in order to detect {@link Smell} annotations regardless of the activation of the {@link AbstractSmellCheck} {@link Rule}.
  *
  * @author Michel Pawlak
  */

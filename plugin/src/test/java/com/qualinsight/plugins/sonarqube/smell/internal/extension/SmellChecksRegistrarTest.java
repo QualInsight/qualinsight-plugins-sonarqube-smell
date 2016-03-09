@@ -23,7 +23,29 @@ import org.assertj.core.api.Assertions;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Test;
 import org.sonar.plugins.java.api.CheckRegistrar.RegistrarContext;
-import com.qualinsight.plugins.sonarqube.smell.plugin.check.SmellCheck;
+import com.qualinsight.plugins.sonarqube.smell.plugin.check.AbbreviationsUsageSmellCheck;
+import com.qualinsight.plugins.sonarqube.smell.plugin.check.AntiPatternSmellCheck;
+import com.qualinsight.plugins.sonarqube.smell.plugin.check.BadDesignSmellCheck;
+import com.qualinsight.plugins.sonarqube.smell.plugin.check.BadFrameworkUsageSmellCheck;
+import com.qualinsight.plugins.sonarqube.smell.plugin.check.BadLoggingSmellCheck;
+import com.qualinsight.plugins.sonarqube.smell.plugin.check.HowCommentSmellCheck;
+import com.qualinsight.plugins.sonarqube.smell.plugin.check.IndecentExposureSmellCheck;
+import com.qualinsight.plugins.sonarqube.smell.plugin.check.MeaninglessCommentSmellCheck;
+import com.qualinsight.plugins.sonarqube.smell.plugin.check.MiddleManSmellCheck;
+import com.qualinsight.plugins.sonarqube.smell.plugin.check.MissingImplementationSmellCheck;
+import com.qualinsight.plugins.sonarqube.smell.plugin.check.MultipleResponsibilitiesSmellCheck;
+import com.qualinsight.plugins.sonarqube.smell.plugin.check.NonExceptionSmellCheck;
+import com.qualinsight.plugins.sonarqube.smell.plugin.check.OddballSolutionSmellCheck;
+import com.qualinsight.plugins.sonarqube.smell.plugin.check.OvercomplicatedAlgorithmSmellCheck;
+import com.qualinsight.plugins.sonarqube.smell.plugin.check.PrimitivesObsessionSmellCheck;
+import com.qualinsight.plugins.sonarqube.smell.plugin.check.RefusedBequestSmellCheck;
+import com.qualinsight.plugins.sonarqube.smell.plugin.check.ReinventedWheelSmellCheck;
+import com.qualinsight.plugins.sonarqube.smell.plugin.check.SolutionSprawlSmellCheck;
+import com.qualinsight.plugins.sonarqube.smell.plugin.check.SpeculativeGeneralitySmellCheck;
+import com.qualinsight.plugins.sonarqube.smell.plugin.check.UncommunicativeNameSmellCheck;
+import com.qualinsight.plugins.sonarqube.smell.plugin.check.UselessTestSmellCheck;
+import com.qualinsight.plugins.sonarqube.smell.plugin.check.WrongLanguageSmellCheck;
+import com.qualinsight.plugins.sonarqube.smell.plugin.check.WrongLogicSmellCheck;
 import com.qualinsight.plugins.sonarqube.smell.plugin.extension.SmellChecksRegistrar;
 import com.qualinsight.plugins.sonarqube.smell.plugin.extension.SmellRulesDefinition;
 
@@ -33,14 +55,22 @@ public class SmellChecksRegistrarTest {
     @Test
     public void checkClasses_should_return_expectedChecks() {
         Assertions.assertThat(SmellChecksRegistrar.checkClasses())
-            .containsExactly(SmellCheck.class);
+            .containsExactly(AbbreviationsUsageSmellCheck.class, AntiPatternSmellCheck.class, BadDesignSmellCheck.class, BadFrameworkUsageSmellCheck.class, BadLoggingSmellCheck.class,
+                HowCommentSmellCheck.class, IndecentExposureSmellCheck.class, MeaninglessCommentSmellCheck.class, MiddleManSmellCheck.class, MissingImplementationSmellCheck.class,
+                MultipleResponsibilitiesSmellCheck.class, NonExceptionSmellCheck.class, OddballSolutionSmellCheck.class, OvercomplicatedAlgorithmSmellCheck.class, PrimitivesObsessionSmellCheck.class,
+                RefusedBequestSmellCheck.class, ReinventedWheelSmellCheck.class, SolutionSprawlSmellCheck.class, SpeculativeGeneralitySmellCheck.class, UncommunicativeNameSmellCheck.class,
+                WrongLanguageSmellCheck.class, WrongLogicSmellCheck.class);
     }
 
     @SuppressWarnings("unchecked")
     @Test
     public void testCheckClasses_should_return_expectedChecks() {
         Assertions.assertThat(SmellChecksRegistrar.testCheckClasses())
-            .containsExactly(SmellCheck.class);
+            .containsExactly(AbbreviationsUsageSmellCheck.class, AntiPatternSmellCheck.class, BadDesignSmellCheck.class, BadFrameworkUsageSmellCheck.class, BadLoggingSmellCheck.class,
+                HowCommentSmellCheck.class, IndecentExposureSmellCheck.class, MeaninglessCommentSmellCheck.class, MiddleManSmellCheck.class, MissingImplementationSmellCheck.class,
+                MultipleResponsibilitiesSmellCheck.class, NonExceptionSmellCheck.class, OddballSolutionSmellCheck.class, OvercomplicatedAlgorithmSmellCheck.class, PrimitivesObsessionSmellCheck.class,
+                RefusedBequestSmellCheck.class, ReinventedWheelSmellCheck.class, SolutionSprawlSmellCheck.class, SpeculativeGeneralitySmellCheck.class, UncommunicativeNameSmellCheck.class,
+                UselessTestSmellCheck.class, WrongLanguageSmellCheck.class, WrongLogicSmellCheck.class);
     }
 
     @Test
