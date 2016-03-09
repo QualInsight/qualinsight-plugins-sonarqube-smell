@@ -40,7 +40,7 @@ public final class SmellRulesDefinition implements RulesDefinition {
     /**
      * Repository name.
      */
-    public static final String REPOSITORY_NAME = "QualInsight";
+    public static final String REPOSITORY_NAME = "Smells";
 
     @SuppressWarnings("rawtypes")
     @Override
