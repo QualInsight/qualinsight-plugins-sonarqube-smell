@@ -27,7 +27,7 @@ import org.sonar.squidbridge.annotations.SqaleSubCharacteristic;
 import com.qualinsight.plugins.sonarqube.smell.api.model.SmellType;
 
 @Rule(
-    key = "Smell-0007",
+    key = "0007",
     name = "Indecent exposure",
     description = "The class unnecessarily exposes its internals. Aggressively refactor classes to minimize its public surface. You should have a compelling reason for every item you make public. If you don't, hide it.",
     priority = Priority.CRITICAL,

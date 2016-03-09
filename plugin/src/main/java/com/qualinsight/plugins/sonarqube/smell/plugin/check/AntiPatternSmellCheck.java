@@ -26,7 +26,7 @@ import org.sonar.squidbridge.annotations.SqaleLinearRemediation;
 import org.sonar.squidbridge.annotations.SqaleSubCharacteristic;
 import com.qualinsight.plugins.sonarqube.smell.api.model.SmellType;
 
-@Rule(key = "Smell-0002", name = "Anti-pattern", description = "An anti-pattern has been used.", priority = Priority.BLOCKER, tags = {
+@Rule(key = "0002", name = "Anti-pattern", description = "An anti-pattern has been used.", priority = Priority.BLOCKER, tags = {
     "design",
     "bad-practice"
 })

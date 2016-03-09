@@ -43,9 +43,9 @@ public class SmellRulesDefinitionTest {
 
     private static final String EXPECTED_REPOSITORY_KEY = "qualinsight-smells";
 
-    private static final String EXPECTED_REPOSITORY_NAME = "QualInsight";
+    private static final String EXPECTED_REPOSITORY_NAME = "Smells";
 
-    private static final String RULE_KEY = "Smell-0023";
+    private static final String RULE_KEY = "0023";
 
     @Mock
     public Context context;
@@ -122,11 +122,11 @@ public class SmellRulesDefinitionTest {
             .createRepository(Matchers.eq(EXPECTED_REPOSITORY_KEY), Matchers.eq(Java.KEY));
         Mockito.verify(this.repository, Mockito.times(1))
             .setName(Matchers.eq(EXPECTED_REPOSITORY_NAME));
-        Mockito.verify(this.repository, Mockito.times(22))
+        Mockito.verify(this.repository, Mockito.times(23))
             .createRule(this.captor.capture());
         Assertions.assertThat(this.captor.getValue())
             .isEqualTo(RULE_KEY);
-        Mockito.verify(this.rule, Mockito.times(23))
+        Mockito.verify(this.rule, Mockito.times(24))
             .key();
         Mockito.verify(this.rule, Mockito.times(1))
             .setInternalKey(Matchers.eq(RULE_KEY));

@@ -27,7 +27,7 @@ import org.sonar.squidbridge.annotations.SqaleSubCharacteristic;
 import com.qualinsight.plugins.sonarqube.smell.api.model.SmellType;
 
 @Rule(
-    key = "Smell-0020",
+    key = "0020",
     name = "Uncommunicative name",
     description = "The class, interface, method, field, variable or parameter name should be renamed in order to make it describe what it does or what it represents.",
     priority = Priority.CRITICAL,

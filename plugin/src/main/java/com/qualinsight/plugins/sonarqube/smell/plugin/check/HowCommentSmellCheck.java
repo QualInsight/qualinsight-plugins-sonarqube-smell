@@ -26,7 +26,7 @@ import org.sonar.squidbridge.annotations.SqaleLinearRemediation;
 import org.sonar.squidbridge.annotations.SqaleSubCharacteristic;
 import com.qualinsight.plugins.sonarqube.smell.api.model.SmellType;
 
-@Rule(key = "Smell-0006", name = "How comment", description = "The comment or documentation text focuses on the 'how' instead of the 'why'.", priority = Priority.MAJOR, tags = {
+@Rule(key = "0006", name = "How comment", description = "The comment or documentation text focuses on the 'how' instead of the 'why'.", priority = Priority.MAJOR, tags = {
     "documentation",
     "bad-practice"
 })

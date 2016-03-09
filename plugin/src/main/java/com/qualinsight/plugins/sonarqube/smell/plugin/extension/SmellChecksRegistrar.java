@@ -63,7 +63,6 @@ public final class SmellChecksRegistrar implements CheckRegistrar {
      * Block that builds the list of JavaCheck once and for all.
      */
     static {
-        // does not contain "useless check" check.
         checkClasses = Lists.<Class<? extends JavaCheck>> newArrayList();
         checkClasses.add(AbbreviationsUsageSmellCheck.class);
         checkClasses.add(AntiPatternSmellCheck.class);
@@ -85,9 +84,9 @@ public final class SmellChecksRegistrar implements CheckRegistrar {
         checkClasses.add(SolutionSprawlSmellCheck.class);
         checkClasses.add(SpeculativeGeneralitySmellCheck.class);
         checkClasses.add(UncommunicativeNameSmellCheck.class);
+        checkClasses.add(UselessTestSmellCheck.class);
         checkClasses.add(WrongLanguageSmellCheck.class);
         checkClasses.add(WrongLogicSmellCheck.class);
-        // contains "useless check" check.
         testCheckClasses = Lists.<Class<? extends JavaCheck>> newArrayList();
         testCheckClasses.add(AbbreviationsUsageSmellCheck.class);
         testCheckClasses.add(AntiPatternSmellCheck.class);

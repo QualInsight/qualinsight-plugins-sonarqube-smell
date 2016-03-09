@@ -27,7 +27,7 @@ import org.sonar.squidbridge.annotations.SqaleSubCharacteristic;
 import com.qualinsight.plugins.sonarqube.smell.api.model.SmellType;
 
 @Rule(
-    key = "Smell-0016",
+    key = "0016",
     name = "Refused bequest",
     description = "The class extends another classes' methods but does not use them. Why extending the class then ?",
     priority = Priority.CRITICAL,

@@ -26,7 +26,7 @@ import org.sonar.squidbridge.annotations.SqaleLinearRemediation;
 import org.sonar.squidbridge.annotations.SqaleSubCharacteristic;
 import com.qualinsight.plugins.sonarqube.smell.api.model.SmellType;
 
-@Rule(key = "Smell-0014", name = "Overcomplicated algorithm", description = "There is a way to simplify this algorithm.", priority = Priority.MAJOR, tags = {
+@Rule(key = "0014", name = "Overcomplicated algorithm", description = "There is a way to simplify this algorithm.", priority = Priority.MAJOR, tags = {
     "logic",
     "testability",
     "performance",

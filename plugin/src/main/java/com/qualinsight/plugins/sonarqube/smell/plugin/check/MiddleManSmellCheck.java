@@ -27,7 +27,7 @@ import org.sonar.squidbridge.annotations.SqaleSubCharacteristic;
 import com.qualinsight.plugins.sonarqube.smell.api.model.SmellType;
 
 @Rule(
-    key = "Smell-0009",
+    key = "0009",
     name = "Middle man",
     description = "The class delegates all its work, is it really needed ? Cut out the middle man unless you really need a wrapper.",
     priority = Priority.CRITICAL,

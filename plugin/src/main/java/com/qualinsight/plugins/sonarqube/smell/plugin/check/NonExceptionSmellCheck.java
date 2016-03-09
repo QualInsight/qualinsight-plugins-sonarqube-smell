@@ -26,7 +26,7 @@ import org.sonar.squidbridge.annotations.SqaleLinearRemediation;
 import org.sonar.squidbridge.annotations.SqaleSubCharacteristic;
 import com.qualinsight.plugins.sonarqube.smell.api.model.SmellType;
 
-@Rule(key = "Smell-0012", name = "Non exception", description = "Exception mechanism usage for non exceptional cases.", priority = Priority.MAJOR, tags = {
+@Rule(key = "0012", name = "Non exception", description = "Exception mechanism usage for non exceptional cases.", priority = Priority.MAJOR, tags = {
     "design",
     "performance",
     "bad-practice",

@@ -26,7 +26,7 @@ import org.sonar.squidbridge.annotations.SqaleLinearRemediation;
 import org.sonar.squidbridge.annotations.SqaleSubCharacteristic;
 import com.qualinsight.plugins.sonarqube.smell.api.model.SmellType;
 
-@Rule(key = "Smell-0003", name = "Bad design", description = "The design is really bad and should be improved.", priority = Priority.BLOCKER, tags = {
+@Rule(key = "0003", name = "Bad design", description = "The design is really bad and should be improved.", priority = Priority.BLOCKER, tags = {
     "design"
 })
 @SqaleLinearRemediation(coeff = "1min", effortToFixDescription = "")

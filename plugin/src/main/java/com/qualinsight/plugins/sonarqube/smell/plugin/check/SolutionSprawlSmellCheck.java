@@ -27,7 +27,7 @@ import org.sonar.squidbridge.annotations.SqaleSubCharacteristic;
 import com.qualinsight.plugins.sonarqube.smell.api.model.SmellType;
 
 @Rule(
-    key = "Smell-0018",
+    key = "0018",
     name = "Solution sprawl",
     description = "It takes too many classes to do anything useful, you might have solution sprawl. Consider simplifying and consolidating your design.",
     priority = Priority.CRITICAL,

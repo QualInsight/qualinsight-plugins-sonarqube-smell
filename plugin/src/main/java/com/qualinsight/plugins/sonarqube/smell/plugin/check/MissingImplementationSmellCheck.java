@@ -26,7 +26,7 @@ import org.sonar.squidbridge.annotations.SqaleLinearRemediation;
 import org.sonar.squidbridge.annotations.SqaleSubCharacteristic;
 import com.qualinsight.plugins.sonarqube.smell.api.model.SmellType;
 
-@Rule(key = "Smell-0010", name = "Missing implementation", description = "A method's implementation is missing.", priority = Priority.MINOR, tags = {
+@Rule(key = "0010", name = "Missing implementation", description = "A method's implementation is missing.", priority = Priority.MINOR, tags = {
     "todo"
 })
 @SqaleLinearRemediation(coeff = "1min", effortToFixDescription = "")

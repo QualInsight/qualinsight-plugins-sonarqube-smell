@@ -26,7 +26,7 @@ import org.sonar.squidbridge.annotations.SqaleLinearRemediation;
 import org.sonar.squidbridge.annotations.SqaleSubCharacteristic;
 import com.qualinsight.plugins.sonarqube.smell.api.model.SmellType;
 
-@Rule(key = "Smell-0011", name = "Multiple responsibilities", description = "A class or method has multiple responsibilities.", priority = Priority.BLOCKER, tags = {
+@Rule(key = "0011", name = "Multiple responsibilities", description = "A class or method has multiple responsibilities.", priority = Priority.BLOCKER, tags = {
     "design",
     "confusing",
     "bad-practice"
