@@ -52,11 +52,13 @@ After having placed the plugin's jar in `{SONARQUBE_INSTALL_DIRECTORY}/extension
 
 You have then to add the `Code Smells` widget to your project or view dashboard.
 
-The last installation step, if you want to have Smell annotations to contribute to the project's technical debt, is to add to your profile the rule named `Code Smell` Its key is "`qualinsight-smells:S0001`".
+The last installation step, if you want to have Smell annotations to contribute to the project's technical debt, is to add to your profile all rules part of the `Smells` rules repository.
 
 That's it!
 
-_Note 3:_ While I recommend activating the `Code Smell` rule, you don't have to do it. If the rule is not activated, the plugin will still report Smell related technical debt in its own widget, but Smell annotations will not be counted as issues, and as such they will not contribute to the project's technical debt, nor impact the SQALE rating. Do this if you don't want to mix automated debt discovery with "subjective" debt declaration.  
+_Note 3:_ While I recommend activating all rules part of the `Smell` repository, you don't have to do it. If the rules are not activated, the plugin will still report Smell related technical debt in its own widget, but Smell annotations will not be counted as issues, and as such they will not contribute to the project's technical debt, nor impact the SQALE rating. Do this if you don't want to mix automated debt discovery with "subjective" debt declaration.  
+
+_Note 4:_ If you decide to activate `Smell` rules in your profile, make sure to activate all of them, otherwise, only those that have been activated will appear as issues.
 
 ### Adding Smells to your code
 
@@ -70,13 +72,13 @@ In order to be able to use the `@Smell` annotation, the following dependency mus
 <dependency>
     <groupId>com.qualinsight.plugins.sonarqube</groupId>
     <artifactId>qualinsight-plugins-sonarqube-smell-api</artifactId>
-    <version>3.0.0</version>
+    <version>3.1.0-SNAPSHOT</version>
 </dependency>
 ```
 
-_Note 4_: The dependency is available in Maven central repository.
+_Note 5_: The dependency is available in Maven central repository.
 
-_Note 5:_ The API is packaged as an OSGi bundle.
+_Note 6:_ The API is packaged as an OSGi bundle.
 
 #### Annotating code
 
@@ -115,31 +117,31 @@ public class MyClass {
 
 The SmellType enum currently can take the following values (greatly inspired by Coding Horrors' [code smells](http://blog.codinghorror.com/code-smells/) and Industrial Logic's [smells to refactorings](http://www.industriallogic.com/wp-content/uploads/2005/09/smellstorefactorings.pdf)) :
 
-| SmellType                  | When should I use it ?                                                     |
-|----------------------------|----------------------------------------------------------------------------|
-| ABBREVIATIONS_USAGE        | Confusing abbreviations are being used instead of explicit names           |
-| ANTI_PATTERN               | An anti-pattern has been used.                                             |
-| BAD_DESIGN                 | The design is really bad and should be improved.                           |
-| BAD_FRAMEWORK_USAGE        | A framework is not used the way it should                                  |
-| BAD_LOGGING                | The logging message, level, is inappropriate or the log is redundant.      |
-| HOW_COMMENT                | The comment or documentation focuses on the "how" instead of the "what"    |
-| INDECENT_EXPOSURE          | The class unnecessarily exposes its internals.                             |
-| MEANINGLESS_COMMENT        | The comment or documentation text is meaningless.                          |
-| MIDDLE_MAN                 | The class delegates all its work, is it really needed ?                    |
-| MISSING_IMPLEMENTATION     | A method's implementation is missing.                                      |
-| MULTIPLE_RESPONSIBILITIES  | The class or method has multiple responsibilities.                         |
-| NON_EXCEPTION              | The exceptions mechanism is used for non exceptional cases.                |
-| ODDBALL_SOLUTION           | The problem is solved in multiple ways throughout the system.              |
-| OVERCOMPLICATED_ALGORITHM  | There is a way to simplify an algorithm.                                   |
-| PRIMITIVES_OBSESSION       | The code relies too much on primitives instead of classes.                 |
-| REFUSED_BEQUEST            | The class extends another class but does not use its methods.              |
-| REINVENTED_WHEEL           | A library does the same job, probably better                               |
-| SOLUTION_SPRAWL            | It takes too many classes to do anything useful.                           |
-| SPECULATIVE_GENERALITY     | The code is written thinking about tomorrow's problems.                    |
-| UNCOMMUNICATIVE_NAME       | The name does not communicate the purpose of the class, field, method.     |
-| USELESS_TEST               | The test is useless (it tests nothing)                                     |
-| WRONG_LANGUAGE             | Wrong language (french, english, german...) is being used                  |
-| WRONG_LOGIC                | Wrong (business) logic is being used.                                      |
+| SmellType                  | When should I use it ?                                                     | Default severity |
+|----------------------------|----------------------------------------------------------------------------|------------------|
+| ABBREVIATIONS_USAGE        | Confusing abbreviations are being used instead of explicit names           | MAJOR            |
+| ANTI_PATTERN               | An anti-pattern has been used.                                             | BLOCKER          |
+| BAD_DESIGN                 | The design is really bad and should be improved.                           | BLOCKER          |
+| BAD_FRAMEWORK_USAGE        | A framework is not used the way it should                                  | BLOCKER          |
+| BAD_LOGGING                | The logging message, level, is inappropriate or the log is redundant.      | MAJOR            |
+| HOW_COMMENT                | The comment or documentation focuses on the "how" instead of the "what"    | MAJOR            |
+| INDECENT_EXPOSURE          | The class unnecessarily exposes its internals.                             | CRITICAL         |
+| MEANINGLESS_COMMENT        | The comment or documentation text is meaningless.                          | MAJOR            |
+| MIDDLE_MAN                 | The class delegates all its work, is it really needed ?                    | CRITICAL         |
+| MISSING_IMPLEMENTATION     | A method's implementation is missing.                                      | MINOR            |
+| MULTIPLE_RESPONSIBILITIES  | The class or method has multiple responsibilities.                         | BLOCKER          |
+| NON_EXCEPTION              | The exceptions mechanism is used for non exceptional cases.                | MAJOR            |
+| ODDBALL_SOLUTION           | The problem is solved in multiple ways throughout the system.              | CRITICAL         |
+| OVERCOMPLICATED_ALGORITHM  | There is a way to simplify an algorithm.                                   | MAJOR            |
+| PRIMITIVES_OBSESSION       | The code relies too much on primitives instead of classes.                 | CRITICAL         |
+| REFUSED_BEQUEST            | The class extends another class but does not use its methods.              | CRITICAL         |
+| REINVENTED_WHEEL           | A library does the same job, probably better                               | BLOCKER          |
+| SOLUTION_SPRAWL            | It takes too many classes to do anything useful.                           | CRITICAL         |
+| SPECULATIVE_GENERALITY     | The code is written thinking about tomorrow's problems.                    | CRITICAL         |
+| UNCOMMUNICATIVE_NAME       | The name does not communicate the purpose of the class, field, method.     | CRITICAL         |
+| USELESS_TEST               | The test is useless (it tests nothing)                                     | MAJOR            |
+| WRONG_LANGUAGE             | Wrong language (french, english, german...) is being used                  | MAJOR            |
+| WRONG_LOGIC                | Wrong (business) logic is being used.                                      | BLOCKER          |
 
 Feel free to ask for new values!
 
