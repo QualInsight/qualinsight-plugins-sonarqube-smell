@@ -165,4 +165,4 @@ Cheers !
 
 ## Build status
 
-[![Build Status](https://travis-ci.org/QualInsight/qualinsight-plugins-sonarqube-smell.svg?branch=master)](https://travis-ci.org/QualInsight/qualinsight-plugins-sonarqube-smell) [![Quality Gate](http://nemo.sonarqube.org/api/status/image?key=com.qualinsight.plugins.sonarqube:qualinsight-plugins-sonarqube-smells)](http://nemo.sonarqube.org/dashboard/index/com.qualinsight.plugins.sonarqube:qualinsight-plugins-sonarqube-smells)
+[![Build Status](https://travis-ci.org/QualInsight/qualinsight-plugins-sonarqube-smell.svg?branch=master)](https://travis-ci.org/QualInsight/qualinsight-plugins-sonarqube-smell) [![Quality Gate](http://nemo.sonarqube.org/api/status/image?key=com.qualinsight.plugins.sonarqube:qualinsight-plugins-sonarqube-smell)](http://nemo.sonarqube.org/dashboard/index/com.qualinsight.plugins.sonarqube:qualinsight-plugins-sonarqube-smell)
