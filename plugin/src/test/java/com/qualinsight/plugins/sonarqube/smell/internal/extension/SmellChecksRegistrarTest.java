@@ -19,11 +19,17 @@
  */
 package com.qualinsight.plugins.sonarqube.smell.internal.extension;
 
+import junitparams.JUnitParamsRunner;
+import junitparams.Parameters;
+import net.jcip.annotations.NotThreadSafe;
 import org.assertj.core.api.Assertions;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.sonar.plugins.java.api.CheckRegistrar.RegistrarContext;
+import com.qualinsight.plugins.sonarqube.smell.api.model.SmellType;
 import com.qualinsight.plugins.sonarqube.smell.plugin.check.AbbreviationsUsageSmellCheck;
+import com.qualinsight.plugins.sonarqube.smell.plugin.check.AbstractSmellCheck;
 import com.qualinsight.plugins.sonarqube.smell.plugin.check.AntiPatternSmellCheck;
 import com.qualinsight.plugins.sonarqube.smell.plugin.check.BadDesignSmellCheck;
 import com.qualinsight.plugins.sonarqube.smell.plugin.check.BadFrameworkUsageSmellCheck;
@@ -49,6 +55,8 @@ import com.qualinsight.plugins.sonarqube.smell.plugin.check.WrongLogicSmellCheck
 import com.qualinsight.plugins.sonarqube.smell.plugin.extension.SmellChecksRegistrar;
 import com.qualinsight.plugins.sonarqube.smell.plugin.extension.SmellRulesDefinition;
 
+@NotThreadSafe
+@RunWith(JUnitParamsRunner.class)
 public class SmellChecksRegistrarTest {
 
     @SuppressWarnings("unchecked")
@@ -87,4 +95,108 @@ public class SmellChecksRegistrarTest {
             .isEqualTo(SmellRulesDefinition.REPOSITORY_KEY);
         softly.assertAll();
     }
+
+    @Test
+    @Parameters
+    public void register_should_registerChecksHandlingingCorrectSmellType(final SmellType type, final AbstractSmellCheck check) {
+        assert (check.smellType().equals(type));
+    }
+
+    private Object[] parametersForRegister_should_registerChecksHandlingingCorrectSmellType() {
+        return new Object[] {
+            new Object[] {
+                SmellType.ABBREVIATIONS_USAGE,
+                new AbbreviationsUsageSmellCheck()
+            },
+            new Object[] {
+                SmellType.ANTI_PATTERN,
+                new AntiPatternSmellCheck()
+            },
+            new Object[] {
+                SmellType.BAD_DESIGN,
+                new BadDesignSmellCheck()
+            },
+            new Object[] {
+                SmellType.BAD_FRAMEWORK_USAGE,
+                new BadFrameworkUsageSmellCheck()
+            },
+            new Object[] {
+                SmellType.BAD_LOGGING,
+                new BadLoggingSmellCheck()
+            },
+            new Object[] {
+                SmellType.HOW_COMMENT,
+                new HowCommentSmellCheck()
+            },
+            new Object[] {
+                SmellType.INDECENT_EXPOSURE,
+                new IndecentExposureSmellCheck()
+            },
+            new Object[] {
+                SmellType.MEANINGLESS_COMMENT,
+                new MeaninglessCommentSmellCheck()
+            },
+            new Object[] {
+                SmellType.MIDDLE_MAN,
+                new MiddleManSmellCheck()
+            },
+            new Object[] {
+                SmellType.MISSING_IMPLEMENTATION,
+                new MissingImplementationSmellCheck()
+            },
+            new Object[] {
+                SmellType.MULTIPLE_RESPONSIBILITIES,
+                new MultipleResponsibilitiesSmellCheck()
+            },
+            new Object[] {
+                SmellType.NON_EXCEPTION,
+                new NonExceptionSmellCheck()
+            },
+            new Object[] {
+                SmellType.ODDBALL_SOLUTION,
+                new OddballSolutionSmellCheck()
+            },
+            new Object[] {
+                SmellType.OVERCOMPLICATED_ALGORITHM,
+                new OvercomplicatedAlgorithmSmellCheck()
+            },
+            new Object[] {
+                SmellType.PRIMITIVES_OBSESSION,
+                new PrimitivesObsessionSmellCheck()
+            },
+            new Object[] {
+                SmellType.REFUSED_BEQUEST,
+                new RefusedBequestSmellCheck()
+            },
+            new Object[] {
+                SmellType.REINVENTED_WHEEL,
+                new ReinventedWheelSmellCheck()
+            },
+            new Object[] {
+                SmellType.SOLUTION_SPRAWL,
+                new SolutionSprawlSmellCheck()
+            },
+            new Object[] {
+                SmellType.SPECULATIVE_GENERALITY,
+                new SpeculativeGeneralitySmellCheck()
+            },
+            new Object[] {
+                SmellType.UNCOMMUNICATIVE_NAME,
+                new UncommunicativeNameSmellCheck()
+            },
+            new Object[] {
+                SmellType.USELESS_TEST,
+                new UselessTestSmellCheck()
+            },
+            new Object[] {
+                SmellType.WRONG_LANGUAGE,
+                new WrongLanguageSmellCheck()
+            },
+            new Object[] {
+                SmellType.WRONG_LOGIC,
+                new WrongLogicSmellCheck()
+            },
+        };
+    }
+
 }

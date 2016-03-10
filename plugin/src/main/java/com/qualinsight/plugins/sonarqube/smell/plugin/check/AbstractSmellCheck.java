@@ -90,6 +90,7 @@ public abstract class AbstractSmellCheck extends IssuableSubscriptionVisitor {
                     case "type":
                         type = SmellType.valueOf(((MemberSelectExpressionTree) aet.expression()).identifier()
                             .name());
+                        break;
                     default:
                         break;
                 }
