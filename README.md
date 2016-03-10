@@ -1,6 +1,8 @@
 # Code Smells plugin for SonarQube
 The Code Smells plugin for [SonarQube](http://www.sonarqube.org/) allows developers to report issues usually not seen by SonarQube but which should be taken into consideration when evaluating a project's technical debt. 
 
+[![Build Status](https://travis-ci.org/QualInsight/qualinsight-plugins-sonarqube-smell.svg?branch=master)](https://travis-ci.org/QualInsight/qualinsight-plugins-sonarqube-smell) [![Quality Gate](http://nemo.sonarqube.org/api/status/image?key=com.qualinsight.plugins.sonarqube:qualinsight-plugins-sonarqube-smell)](http://nemo.sonarqube.org/dashboard/index/com.qualinsight.plugins.sonarqube:qualinsight-plugins-sonarqube-smell)
+
 ## Rationale
 
 The great thing about SonarQube is that it reports in an objective and non disputable way issues based on a predefined set of rules or checks that need to be activated. Depending on the rules SonarQube administrators activate, reported issues will differ and so will reported technical debt.
@@ -163,6 +165,3 @@ A [Google group](https://groups.google.com/forum/#!forum/code-smells) named [Cod
 
 Cheers !
 
-## Build status
-
-[![Build Status](https://travis-ci.org/QualInsight/qualinsight-plugins-sonarqube-smell.svg?branch=master)](https://travis-ci.org/QualInsight/qualinsight-plugins-sonarqube-smell) [![Quality Gate](http://nemo.sonarqube.org/api/status/image?key=com.qualinsight.plugins.sonarqube:qualinsight-plugins-sonarqube-smell)](http://nemo.sonarqube.org/dashboard/index/com.qualinsight.plugins.sonarqube:qualinsight-plugins-sonarqube-smell)
