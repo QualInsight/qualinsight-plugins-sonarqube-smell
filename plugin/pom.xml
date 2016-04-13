@@ -8,21 +8,39 @@
   <artifactId>qualinsight-plugins-sonarqube-smell-plugin</artifactId>
   <description>Allows developers to programmatically report code smells usually not seen by SonarQube but which should be taken into consideration when evaluating a project's technical debt. Usage &lt;a href="https://github.com/QualInsight/qualinsight-plugins-sonarqube-smell#code-smells-plugin-for-sonarqube"&gt;documentation&lt;/a&gt; is available on the project's Homepage.</description>
   <packaging>sonar-plugin</packaging>
+  <properties>
+    <plugin.sonar-packaging-maven-plugin.version>1.15</plugin.sonar-packaging-maven-plugin.version>
+    <lib.sonar-plugin-api.version>5.2</lib.sonar-plugin-api.version>
+    <lib.sonar-java-plugin.version>3.7.1</lib.sonar-java-plugin.version>
+    <lib.sslr-squid-bridge.version>2.6</lib.sslr-squid-bridge.version>
+    <lib.guava.version>15.0</lib.guava.version>
+    <lib.commons-lang.version>2.6</lib.commons-lang.version>
+    <lib.commons-io.version>2.4</lib.commons-io.version>
+    <lib.logback-classic.version>1.1.3</lib.logback-classic.version>
+    <lib.junitparams.version>1.0.4</lib.junitparams.version>
+    <lib.assertj-core.version>2.1.0</lib.assertj-core.version>
+    <lib.junit.version>4.11</lib.junit.version>
+    <lib.mockito-all.version>1.10.19</lib.mockito-all.version>
+    <lib.qualinsight-libs-sonarqube-test.version>1.0.2</lib.qualinsight-libs-sonarqube-test.version>
+    <lib.jcip-annotations.version>1.0-1</lib.jcip-annotations.version>
+  </properties>
   <dependencies>
     <dependency>
       <groupId>com.qualinsight.plugins.sonarqube</groupId>
       <artifactId>qualinsight-plugins-sonarqube-smell-api</artifactId>
-      <version>${lib.version.qualinsight-plugins-sonarqube-smell-api}</version>
+      <version>${project.version}</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>org.sonarsource.sonarqube</groupId>
       <artifactId>sonar-plugin-api</artifactId>
+      <version>${lib.sonar-plugin-api.version}</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>org.codehaus.sonar.sslr-squid-bridge</groupId>
       <artifactId>sslr-squid-bridge</artifactId>
+      <version>${lib.sslr-squid-bridge.version}</version>
       <scope>compile</scope>
       <exclusions>
         <exclusion>
@@ -46,55 +64,67 @@
     <dependency>
       <groupId>org.sonarsource.java</groupId>
       <artifactId>sonar-java-plugin</artifactId>
+      <version>${lib.sonar-java-plugin.version}</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>ch.qos.logback</groupId>
       <artifactId>logback-classic</artifactId>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>com.google.guava</groupId>
-      <artifactId>guava</artifactId>
-      <!-- forcing version in order to avoid clash with sslr-squid-bridge -->
-      <version>15.0</version>
+      <version>${lib.logback-classic.version}</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>commons-lang</groupId>
       <artifactId>commons-lang</artifactId>
-      <version>2.6</version>
+      <version>${lib.commons-lang.version}</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>commons-io</groupId>
       <artifactId>commons-io</artifactId>
-      <version>2.4</version>
+      <version>${lib.commons-io.version}</version>
       <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>${lib.junit.version}</version>
+      <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.assertj</groupId>
       <artifactId>assertj-core</artifactId>
+      <version>${lib.assertj-core.version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>pl.pragmatists</groupId>
       <artifactId>JUnitParams</artifactId>
+      <version>${lib.junitparams.version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.mockito</groupId>
       <artifactId>mockito-all</artifactId>
+      <version>${lib.mockito-all.version}</version>
       <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+      <version>${lib.guava.version}</version>
+      <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>com.qualinsight.libs.sonarqube</groupId>
       <artifactId>qualinsight-libs-sonarqube-test</artifactId>
+      <version>${lib.qualinsight-libs-sonarqube-test.version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>com.github.stephenc.jcip</groupId>
       <artifactId>jcip-annotations</artifactId>
+      <version>${lib.jcip-annotations.version}</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
@@ -107,6 +137,7 @@
       <plugin>
         <groupId>org.sonarsource.sonar-packaging-maven-plugin</groupId>
         <artifactId>sonar-packaging-maven-plugin</artifactId>
+        <version>${plugin.sonar-packaging-maven-plugin.version}</version>
         <extensions>true</extensions>
         <configuration>
           <pluginClass>com.qualinsight.plugins.sonarqube.smell.plugin.SmellPlugin</pluginClass>

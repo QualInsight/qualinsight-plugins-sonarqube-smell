@@ -1,10 +1,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <groupId>com.qualinsight.plugins.sonarqube</groupId>
-    <artifactId>qualinsight-plugins-sonarqube-parent</artifactId>
-    <version>1.0.2</version>
+    <groupId>com.qualinsight.mavencentral</groupId>
+    <artifactId>qualinsight-mavencentral-parent</artifactId>
+    <version>2.0.0</version>
   </parent>
+  <groupId>com.qualinsight.plugins.sonarqube</groupId>
   <artifactId>qualinsight-plugins-sonarqube-smell</artifactId>
   <version>3.1.0-SNAPSHOT</version>
   <description>Parent pom of QualInsight Code Smells plugin for SonarQube and its companion Java api library.</description>
@@ -40,11 +41,7 @@
     <tag>HEAD</tag>
   </scm>
   <properties>
-    <lib.version.qualinsight-plugins-sonarqube-smell-api>${project.version}</lib.version.qualinsight-plugins-sonarqube-smell-api>
-    <lib.version.qualinsight-libs-sonarqube-test>1.0.2</lib.version.qualinsight-libs-sonarqube-test>
-    <lib.version.jcip-annotations>1.0-1</lib.version.jcip-annotations>
-    <lib.version.guava>18.0</lib.version.guava>
-    <plugin.version.maven-dependency-plugin>2.10</plugin.version.maven-dependency-plugin>
+    <plugin.maven-dependency-plugin.version>2.10</plugin.maven-dependency-plugin.version>
     <!-- License properties -->
     <license.name>QualInsight-LGPL3</license.name>
     <license.project>qualinsight-plugins-sonarqube-smell</license.project>
@@ -56,35 +53,22 @@
     <module>plugin</module>
     <module>api</module>
   </modules>
-  <dependencyManagement>
-    <dependencies>
-      <dependency>
-        <groupId>com.google.guava</groupId>
-        <artifactId>guava</artifactId>
-        <version>${lib.version.guava}</version>
-        <scope>compile</scope>
-      </dependency>
-      <dependency>
-        <groupId>com.qualinsight.libs.sonarqube</groupId>
-        <artifactId>qualinsight-libs-sonarqube-test</artifactId>
-        <version>${lib.version.qualinsight-libs-sonarqube-test}</version>
-        <scope>test</scope>
-      </dependency>
-      <dependency>
-        <groupId>com.github.stephenc.jcip</groupId>
-        <artifactId>jcip-annotations</artifactId>
-        <version>${lib.version.jcip-annotations}</version>
-        <scope>test</scope>
-      </dependency>
-    </dependencies>
-  </dependencyManagement>
   <build>
     <pluginManagement>
       <plugins>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>${plugin.maven-compiler-plugin.version}</version>
+          <configuration>
+            <source>1.7</source>
+            <target>1.7</target>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-dependency-plugin</artifactId>
-          <version>${plugin.version.maven-dependency-plugin}</version>
+          <version>${plugin.maven-dependency-plugin.version}</version>
           <executions>
             <execution>
               <id>copy</id>
@@ -97,7 +81,7 @@
                   <artifactItem>
                     <groupId>com.qualinsight.plugins.sonarqube</groupId>
                     <artifactId>qualinsight-plugins-sonarqube-smell-api</artifactId>
-                    <version>${lib.version.qualinsight-plugins-sonarqube-smell-api}</version>
+                    <version>${project.version}</version>
                     <type>jar</type>
                   </artifactItem>
                 </artifactItems>
