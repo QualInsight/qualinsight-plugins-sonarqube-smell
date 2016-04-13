@@ -9,7 +9,9 @@
   <description>Allows developers to programmatically report code smells usually not seen by SonarQube but which should be taken into consideration when evaluating a project's technical debt. Usage &lt;a href="https://github.com/QualInsight/qualinsight-plugins-sonarqube-smell#code-smells-plugin-for-sonarqube"&gt;documentation&lt;/a&gt; is available on the project's Homepage.</description>
   <packaging>sonar-plugin</packaging>
   <properties>
+    <!-- Plugin versions -->
     <plugin.sonar-packaging-maven-plugin.version>1.15</plugin.sonar-packaging-maven-plugin.version>
+    <!-- Libraries versions -->
     <lib.sonar-plugin-api.version>5.2</lib.sonar-plugin-api.version>
     <lib.sonar-java-plugin.version>3.7.1</lib.sonar-java-plugin.version>
     <lib.sslr-squid-bridge.version>2.6</lib.sslr-squid-bridge.version>

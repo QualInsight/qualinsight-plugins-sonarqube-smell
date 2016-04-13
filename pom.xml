@@ -41,13 +41,14 @@
     <tag>HEAD</tag>
   </scm>
   <properties>
-    <plugin.maven-dependency-plugin.version>2.10</plugin.maven-dependency-plugin.version>
     <!-- License properties -->
     <license.name>QualInsight-LGPL3</license.name>
     <license.project>qualinsight-plugins-sonarqube-smell</license.project>
     <license.period>${project.inceptionYear}</license.period>
     <license.owner>${project.organization.name}</license.owner>
     <license.url>${project.organization.url}</license.url>
+    <!-- Plugin versions -->
+    <plugin.maven-dependency-plugin.version>2.10</plugin.maven-dependency-plugin.version>
   </properties>
   <modules>
     <module>plugin</module>
@@ -59,7 +60,6 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-compiler-plugin</artifactId>
-          <version>${plugin.maven-compiler-plugin.version}</version>
           <configuration>
             <source>1.7</source>
             <target>1.7</target>
