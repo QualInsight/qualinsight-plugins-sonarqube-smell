@@ -8,12 +8,16 @@
   <artifactId>qualinsight-plugins-sonarqube-smell-api</artifactId>
   <description>QualInsight code smells annotation api.</description>
   <packaging>bundle</packaging>
+  <properties>
+    <!-- Plugin versions -->
+    <plugin.maven-bundle-plugin.version>3.0.1</plugin.maven-bundle-plugin.version>
+  </properties>
   <build>
     <plugins>
       <plugin>
         <groupId>org.apache.felix</groupId>
         <artifactId>maven-bundle-plugin</artifactId>
-        <version>3.0.1</version>
+        <version>${plugin.maven-bundle-plugin.version}</version>
         <extensions>true</extensions>
         <configuration>
           <instructions>
