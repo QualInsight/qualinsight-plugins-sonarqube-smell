@@ -78,7 +78,7 @@ In order to be able to use the `@Smell` annotation, the following dependency mus
 </dependency>
 ```
 
-_Note 5_: The dependency is available in Maven central repository, click on the "Maven Central" badge on top of this page to see the latest dependency string.
+_Note 5_: The dependency is available in [Maven central repository](https://maven-badges.herokuapp.com/maven-central/com.qualinsight.plugins.sonarqube/qualinsight-plugins-sonarqube-smell-api).
 
 _Note 6:_ The API is packaged as an OSGi bundle.
 
@@ -114,6 +114,8 @@ public class MyClass {
     ...
 }
 ```
+
+For more information, please check the [API's Javadoc](http://www.javadoc.io/doc/com.qualinsight.plugins.sonarqube/qualinsight-plugins-sonarqube-smell-api/).
 
 #### Available Smell Types
 
