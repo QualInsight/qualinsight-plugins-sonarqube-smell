@@ -1,7 +1,7 @@
 # Code Smells plugin for SonarQube
 The Code Smells plugin for [SonarQube](http://www.sonarqube.org/) allows developers to report issues usually not seen by SonarQube but which should be taken into consideration when evaluating a project's technical debt. 
 
-[![Build Status](https://travis-ci.org/QualInsight/qualinsight-plugins-sonarqube-smell.svg?branch=master)](https://travis-ci.org/QualInsight/qualinsight-plugins-sonarqube-smell) [![Quality Gate](http://nemo.sonarqube.org/api/badges/gate?key=com.qualinsight.plugins.sonarqube:qualinsight-plugins-sonarqube-smell)](http://nemo.sonarqube.org/dashboard/index/com.qualinsight.plugins.sonarqube:qualinsight-plugins-sonarqube-smell)
+[![Build Status](https://travis-ci.org/QualInsight/qualinsight-plugins-sonarqube-smell.svg?branch=master)](https://travis-ci.org/QualInsight/qualinsight-plugins-sonarqube-smell) [![Quality Gate](http://nemo.sonarqube.org/api/badges/gate?key=com.qualinsight.plugins.sonarqube:qualinsight-plugins-sonarqube-smell)](http://nemo.sonarqube.org/dashboard/index/com.qualinsight.plugins.sonarqube:qualinsight-plugins-sonarqube-smell) [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.qualinsight.plugins.sonarqube/qualinsight-plugins-sonarqube-smell-api/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.qualinsight.plugins.sonarqube/qualinsight-plugins-sonarqube-smell-api) [![javadoc.io](https://javadoc-emblem.rhcloud.com/doc/com.qualinsight.plugins.sonarqube/qualinsight-plugins-sonarqube-smell-api/badge.svg)](http://www.javadoc.io/doc/com.qualinsight.plugins.sonarqube/qualinsight-plugins-sonarqube-smell-api)
 
 ## Rationale
 
@@ -74,11 +74,11 @@ In order to be able to use the `@Smell` annotation, the following dependency mus
 <dependency>
     <groupId>com.qualinsight.plugins.sonarqube</groupId>
     <artifactId>qualinsight-plugins-sonarqube-smell-api</artifactId>
-    <version>3.1.0-SNAPSHOT</version>
+    <version>PLUGIN_VERSION</version>
 </dependency>
 ```
 
-_Note 5_: The dependency is available in Maven central repository.
+_Note 5_: The dependency is available in Maven central repository, click on the "Maven Central" badge on top of this page to see the latest dependency string.
 
 _Note 6:_ The API is packaged as an OSGi bundle.
 
