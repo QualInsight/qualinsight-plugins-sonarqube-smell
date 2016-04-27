@@ -159,6 +159,10 @@ The second screenshot shows that Smell issues are added to regular SonarQube iss
 
 ![Code Smells in Issues Widget](smell_issues.png)
 
+## Contributing to the project
+
+If you want to contribute to this project, please have a look at the [developer toolset page](https://github.com/QualInsight/qualinsight-developer-toolset). It provides contribution guidelines I ask you to follow. Thanks in advance for your help !
+
 ## Conclusion
 
 I hope you'll enjoy this small plugin as much as I enjoyed writing it ! Do not hesitate to request new Code Smells types and send comments as well as requests for improvement. 
