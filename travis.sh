@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if [ "${TRAVIS_PULL_REQUEST}" == "false" ] 
+if [ "${TRAVIS_PULL_REQUEST}" = "false" ] 
 then
 	echo "Running build and SonarQube analysis"
 	mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent verify sonar:sonar \
