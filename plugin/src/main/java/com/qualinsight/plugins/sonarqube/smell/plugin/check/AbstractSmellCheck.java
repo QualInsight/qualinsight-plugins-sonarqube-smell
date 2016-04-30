@@ -52,6 +52,11 @@ public abstract class AbstractSmellCheck extends IssuableSubscriptionVisitor {
 
     private static final Pattern PATTERN = Pattern.compile("^\"(.*)\"$");
 
+    /**
+     * Returns the {@link SmellType} the check reports.
+     * 
+     * @return {@link SmellType} the check reports.
+     */
     public abstract SmellType smellType();
 
     @Override

@@ -26,6 +26,11 @@ import org.sonar.squidbridge.annotations.SqaleLinearRemediation;
 import org.sonar.squidbridge.annotations.SqaleSubCharacteristic;
 import com.qualinsight.plugins.sonarqube.smell.api.model.SmellType;
 
+/**
+ * Check for {@link SmellType.WRONG_LOGIC} smell type.
+ *
+ * @author Michel Pawlak
+ */
 @Rule(key = "0023", name = "Wrong logic", description = "Wrong (business) logic is being used.", priority = Priority.BLOCKER, tags = {
     "logic",
     "bug"

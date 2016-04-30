@@ -26,6 +26,11 @@ import org.sonar.squidbridge.annotations.SqaleLinearRemediation;
 import org.sonar.squidbridge.annotations.SqaleSubCharacteristic;
 import com.qualinsight.plugins.sonarqube.smell.api.model.SmellType;
 
+/**
+ * Check for {@link SmellType.MISSING_IMPLEMENTATION} smell type.
+ *
+ * @author Michel Pawlak
+ */
 @Rule(key = "0010", name = "Missing implementation", description = "A method's implementation is missing.", priority = Priority.MINOR, tags = {
     "todo"
 })

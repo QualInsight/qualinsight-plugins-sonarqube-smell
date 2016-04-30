@@ -26,6 +26,11 @@ import org.sonar.squidbridge.annotations.SqaleLinearRemediation;
 import org.sonar.squidbridge.annotations.SqaleSubCharacteristic;
 import com.qualinsight.plugins.sonarqube.smell.api.model.SmellType;
 
+/**
+ * Check for {@link SmellType.BAD_FRAMEWORK_USAGE} smell type.
+ *
+ * @author Michel Pawlak
+ */
 @Rule(key = "0004", name = "Bad framework usage", description = "A framework is not used the way it should.", priority = Priority.BLOCKER, tags = {
     "ecosytem"
 })

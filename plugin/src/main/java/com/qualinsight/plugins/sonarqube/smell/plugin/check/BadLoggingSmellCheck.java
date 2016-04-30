@@ -26,6 +26,11 @@ import org.sonar.squidbridge.annotations.SqaleLinearRemediation;
 import org.sonar.squidbridge.annotations.SqaleSubCharacteristic;
 import com.qualinsight.plugins.sonarqube.smell.api.model.SmellType;
 
+/**
+ * Check for {@link SmellType.BAD_LOGGING} smell type.
+ *
+ * @author Michel Pawlak
+ */
 @Rule(key = "0005", name = "Bad Logging", description = "The logging message, level, is inappropriate or the log is redundant.", priority = Priority.MAJOR, tags = {
     "logging",
     "performance"
