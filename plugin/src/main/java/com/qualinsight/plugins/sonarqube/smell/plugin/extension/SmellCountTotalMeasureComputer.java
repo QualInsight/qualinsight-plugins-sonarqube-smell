@@ -39,12 +39,12 @@ public final class SmellCountTotalMeasureComputer extends AbstractSmellMeasureCo
      * {@link SmellCountTotalMeasureComputer} IoC constructor.
      */
     public SmellCountTotalMeasureComputer() {
-        super(inputMetricsKeys, outputMetricsKeys, SmellMetricType.INTEGER);
+        super(inputMetricsKeys, outputMetricsKeys);
     }
 
     @Override
-    protected Aggregator aggregator(final MeasureComputerContext context, final String metricKey, final SmellMetricType type) {
-        final Aggregator aggregator = new Aggregator(context, metricKey, type);
+    protected Aggregator aggregator(final MeasureComputerContext context, final String metricKey) {
+        final Aggregator aggregator = new Aggregator(context, metricKey);
         for (final String inputMetricKey : inputMetricsKeys) {
             final Iterable<Measure> measures = context.getChildrenMeasures(inputMetricKey);
             if (measures != null) {

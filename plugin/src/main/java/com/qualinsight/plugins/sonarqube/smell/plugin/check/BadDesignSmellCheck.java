@@ -26,6 +26,11 @@ import org.sonar.squidbridge.annotations.SqaleLinearRemediation;
 import org.sonar.squidbridge.annotations.SqaleSubCharacteristic;
 import com.qualinsight.plugins.sonarqube.smell.api.model.SmellType;
 
+/**
+ * Check for {@link SmellType.BAD_DESIGN} smell type.
+ *
+ * @author Michel Pawlak
+ */
 @Rule(key = "0003", name = "Bad design", description = "The design is really bad and should be improved.", priority = Priority.BLOCKER, tags = {
     "design"
 })

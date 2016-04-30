@@ -26,6 +26,11 @@ import org.sonar.squidbridge.annotations.SqaleLinearRemediation;
 import org.sonar.squidbridge.annotations.SqaleSubCharacteristic;
 import com.qualinsight.plugins.sonarqube.smell.api.model.SmellType;
 
+/**
+ * Check for {@link SmellType.REINVENTED_WHEEL} smell type.
+ *
+ * @author Michel Pawlak
+ */
 @Rule(key = "0017", name = "Reinvented wheel", description = "A library does the same job, probably better.", priority = Priority.BLOCKER, tags = {
     "ecosystem"
 })

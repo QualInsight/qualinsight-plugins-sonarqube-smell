@@ -26,6 +26,11 @@ import org.sonar.squidbridge.annotations.SqaleLinearRemediation;
 import org.sonar.squidbridge.annotations.SqaleSubCharacteristic;
 import com.qualinsight.plugins.sonarqube.smell.api.model.SmellType;
 
+/**
+ * Check for {@link SmellType.INDECENT_EXPOSURE} smell type.
+ *
+ * @author Michel Pawlak
+ */
 @Rule(
     key = "0007",
     name = "Indecent exposure",

@@ -26,6 +26,11 @@ import org.sonar.squidbridge.annotations.SqaleLinearRemediation;
 import org.sonar.squidbridge.annotations.SqaleSubCharacteristic;
 import com.qualinsight.plugins.sonarqube.smell.api.model.SmellType;
 
+/**
+ * Check for {@link SmellType.ABBREVIATIONS_USAGE} smell type.
+ *
+ * @author Michel Pawlak
+ */
 @Rule(key = "0001", name = "Abbreviations usage", description = "Confusing abbreviations are being used instead of explicit names.", priority = Priority.MAJOR, tags = {
     "convention",
     "brain-overload",

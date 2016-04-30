@@ -38,7 +38,7 @@ public final class SmellDebtComputer extends AbstractSmellMeasureComputer {
      * {@link SmellDebtComputer} IoC constructor.
      */
     public SmellDebtComputer() {
-        super(inputMetricsKeys, outputMetricsKeys, SmellMetricType.LONG);
+        super(inputMetricsKeys, outputMetricsKeys);
     }
 
 }

@@ -26,6 +26,11 @@ import org.sonar.squidbridge.annotations.SqaleLinearRemediation;
 import org.sonar.squidbridge.annotations.SqaleSubCharacteristic;
 import com.qualinsight.plugins.sonarqube.smell.api.model.SmellType;
 
+/**
+ * Check for {@link SmellType.NON_EXCEPTION} smell type.
+ *
+ * @author Michel Pawlak
+ */
 @Rule(key = "0012", name = "Non exception", description = "Exception mechanism usage for non exceptional cases.", priority = Priority.MAJOR, tags = {
     "design",
     "performance",

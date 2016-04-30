@@ -26,6 +26,11 @@ import org.sonar.squidbridge.annotations.SqaleLinearRemediation;
 import org.sonar.squidbridge.annotations.SqaleSubCharacteristic;
 import com.qualinsight.plugins.sonarqube.smell.api.model.SmellType;
 
+/**
+ * Check for {@link SmellType.MULTIPLE_RESONSIBILITIES} smell type.
+ *
+ * @author Michel Pawlak
+ */
 @Rule(key = "0011", name = "Multiple responsibilities", description = "A class or method has multiple responsibilities.", priority = Priority.BLOCKER, tags = {
     "design",
     "confusing",
