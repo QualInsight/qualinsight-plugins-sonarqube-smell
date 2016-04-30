@@ -306,10 +306,10 @@ public final class SmellMetrics implements Metrics {
         SMELL_METRICS = new LinkedList<>();
         for (final Field field : SmellMetrics.class.getFields()) {
             final String fieldName = field.getName();
-            final Metric metric;
+            final Metric<Integer> metric;
             if (Metric.class.isAssignableFrom(field.getType())) {
                 try {
-                    metric = (Metric) field.get(null);
+                    metric = (Metric<Integer>) field.get(null);
                     SMELL_METRICS.add(metric);
                 } catch (final IllegalAccessException e) {
                     throw new IllegalStateException("Introspection error while declaring Smell Metrics", e);
@@ -346,8 +346,8 @@ public final class SmellMetrics implements Metrics {
      * @return
      */
     @CheckForNull
-    public static final List<Metric> metrics() {
-        return ImmutableList.<Metric> copyOf(SMELL_METRICS);
+    public static final List<Metric<Integer>> metrics() {
+        return ImmutableList.<Metric<Integer>> copyOf(SMELL_METRICS);
     }
 
 }

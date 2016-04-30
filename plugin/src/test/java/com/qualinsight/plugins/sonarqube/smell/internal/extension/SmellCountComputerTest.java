@@ -28,7 +28,6 @@ import net.jcip.annotations.NotThreadSafe;
 import org.assertj.core.api.Assertions;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -86,7 +85,6 @@ public class SmellCountComputerTest {
         softly.assertAll();
     }
 
-    @Ignore("Test need to be rewritten after migration to SQ 5.2")
     @Test
     @Parameters
     public void compute_should_saveMeasures_when_resourceIsAProject(final Type scope) {
@@ -98,9 +96,11 @@ public class SmellCountComputerTest {
             .thenReturn(DUMMY_METRIC_COLLECTION);
         final SmellCountByTypeMeasuresComputer sut = new SmellCountByTypeMeasuresComputer();
         sut.compute(this.context);
+
         Mockito.verify(this.context, Mockito.times(1))
             .getComponent();
-        // Write verifications here
+        Mockito.verify(this.context, Mockito.times(SmellTYPES_COUNT))
+            .addMeasure(Matchers.anyString(), Matchers.eq(0));
     }
 
     @SuppressWarnings("unused")
@@ -139,7 +139,6 @@ public class SmellCountComputerTest {
         };
     }
 
-    @Ignore("Test need to be rewritten after migration to SQ 5.2")
     @Test
     @Parameters
     public void decorate_should_saveExpectedMeasureTotal_when_usingAnyMetric(final Metric<Integer> metric, @SuppressWarnings("rawtypes") final Collection<Measure> measures) {
@@ -155,7 +154,12 @@ public class SmellCountComputerTest {
         sut.compute(this.context);
         Mockito.verify(this.context, Mockito.times(1))
             .getComponent();
-        // Write verifications here
+        Mockito.verify(this.context, Mockito.times(1))
+            .getChildrenMeasures(Matchers.eq(metric.getKey()));
+        Mockito.verify(this.context, Mockito.times(1))
+            .addMeasure(Matchers.eq(metric.getKey()), Matchers.eq(3));
+        Mockito.verify(this.context, Mockito.times(SmellTYPES_COUNT - 1))
+            .addMeasure(AdditionalMatchers.not(Matchers.eq(metric.getKey())), Matchers.eq(0));
     }
 
     private Object[] parametersForDecorate_should_saveExpectedMeasureTotal_when_usingAnyMetric() {

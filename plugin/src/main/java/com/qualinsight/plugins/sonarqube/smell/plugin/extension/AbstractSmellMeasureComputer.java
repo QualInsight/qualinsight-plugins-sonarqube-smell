@@ -41,15 +41,12 @@ abstract class AbstractSmellMeasureComputer implements MeasureComputer {
 
     private final List<String> inputMetricsKeys;
 
-    private SmellMetricType type;
-
     /**
      * {@link AbstractSmellMeasureComputer} IoC constructor.
      */
-    public AbstractSmellMeasureComputer(final List<String> inputMetricsKeys, final List<String> outputMetricsKeys, final SmellMetricType type) {
+    public AbstractSmellMeasureComputer(final List<String> inputMetricsKeys, final List<String> outputMetricsKeys) {
         this.inputMetricsKeys = inputMetricsKeys;
         this.outputMetricsKeys = outputMetricsKeys;
-        this.type = type;
     }
 
     @Override
@@ -76,7 +73,7 @@ abstract class AbstractSmellMeasureComputer implements MeasureComputer {
     private void compute(final Component component, final MeasureComputerContext context) {
         LOGGER.info("Computing measures for component '{}' and level {})", component.getKey(), component.getType());
         for (final String outputMetricKey : this.outputMetricsKeys) {
-            final Aggregator computer = aggregator(context, outputMetricKey, this.type);
+            final Aggregator computer = aggregator(context, outputMetricKey);
             LOGGER.info("Computed measure '{}': {})", outputMetricKey, computer.getResult());
             computer.addMeasureToContext();
         }
@@ -87,11 +84,10 @@ abstract class AbstractSmellMeasureComputer implements MeasureComputer {
      *
      * @param context {@link MeasureComputerContext} to which aggregated result has to be saved.
      * @param metricKey key of the {@link Metric} for which {@link Measure}s are aggregated.
-     * @param type {@link SmellMetricType} of the {@link Metric}.
      * @return {@link Aggregator} instance.
      */
-    protected Aggregator aggregator(final MeasureComputerContext context, final String metricKey, final SmellMetricType type) {
-        final Aggregator aggregator = new Aggregator(context, metricKey, type);
+    protected Aggregator aggregator(final MeasureComputerContext context, final String metricKey) {
+        final Aggregator aggregator = new Aggregator(context, metricKey);
         final Iterable<Measure> measures = context.getChildrenMeasures(metricKey);
         if (measures != null) {
             for (final Measure measure : measures) {
@@ -115,10 +111,6 @@ abstract class AbstractSmellMeasureComputer implements MeasureComputer {
 
         private Integer intValue = 0;
 
-        private Long longValue = 0L;
-
-        private SmellMetricType type;
-
         private String metricKey;
 
         private MeasureComputerContext context;
@@ -128,12 +120,10 @@ abstract class AbstractSmellMeasureComputer implements MeasureComputer {
          *
          * @param context {@link MeasureComputerContext} to which aggregated result has to be saved.
          * @param metricKey key of the {@link Metric} for which {@link Measure}s are aggregated.
-         * @param type {@link SmellMetricType} of the {@link Metric}.
          */
-        public Aggregator(final MeasureComputerContext context, final String metricKey, final SmellMetricType type) {
+        public Aggregator(final MeasureComputerContext context, final String metricKey) {
             this.context = context;
             this.metricKey = metricKey;
-            this.type = type;
         }
 
         /**
@@ -142,18 +132,7 @@ abstract class AbstractSmellMeasureComputer implements MeasureComputer {
          * @return aggregation result as a {@link Number}
          */
         public Number getResult() {
-            Number result = null;
-            switch (this.type) {
-                case INTEGER:
-                    result = this.intValue;
-                    break;
-                case LONG:
-                    result = this.longValue;
-                    break;
-                default:
-                    break;
-            }
-            return result;
+            return this.intValue;
         }
 
         /**
@@ -162,32 +141,14 @@ abstract class AbstractSmellMeasureComputer implements MeasureComputer {
          * @param measure {@link Measure} from which the value to be aggregated has to be extracted.
          */
         public void aggregate(final Measure measure) {
-            switch (this.type) {
-                case INTEGER:
-                    this.intValue += measure.getIntValue();
-                    break;
-                case LONG:
-                    this.longValue += measure.getLongValue();
-                    break;
-                default:
-                    break;
-            }
+            this.intValue += measure.getIntValue();
         }
 
         /**
          * Saves the aggregation result to the {@link MeasureComputerContext}.
          */
         public void addMeasureToContext() {
-            switch (this.type) {
-                case INTEGER:
-                    this.context.addMeasure(this.metricKey, this.intValue);
-                    break;
-                case LONG:
-                    this.context.addMeasure(this.metricKey, this.longValue);
-                    break;
-                default:
-                    break;
-            }
+            this.context.addMeasure(this.metricKey, this.intValue);
         }
 
     }

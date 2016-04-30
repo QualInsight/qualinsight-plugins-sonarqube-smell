@@ -26,7 +26,6 @@ import java.util.List;
 import com.google.common.collect.ImmutableList;
 import org.assertj.core.api.Assertions;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
@@ -40,6 +39,7 @@ import org.sonar.api.batch.fs.FilePredicates;
 import org.sonar.api.batch.fs.FileSystem;
 import org.sonar.api.batch.fs.InputFile;
 import org.sonar.api.measures.Measure;
+import org.sonar.api.resources.Resource;
 import org.sonar.plugins.java.Java;
 import com.qualinsight.plugins.sonarqube.smell.plugin.extension.SmellMeasuresSensor;
 import com.qualinsight.plugins.sonarqube.smell.plugin.extension.SmellMetrics;
@@ -60,6 +60,9 @@ public class SmellMeasuresSensorTest {
     public InputFile inputFile;
 
     @Mock
+    public Resource resource;
+
+    @Mock
     public SensorContext context;
 
     @Before
@@ -70,7 +73,6 @@ public class SmellMeasuresSensorTest {
             .thenReturn(this.predicate);
     }
 
-    @Ignore
     @Test
     public void analyse_should_saveMeasures() throws IOException {
         final SmellMeasuresSensor sut = new SmellMeasuresSensor(this.fs);
@@ -79,20 +81,32 @@ public class SmellMeasuresSensorTest {
             .thenReturn(ImmutableList.<InputFile> of(this.inputFile));
         Mockito.when(this.inputFile.file())
             .thenReturn(testFile);
+        Mockito.when(this.inputFile.absolutePath())
+            .thenReturn(testFile.getAbsolutePath());
+        Mockito.when(this.context.getResource(this.inputFile))
+            .thenReturn(this.resource);
         sut.analyse(null, this.context);
         Mockito.verify(this.inputFile, Mockito.times(1))
             .file();
         final ArgumentCaptor<Measure> captor = ArgumentCaptor.forClass(Measure.class);
+        // 2 times because of smell count + debt
         Mockito.verify(this.context, Mockito.times(2))
-            .saveMeasure(Matchers.eq(this.inputFile), captor.capture());
+            .getResource((Matchers.eq(this.inputFile)));
+        // 3 because of : SMELL_COUNT_ANTI_PATTERN, SMELL_COUNT, SMELL_DEBT
+        Mockito.verify(this.context, Mockito.times(3))
+            .saveMeasure(Matchers.eq(this.resource), captor.capture());
         final List<Measure> measures = captor.getAllValues();
         assertEquals(SmellMetrics.SMELL_COUNT_ANTI_PATTERN, measures.get(0)
             .getMetric());
         assertEquals(Integer.valueOf(7), measures.get(0)
             .getIntValue());
-        assertEquals(SmellMetrics.SMELL_DEBT, measures.get(1)
+        assertEquals(SmellMetrics.SMELL_COUNT, measures.get(1)
             .getMetric());
-        assertEquals(Integer.valueOf(70), measures.get(1)
+        assertEquals(Integer.valueOf(7), measures.get(1)
+            .getIntValue());
+        assertEquals(SmellMetrics.SMELL_DEBT, measures.get(2)
+            .getMetric());
+        assertEquals(Integer.valueOf(70), measures.get(2)
             .getIntValue());
         Mockito.verifyNoMoreInteractions(this.context);
     }

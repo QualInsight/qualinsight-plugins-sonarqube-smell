@@ -45,7 +45,7 @@ public final class SmellCountByTypeMeasuresComputer extends AbstractSmellMeasure
      * {@link SmellCountByTypeMeasuresComputer} IoC constructor.
      */
     public SmellCountByTypeMeasuresComputer() {
-        super(SMELL_COUNT_INPUT_METRICS_KEYS, SMELL_COUNT_OUTPUT_METRICS_KEYS, SmellMetricType.INTEGER);
+        super(SMELL_COUNT_INPUT_METRICS_KEYS, SMELL_COUNT_OUTPUT_METRICS_KEYS);
     }
 
 }
