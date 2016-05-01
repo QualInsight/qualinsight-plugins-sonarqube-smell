@@ -21,7 +21,7 @@ package com.qualinsight.plugins.sonarqube.smell.internal.check;
 
 import org.junit.Test;
 import com.qualinsight.libs.sonarqube.test.check.JavaCheckAssertions;
-import com.qualinsight.plugins.sonarqube.smell.plugin.check.AbbreviationsUsageSmellCheck;
+import com.qualinsight.plugins.sonarqube.smell.internal.check.AbbreviationsUsageSmellCheck;
 
 public class AbbreviationsUsageSmellCheckTest {
 

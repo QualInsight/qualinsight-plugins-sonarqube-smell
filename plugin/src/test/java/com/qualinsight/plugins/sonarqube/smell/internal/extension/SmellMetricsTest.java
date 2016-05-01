@@ -31,7 +31,7 @@ import org.sonar.api.measures.CoreMetrics;
 import org.sonar.api.measures.Metric;
 import org.sonar.api.measures.Metric.ValueType;
 import com.qualinsight.plugins.sonarqube.smell.api.model.SmellType;
-import com.qualinsight.plugins.sonarqube.smell.plugin.extension.SmellMetrics;
+import com.qualinsight.plugins.sonarqube.smell.internal.extension.SmellMetrics;
 
 @NotThreadSafe
 @RunWith(JUnitParamsRunner.class)
@@ -57,8 +57,21 @@ public class SmellMetricsTest {
 
     @SuppressWarnings("unchecked")
     @Test
+    public void getMetrics_should_return_sameMetricsAsStaticMethodMetrics() {
+        final SmellMetrics sut = new SmellMetrics();
+        @SuppressWarnings("rawtypes")
+        final List actualMetrics = sut.getMetrics();
+        @SuppressWarnings("rawtypes")
+        final List actualMetricsThroughStaticMethod = SmellMetrics.metrics();
+        Assertions.assertThat(actualMetricsThroughStaticMethod)
+            .containsExactlyElementsOf(actualMetrics);
+    }
+
+    @SuppressWarnings("unchecked")
+    @Test
     public void getMetrics_should_return_expectedMetrics() {
         final SmellMetrics sut = new SmellMetrics();
+        @SuppressWarnings("rawtypes")
         final List actualMetrics = sut.getMetrics();
         final SoftAssertions softly = new SoftAssertions();
         softly.assertThat(actualMetrics)

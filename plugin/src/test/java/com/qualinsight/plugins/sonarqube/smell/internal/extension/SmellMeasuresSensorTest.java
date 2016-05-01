@@ -41,8 +41,8 @@ import org.sonar.api.batch.fs.InputFile;
 import org.sonar.api.measures.Measure;
 import org.sonar.api.resources.Resource;
 import org.sonar.plugins.java.Java;
-import com.qualinsight.plugins.sonarqube.smell.plugin.extension.SmellMeasuresSensor;
-import com.qualinsight.plugins.sonarqube.smell.plugin.extension.SmellMetrics;
+import com.qualinsight.plugins.sonarqube.smell.internal.extension.SmellMeasuresSensor;
+import com.qualinsight.plugins.sonarqube.smell.internal.extension.SmellMetrics;
 
 @RunWith(MockitoJUnitRunner.class)
 public class SmellMeasuresSensorTest {

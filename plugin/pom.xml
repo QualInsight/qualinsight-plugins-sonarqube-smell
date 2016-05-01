@@ -171,7 +171,7 @@
         <version>${plugin.sonar-packaging-maven-plugin.version}</version>
         <extensions>true</extensions>
         <configuration>
-          <pluginClass>com.qualinsight.plugins.sonarqube.smell.plugin.SmellPlugin</pluginClass>
+          <pluginClass>com.qualinsight.plugins.sonarqube.smell.internal.SmellPlugin</pluginClass>
           <pluginKey>smells</pluginKey>
           <pluginName>Code Smells</pluginName>
           <finalName>qualinsight-sonarqube-smell-plugin-${project.version}</finalName>

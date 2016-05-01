@@ -36,7 +36,7 @@ import org.sonar.api.server.rule.RulesDefinition.DebtRemediationFunctions;
 import org.sonar.api.server.rule.RulesDefinition.NewRepository;
 import org.sonar.api.server.rule.RulesDefinition.NewRule;
 import org.sonar.plugins.java.Java;
-import com.qualinsight.plugins.sonarqube.smell.plugin.extension.SmellRulesDefinition;
+import com.qualinsight.plugins.sonarqube.smell.internal.extension.SmellRulesDefinition;
 
 @RunWith(MockitoJUnitRunner.class)
 public class SmellRulesDefinitionTest {

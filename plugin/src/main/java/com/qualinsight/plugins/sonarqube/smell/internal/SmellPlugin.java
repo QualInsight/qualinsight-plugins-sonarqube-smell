@@ -20,9 +20,10 @@
 package com.qualinsight.plugins.sonarqube.smell.internal;
 
 import java.util.List;
-import org.assertj.core.api.SoftAssertions;
-import org.junit.Test;
-import com.qualinsight.plugins.sonarqube.smell.internal.SmellPlugin;
+import com.google.common.collect.ImmutableList;
+import org.sonar.api.Properties;
+import org.sonar.api.Property;
+import org.sonar.api.SonarPlugin;
 import com.qualinsight.plugins.sonarqube.smell.internal.extension.SmellChecksRegistrar;
 import com.qualinsight.plugins.sonarqube.smell.internal.extension.SmellCountByTypeMeasuresComputer;
 import com.qualinsight.plugins.sonarqube.smell.internal.extension.SmellCountTotalMeasureComputer;
@@ -32,36 +33,28 @@ import com.qualinsight.plugins.sonarqube.smell.internal.extension.SmellMetrics;
 import com.qualinsight.plugins.sonarqube.smell.internal.extension.SmellRulesDefinition;
 import com.qualinsight.plugins.sonarqube.smell.internal.extension.SmellWidget;
 
-public class SmellPluginTest {
+/**
+ * Core Code Smells SonarPlugin class. It declares all extensions used by the plugin.
+ *
+ * @author Michel Pawlak
+ */
+@Properties({
+    @Property(key = SmellPropertyKeys.WIDGET_TITLE_KEY, name = "Widget title", defaultValue = "Code Smells")
+})
+public final class SmellPlugin extends SonarPlugin {
 
-    private static final int EXPECTED_EXTENSIONS_COUNT = 8;
-
-    @SuppressWarnings("unchecked")
-    @Test
-    public void getExtensions_should_return_expectedExtensions() {
-        final SmellPlugin sut = new SmellPlugin();
-        @SuppressWarnings("rawtypes")
-        final List actualExtensions = sut.getExtensions();
-        final SoftAssertions softly = new SoftAssertions();
-        softly.assertThat(actualExtensions)
-            .hasSize(EXPECTED_EXTENSIONS_COUNT);
-        softly.assertThat(actualExtensions)
-            .contains(SmellChecksRegistrar.class);
-        softly.assertThat(actualExtensions)
-            .contains(SmellMetrics.class);
-        softly.assertThat(actualExtensions)
-            .contains(SmellWidget.class);
-        softly.assertThat(actualExtensions)
-            .contains(SmellRulesDefinition.class);
-        softly.assertThat(actualExtensions)
-            .contains(SmellMeasuresSensor.class);
-        softly.assertThat(actualExtensions)
-            .contains(SmellDebtComputer.class);
-        softly.assertThat(actualExtensions)
-            .contains(SmellCountByTypeMeasuresComputer.class);
-        softly.assertThat(actualExtensions)
-            .contains(SmellCountTotalMeasureComputer.class);
-        softly.assertAll();
+    @SuppressWarnings("rawtypes")
+    @Override
+    public List getExtensions() {
+        return ImmutableList.builder()
+            .add(SmellChecksRegistrar.class)
+            .add(SmellRulesDefinition.class)
+            .add(SmellMetrics.class)
+            .add(SmellMeasuresSensor.class)
+            .add(SmellDebtComputer.class)
+            .add(SmellCountByTypeMeasuresComputer.class)
+            .add(SmellCountTotalMeasureComputer.class)
+            .add(SmellWidget.class)
+            .build();
     }
-
 }
