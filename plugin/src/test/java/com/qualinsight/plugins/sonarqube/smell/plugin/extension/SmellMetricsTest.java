@@ -17,7 +17,7 @@
  * License along with this program. If not, you can retrieve a copy
  * from <http://www.gnu.org/licenses/>.
  */
-package com.qualinsight.plugins.sonarqube.smell.internal.extension;
+package com.qualinsight.plugins.sonarqube.smell.plugin.extension;
 
 import java.util.List;
 import junitparams.JUnitParamsRunner;
@@ -57,8 +57,21 @@ public class SmellMetricsTest {
 
     @SuppressWarnings("unchecked")
     @Test
+    public void getMetrics_should_return_sameMetricsAsStaticMethodMetrics() {
+        final SmellMetrics sut = new SmellMetrics();
+        @SuppressWarnings("rawtypes")
+        final List actualMetrics = sut.getMetrics();
+        @SuppressWarnings("rawtypes")
+        final List actualMetricsThroughStaticMethod = SmellMetrics.metrics();
+        Assertions.assertThat(actualMetricsThroughStaticMethod)
+            .containsExactlyElementsOf(actualMetrics);
+    }
+
+    @SuppressWarnings("unchecked")
+    @Test
     public void getMetrics_should_return_expectedMetrics() {
         final SmellMetrics sut = new SmellMetrics();
+        @SuppressWarnings("rawtypes")
         final List actualMetrics = sut.getMetrics();
         final SoftAssertions softly = new SoftAssertions();
         softly.assertThat(actualMetrics)

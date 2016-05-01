@@ -49,6 +49,14 @@ abstract class AbstractSmellMeasureComputer implements MeasureComputer {
         this.outputMetricsKeys = outputMetricsKeys;
     }
 
+    public List<String> getOutputMetricsKeys() {
+        return this.outputMetricsKeys;
+    }
+
+    public List<String> getInputMetricsKeys() {
+        return this.inputMetricsKeys;
+    }
+
     @Override
     public MeasureComputerDefinition define(final MeasureComputerDefinitionContext definitionContext) {
         return definitionContext.newDefinitionBuilder()

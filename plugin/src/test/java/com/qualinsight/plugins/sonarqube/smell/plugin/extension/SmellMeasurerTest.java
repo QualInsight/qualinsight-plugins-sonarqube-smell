@@ -17,7 +17,7 @@
  * License along with this program. If not, you can retrieve a copy
  * from <http://www.gnu.org/licenses/>.
  */
-package com.qualinsight.plugins.sonarqube.smell.internal.extension;
+package com.qualinsight.plugins.sonarqube.smell.plugin.extension;
 
 import static org.junit.Assert.assertEquals;
 import java.io.File;

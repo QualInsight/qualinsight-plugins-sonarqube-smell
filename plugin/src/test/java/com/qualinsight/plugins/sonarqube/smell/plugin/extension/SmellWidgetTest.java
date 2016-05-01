@@ -28,6 +28,7 @@ import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.sonar.api.config.Settings;
 import com.qualinsight.plugins.sonarqube.smell.plugin.SmellPropertyKeys;
+import com.qualinsight.plugins.sonarqube.smell.plugin.extension.SmellWidget;
 
 @RunWith(MockitoJUnitRunner.class)
 public class SmellWidgetTest {

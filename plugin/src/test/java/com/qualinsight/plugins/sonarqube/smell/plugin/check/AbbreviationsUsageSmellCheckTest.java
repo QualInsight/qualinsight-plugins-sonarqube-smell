@@ -17,7 +17,7 @@
  * License along with this program. If not, you can retrieve a copy
  * from <http://www.gnu.org/licenses/>.
  */
-package com.qualinsight.plugins.sonarqube.smell.internal.check;
+package com.qualinsight.plugins.sonarqube.smell.plugin.check;
 
 import org.junit.Test;
 import com.qualinsight.libs.sonarqube.test.check.JavaCheckAssertions;
