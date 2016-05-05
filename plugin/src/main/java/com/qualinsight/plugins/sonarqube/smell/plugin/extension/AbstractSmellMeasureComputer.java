@@ -49,10 +49,20 @@ abstract class AbstractSmellMeasureComputer implements MeasureComputer {
         this.outputMetricsKeys = outputMetricsKeys;
     }
 
+    /**
+     * Provides a {@link List} of {@link Metric} keys for which the {@link MeasureComputer} computes and writes measures.
+     *
+     * @return output metrics keys
+     */
     public List<String> getOutputMetricsKeys() {
         return this.outputMetricsKeys;
     }
 
+    /**
+     * Provides a {@link List} of {@link Metric} keys the {@link MeasureComputer} uses to compute measures.
+     *
+     * @return input metrics keys
+     */
     public List<String> getInputMetricsKeys() {
         return this.inputMetricsKeys;
     }
