@@ -20,24 +20,23 @@
 package com.qualinsight.plugins.sonarqube.smell.plugin.check;
 
 import org.junit.Test;
-import com.qualinsight.libs.sonarqube.test.check.JavaCheckAssertions;
-import com.qualinsight.plugins.sonarqube.smell.plugin.check.AbbreviationsUsageSmellCheck;
+import org.sonar.java.checks.verifier.JavaCheckVerifier;
 
 public class AbbreviationsUsageSmellCheckTest {
 
     @Test
     public void check_shouldNot_raiseIssues_when_noAnnotationIsFound() {
-        JavaCheckAssertions.assertHasNoIssue("src/test/resources/AbbreviationsUsageSmellCheckTest_1.java", new AbbreviationsUsageSmellCheck());
+        JavaCheckVerifier.verifyNoIssue("src/test/resources/AbbreviationsUsageSmellCheckTest_1.java", new AbbreviationsUsageSmellCheck());
     }
 
     @Test
     public void check_should_raiseIssues_when_multiAnnotationsAreFound() {
-        JavaCheckAssertions.assertHasIssues("src/test/resources/AbbreviationsUsageSmellCheckTest_2.java", new AbbreviationsUsageSmellCheck());
+        JavaCheckVerifier.verify("src/test/resources/AbbreviationsUsageSmellCheckTest_2.java", new AbbreviationsUsageSmellCheck());
     }
 
     @Test
     public void check_should_raiseIssues_when_annotationAreFound() {
-        JavaCheckAssertions.assertHasIssues("src/test/resources/AbbreviationsUsageSmellCheckTest_3.java", new AbbreviationsUsageSmellCheck());
+        JavaCheckVerifier.verify("src/test/resources/AbbreviationsUsageSmellCheckTest_3.java", new AbbreviationsUsageSmellCheck());
     }
 
 }

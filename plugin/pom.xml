@@ -13,10 +13,11 @@
     <plugin.maven-dependency-plugin.version>2.10</plugin.maven-dependency-plugin.version>
     <plugin.sonar-packaging-maven-plugin.version>1.15</plugin.sonar-packaging-maven-plugin.version>
     <!-- Libraries versions -->
-    <lib.sonar-plugin-api.version>5.2</lib.sonar-plugin-api.version>
-    <lib.sonar-java-plugin.version>3.7.1</lib.sonar-java-plugin.version>
-    <lib.sslr-squid-bridge.version>2.6</lib.sslr-squid-bridge.version>
-    <lib.guava.version>15.0</lib.guava.version>
+    <lib.sonar-plugin-api.version>5.6.1</lib.sonar-plugin-api.version>
+    <lib.sonar-java-plugin.version>4.0</lib.sonar-java-plugin.version>
+    <lib.java-checks-testkit.version>4.0</lib.java-checks-testkit.version>
+    <lib.sslr-squid-bridge.version>2.6.1</lib.sslr-squid-bridge.version>
+    <lib.guava.version>19.0</lib.guava.version>
     <lib.commons-lang.version>2.6</lib.commons-lang.version>
     <lib.commons-io.version>2.4</lib.commons-io.version>
     <lib.slf4j-api.version>1.7.21</lib.slf4j-api.version>
@@ -25,8 +26,8 @@
     <lib.assertj-core.version>2.1.0</lib.assertj-core.version>
     <lib.junit.version>4.11</lib.junit.version>
     <lib.mockito-all.version>1.10.19</lib.mockito-all.version>
-    <lib.qualinsight-libs-sonarqube-test.version>1.0.2</lib.qualinsight-libs-sonarqube-test.version>
     <lib.jcip-annotations.version>1.0-1</lib.jcip-annotations.version>
+    <lib.fest-assert.version>1.4</lib.fest-assert.version>
   </properties>
   <dependencies>
     <dependency>
@@ -41,8 +42,8 @@
       <version>${lib.sonar-plugin-api.version}</version>
       <scope>provided</scope>
     </dependency>
-    <dependency>
-      <groupId>org.codehaus.sonar.sslr-squid-bridge</groupId>
+	<dependency>
+      <groupId>org.sonarsource.sslr-squid-bridge</groupId>
       <artifactId>sslr-squid-bridge</artifactId>
       <version>${lib.sslr-squid-bridge.version}</version>
       <scope>compile</scope>
@@ -70,6 +71,12 @@
       <artifactId>sonar-java-plugin</artifactId>
       <version>${lib.sonar-java-plugin.version}</version>
       <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.sonarsource.java</groupId>
+      <artifactId>java-checks-testkit</artifactId>
+      <version>${lib.java-checks-testkit.version}</version>
+      <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.slf4j</groupId>
@@ -126,15 +133,15 @@
       <scope>compile</scope>
     </dependency>
     <dependency>
-      <groupId>com.qualinsight.libs.sonarqube</groupId>
-      <artifactId>qualinsight-libs-sonarqube-test</artifactId>
-      <version>${lib.qualinsight-libs-sonarqube-test.version}</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
       <groupId>com.github.stephenc.jcip</groupId>
       <artifactId>jcip-annotations</artifactId>
       <version>${lib.jcip-annotations.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.easytesting</groupId>
+      <artifactId>fest-assert</artifactId>
+      <version>${lib.fest-assert.version}</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
@@ -178,7 +185,7 @@
           <pluginDescription />
           <pluginTermsConditionsUrl>https://www.gnu.org/licenses/lgpl-3.0.txt</pluginTermsConditionsUrl>
           <pluginUrl>https://github.com/QualInsight/qualinsight-plugins-sonarqube-smell/</pluginUrl>
-          <requirePlugins>java:3.7.1</requirePlugins>
+          <requirePlugins>java:4.0</requirePlugins>
         </configuration>
       </plugin>
     </plugins>
