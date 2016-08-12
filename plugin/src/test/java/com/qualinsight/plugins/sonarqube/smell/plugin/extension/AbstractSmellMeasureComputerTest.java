@@ -21,7 +21,6 @@ package com.qualinsight.plugins.sonarqube.smell.plugin.extension;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import com.qualinsight.plugins.sonarqube.smell.plugin.extension.AbstractSmellMeasureComputer;
 import com.google.common.collect.ImmutableList;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;

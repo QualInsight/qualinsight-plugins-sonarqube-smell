@@ -21,6 +21,7 @@ package com.qualinsight.plugins.sonarqube.smell.plugin.extension;
 
 import java.lang.reflect.Field;
 import java.util.EnumMap;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -43,14 +44,16 @@ public final class SmellMetrics implements Metrics {
 
     public static final String DOMAIN = "Code Smells";
 
-    private static final List<Metric<Integer>> SMELL_METRICS;
+    private static final List<Metric<Number>> SMELL_METRICS;
 
-    private static final Map<SmellType, Metric<Integer>> SMELL_METRICS_BY_TYPE = new EnumMap<>(SmellType.class);
+    private static final Map<SmellType, Metric<Number>> SMELL_METRICS_BY_TYPE = new EnumMap<>(SmellType.class);
+
+    private static final Map<String, Metric<Number>> SMELL_METRICS_BY_KEY = new HashMap<>();
 
     /**
      * Metric that tracks the debt related to Smell issues.
      */
-    public static final Metric<Integer> SMELL_DEBT = new Metric.Builder("SMELL_DEBT", "Debt", ValueType.WORK_DUR).setBestValue(0d)
+    public static final Metric<Long> SMELL_DEBT = new Metric.Builder("SMELL_DEBT", "Debt", ValueType.WORK_DUR).setBestValue(0d)
         .setDescription("Technical debt reported by developers.")
         .setDirection(Metric.DIRECTION_WORST)
         .setDomain(CoreMetrics.DOMAIN_TECHNICAL_DEBT)
@@ -90,8 +93,8 @@ public final class SmellMetrics implements Metrics {
     /**
      * Metric that counts OVERCOMPLICATED_ALGORITHM {@link SmellType}
      */
-    public static final Metric<Integer> SMELL_COUNT_OVERCOMPLICATED_ALGORITHM = new Metric.Builder("SMELL_COUNT_OVERCOMPLICATED_ALGORITHM", "Overcomplicated algorithm count", ValueType.INT).setBestValue(
-        0d)
+    public static final Metric<Integer> SMELL_COUNT_OVERCOMPLICATED_ALGORITHM = new Metric.Builder("SMELL_COUNT_OVERCOMPLICATED_ALGORITHM", "Overcomplicated algorithm count", ValueType.INT)
+        .setBestValue(0d)
         .setDescription("Number of overcomplicated algorithms reported by developers.")
         .setDirection(Metric.DIRECTION_WORST)
         .setDomain(DOMAIN)
@@ -251,8 +254,8 @@ public final class SmellMetrics implements Metrics {
     /**
      * Metric that counts MULTIPLE_RESPONSIBILITIES {@link SmellType}
      */
-    public static final Metric<Integer> SMELL_COUNT_MULTIPLE_RESPONSIBILITIES = new Metric.Builder("SMELL_COUNT_MULTIPLE_RESPONSIBILITIES", "Multiple responsibilities count", ValueType.INT).setBestValue(
-        0d)
+    public static final Metric<Integer> SMELL_COUNT_MULTIPLE_RESPONSIBILITIES = new Metric.Builder("SMELL_COUNT_MULTIPLE_RESPONSIBILITIES", "Multiple responsibilities count", ValueType.INT)
+        .setBestValue(0d)
         .setDescription("Number of multiple responsibilities reported by developers.")
         .setDirection(Metric.DIRECTION_WORST)
         .setDomain(DOMAIN)
@@ -306,11 +309,12 @@ public final class SmellMetrics implements Metrics {
         SMELL_METRICS = new LinkedList<>();
         for (final Field field : SmellMetrics.class.getFields()) {
             final String fieldName = field.getName();
-            final Metric<Integer> metric;
+            final Metric<Number> metric;
             if (Metric.class.isAssignableFrom(field.getType())) {
                 try {
-                    metric = (Metric<Integer>) field.get(null);
+                    metric = (Metric<Number>) field.get(null);
                     SMELL_METRICS.add(metric);
+                    SMELL_METRICS_BY_KEY.put(metric.getKey(), metric);
                 } catch (final IllegalAccessException e) {
                     throw new IllegalStateException("Introspection error while declaring Smell Metrics", e);
                 }
@@ -336,8 +340,19 @@ public final class SmellMetrics implements Metrics {
      * @return a {@link Metric} corresponding to the {@link SmellType}
      */
     @CheckForNull
-    public static final Metric<Integer> metricFor(final SmellType type) {
+    public static final Metric<Number> metricFor(final SmellType type) {
         return SMELL_METRICS_BY_TYPE.get(type);
+    }
+
+    /**
+     * Returns a {@link Metric} from a {@link SmellType}
+     *
+     * @param type {@link SmellType} to convert to a metric
+     * @return a {@link Metric} corresponding to the {@link SmellType}
+     */
+    @CheckForNull
+    public static final Metric<Number> metricFor(final String metricKey) {
+        return SMELL_METRICS_BY_KEY.get(metricKey);
     }
 
     /**
@@ -346,8 +361,8 @@ public final class SmellMetrics implements Metrics {
      * @return
      */
     @CheckForNull
-    public static final List<Metric<Integer>> metrics() {
-        return ImmutableList.<Metric<Integer>> copyOf(SMELL_METRICS);
+    public static final List<Metric<Number>> metrics() {
+        return ImmutableList.<Metric<Number>> copyOf(SMELL_METRICS);
     }
 
 }
