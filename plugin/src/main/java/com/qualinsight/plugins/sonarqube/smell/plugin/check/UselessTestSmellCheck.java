@@ -27,7 +27,7 @@ import org.sonar.squidbridge.annotations.SqaleSubCharacteristic;
 import com.qualinsight.plugins.sonarqube.smell.api.model.SmellType;
 
 /**
- * Check for {@link SmellType.USELESS_TEST} smell type.
+ * Check for USELESS_TEST smell type.
  *
  * @author Michel Pawlak
  */

@@ -27,7 +27,7 @@ import org.sonar.squidbridge.annotations.SqaleSubCharacteristic;
 import com.qualinsight.plugins.sonarqube.smell.api.model.SmellType;
 
 /**
- * Check for {@link SmellType.NON_EXCEPTION} smell type.
+ * Check for NON_EXCEPTION smell type.
  *
  * @author Michel Pawlak
  */

@@ -27,7 +27,7 @@ import org.sonar.squidbridge.annotations.SqaleSubCharacteristic;
 import com.qualinsight.plugins.sonarqube.smell.api.model.SmellType;
 
 /**
- * Check for {@link SmellType.SPECULATIVE_GENERALITY} smell type.
+ * Check for SPECULATIVE_GENERALITY smell type.
  *
  * @author Michel Pawlak
  */

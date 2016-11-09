@@ -27,7 +27,7 @@ import org.sonar.squidbridge.annotations.SqaleSubCharacteristic;
 import com.qualinsight.plugins.sonarqube.smell.api.model.SmellType;
 
 /**
- * Check for {@link SmellType.ANTI_PATTERN} smell type.
+ * Check for ANTI_PATTERN smell type.
  *
  * @author Michel Pawlak
  */

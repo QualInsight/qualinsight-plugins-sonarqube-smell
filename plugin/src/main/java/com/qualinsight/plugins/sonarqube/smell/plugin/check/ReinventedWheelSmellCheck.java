@@ -27,7 +27,7 @@ import org.sonar.squidbridge.annotations.SqaleSubCharacteristic;
 import com.qualinsight.plugins.sonarqube.smell.api.model.SmellType;
 
 /**
- * Check for {@link SmellType.REINVENTED_WHEEL} smell type.
+ * Check for REINVENTED_WHEEL smell type.
  *
  * @author Michel Pawlak
  */

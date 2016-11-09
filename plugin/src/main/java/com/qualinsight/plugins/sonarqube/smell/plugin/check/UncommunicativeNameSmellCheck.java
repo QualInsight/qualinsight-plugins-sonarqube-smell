@@ -27,7 +27,7 @@ import org.sonar.squidbridge.annotations.SqaleSubCharacteristic;
 import com.qualinsight.plugins.sonarqube.smell.api.model.SmellType;
 
 /**
- * Check for {@link SmellType.UNCOMMUNICATIVE_NAME} smell type.
+ * Check for UNCOMMUNICATIVE_NAME smell type.
  *
  * @author Michel Pawlak
  */

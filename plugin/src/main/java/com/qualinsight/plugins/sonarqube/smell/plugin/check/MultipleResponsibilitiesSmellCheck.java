@@ -27,7 +27,7 @@ import org.sonar.squidbridge.annotations.SqaleSubCharacteristic;
 import com.qualinsight.plugins.sonarqube.smell.api.model.SmellType;
 
 /**
- * Check for {@link SmellType.MULTIPLE_RESONSIBILITIES} smell type.
+ * Check for MULTIPLE_RESONSIBILITIES smell type.
  *
  * @author Michel Pawlak
  */

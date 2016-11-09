@@ -27,7 +27,7 @@ import org.sonar.squidbridge.annotations.SqaleSubCharacteristic;
 import com.qualinsight.plugins.sonarqube.smell.api.model.SmellType;
 
 /**
- * Check for {@link SmellType.HOW_COMMENT} smell type.
+ * Check for HOW_COMMENT smell type.
  *
  * @author Michel Pawlak
  */

@@ -27,7 +27,7 @@ import org.sonar.squidbridge.annotations.SqaleSubCharacteristic;
 import com.qualinsight.plugins.sonarqube.smell.api.model.SmellType;
 
 /**
- * Check for {@link SmellType.WRONG_LOGIC} smell type.
+ * Check for WRONG_LOGIC smell type.
  *
  * @author Michel Pawlak
  */

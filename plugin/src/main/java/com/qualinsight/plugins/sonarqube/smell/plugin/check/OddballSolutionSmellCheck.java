@@ -27,7 +27,7 @@ import org.sonar.squidbridge.annotations.SqaleSubCharacteristic;
 import com.qualinsight.plugins.sonarqube.smell.api.model.SmellType;
 
 /**
- * Check for {@link SmellType.ODDBALL_SOLUTION} smell type.
+ * Check for ODDBALL_SOLUTION smell type.
  *
  * @author Michel Pawlak
  */

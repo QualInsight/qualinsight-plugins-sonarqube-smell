@@ -27,7 +27,7 @@ import org.sonar.squidbridge.annotations.SqaleSubCharacteristic;
 import com.qualinsight.plugins.sonarqube.smell.api.model.SmellType;
 
 /**
- * Check for {@link SmellType.OVERCOMPLICATED_ALGORITHM} smell type.
+ * Check for OVERCOMPLICATED_ALGORITHM smell type.
  *
  * @author Michel Pawlak
  */
