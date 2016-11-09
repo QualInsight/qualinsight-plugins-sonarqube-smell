@@ -347,8 +347,8 @@ public final class SmellMetrics implements Metrics {
     /**
      * Returns a {@link Metric} from a {@link SmellType}
      *
-     * @param type {@link SmellType} to convert to a metric
-     * @return a {@link Metric} corresponding to the {@link SmellType}
+     * @param metricKey Key to convert to a metric
+     * @return a {@link Metric} corresponding to the key
      */
     @CheckForNull
     public static final Metric<Number> metricFor(final String metricKey) {
@@ -358,7 +358,7 @@ public final class SmellMetrics implements Metrics {
     /**
      * Returns a {@link List} of all {@link Metric}s handled by the Smells plugin.
      *
-     * @return
+     * @return {@link List} of {@link Metric}
      */
     @CheckForNull
     public static final List<Metric<Number>> metrics() {

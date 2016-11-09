@@ -19,7 +19,6 @@
  */
 package com.qualinsight.plugins.sonarqube.smell.plugin.check;
 
-import org.sonar.api.server.rule.RulesDefinition;
 import org.sonar.check.Priority;
 import org.sonar.check.Rule;
 import org.sonar.squidbridge.annotations.SqaleLinearRemediation;
@@ -42,7 +41,7 @@ import com.qualinsight.plugins.sonarqube.smell.api.model.SmellType;
         "brain-overload"
     })
 @SqaleLinearRemediation(coeff = "1min", effortToFixDescription = "")
-@SqaleSubCharacteristic(value = RulesDefinition.SubCharacteristics.EFFICIENCY_COMPLIANCE)
+@SqaleSubCharacteristic(value = "EFFICIENCY_COMPLIANCE")
 public class SolutionSprawlSmellCheck extends AbstractSmellCheck {
 
     @Override

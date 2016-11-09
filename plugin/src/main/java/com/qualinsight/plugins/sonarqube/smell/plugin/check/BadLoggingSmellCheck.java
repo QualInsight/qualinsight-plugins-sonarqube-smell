@@ -19,7 +19,6 @@
  */
 package com.qualinsight.plugins.sonarqube.smell.plugin.check;
 
-import org.sonar.api.server.rule.RulesDefinition;
 import org.sonar.check.Priority;
 import org.sonar.check.Rule;
 import org.sonar.squidbridge.annotations.SqaleLinearRemediation;
@@ -36,7 +35,7 @@ import com.qualinsight.plugins.sonarqube.smell.api.model.SmellType;
     "performance"
 })
 @SqaleLinearRemediation(coeff = "1min", effortToFixDescription = "")
-@SqaleSubCharacteristic(value = RulesDefinition.SubCharacteristics.USABILITY_COMPLIANCE)
+@SqaleSubCharacteristic(value = "USABILITY_COMPLIANCE")
 public class BadLoggingSmellCheck extends AbstractSmellCheck {
 
     @Override
