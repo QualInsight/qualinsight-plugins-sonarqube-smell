@@ -90,10 +90,10 @@ abstract class AbstractSmellMeasureComputer implements MeasureComputer {
     }
 
     private void compute(final Component component, final MeasureComputerContext context) {
-        LOGGER.info("Computing measures for component '{}' and level {})", component.getKey(), component.getType());
+        LOGGER.debug("Computing measures for component '{}' and level {})", component.getKey(), component.getType());
         for (final String outputMetricKey : this.outputMetricsKeys) {
             final Aggregator computer = aggregator(context, outputMetricKey);
-            LOGGER.info("Computed measure '{}': {})", outputMetricKey, computer.getResult());
+            LOGGER.debug("Computed measure '{}': {})", outputMetricKey, computer.getResult());
             computer.addMeasureToContext();
         }
     }
@@ -108,7 +108,7 @@ abstract class AbstractSmellMeasureComputer implements MeasureComputer {
     protected Aggregator aggregator(final MeasureComputerContext context, final String metricKey) {
         final Aggregator aggregator = new Aggregator(context, metricKey);
         final Iterable<Measure> measures = context.getChildrenMeasures(metricKey);
-        LOGGER.info("current metric: '{}'", metricKey);
+        LOGGER.debug("current metric: '{}'", metricKey);
         if (measures != null) {
             for (final Measure measure : measures) {
                 aggregator.aggregate(measure);
