@@ -1,7 +1,8 @@
 # Code Smells plugin for SonarQube
 The Code Smells plugin for [SonarQube](http://www.sonarqube.org/) allows developers to report issues usually not seen by SonarQube but which should be taken into consideration when evaluating a project's technical debt. 
 
-[![Build Status](https://travis-ci.org/QualInsight/qualinsight-plugins-sonarqube-smell.svg?branch=master)](https://travis-ci.org/QualInsight/qualinsight-plugins-sonarqube-smell) [![Quality Gate](http://nemo.sonarqube.org/api/badges/gate?key=com.qualinsight.plugins.sonarqube:qualinsight-plugins-sonarqube-smell)](http://nemo.sonarqube.org/dashboard/index/com.qualinsight.plugins.sonarqube:qualinsight-plugins-sonarqube-smell) [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.qualinsight.plugins.sonarqube/qualinsight-plugins-sonarqube-smell-api/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.qualinsight.plugins.sonarqube/qualinsight-plugins-sonarqube-smell-api) [![javadoc.io](https://javadoc-emblem.rhcloud.com/doc/com.qualinsight.plugins.sonarqube/qualinsight-plugins-sonarqube-smell-api/badge.svg)](http://www.javadoc.io/doc/com.qualinsight.plugins.sonarqube/qualinsight-plugins-sonarqube-smell-api)
+[![Build Status](https://travis-ci.org/QualInsight/qualinsight-plugins-sonarqube-smell.svg?branch=master)](https://travis-ci.org/QualInsight/qualinsight-plugins-sonarqube-smell) [![Quality Gate](https://sonarqube.com/api/badges/gate?key=com.qualinsight.plugins.sonarqube:qualinsight-plugins-sonarqube-smell)](https://sonarqube.com/dashboard/index/com.qualinsight.plugins.sonarqube:qualinsight-plugins-sonarqube-smell) [![Technical debt ratio](https://sonarqube.com/api/badges/measure?key=com.qualinsight.plugins.sonarqube:qualinsight-plugins-sonarqube-smell&metric=sqale_debt_ratio)](https://sonarqube.com/dashboard/index/com.qualinsight.plugins.sonarqube:qualinsight-plugins-sonarqube-smell) [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.qualinsight.plugins.sonarqube/qualinsight-plugins-sonarqube-smell-api/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.qualinsight.plugins.sonarqube/qualinsight-plugins-sonarqube-smell-api) [![javadoc.io](https://javadoc-emblem.rhcloud.com/doc/com.qualinsight.plugins.sonarqube/qualinsight-plugins-sonarqube-smell-api/badge.svg)](http://www.javadoc.io/doc/com.qualinsight.plugins.sonarqube/qualinsight-plugins-sonarqube-smell-api)
+
 
 ## Rationale
 
@@ -133,11 +134,15 @@ The SmellType enum currently can take the following values (greatly inspired by 
 | INDECENT_EXPOSURE          | The class unnecessarily exposes its internals.                             | CRITICAL         |
 | MEANINGLESS_COMMENT        | The comment or documentation text is meaningless.                          | MAJOR            |
 | MIDDLE_MAN                 | The class delegates all its work, is it really needed ?                    | CRITICAL         |
+| MISSING_DOCUMENTATION      | Mandatory documentation is missing.                                        | CRITICAL         |
 | MISSING_IMPLEMENTATION     | A method's implementation is missing.                                      | MINOR            |
+| MISSING_TEST               | An important or critical test is missing.                                  | BLOCKER          |
 | MULTIPLE_RESPONSIBILITIES  | The class or method has multiple responsibilities.                         | BLOCKER          |
 | NON_EXCEPTION              | The exceptions mechanism is used for non exceptional cases.                | MAJOR            |
+| NON_COMPLIANCE_WITH_STANDARDS | The code does not comply with team or company development standards.    | CRITICAL         |
 | ODDBALL_SOLUTION           | The problem is solved in multiple ways throughout the system.              | CRITICAL         |
 | OVERCOMPLICATED_ALGORITHM  | There is a way to simplify an algorithm.                                   | MAJOR            |
+| OTHER                      | Other smell that could not be categorized in any of the existing code smells types. | MINOR   |
 | PRIMITIVES_OBSESSION       | The code relies too much on primitives instead of classes.                 | CRITICAL         |
 | REFUSED_BEQUEST            | The class extends another class but does not use its methods.              | CRITICAL         |
 | REINVENTED_WHEEL           | A library does the same job, probably better                               | BLOCKER          |
