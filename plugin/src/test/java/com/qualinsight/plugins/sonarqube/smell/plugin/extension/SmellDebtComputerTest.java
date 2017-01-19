@@ -20,10 +20,10 @@
 package com.qualinsight.plugins.sonarqube.smell.plugin.extension;
 
 import net.jcip.annotations.NotThreadSafe;
-import org.junit.Ignore;
+import org.sonar.api.measures.Metric.ValueType;
 
 @NotThreadSafe
-@Ignore("not working")
+// @Ignore("not working")
 public class SmellDebtComputerTest extends AbstractSmellMeasureComputerTest {
 
     @Override
@@ -42,7 +42,17 @@ public class SmellDebtComputerTest extends AbstractSmellMeasureComputerTest {
     }
 
     @Override
-    protected Integer expectedSavedMeasureValue() {
-        return dummyMeasures().size();
+    protected ValueType metricValueType() {
+        return ValueType.WORK_DUR;
+    }
+
+    @Override
+    protected Integer expectedSavedMeasureIntValue() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    protected Long expectedSavedMeasureLongValue() {
+        return Long.valueOf(dummyMeasures(metricValueType()).size());
     }
 }

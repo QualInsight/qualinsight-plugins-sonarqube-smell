@@ -31,7 +31,6 @@ import org.sonar.api.measures.CoreMetrics;
 import org.sonar.api.measures.Metric;
 import org.sonar.api.measures.Metric.ValueType;
 import com.qualinsight.plugins.sonarqube.smell.api.model.SmellType;
-import com.qualinsight.plugins.sonarqube.smell.plugin.extension.SmellMetrics;
 
 @NotThreadSafe
 @RunWith(JUnitParamsRunner.class)
@@ -126,6 +125,14 @@ public class SmellMetricsTest {
             .contains(SmellMetrics.SMELL_COUNT_WRONG_LOGIC);
         softly.assertThat(actualMetrics)
             .contains(SmellMetrics.SMELL_COUNT_WRONG_LANGUAGE);
+        softly.assertThat(actualMetrics)
+            .contains(SmellMetrics.SMELL_COUNT_MISSING_DOCUMENTATION);
+        softly.assertThat(actualMetrics)
+            .contains(SmellMetrics.SMELL_COUNT_MISSING_TEST);
+        softly.assertThat(actualMetrics)
+            .contains(SmellMetrics.SMELL_COUNT_OTHER);
+        softly.assertThat(actualMetrics)
+            .contains(SmellMetrics.SMELL_COUNT_NON_COMPLIANCE_WITH_STANDARDS);
         softly.assertAll();
     }
 
@@ -229,6 +236,22 @@ public class SmellMetricsTest {
             new Object[] {
                 SmellType.WRONG_LOGIC,
                 SmellMetrics.SMELL_COUNT_WRONG_LOGIC
+            },
+            new Object[] {
+                SmellType.MISSING_DOCUMENTATION,
+                SmellMetrics.SMELL_COUNT_MISSING_DOCUMENTATION
+            },
+            new Object[] {
+                SmellType.MISSING_TEST,
+                SmellMetrics.SMELL_COUNT_MISSING_TEST
+            },
+            new Object[] {
+                SmellType.OTHER,
+                SmellMetrics.SMELL_COUNT_OTHER
+            },
+            new Object[] {
+                SmellType.NON_COMPLIANCE_WITH_STANDARDS,
+                SmellMetrics.SMELL_COUNT_NON_COMPLIANCE_WITH_STANDARDS
             },
         };
     }
@@ -504,6 +527,46 @@ public class SmellMetricsTest {
                 ValueType.INT,
                 0d,
                 "Number of reinvented wheels reported by developers.",
+                Metric.DIRECTION_WORST,
+                SmellMetrics.DOMAIN
+            },
+            new Object[] {
+                SmellMetrics.SMELL_COUNT_MISSING_DOCUMENTATION,
+                "SMELL_COUNT_MISSING_DOCUMENTATION",
+                "Missing documentation count",
+                ValueType.INT,
+                0d,
+                "Number of missing documentation reported by developers.",
+                Metric.DIRECTION_WORST,
+                SmellMetrics.DOMAIN
+            },
+            new Object[] {
+                SmellMetrics.SMELL_COUNT_MISSING_TEST,
+                "SMELL_COUNT_MISSING_TEST",
+                "Missing tests count",
+                ValueType.INT,
+                0d,
+                "Number of missing tests reported by developers.",
+                Metric.DIRECTION_WORST,
+                SmellMetrics.DOMAIN
+            },
+            new Object[] {
+                SmellMetrics.SMELL_COUNT_OTHER,
+                "SMELL_COUNT_OTHER",
+                "Uncategorized smells count",
+                ValueType.INT,
+                0d,
+                "Number of uncategorized smells reported by developers.",
+                Metric.DIRECTION_WORST,
+                SmellMetrics.DOMAIN
+            },
+            new Object[] {
+                SmellMetrics.SMELL_COUNT_NON_COMPLIANCE_WITH_STANDARDS,
+                "SMELL_COUNT_NON_COMPLIANCE_WITH_STANDARDS",
+                "Non compliances with standards count",
+                ValueType.INT,
+                0d,
+                "Number of non compliances with standards reported by developers.",
                 Metric.DIRECTION_WORST,
                 SmellMetrics.DOMAIN
             },

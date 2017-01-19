@@ -31,13 +31,14 @@ import org.sonar.api.ce.measure.MeasureComputer;
 public final class SmellCountByTypeMeasuresComputer extends AbstractSmellMeasureComputer {
 
     public static final List<String> SMELL_COUNT_INPUT_METRICS_KEYS = ImmutableList.of(SmellMetrics.SMELL_COUNT_ABBREVIATIONS_USAGE.getKey(), SmellMetrics.SMELL_COUNT_ANTI_PATTERN.getKey(),
-        SmellMetrics.SMELL_COUNT_BAD_DESIGN.getKey(), SmellMetrics.SMELL_COUNT_BAD_LOGGING.getKey(), SmellMetrics.SMELL_COUNT_HOW_COMMENT.getKey(),
-        SmellMetrics.SMELL_COUNT_INDECENT_EXPOSURE.getKey(), SmellMetrics.SMELL_COUNT_MEANINGLESS_COMMENT.getKey(), SmellMetrics.SMELL_COUNT_MIDDLE_MAN.getKey(),
-        SmellMetrics.SMELL_COUNT_MISSING_IMPLEMENTATION.getKey(), SmellMetrics.SMELL_COUNT_MULTIPLE_RESPONSIBILITIES.getKey(), SmellMetrics.SMELL_COUNT_NON_EXCEPTION.getKey(),
-        SmellMetrics.SMELL_COUNT_ODDBALL_SOLUTION.getKey(), SmellMetrics.SMELL_COUNT_OVERCOMPLICATED_ALGORITHM.getKey(), SmellMetrics.SMELL_COUNT_PRIMITIVES_OBSESSION.getKey(),
-        SmellMetrics.SMELL_COUNT_REFUSED_BEQUEST.getKey(), SmellMetrics.SMELL_COUNT_REINVENTED_WHEEL.getKey(), SmellMetrics.SMELL_COUNT_SOLUTION_SPRAWL.getKey(),
-        SmellMetrics.SMELL_COUNT_SPECULATIVE_GENERALITY.getKey(), SmellMetrics.SMELL_COUNT_UNCOMMUNICATIVE_NAME.getKey(), SmellMetrics.SMELL_COUNT_BAD_FRAMEWORK_USAGE.getKey(),
-        SmellMetrics.SMELL_COUNT_USELESS_TEST.getKey(), SmellMetrics.SMELL_COUNT_WRONG_LANGUAGE.getKey(), SmellMetrics.SMELL_COUNT_WRONG_LOGIC.getKey());
+        SmellMetrics.SMELL_COUNT_BAD_DESIGN.getKey(), SmellMetrics.SMELL_COUNT_BAD_LOGGING.getKey(), SmellMetrics.SMELL_COUNT_HOW_COMMENT.getKey(), SmellMetrics.SMELL_COUNT_INDECENT_EXPOSURE.getKey(),
+        SmellMetrics.SMELL_COUNT_MEANINGLESS_COMMENT.getKey(), SmellMetrics.SMELL_COUNT_MIDDLE_MAN.getKey(), SmellMetrics.SMELL_COUNT_MISSING_IMPLEMENTATION.getKey(),
+        SmellMetrics.SMELL_COUNT_MULTIPLE_RESPONSIBILITIES.getKey(), SmellMetrics.SMELL_COUNT_NON_EXCEPTION.getKey(), SmellMetrics.SMELL_COUNT_ODDBALL_SOLUTION.getKey(),
+        SmellMetrics.SMELL_COUNT_OVERCOMPLICATED_ALGORITHM.getKey(), SmellMetrics.SMELL_COUNT_PRIMITIVES_OBSESSION.getKey(), SmellMetrics.SMELL_COUNT_REFUSED_BEQUEST.getKey(),
+        SmellMetrics.SMELL_COUNT_REINVENTED_WHEEL.getKey(), SmellMetrics.SMELL_COUNT_SOLUTION_SPRAWL.getKey(), SmellMetrics.SMELL_COUNT_SPECULATIVE_GENERALITY.getKey(),
+        SmellMetrics.SMELL_COUNT_UNCOMMUNICATIVE_NAME.getKey(), SmellMetrics.SMELL_COUNT_BAD_FRAMEWORK_USAGE.getKey(), SmellMetrics.SMELL_COUNT_USELESS_TEST.getKey(),
+        SmellMetrics.SMELL_COUNT_WRONG_LANGUAGE.getKey(), SmellMetrics.SMELL_COUNT_WRONG_LOGIC.getKey(), SmellMetrics.SMELL_COUNT_MISSING_DOCUMENTATION.getKey(),
+        SmellMetrics.SMELL_COUNT_MISSING_TEST.getKey(), SmellMetrics.SMELL_COUNT_OTHER.getKey(), SmellMetrics.SMELL_COUNT_NON_COMPLIANCE_WITH_STANDARDS.getKey());
 
     public static final List<String> SMELL_COUNT_OUTPUT_METRICS_KEYS = ImmutableList.copyOf(SMELL_COUNT_INPUT_METRICS_KEYS);
 

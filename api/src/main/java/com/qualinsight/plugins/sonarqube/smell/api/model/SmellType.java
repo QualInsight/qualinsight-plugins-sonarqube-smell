@@ -69,9 +69,21 @@ public enum SmellType {
      */
     MISSING_IMPLEMENTATION,
     /**
+     * An important test is missing.
+     */
+    MISSING_TEST,
+    /**
+     * An important documentation is missing.
+     */
+    MISSING_DOCUMENTATION,
+    /**
      * A class or method has multiple responsibilities.
      */
     MULTIPLE_RESPONSIBILITIES,
+    /**
+     * Non compliance with team or company development standards.
+     */
+    NON_COMPLIANCE_WITH_STANDARDS,
     /**
      * Exception mechanism usage for non exceptional cases.
      */
@@ -80,6 +92,10 @@ public enum SmellType {
      * The problem is solved one way throughout the system and the same problem is solved another way in the same system. One of the solutions is the oddball or the inconsistent solution and has to be eliminated.
      */
     ODDBALL_SOLUTION,
+    /**
+     * Catch-all {@link SmellType} when you want to report an issue but can't find a corresponding {@link SmellType}.
+     */
+    OTHER,
     /**
      * There is a way to simplify this algorithm.
      */

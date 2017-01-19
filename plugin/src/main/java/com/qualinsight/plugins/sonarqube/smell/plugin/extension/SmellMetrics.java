@@ -302,6 +302,47 @@ public final class SmellMetrics implements Metrics {
         .setOptimizedBestValue(true)
         .create();
 
+    /**
+     * Metric that counts MISSING_DOCUMENTATION {@link SmellType}
+     */
+    public static final Metric<Integer> SMELL_COUNT_MISSING_DOCUMENTATION = new Metric.Builder("SMELL_COUNT_MISSING_DOCUMENTATION", "Missing documentation count", ValueType.INT).setBestValue(0d)
+        .setDescription("Number of missing documentation reported by developers.")
+        .setDirection(Metric.DIRECTION_WORST)
+        .setDomain(DOMAIN)
+        .setOptimizedBestValue(true)
+        .create();
+
+    /**
+     * Metric that counts MISSING_TEST {@link SmellType}
+     */
+    public static final Metric<Integer> SMELL_COUNT_MISSING_TEST = new Metric.Builder("SMELL_COUNT_MISSING_TEST", "Missing tests count", ValueType.INT).setBestValue(0d)
+        .setDescription("Number of missing tests reported by developers.")
+        .setDirection(Metric.DIRECTION_WORST)
+        .setDomain(DOMAIN)
+        .setOptimizedBestValue(true)
+        .create();
+
+    /**
+     * Metric that counts OTHER {@link SmellType}
+     */
+    public static final Metric<Integer> SMELL_COUNT_OTHER = new Metric.Builder("SMELL_COUNT_OTHER", "Uncategorized smells count", ValueType.INT).setBestValue(0d)
+        .setDescription("Number of uncategorized smells reported by developers.")
+        .setDirection(Metric.DIRECTION_WORST)
+        .setDomain(DOMAIN)
+        .setOptimizedBestValue(true)
+        .create();
+
+    /**
+     * Metric that counts NON_COMPLIANCE_WITH_STANDARDS {@link SmellType}
+     */
+    public static final Metric<Integer> SMELL_COUNT_NON_COMPLIANCE_WITH_STANDARDS = new Metric.Builder("SMELL_COUNT_NON_COMPLIANCE_WITH_STANDARDS", "Non compliances with standards count",
+        ValueType.INT).setBestValue(0d)
+            .setDescription("Number of non compliances with standards reported by developers.")
+            .setDirection(Metric.DIRECTION_WORST)
+            .setDomain(DOMAIN)
+            .setOptimizedBestValue(true)
+            .create();
+
     /*
      * Blocks that populates the list of Smell Metrics using reflection as well as SmellType to Metric map.
      */

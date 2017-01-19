@@ -36,7 +36,6 @@ import org.sonar.api.server.rule.RulesDefinition.DebtRemediationFunctions;
 import org.sonar.api.server.rule.RulesDefinition.NewRepository;
 import org.sonar.api.server.rule.RulesDefinition.NewRule;
 import org.sonar.plugins.java.Java;
-import com.qualinsight.plugins.sonarqube.smell.plugin.extension.SmellRulesDefinition;
 
 @RunWith(MockitoJUnitRunner.class)
 public class SmellRulesDefinitionTest {
@@ -45,7 +44,7 @@ public class SmellRulesDefinitionTest {
 
     private static final String EXPECTED_REPOSITORY_NAME = "Smells";
 
-    private static final String RULE_KEY = "0023";
+    private static final String LAST_RULE_KEY = "0027";
 
     @Mock
     public Context context;
@@ -82,7 +81,7 @@ public class SmellRulesDefinitionTest {
         Mockito.when(this.repository.key())
             .thenReturn(EXPECTED_REPOSITORY_KEY);
         Mockito.when(this.rule.key())
-            .thenReturn(RULE_KEY);
+            .thenReturn(LAST_RULE_KEY);
         // Some plumbering...
         Mockito.when(this.context.createRepository(Matchers.anyString(), Matchers.anyString()))
             .thenReturn(this.repository);
@@ -122,14 +121,14 @@ public class SmellRulesDefinitionTest {
             .createRepository(Matchers.eq(EXPECTED_REPOSITORY_KEY), Matchers.eq(Java.KEY));
         Mockito.verify(this.repository, Mockito.times(1))
             .setName(Matchers.eq(EXPECTED_REPOSITORY_NAME));
-        Mockito.verify(this.repository, Mockito.times(23))
+        Mockito.verify(this.repository, Mockito.times(27))
             .createRule(this.captor.capture());
         Assertions.assertThat(this.captor.getValue())
-            .isEqualTo(RULE_KEY);
-        Mockito.verify(this.rule, Mockito.times(24))
+            .isEqualTo(LAST_RULE_KEY);
+        Mockito.verify(this.rule, Mockito.times(28))
             .key();
         Mockito.verify(this.rule, Mockito.times(1))
-            .setInternalKey(Matchers.eq(RULE_KEY));
+            .setInternalKey(Matchers.eq(LAST_RULE_KEY));
         Mockito.verify(this.repository, Mockito.times(1))
             .done();
     }

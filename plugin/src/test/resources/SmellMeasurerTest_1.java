@@ -72,4 +72,16 @@ public class SmellMeasurerTest_1 {
     @Smell(minutes=10,reason="",type=SmellType.WRONG_LOGIC)
     Object field23;
     
+    @Smell(minutes=10,reason="",type=SmellType.MISSING_DOCUMENTATION)
+    Object field24;
+ 
+    @Smell(minutes=10,reason="",type=SmellType.MISSING_TEST)
+    Object field25;
+ 
+    @Smell(minutes=10,reason="",type=SmellType.OTHER)
+    Object field26;
+ 
+    @Smell(minutes=10,reason="",type=SmellType.NON_COMPLIANCE_WITH_STANDARDS)
+    Object field27;
+ 
 }

@@ -33,10 +33,14 @@ import com.qualinsight.plugins.sonarqube.smell.plugin.check.HowCommentSmellCheck
 import com.qualinsight.plugins.sonarqube.smell.plugin.check.IndecentExposureSmellCheck;
 import com.qualinsight.plugins.sonarqube.smell.plugin.check.MeaninglessCommentSmellCheck;
 import com.qualinsight.plugins.sonarqube.smell.plugin.check.MiddleManSmellCheck;
+import com.qualinsight.plugins.sonarqube.smell.plugin.check.MissingDocumentationSmellCheck;
 import com.qualinsight.plugins.sonarqube.smell.plugin.check.MissingImplementationSmellCheck;
+import com.qualinsight.plugins.sonarqube.smell.plugin.check.MissingTestSmellCheck;
 import com.qualinsight.plugins.sonarqube.smell.plugin.check.MultipleResponsibilitiesSmellCheck;
+import com.qualinsight.plugins.sonarqube.smell.plugin.check.NonComplianceWithStandardsSmellCheck;
 import com.qualinsight.plugins.sonarqube.smell.plugin.check.NonExceptionSmellCheck;
 import com.qualinsight.plugins.sonarqube.smell.plugin.check.OddballSolutionSmellCheck;
+import com.qualinsight.plugins.sonarqube.smell.plugin.check.OtherSmellCheck;
 import com.qualinsight.plugins.sonarqube.smell.plugin.check.OvercomplicatedAlgorithmSmellCheck;
 import com.qualinsight.plugins.sonarqube.smell.plugin.check.PrimitivesObsessionSmellCheck;
 import com.qualinsight.plugins.sonarqube.smell.plugin.check.RefusedBequestSmellCheck;
@@ -64,53 +68,116 @@ public final class SmellChecksRegistrar implements CheckRegistrar {
      */
     static {
         checkClasses = Lists.<Class<? extends JavaCheck>> newArrayList();
+        // 0001
         checkClasses.add(AbbreviationsUsageSmellCheck.class);
+        // 0002
         checkClasses.add(AntiPatternSmellCheck.class);
+        // 0003
         checkClasses.add(BadDesignSmellCheck.class);
+        // 0004
         checkClasses.add(BadFrameworkUsageSmellCheck.class);
+        // 0005
         checkClasses.add(BadLoggingSmellCheck.class);
+        // 0006
         checkClasses.add(HowCommentSmellCheck.class);
+        // 0007
         checkClasses.add(IndecentExposureSmellCheck.class);
+        // 0008
         checkClasses.add(MeaninglessCommentSmellCheck.class);
+        // 0009
         checkClasses.add(MiddleManSmellCheck.class);
+        // 0010
         checkClasses.add(MissingImplementationSmellCheck.class);
+        // 0011
         checkClasses.add(MultipleResponsibilitiesSmellCheck.class);
+        // 0012
         checkClasses.add(NonExceptionSmellCheck.class);
+        // 0013
         checkClasses.add(OddballSolutionSmellCheck.class);
+        // 0014
         checkClasses.add(OvercomplicatedAlgorithmSmellCheck.class);
+        // 0015
         checkClasses.add(PrimitivesObsessionSmellCheck.class);
+        // 0016
         checkClasses.add(RefusedBequestSmellCheck.class);
+        // 0017
         checkClasses.add(ReinventedWheelSmellCheck.class);
+        // 0018
         checkClasses.add(SolutionSprawlSmellCheck.class);
+        // 0019
         checkClasses.add(SpeculativeGeneralitySmellCheck.class);
+        // 0020
         checkClasses.add(UncommunicativeNameSmellCheck.class);
+        // 0021
         checkClasses.add(UselessTestSmellCheck.class);
+        // 0022
         checkClasses.add(WrongLanguageSmellCheck.class);
+        // 0023
         checkClasses.add(WrongLogicSmellCheck.class);
+        // 0024
+        checkClasses.add(MissingDocumentationSmellCheck.class);
+        // 0025
+        checkClasses.add(MissingTestSmellCheck.class);
+        // 0026
+        checkClasses.add(OtherSmellCheck.class);
+        // 0027
+        checkClasses.add(NonComplianceWithStandardsSmellCheck.class);
+
         testCheckClasses = Lists.<Class<? extends JavaCheck>> newArrayList();
+        // 0001
         testCheckClasses.add(AbbreviationsUsageSmellCheck.class);
+        // 0002
         testCheckClasses.add(AntiPatternSmellCheck.class);
+        // 0003
         testCheckClasses.add(BadDesignSmellCheck.class);
+        // 0004
         testCheckClasses.add(BadFrameworkUsageSmellCheck.class);
+        // 0005
         testCheckClasses.add(BadLoggingSmellCheck.class);
+        // 0006
         testCheckClasses.add(HowCommentSmellCheck.class);
+        // 0007
         testCheckClasses.add(IndecentExposureSmellCheck.class);
+        // 0008
         testCheckClasses.add(MeaninglessCommentSmellCheck.class);
+        // 0009
         testCheckClasses.add(MiddleManSmellCheck.class);
+        // 0010
         testCheckClasses.add(MissingImplementationSmellCheck.class);
+        // 0011
         testCheckClasses.add(MultipleResponsibilitiesSmellCheck.class);
+        // 0012
         testCheckClasses.add(NonExceptionSmellCheck.class);
+        // 0013
         testCheckClasses.add(OddballSolutionSmellCheck.class);
+        // 0014
         testCheckClasses.add(OvercomplicatedAlgorithmSmellCheck.class);
+        // 0015
         testCheckClasses.add(PrimitivesObsessionSmellCheck.class);
+        // 0016
         testCheckClasses.add(RefusedBequestSmellCheck.class);
+        // 0017
         testCheckClasses.add(ReinventedWheelSmellCheck.class);
+        // 0018
         testCheckClasses.add(SolutionSprawlSmellCheck.class);
+        // 0019
         testCheckClasses.add(SpeculativeGeneralitySmellCheck.class);
+        // 0020
         testCheckClasses.add(UncommunicativeNameSmellCheck.class);
+        // 0021
         testCheckClasses.add(UselessTestSmellCheck.class);
+        // 0022
         testCheckClasses.add(WrongLanguageSmellCheck.class);
+        // 0023
         testCheckClasses.add(WrongLogicSmellCheck.class);
+        // 0024
+        testCheckClasses.add(MissingDocumentationSmellCheck.class);
+        // 0025
+        testCheckClasses.add(MissingTestSmellCheck.class);
+        // 0026
+        testCheckClasses.add(OtherSmellCheck.class);
+        // 0027
+        testCheckClasses.add(NonComplianceWithStandardsSmellCheck.class);
     }
 
     @Override
