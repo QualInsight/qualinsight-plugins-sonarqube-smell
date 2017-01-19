@@ -20,6 +20,7 @@
 package com.qualinsight.plugins.sonarqube.smell.plugin.extension;
 
 import java.util.List;
+import com.google.common.base.Preconditions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.sonar.api.ce.measure.Component;
@@ -146,7 +147,8 @@ abstract class AbstractSmellMeasureComputer implements MeasureComputer {
         public Aggregator(final MeasureComputerContext context, final String metricKey) {
             this.context = context;
             this.metricKey = metricKey;
-            this.valueType = SmellMetrics.metricFor(metricKey)
+            final Metric<Number> metric = SmellMetrics.metricFor(metricKey);
+            this.valueType = Preconditions.checkNotNull(metric, "No Metric could be found for metric key '{}'", metricKey)
                 .getType();
             switch (this.valueType) {
                 case INT:
