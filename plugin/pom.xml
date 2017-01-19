@@ -13,7 +13,7 @@
     <plugin.maven-dependency-plugin.version>2.10</plugin.maven-dependency-plugin.version>
     <plugin.sonar-packaging-maven-plugin.version>1.15</plugin.sonar-packaging-maven-plugin.version>
     <!-- Libraries versions -->
-    <lib.sonar-plugin-api.version>5.6.1</lib.sonar-plugin-api.version>
+    <lib.sonar-plugin-api.version>5.6</lib.sonar-plugin-api.version>
     <lib.sonar-java-plugin.version>4.4.0.8066</lib.sonar-java-plugin.version>
     <lib.java-checks-testkit.version>4.4.0.8066</lib.java-checks-testkit.version>
     <lib.sslr-squid-bridge.version>2.6.1</lib.sslr-squid-bridge.version>
@@ -185,7 +185,7 @@
           <pluginDescription />
           <pluginTermsConditionsUrl>https://www.gnu.org/licenses/lgpl-3.0.txt</pluginTermsConditionsUrl>
           <pluginUrl>https://github.com/QualInsight/qualinsight-plugins-sonarqube-smell/</pluginUrl>
-          <requirePlugins>java:4.0</requirePlugins>
+          <requirePlugins>java:4.4</requirePlugins>
         </configuration>
       </plugin>
     </plugins>
