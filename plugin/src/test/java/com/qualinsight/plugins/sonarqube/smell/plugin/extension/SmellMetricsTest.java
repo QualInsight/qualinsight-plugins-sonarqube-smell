@@ -293,7 +293,7 @@ public class SmellMetricsTest {
             new Object[] {
                 SmellMetrics.SMELL_DEBT,
                 "SMELL_DEBT",
-                "Debt",
+                "Code Smells debt (reported by manual reviews)",
                 ValueType.WORK_DUR,
                 0d,
                 "Technical debt reported by developers.",

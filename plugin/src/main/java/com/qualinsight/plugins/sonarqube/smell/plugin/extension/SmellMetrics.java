@@ -53,7 +53,7 @@ public final class SmellMetrics implements Metrics {
     /**
      * Metric that tracks the debt related to Smell issues.
      */
-    public static final Metric<Long> SMELL_DEBT = new Metric.Builder("SMELL_DEBT", "Debt", ValueType.WORK_DUR).setBestValue(0d)
+    public static final Metric<Long> SMELL_DEBT = new Metric.Builder("SMELL_DEBT", "Code Smells debt (reported by manual reviews)", ValueType.WORK_DUR).setBestValue(0d)
         .setDescription("Technical debt reported by developers.")
         .setDirection(Metric.DIRECTION_WORST)
         .setDomain(CoreMetrics.DOMAIN_TECHNICAL_DEBT)
