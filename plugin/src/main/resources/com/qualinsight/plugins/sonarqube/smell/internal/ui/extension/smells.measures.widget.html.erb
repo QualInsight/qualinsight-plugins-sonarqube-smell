@@ -24,6 +24,10 @@
   smells_count_useless_test=measure('SMELL_COUNT_USELESS_TEST')
   smells_count_wrong_logic=measure('SMELL_COUNT_WRONG_LOGIC')
   smells_count_wrong_language=measure('SMELL_COUNT_WRONG_LANGUAGE')
+  smells_count_missing_documentation=measure('SMELL_COUNT_MISSING_DOCUMENTATION')
+  smells_count_missing_test=measure('SMELL_COUNT_MISSING_TEST')
+  smells_count_other=measure('SMELL_COUNT_OTHER')
+  smells_count_non_compliance_with_standards=measure('SMELL_COUNT_NON_COMPLIANCE_WITH_STANDARDS')
   if smells_count
 %>
 <div class="widget-row widget-row-x">
@@ -67,10 +71,14 @@
               ['<%= message('metric.smells_count_indecent_exposure.name') -%>', <%= smells_count_indecent_exposure.formatted_value -%>],
               ['<%= message('metric.smells_count_meaningless_comment.name') -%>', <%= smells_count_meaningless_comment.formatted_value -%>],
               ['<%= message('metric.smells_count_middle_man.name') -%>', <%= smells_count_middle_man.formatted_value -%>],
+              ['<%= message('metric.smells_count_missing_documentation.name') -%>', <%= smells_count_missing_documentation.formatted_value -%>],
               ['<%= message('metric.smells_count_missing_implementation.name') -%>', <%= smells_count_missing_implementation.formatted_value -%>],
+              ['<%= message('metric.smells_count_missing_test.name') -%>', <%= smells_count_missing_test.formatted_value -%>],
               ['<%= message('metric.smells_count_multiple_responsibilities.name') -%>', <%= smells_count_multiple_responsibilities.formatted_value -%>],
+              ['<%= message('metric.smells_count_non_compliance_with_standards.name') -%>', <%= smells_count_non_compliance_with_standards.formatted_value -%>],
               ['<%= message('metric.smells_count_non_exception.name') -%>', <%= smells_count_non_exception.formatted_value -%>],
               ['<%= message('metric.smells_count_oddball_solution.name') -%>', <%= smells_count_oddball_solution.formatted_value -%>],
+              ['<%= message('metric.smells_count_other.name') -%>', <%= smells_count_other.formatted_value -%>],
               ['<%= message('metric.smells_count_overcomplicated_algorithm.name') -%>', <%= smells_count_overcomplicated_algorithm.formatted_value -%>],
               ['<%= message('metric.smells_count_primitives_obsession.name') -%>', <%= smells_count_primitives_obsession.formatted_value -%>],
               ['<%= message('metric.smells_count_refused_bequest.name') -%>', <%= smells_count_refused_bequest.formatted_value -%>],
