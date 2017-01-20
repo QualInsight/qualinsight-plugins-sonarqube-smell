@@ -19,7 +19,6 @@
  */
 package com.qualinsight.plugins.sonarqube.smell.plugin.check;
 
-import org.sonar.api.server.rule.RulesDefinition;
 import org.sonar.check.Priority;
 import org.sonar.check.Rule;
 import org.sonar.squidbridge.annotations.SqaleLinearRemediation;
@@ -27,23 +26,20 @@ import org.sonar.squidbridge.annotations.SqaleSubCharacteristic;
 import com.qualinsight.plugins.sonarqube.smell.api.model.SmellType;
 
 /**
- * Check for NON_EXCEPTION smell type.
+ * Check for NON_CMOPLIANCE_WITH_STANDARDS smell type.
  *
  * @author Michel Pawlak
  */
-@Rule(key = "0012", name = "Non exception", description = "Exception mechanism usage for non exceptional cases.", priority = Priority.MAJOR, tags = {
-    "design",
-    "performance",
-    "bad-practice",
-    "error-handling"
+@Rule(key = "0027", name = "Non compliance with standards", description = "The code does not comply with team or company development standards.", priority = Priority.CRITICAL, tags = {
+    "non-compliance"
 })
 @SqaleLinearRemediation(coeff = "1min", effortToFixDescription = "")
-@SqaleSubCharacteristic(value = RulesDefinition.SubCharacteristics.EXCEPTION_HANDLING)
-public class NonExceptionSmellCheck extends AbstractSmellCheck {
+@SqaleSubCharacteristic(value = "COMPLIANCE")
+public class NonComplianceWithStandardsSmellCheck extends AbstractSmellCheck {
 
     @Override
     public SmellType smellType() {
-        return SmellType.NON_EXCEPTION;
+        return SmellType.NON_COMPLIANCE_WITH_STANDARDS;
     }
 
 }

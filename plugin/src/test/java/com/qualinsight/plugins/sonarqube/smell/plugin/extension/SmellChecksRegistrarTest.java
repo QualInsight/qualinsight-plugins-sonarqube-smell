@@ -38,10 +38,14 @@ import com.qualinsight.plugins.sonarqube.smell.plugin.check.HowCommentSmellCheck
 import com.qualinsight.plugins.sonarqube.smell.plugin.check.IndecentExposureSmellCheck;
 import com.qualinsight.plugins.sonarqube.smell.plugin.check.MeaninglessCommentSmellCheck;
 import com.qualinsight.plugins.sonarqube.smell.plugin.check.MiddleManSmellCheck;
+import com.qualinsight.plugins.sonarqube.smell.plugin.check.MissingDocumentationSmellCheck;
 import com.qualinsight.plugins.sonarqube.smell.plugin.check.MissingImplementationSmellCheck;
+import com.qualinsight.plugins.sonarqube.smell.plugin.check.MissingTestSmellCheck;
 import com.qualinsight.plugins.sonarqube.smell.plugin.check.MultipleResponsibilitiesSmellCheck;
+import com.qualinsight.plugins.sonarqube.smell.plugin.check.NonComplianceWithStandardsSmellCheck;
 import com.qualinsight.plugins.sonarqube.smell.plugin.check.NonExceptionSmellCheck;
 import com.qualinsight.plugins.sonarqube.smell.plugin.check.OddballSolutionSmellCheck;
+import com.qualinsight.plugins.sonarqube.smell.plugin.check.OtherSmellCheck;
 import com.qualinsight.plugins.sonarqube.smell.plugin.check.OvercomplicatedAlgorithmSmellCheck;
 import com.qualinsight.plugins.sonarqube.smell.plugin.check.PrimitivesObsessionSmellCheck;
 import com.qualinsight.plugins.sonarqube.smell.plugin.check.RefusedBequestSmellCheck;
@@ -52,8 +56,6 @@ import com.qualinsight.plugins.sonarqube.smell.plugin.check.UncommunicativeNameS
 import com.qualinsight.plugins.sonarqube.smell.plugin.check.UselessTestSmellCheck;
 import com.qualinsight.plugins.sonarqube.smell.plugin.check.WrongLanguageSmellCheck;
 import com.qualinsight.plugins.sonarqube.smell.plugin.check.WrongLogicSmellCheck;
-import com.qualinsight.plugins.sonarqube.smell.plugin.extension.SmellChecksRegistrar;
-import com.qualinsight.plugins.sonarqube.smell.plugin.extension.SmellRulesDefinition;
 
 @NotThreadSafe
 @RunWith(JUnitParamsRunner.class)
@@ -67,7 +69,8 @@ public class SmellChecksRegistrarTest {
                 HowCommentSmellCheck.class, IndecentExposureSmellCheck.class, MeaninglessCommentSmellCheck.class, MiddleManSmellCheck.class, MissingImplementationSmellCheck.class,
                 MultipleResponsibilitiesSmellCheck.class, NonExceptionSmellCheck.class, OddballSolutionSmellCheck.class, OvercomplicatedAlgorithmSmellCheck.class, PrimitivesObsessionSmellCheck.class,
                 RefusedBequestSmellCheck.class, ReinventedWheelSmellCheck.class, SolutionSprawlSmellCheck.class, SpeculativeGeneralitySmellCheck.class, UncommunicativeNameSmellCheck.class,
-                UselessTestSmellCheck.class, WrongLanguageSmellCheck.class, WrongLogicSmellCheck.class);
+                UselessTestSmellCheck.class, WrongLanguageSmellCheck.class, WrongLogicSmellCheck.class, MissingDocumentationSmellCheck.class, MissingTestSmellCheck.class, OtherSmellCheck.class,
+                NonComplianceWithStandardsSmellCheck.class);
     }
 
     @SuppressWarnings("unchecked")
@@ -78,7 +81,8 @@ public class SmellChecksRegistrarTest {
                 HowCommentSmellCheck.class, IndecentExposureSmellCheck.class, MeaninglessCommentSmellCheck.class, MiddleManSmellCheck.class, MissingImplementationSmellCheck.class,
                 MultipleResponsibilitiesSmellCheck.class, NonExceptionSmellCheck.class, OddballSolutionSmellCheck.class, OvercomplicatedAlgorithmSmellCheck.class, PrimitivesObsessionSmellCheck.class,
                 RefusedBequestSmellCheck.class, ReinventedWheelSmellCheck.class, SolutionSprawlSmellCheck.class, SpeculativeGeneralitySmellCheck.class, UncommunicativeNameSmellCheck.class,
-                UselessTestSmellCheck.class, WrongLanguageSmellCheck.class, WrongLogicSmellCheck.class);
+                UselessTestSmellCheck.class, WrongLanguageSmellCheck.class, WrongLogicSmellCheck.class, MissingDocumentationSmellCheck.class, MissingTestSmellCheck.class, OtherSmellCheck.class,
+                NonComplianceWithStandardsSmellCheck.class);
     }
 
     @Test
@@ -99,7 +103,8 @@ public class SmellChecksRegistrarTest {
     @Test
     @Parameters
     public void register_should_registerChecksHandlingingCorrectSmellType(final SmellType type, final AbstractSmellCheck check) {
-        assert (check.smellType().equals(type));
+        assert (check.smellType()
+            .equals(type));
     }
 
     private Object[] parametersForRegister_should_registerChecksHandlingingCorrectSmellType() {
@@ -195,6 +200,22 @@ public class SmellChecksRegistrarTest {
             new Object[] {
                 SmellType.WRONG_LOGIC,
                 new WrongLogicSmellCheck()
+            },
+            new Object[] {
+                SmellType.MISSING_DOCUMENTATION,
+                new MissingDocumentationSmellCheck()
+            },
+            new Object[] {
+                SmellType.MISSING_TEST,
+                new MissingTestSmellCheck()
+            },
+            new Object[] {
+                SmellType.OTHER,
+                new OtherSmellCheck()
+            },
+            new Object[] {
+                SmellType.NON_COMPLIANCE_WITH_STANDARDS,
+                new NonComplianceWithStandardsSmellCheck()
             },
         };
     }

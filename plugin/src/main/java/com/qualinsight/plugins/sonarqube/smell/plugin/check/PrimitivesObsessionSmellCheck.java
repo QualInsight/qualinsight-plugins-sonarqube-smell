@@ -27,7 +27,7 @@ import org.sonar.squidbridge.annotations.SqaleSubCharacteristic;
 import com.qualinsight.plugins.sonarqube.smell.api.model.SmellType;
 
 /**
- * Check for {@link SmellType.PRIMITIVES_OBSESSION} smell type.
+ * Check for PRIMITIVES_OBSESSION smell type.
  *
  * @author Michel Pawlak
  */

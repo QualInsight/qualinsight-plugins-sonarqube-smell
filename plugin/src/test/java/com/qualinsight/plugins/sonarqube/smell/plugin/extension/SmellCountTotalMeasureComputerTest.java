@@ -19,9 +19,8 @@
  */
 package com.qualinsight.plugins.sonarqube.smell.plugin.extension;
 
-import com.qualinsight.plugins.sonarqube.smell.plugin.extension.AbstractSmellMeasureComputer;
-import com.qualinsight.plugins.sonarqube.smell.plugin.extension.SmellCountTotalMeasureComputer;
 import net.jcip.annotations.NotThreadSafe;
+import org.sonar.api.measures.Metric.ValueType;
 
 @NotThreadSafe
 public class SmellCountTotalMeasureComputerTest extends AbstractSmellMeasureComputerTest {
@@ -44,8 +43,18 @@ public class SmellCountTotalMeasureComputerTest extends AbstractSmellMeasureComp
     }
 
     @Override
-    protected Integer expectedSavedMeasureValue() {
-        return dummyMeasures().size() * expectedGetChildrenMeasuresCount();
+    protected ValueType metricValueType() {
+        return ValueType.INT;
+    }
+
+    @Override
+    protected Integer expectedSavedMeasureIntValue() {
+        return dummyMeasures(metricValueType()).size() * expectedGetChildrenMeasuresCount();
+    }
+
+    @Override
+    protected Long expectedSavedMeasureLongValue() {
+        throw new UnsupportedOperationException();
     }
 
 }

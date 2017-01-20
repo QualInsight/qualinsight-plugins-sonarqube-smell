@@ -20,9 +20,6 @@
 package com.qualinsight.plugins.sonarqube.smell.plugin.extension;
 
 import java.util.Collection;
-import com.qualinsight.plugins.sonarqube.smell.plugin.extension.AbstractSmellMeasureComputer;
-import com.qualinsight.plugins.sonarqube.smell.plugin.extension.SmellCountByTypeMeasuresComputer;
-import com.qualinsight.plugins.sonarqube.smell.plugin.extension.SmellMetrics;
 import junitparams.Parameters;
 import net.jcip.annotations.NotThreadSafe;
 import org.assertj.core.api.SoftAssertions;
@@ -33,6 +30,7 @@ import org.mockito.Mockito;
 import org.sonar.api.ce.measure.Component.Type;
 import org.sonar.api.ce.measure.Measure;
 import org.sonar.api.measures.Metric;
+import org.sonar.api.measures.Metric.ValueType;
 
 @NotThreadSafe
 public class SmellCountByTypeMeasuresComputerTest extends AbstractSmellMeasureComputerTest {
@@ -80,95 +78,111 @@ public class SmellCountByTypeMeasuresComputerTest extends AbstractSmellMeasureCo
         return new Object[] {
             new Object[] {
                 SmellMetrics.SMELL_COUNT_ABBREVIATIONS_USAGE,
-                dummyMeasures()
+                dummyMeasures(ValueType.INT)
             },
             new Object[] {
                 SmellMetrics.SMELL_COUNT_ANTI_PATTERN,
-                dummyMeasures()
+                dummyMeasures(ValueType.INT)
             },
             new Object[] {
                 SmellMetrics.SMELL_COUNT_BAD_DESIGN,
-                dummyMeasures()
+                dummyMeasures(ValueType.INT)
             },
             new Object[] {
                 SmellMetrics.SMELL_COUNT_BAD_FRAMEWORK_USAGE,
-                dummyMeasures()
+                dummyMeasures(ValueType.INT)
             },
             new Object[] {
                 SmellMetrics.SMELL_COUNT_BAD_LOGGING,
-                dummyMeasures()
+                dummyMeasures(ValueType.INT)
             },
             new Object[] {
                 SmellMetrics.SMELL_COUNT_HOW_COMMENT,
-                dummyMeasures()
+                dummyMeasures(ValueType.INT)
             },
             new Object[] {
                 SmellMetrics.SMELL_COUNT_INDECENT_EXPOSURE,
-                dummyMeasures()
+                dummyMeasures(ValueType.INT)
             },
             new Object[] {
                 SmellMetrics.SMELL_COUNT_MEANINGLESS_COMMENT,
-                dummyMeasures()
+                dummyMeasures(ValueType.INT)
             },
             new Object[] {
                 SmellMetrics.SMELL_COUNT_MIDDLE_MAN,
-                dummyMeasures()
+                dummyMeasures(ValueType.INT)
             },
             new Object[] {
                 SmellMetrics.SMELL_COUNT_MISSING_IMPLEMENTATION,
-                dummyMeasures()
+                dummyMeasures(ValueType.INT)
             },
             new Object[] {
                 SmellMetrics.SMELL_COUNT_MULTIPLE_RESPONSIBILITIES,
-                dummyMeasures()
+                dummyMeasures(ValueType.INT)
             },
             new Object[] {
                 SmellMetrics.SMELL_COUNT_NON_EXCEPTION,
-                dummyMeasures()
+                dummyMeasures(ValueType.INT)
             },
             new Object[] {
                 SmellMetrics.SMELL_COUNT_ODDBALL_SOLUTION,
-                dummyMeasures()
+                dummyMeasures(ValueType.INT)
             },
             new Object[] {
                 SmellMetrics.SMELL_COUNT_OVERCOMPLICATED_ALGORITHM,
-                dummyMeasures()
+                dummyMeasures(ValueType.INT)
             },
             new Object[] {
                 SmellMetrics.SMELL_COUNT_PRIMITIVES_OBSESSION,
-                dummyMeasures()
+                dummyMeasures(ValueType.INT)
             },
             new Object[] {
                 SmellMetrics.SMELL_COUNT_REFUSED_BEQUEST,
-                dummyMeasures()
+                dummyMeasures(ValueType.INT)
             },
             new Object[] {
                 SmellMetrics.SMELL_COUNT_REINVENTED_WHEEL,
-                dummyMeasures()
+                dummyMeasures(ValueType.INT)
             },
             new Object[] {
                 SmellMetrics.SMELL_COUNT_SOLUTION_SPRAWL,
-                dummyMeasures()
+                dummyMeasures(ValueType.INT)
             },
             new Object[] {
                 SmellMetrics.SMELL_COUNT_SPECULATIVE_GENERALITY,
-                dummyMeasures()
+                dummyMeasures(ValueType.INT)
             },
             new Object[] {
                 SmellMetrics.SMELL_COUNT_UNCOMMUNICATIVE_NAME,
-                dummyMeasures()
+                dummyMeasures(ValueType.INT)
             },
             new Object[] {
                 SmellMetrics.SMELL_COUNT_USELESS_TEST,
-                dummyMeasures()
+                dummyMeasures(ValueType.INT)
             },
             new Object[] {
                 SmellMetrics.SMELL_COUNT_WRONG_LANGUAGE,
-                dummyMeasures()
+                dummyMeasures(ValueType.INT)
             },
             new Object[] {
                 SmellMetrics.SMELL_COUNT_WRONG_LOGIC,
-                dummyMeasures()
+                dummyMeasures(ValueType.INT)
+            },
+            new Object[] {
+                SmellMetrics.SMELL_COUNT_MISSING_DOCUMENTATION,
+                dummyMeasures(ValueType.INT)
+            },
+            new Object[] {
+                SmellMetrics.SMELL_COUNT_MISSING_TEST,
+                dummyMeasures(ValueType.INT)
+            },
+            new Object[] {
+                SmellMetrics.SMELL_COUNT_OTHER,
+                dummyMeasures(ValueType.INT)
+            },
+            new Object[] {
+                SmellMetrics.SMELL_COUNT_NON_COMPLIANCE_WITH_STANDARDS,
+                dummyMeasures(ValueType.INT)
             },
         };
     }
@@ -188,8 +202,18 @@ public class SmellCountByTypeMeasuresComputerTest extends AbstractSmellMeasureCo
     }
 
     @Override
-    protected Integer expectedSavedMeasureValue() {
-        return dummyMeasures().size();
+    protected ValueType metricValueType() {
+        return ValueType.INT;
+    }
+
+    @Override
+    protected Long expectedSavedMeasureLongValue() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    protected Integer expectedSavedMeasureIntValue() {
+        return dummyMeasures(ValueType.INT).size();
     }
 
 }

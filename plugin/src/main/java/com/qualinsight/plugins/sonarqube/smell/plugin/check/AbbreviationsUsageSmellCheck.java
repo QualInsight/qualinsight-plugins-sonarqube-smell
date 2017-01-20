@@ -27,7 +27,7 @@ import org.sonar.squidbridge.annotations.SqaleSubCharacteristic;
 import com.qualinsight.plugins.sonarqube.smell.api.model.SmellType;
 
 /**
- * Check for {@link SmellType.ABBREVIATIONS_USAGE} smell type.
+ * Check for ABBREVIATIONS_USAGE smell type.
  *
  * @author Michel Pawlak
  */

@@ -19,11 +19,10 @@
  */
 package com.qualinsight.plugins.sonarqube.smell.plugin;
 
-import java.util.List;
-import com.google.common.collect.ImmutableList;
+import org.sonar.api.Plugin;
 import org.sonar.api.Properties;
 import org.sonar.api.Property;
-import org.sonar.api.SonarPlugin;
+import org.sonar.api.utils.Version;
 import com.qualinsight.plugins.sonarqube.smell.plugin.extension.SmellChecksRegistrar;
 import com.qualinsight.plugins.sonarqube.smell.plugin.extension.SmellCountByTypeMeasuresComputer;
 import com.qualinsight.plugins.sonarqube.smell.plugin.extension.SmellCountTotalMeasureComputer;
@@ -41,20 +40,22 @@ import com.qualinsight.plugins.sonarqube.smell.plugin.extension.SmellWidget;
 @Properties({
     @Property(key = SmellPropertyKeys.WIDGET_TITLE_KEY, name = "Widget title", defaultValue = "Code Smells")
 })
-public final class SmellPlugin extends SonarPlugin {
+public final class SmellPlugin implements Plugin {
 
-    @SuppressWarnings("rawtypes")
+    private static final Version NO_MORE_WIDGETS_VERSION = Version.create(6, 1);
+
     @Override
-    public List getExtensions() {
-        return ImmutableList.builder()
-            .add(SmellChecksRegistrar.class)
-            .add(SmellRulesDefinition.class)
-            .add(SmellMetrics.class)
-            .add(SmellMeasuresSensor.class)
-            .add(SmellDebtComputer.class)
-            .add(SmellCountByTypeMeasuresComputer.class)
-            .add(SmellCountTotalMeasureComputer.class)
-            .add(SmellWidget.class)
-            .build();
+    public void define(final Context context) {
+        context.addExtension(SmellChecksRegistrar.class);
+        context.addExtension(SmellRulesDefinition.class);
+        context.addExtension(SmellMetrics.class);
+        context.addExtension(SmellMeasuresSensor.class);
+        context.addExtension(SmellDebtComputer.class);
+        context.addExtension(SmellCountByTypeMeasuresComputer.class);
+        context.addExtension(SmellCountTotalMeasureComputer.class);
+        if (!context.getSonarQubeVersion()
+            .isGreaterThanOrEqual(NO_MORE_WIDGETS_VERSION)) {
+            context.addExtension(SmellWidget.class);
+        }
     }
 }

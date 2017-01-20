@@ -21,7 +21,6 @@ package com.qualinsight.plugins.sonarqube.smell.plugin.extension;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import com.qualinsight.plugins.sonarqube.smell.plugin.extension.AbstractSmellMeasureComputer;
 import com.google.common.collect.ImmutableList;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
@@ -49,9 +48,13 @@ import org.sonar.api.measures.Metric.ValueType;
 @RunWith(JUnitParamsRunner.class)
 public abstract class AbstractSmellMeasureComputerTest {
 
-    protected static final Metric<Integer> dummyMetric = new Metric.Builder("DUMMY", "DUMMY", ValueType.INT).create();
+    protected static final Metric<Integer> dummyIntegerMetric = new Metric.Builder("DUMMY_INT", "DUMMY_INT", ValueType.INT).create();
 
-    private static final Iterable<Measure> DUMMY_METRIC_COLLECTION = new ArrayList<Measure>();
+    private static final Iterable<Measure> DUMMY_INT_METRIC_COLLECTION = new ArrayList<Measure>();
+
+    protected static final Metric<Integer> dummyWorkDurationMetric = new Metric.Builder("DUMMY_WORK_DUR", "DUMMY_WORK_DUR", ValueType.WORK_DUR).create();
+
+    private static final Iterable<Measure> DUMMY_WORK_DURATION_METRIC_COLLECTION = new ArrayList<Measure>();
 
     @Rule
     public MockitoRule rule = MockitoJUnit.rule();
@@ -76,16 +79,37 @@ public abstract class AbstractSmellMeasureComputerTest {
             .thenReturn(this.component);
         Mockito.when(this.component.getType())
             .thenReturn(scope);
-        Mockito.when(this.context.getChildrenMeasures(Matchers.any(String.class)))
-            .thenReturn(DUMMY_METRIC_COLLECTION);
+        switch (metricValueType()) {
+            case INT:
+                Mockito.when(this.context.getChildrenMeasures(Matchers.any(String.class)))
+                    .thenReturn(DUMMY_INT_METRIC_COLLECTION);
+                break;
+            case WORK_DUR:
+                Mockito.when(this.context.getChildrenMeasures(Matchers.any(String.class)))
+                    .thenReturn(DUMMY_WORK_DURATION_METRIC_COLLECTION);
+                break;
+            default:
+                break;
+        }
         final AbstractSmellMeasureComputer sut = sut();
         sut.compute(this.context);
 
         Mockito.verify(this.context, Mockito.times(1))
             .getComponent();
-        Mockito.verify(this.context, Mockito.times(sut.getOutputMetricsKeys()
-            .size()))
-            .addMeasure(Matchers.anyString(), Matchers.eq(0));
+        switch (metricValueType()) {
+            case INT:
+                Mockito.verify(this.context, Mockito.times(sut.getOutputMetricsKeys()
+                    .size()))
+                    .addMeasure(Matchers.anyString(), Matchers.eq(0));
+                break;
+            case WORK_DUR:
+                Mockito.verify(this.context, Mockito.times(sut.getOutputMetricsKeys()
+                    .size()))
+                    .addMeasure(Matchers.anyString(), Matchers.eq(0L));
+                break;
+            default:
+                break;
+        }
     }
 
     @SuppressWarnings("unused")
@@ -107,7 +131,7 @@ public abstract class AbstractSmellMeasureComputerTest {
         Mockito.when(this.component.getType())
             .thenReturn(scope);
         Mockito.when(this.context.getChildrenMeasures(Matchers.any(String.class)))
-            .thenReturn(DUMMY_METRIC_COLLECTION);
+            .thenReturn(DUMMY_INT_METRIC_COLLECTION);
         final AbstractSmellMeasureComputer sut = sut();
         sut.compute(this.context);
         Mockito.verify(this.context, Mockito.times(1))
@@ -131,7 +155,7 @@ public abstract class AbstractSmellMeasureComputerTest {
         Mockito.when(this.component.getType())
             .thenReturn(Type.PROJECT);
         Mockito.when(this.context.getChildrenMeasures(Matchers.any(String.class)))
-            .thenReturn(dummyMeasures());
+            .thenReturn(dummyMeasures(metricValueType()));
         final AbstractSmellMeasureComputer sut = sut();
         sut.compute(this.context);
         // There are SmellTYPES_COUNT metrics in total
@@ -139,13 +163,33 @@ public abstract class AbstractSmellMeasureComputerTest {
             .getComponent();
         Mockito.verify(this.context, Mockito.times(expectedGetChildrenMeasuresCount()))
             .getChildrenMeasures(Matchers.any(String.class));
-        Mockito.verify(this.context, Mockito.times(expectedSavedMeasuresCount()))
-            .addMeasure(Matchers.any(String.class), Matchers.eq(expectedSavedMeasureValue()));
+        switch (metricValueType()) {
+            case INT:
+                Mockito.verify(this.context, Mockito.times(expectedSavedMeasuresCount()))
+                    .addMeasure(Matchers.any(String.class), Matchers.eq(expectedSavedMeasureIntValue()));
+                break;
+            case WORK_DUR:
+                Mockito.verify(this.context, Mockito.times(expectedSavedMeasuresCount()))
+                    .addMeasure(Matchers.any(String.class), Matchers.eq(expectedSavedMeasureLongValue()));
+                break;
+            default:
+                break;
+        }
         Mockito.verifyNoMoreInteractions(this.context);
     }
 
-    protected static final Collection<Measure> dummyMeasures() {
-        final Measure measure = TestMeasure.createMeasure(1);
+    protected static final Collection<Measure> dummyMeasures(final ValueType valueType) {
+        Measure measure = null;
+        switch (valueType) {
+            case INT:
+                measure = TestMeasure.createMeasure(1);
+                break;
+            case WORK_DUR:
+                measure = TestMeasure.createMeasure(1L);
+                break;
+            default:
+                break;
+        }
         return ImmutableList.<Measure> of(measure, measure, measure);
     }
 
@@ -156,12 +200,16 @@ public abstract class AbstractSmellMeasureComputerTest {
                 .getSimpleName());
     }
 
+    protected abstract ValueType metricValueType();
+
     protected abstract AbstractSmellMeasureComputer sut();
 
     protected abstract Integer expectedGetChildrenMeasuresCount();
 
     protected abstract Integer expectedSavedMeasuresCount();
 
-    protected abstract Integer expectedSavedMeasureValue();
+    protected abstract Integer expectedSavedMeasureIntValue();
+
+    protected abstract Long expectedSavedMeasureLongValue();
 
 }

@@ -19,10 +19,15 @@
  */
 package com.qualinsight.plugins.sonarqube.smell.plugin;
 
-import java.util.List;
-import org.assertj.core.api.SoftAssertions;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
 import org.junit.Test;
-import com.qualinsight.plugins.sonarqube.smell.plugin.SmellPlugin;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.runners.MockitoJUnitRunner;
+import org.sonar.api.Plugin.Context;
+import org.sonar.api.utils.Version;
 import com.qualinsight.plugins.sonarqube.smell.plugin.extension.SmellChecksRegistrar;
 import com.qualinsight.plugins.sonarqube.smell.plugin.extension.SmellCountByTypeMeasuresComputer;
 import com.qualinsight.plugins.sonarqube.smell.plugin.extension.SmellCountTotalMeasureComputer;
@@ -32,36 +37,49 @@ import com.qualinsight.plugins.sonarqube.smell.plugin.extension.SmellMetrics;
 import com.qualinsight.plugins.sonarqube.smell.plugin.extension.SmellRulesDefinition;
 import com.qualinsight.plugins.sonarqube.smell.plugin.extension.SmellWidget;
 
+@RunWith(MockitoJUnitRunner.class)
 public class SmellPluginTest {
 
-    private static final int EXPECTED_EXTENSIONS_COUNT = 8;
+    private static final Version NO_MORE_WIDGETS_VERSION = Version.create(6, 1);
 
-    @SuppressWarnings("unchecked")
+    private static final Version STILL_WIDGETS_VERSION = Version.create(6, 0);
+
+    @Mock
+    private Context context;
+
     @Test
-    public void getExtensions_should_return_expectedExtensions() {
+    public void define_should_addExpectedExtensions_when_usingSQSmallerThan61() {
+        Mockito.when(this.context.getSonarQubeVersion())
+            .thenReturn(STILL_WIDGETS_VERSION);
         final SmellPlugin sut = new SmellPlugin();
-        @SuppressWarnings("rawtypes")
-        final List actualExtensions = sut.getExtensions();
-        final SoftAssertions softly = new SoftAssertions();
-        softly.assertThat(actualExtensions)
-            .hasSize(EXPECTED_EXTENSIONS_COUNT);
-        softly.assertThat(actualExtensions)
-            .contains(SmellChecksRegistrar.class);
-        softly.assertThat(actualExtensions)
-            .contains(SmellMetrics.class);
-        softly.assertThat(actualExtensions)
-            .contains(SmellWidget.class);
-        softly.assertThat(actualExtensions)
-            .contains(SmellRulesDefinition.class);
-        softly.assertThat(actualExtensions)
-            .contains(SmellMeasuresSensor.class);
-        softly.assertThat(actualExtensions)
-            .contains(SmellDebtComputer.class);
-        softly.assertThat(actualExtensions)
-            .contains(SmellCountByTypeMeasuresComputer.class);
-        softly.assertThat(actualExtensions)
-            .contains(SmellCountTotalMeasureComputer.class);
-        softly.assertAll();
+        sut.define(this.context);
+        verify(this.context).addExtension(Mockito.same(SmellChecksRegistrar.class));
+        verify(this.context).addExtension(Mockito.same(SmellRulesDefinition.class));
+        verify(this.context).addExtension(Mockito.same(SmellMetrics.class));
+        verify(this.context).addExtension(Mockito.same(SmellMeasuresSensor.class));
+        verify(this.context).addExtension(Mockito.same(SmellDebtComputer.class));
+        verify(this.context).addExtension(Mockito.same(SmellCountByTypeMeasuresComputer.class));
+        verify(this.context).addExtension(Mockito.same(SmellCountTotalMeasureComputer.class));
+        verify(this.context).addExtension(Mockito.same(SmellWidget.class));
+        verify(this.context).getSonarQubeVersion();
+        verifyNoMoreInteractions(this.context);
+    }
+
+    @Test
+    public void define_should_addExpectedExtensions_when_usingSQGreaterOrEqualTo61() {
+        Mockito.when(this.context.getSonarQubeVersion())
+            .thenReturn(NO_MORE_WIDGETS_VERSION);
+        final SmellPlugin sut = new SmellPlugin();
+        sut.define(this.context);
+        verify(this.context).addExtension(Mockito.same(SmellChecksRegistrar.class));
+        verify(this.context).addExtension(Mockito.same(SmellRulesDefinition.class));
+        verify(this.context).addExtension(Mockito.same(SmellMetrics.class));
+        verify(this.context).addExtension(Mockito.same(SmellMeasuresSensor.class));
+        verify(this.context).addExtension(Mockito.same(SmellDebtComputer.class));
+        verify(this.context).addExtension(Mockito.same(SmellCountByTypeMeasuresComputer.class));
+        verify(this.context).addExtension(Mockito.same(SmellCountTotalMeasureComputer.class));
+        verify(this.context).getSonarQubeVersion();
+        verifyNoMoreInteractions(this.context);
     }
 
 }

@@ -20,6 +20,7 @@
 package com.qualinsight.plugins.sonarqube.smell.plugin.extension;
 
 import java.util.List;
+import com.google.common.base.Preconditions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.sonar.api.ce.measure.Component;
@@ -27,6 +28,7 @@ import org.sonar.api.ce.measure.Component.Type;
 import org.sonar.api.ce.measure.Measure;
 import org.sonar.api.ce.measure.MeasureComputer;
 import org.sonar.api.measures.Metric;
+import org.sonar.api.measures.Metric.ValueType;
 
 /**
  * {@link MeasureComputer} that aggregates Smell measures at project level.
@@ -89,10 +91,10 @@ abstract class AbstractSmellMeasureComputer implements MeasureComputer {
     }
 
     private void compute(final Component component, final MeasureComputerContext context) {
-        LOGGER.info("Computing measures for component '{}' and level {})", component.getKey(), component.getType());
+        LOGGER.debug("Computing measures for component '{}' and level {})", component.getKey(), component.getType());
         for (final String outputMetricKey : this.outputMetricsKeys) {
             final Aggregator computer = aggregator(context, outputMetricKey);
-            LOGGER.info("Computed measure '{}': {})", outputMetricKey, computer.getResult());
+            LOGGER.debug("Computed measure '{}': {})", outputMetricKey, computer.getResult());
             computer.addMeasureToContext();
         }
     }
@@ -107,6 +109,7 @@ abstract class AbstractSmellMeasureComputer implements MeasureComputer {
     protected Aggregator aggregator(final MeasureComputerContext context, final String metricKey) {
         final Aggregator aggregator = new Aggregator(context, metricKey);
         final Iterable<Measure> measures = context.getChildrenMeasures(metricKey);
+        LOGGER.debug("current metric: '{}'", metricKey);
         if (measures != null) {
             for (final Measure measure : measures) {
                 aggregator.aggregate(measure);
@@ -127,9 +130,11 @@ abstract class AbstractSmellMeasureComputer implements MeasureComputer {
      */
     class Aggregator {
 
-        private Integer intValue = 0;
+        private Number value = 0;
 
         private String metricKey;
+
+        private ValueType valueType;
 
         private MeasureComputerContext context;
 
@@ -142,6 +147,19 @@ abstract class AbstractSmellMeasureComputer implements MeasureComputer {
         public Aggregator(final MeasureComputerContext context, final String metricKey) {
             this.context = context;
             this.metricKey = metricKey;
+            final Metric<Number> metric = SmellMetrics.metricFor(metricKey);
+            this.valueType = Preconditions.checkNotNull(metric, "No Metric could be found for metric key '{}'", metricKey)
+                .getType();
+            switch (this.valueType) {
+                case INT:
+                    this.value = Integer.valueOf(0);
+                    break;
+                case WORK_DUR:
+                    this.value = Long.valueOf(0);
+                    break;
+                default:
+                    throw new UnsupportedOperationException();
+            }
         }
 
         /**
@@ -150,7 +168,7 @@ abstract class AbstractSmellMeasureComputer implements MeasureComputer {
          * @return aggregation result as a {@link Number}
          */
         public Number getResult() {
-            return this.intValue;
+            return this.value;
         }
 
         /**
@@ -159,14 +177,32 @@ abstract class AbstractSmellMeasureComputer implements MeasureComputer {
          * @param measure {@link Measure} from which the value to be aggregated has to be extracted.
          */
         public void aggregate(final Measure measure) {
-            this.intValue += measure.getIntValue();
+            switch (this.valueType) {
+                case INT:
+                    this.value = this.value.intValue() + measure.getIntValue();
+                    break;
+                case WORK_DUR:
+                    this.value = this.value.longValue() + measure.getLongValue();
+                    break;
+                default:
+                    throw new UnsupportedOperationException();
+            }
         }
 
         /**
          * Saves the aggregation result to the {@link MeasureComputerContext}.
          */
         public void addMeasureToContext() {
-            this.context.addMeasure(this.metricKey, this.intValue);
+            switch (this.valueType) {
+                case INT:
+                    this.context.addMeasure(this.metricKey, this.value.intValue());
+                    break;
+                case WORK_DUR:
+                    this.context.addMeasure(this.metricKey, this.value.longValue());
+                    break;
+                default:
+                    throw new UnsupportedOperationException();
+            }
         }
 
     }
