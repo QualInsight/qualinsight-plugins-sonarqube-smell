@@ -7,7 +7,7 @@
   </parent>
   <groupId>com.qualinsight.plugins.sonarqube</groupId>
   <artifactId>qualinsight-plugins-sonarqube-smell</artifactId>
-  <version>4.0.0-RC2</version>
+  <version>4.0.0-RC3-SNAPSHOT</version>
   <description>Parent pom of QualInsight Code Smells plugin for SonarQube and its companion Java api library.</description>
   <url>https://github.com/QualInsight/qualinsight-plugins-sonarqube-smell</url>
   <organization>
@@ -38,7 +38,7 @@
     <connection>scm:git:git@github.com:QualInsight/qualinsight-plugins-sonarqube-smell.git</connection>
     <developerConnection>scm:git:git@github.com:QualInsight/qualinsight-plugins-sonarqube-smell.git</developerConnection>
     <url>https://github.com/QualInsight/qualinsight-plugins-sonarqube-smell.git</url>
-    <tag>qualinsight-plugins-sonarqube-smell-4.0.0-RC2</tag>
+    <tag>HEAD</tag>
   </scm>
   <properties>
     <!-- License properties -->
