@@ -21,12 +21,12 @@ package com.qualinsight.plugins.sonarqube.smell.plugin.extension;
 
 import java.util.List;
 import com.google.common.collect.Lists;
-import org.sonar.api.batch.Sensor;
-import org.sonar.api.batch.SensorContext;
 import org.sonar.api.batch.fs.FilePredicate;
 import org.sonar.api.batch.fs.FileSystem;
 import org.sonar.api.batch.fs.InputFile;
-import org.sonar.api.resources.Project;
+import org.sonar.api.batch.sensor.Sensor;
+import org.sonar.api.batch.sensor.SensorContext;
+import org.sonar.api.batch.sensor.SensorDescriptor;
 import org.sonar.check.Rule;
 import org.sonar.plugins.java.Java;
 import com.qualinsight.plugins.sonarqube.smell.api.annotation.Smell;
@@ -55,22 +55,22 @@ public final class SmellMeasuresSensor implements Sensor {
     }
 
     @Override
-    public boolean shouldExecuteOnProject(final Project project) {
-        return this.fileSystem.hasFiles(this.javaFilesPredicate);
+    public String toString() {
+        return getClass().getSimpleName();
     }
 
     @Override
-    public void analyse(final Project project, final SensorContext context) {
+    public void describe(final SensorDescriptor descriptor) {
+        descriptor.onlyOnLanguage(Java.KEY);
+    }
+
+    @Override
+    public void execute(final SensorContext context) {
         final List<InputFile> inputFiles = Lists.newArrayList(this.fileSystem.inputFiles(this.javaFilesPredicate));
         final SmellMeasurer measurer = new SmellMeasurer(context);
         for (final InputFile inputFile : inputFiles) {
             measurer.measure(inputFile);
         }
-    }
-
-    @Override
-    public String toString() {
-        return getClass().getSimpleName();
     }
 
 }

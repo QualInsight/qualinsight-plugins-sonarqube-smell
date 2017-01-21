@@ -31,9 +31,8 @@ import com.google.common.io.Files;
 import org.apache.commons.io.Charsets;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.sonar.api.batch.SensorContext;
 import org.sonar.api.batch.fs.InputFile;
-import org.sonar.api.measures.Measure;
+import org.sonar.api.batch.sensor.SensorContext;
 import com.qualinsight.plugins.sonarqube.smell.api.annotation.Smell;
 import com.qualinsight.plugins.sonarqube.smell.api.model.SmellType;
 

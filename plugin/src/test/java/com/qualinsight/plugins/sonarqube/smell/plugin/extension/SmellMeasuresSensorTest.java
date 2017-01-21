@@ -34,14 +34,13 @@ import org.mockito.Matchers;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
-import org.sonar.api.batch.SensorContext;
 import org.sonar.api.batch.fs.FilePredicate;
 import org.sonar.api.batch.fs.FilePredicates;
 import org.sonar.api.batch.fs.FileSystem;
 import org.sonar.api.batch.fs.InputFile;
+import org.sonar.api.batch.sensor.SensorContext;
 import org.sonar.api.batch.sensor.measure.NewMeasure;
 import org.sonar.api.measures.Metric;
-import org.sonar.api.resources.Resource;
 import org.sonar.plugins.java.Java;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -58,9 +57,6 @@ public class SmellMeasuresSensorTest {
 
     @Mock
     public InputFile inputFile;
-
-    @Mock
-    public Resource resource;
 
     @Mock
     public NewMeasure<Serializable> measure;
@@ -86,8 +82,6 @@ public class SmellMeasuresSensorTest {
             .thenReturn(testFile);
         Mockito.when(this.inputFile.absolutePath())
             .thenReturn(testFile.getAbsolutePath());
-        Mockito.when(this.context.getResource(this.inputFile))
-            .thenReturn(this.resource);
         Mockito.when(this.context.newMeasure())
             .thenReturn(this.measure);
         Mockito.when(this.measure.forMetric(Mockito.any()))
@@ -96,7 +90,7 @@ public class SmellMeasuresSensorTest {
             .thenReturn(this.measure);
         Mockito.when(this.measure.on(Mockito.any()))
             .thenReturn(this.measure);
-        sut.analyse(null, this.context);
+        sut.execute(this.context);
         Mockito.verify(this.inputFile, Mockito.times(1))
             .file();
         final ArgumentCaptor<Metric> metricCaptor = ArgumentCaptor.forClass(Metric.class);
