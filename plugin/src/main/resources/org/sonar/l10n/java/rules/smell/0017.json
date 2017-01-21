@@ -1,0 +1,13 @@
+{
+  "title": "Reinvented wheel",
+  "type": "CODE_SMELL",
+  "status": "ready",
+  "remediation": {
+    "func": "Linear",
+    "coeff": "1min"
+  },
+  "tags": [
+    "ecosystem"
+  ],
+  "defaultSeverity": "Blocker"
+}

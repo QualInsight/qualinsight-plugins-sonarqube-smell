@@ -19,11 +19,7 @@
  */
 package com.qualinsight.plugins.sonarqube.smell.plugin.check;
 
-import org.sonar.api.server.rule.RulesDefinition;
-import org.sonar.check.Priority;
 import org.sonar.check.Rule;
-import org.sonar.squidbridge.annotations.SqaleLinearRemediation;
-import org.sonar.squidbridge.annotations.SqaleSubCharacteristic;
 import com.qualinsight.plugins.sonarqube.smell.api.model.SmellType;
 
 /**
@@ -31,12 +27,7 @@ import com.qualinsight.plugins.sonarqube.smell.api.model.SmellType;
  *
  * @author Michel Pawlak
  */
-@Rule(key = "0022", name = "Wrong language", description = "Wrong language (french, english, german...) is being used.", priority = Priority.MAJOR, tags = {
-    "documentation",
-    "confusing"
-})
-@SqaleLinearRemediation(coeff = "1min", effortToFixDescription = "")
-@SqaleSubCharacteristic(value = RulesDefinition.SubCharacteristics.UNDERSTANDABILITY)
+@Rule(key = "0022")
 public class WrongLanguageSmellCheck extends AbstractSmellCheck {
 
     @Override

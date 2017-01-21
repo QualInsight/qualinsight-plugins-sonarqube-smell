@@ -1,0 +1,15 @@
+{
+  "title": "Abbreviations usage",
+  "type": "CODE_SMELL",
+  "status": "ready",
+  "remediation": {
+    "func": "Linear",
+    "coeff": "1min"
+  },
+  "tags": [
+    "convention",
+    "brain-overload",
+    "bad-practice"
+  ],
+  "defaultSeverity": "Major"
+}

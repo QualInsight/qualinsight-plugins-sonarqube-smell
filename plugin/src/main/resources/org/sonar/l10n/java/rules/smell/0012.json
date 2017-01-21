@@ -1,0 +1,16 @@
+{
+  "title": "Non exception",
+  "type": "CODE_SMELL",
+  "status": "ready",
+  "remediation": {
+    "func": "Linear",
+    "coeff": "1min"
+  },
+  "tags": [
+    "design",
+    "performance",
+    "bad-practice",
+    "error-handling"
+  ],
+  "defaultSeverity": "Major"
+}

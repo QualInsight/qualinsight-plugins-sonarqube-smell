@@ -298,7 +298,7 @@ public class SmellMetricsTest {
                 0d,
                 "Technical debt reported by developers.",
                 Metric.DIRECTION_WORST,
-                CoreMetrics.DOMAIN_TECHNICAL_DEBT
+                CoreMetrics.DOMAIN_MAINTAINABILITY
             },
             new Object[] {
                 SmellMetrics.SMELL_COUNT_ANTI_PATTERN,

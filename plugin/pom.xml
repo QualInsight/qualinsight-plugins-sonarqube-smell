@@ -18,6 +18,7 @@
     <lib.java-checks-testkit.version>4.4.0.8066</lib.java-checks-testkit.version>
     <lib.sslr-squid-bridge.version>2.6.1</lib.sslr-squid-bridge.version>
     <lib.guava.version>19.0</lib.guava.version>
+    <lib.gson.version>2.8.0</lib.gson.version>
     <lib.commons-lang.version>2.6</lib.commons-lang.version>
     <lib.commons-io.version>2.4</lib.commons-io.version>
     <lib.slf4j-api.version>1.7.21</lib.slf4j-api.version>
@@ -42,7 +43,7 @@
       <version>${lib.sonar-plugin-api.version}</version>
       <scope>provided</scope>
     </dependency>
-	<dependency>
+    <dependency>
       <groupId>org.sonarsource.sslr-squid-bridge</groupId>
       <artifactId>sslr-squid-bridge</artifactId>
       <version>${lib.sslr-squid-bridge.version}</version>
@@ -131,6 +132,11 @@
       <artifactId>guava</artifactId>
       <version>${lib.guava.version}</version>
       <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.google.code.gson</groupId>
+      <artifactId>gson</artifactId>
+      <version>${lib.gson.version}</version>
     </dependency>
     <dependency>
       <groupId>com.github.stephenc.jcip</groupId>

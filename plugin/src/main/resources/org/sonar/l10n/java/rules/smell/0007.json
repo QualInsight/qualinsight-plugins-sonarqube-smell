@@ -1,0 +1,14 @@
+{
+  "title": "Indecent exposure",
+  "type": "CODE_SMELL",
+  "status": "ready",
+  "remediation": {
+    "func": "Linear",
+    "coeff": "1min"
+  },
+  "tags": [
+    "design",
+    "bad-practice"
+  ],
+  "defaultSeverity": "Critical"
+}

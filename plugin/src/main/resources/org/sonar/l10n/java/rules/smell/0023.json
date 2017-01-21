@@ -1,0 +1,14 @@
+{
+  "title": "Wrong logic",
+  "type": "CODE_SMELL",
+  "status": "ready",
+  "remediation": {
+    "func": "Linear",
+    "coeff": "1min"
+  },
+  "tags": [
+    "logic",
+    "bug"
+  ],
+  "defaultSeverity": "Blocker"
+}

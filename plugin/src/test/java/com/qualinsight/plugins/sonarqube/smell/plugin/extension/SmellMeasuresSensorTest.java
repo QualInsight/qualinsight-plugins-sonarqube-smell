@@ -22,6 +22,7 @@ package com.qualinsight.plugins.sonarqube.smell.plugin.extension;
 import static org.junit.Assert.assertEquals;
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.List;
 import com.google.common.collect.ImmutableList;
 import org.assertj.core.api.Assertions;
@@ -38,11 +39,10 @@ import org.sonar.api.batch.fs.FilePredicate;
 import org.sonar.api.batch.fs.FilePredicates;
 import org.sonar.api.batch.fs.FileSystem;
 import org.sonar.api.batch.fs.InputFile;
-import org.sonar.api.measures.Measure;
+import org.sonar.api.batch.sensor.measure.NewMeasure;
+import org.sonar.api.measures.Metric;
 import org.sonar.api.resources.Resource;
 import org.sonar.plugins.java.Java;
-import com.qualinsight.plugins.sonarqube.smell.plugin.extension.SmellMeasuresSensor;
-import com.qualinsight.plugins.sonarqube.smell.plugin.extension.SmellMetrics;
 
 @RunWith(MockitoJUnitRunner.class)
 public class SmellMeasuresSensorTest {
@@ -61,6 +61,9 @@ public class SmellMeasuresSensorTest {
 
     @Mock
     public Resource resource;
+
+    @Mock
+    public NewMeasure<Serializable> measure;
 
     @Mock
     public SensorContext context;
@@ -85,29 +88,38 @@ public class SmellMeasuresSensorTest {
             .thenReturn(testFile.getAbsolutePath());
         Mockito.when(this.context.getResource(this.inputFile))
             .thenReturn(this.resource);
+        Mockito.when(this.context.newMeasure())
+            .thenReturn(this.measure);
+        Mockito.when(this.measure.forMetric(Mockito.any()))
+            .thenReturn(this.measure);
+        Mockito.when(this.measure.withValue(Mockito.any()))
+            .thenReturn(this.measure);
+        Mockito.when(this.measure.on(Mockito.any()))
+            .thenReturn(this.measure);
         sut.analyse(null, this.context);
         Mockito.verify(this.inputFile, Mockito.times(1))
             .file();
-        final ArgumentCaptor<Measure> captor = ArgumentCaptor.forClass(Measure.class);
-        // 2 times because of smell count + debt
-        Mockito.verify(this.context, Mockito.times(2))
-            .getResource((Matchers.eq(this.inputFile)));
+        final ArgumentCaptor<Metric> metricCaptor = ArgumentCaptor.forClass(Metric.class);
+        final ArgumentCaptor<Serializable> valueCaptor = ArgumentCaptor.forClass(Serializable.class);
         // 3 because of : SMELL_COUNT_ANTI_PATTERN, SMELL_COUNT, SMELL_DEBT
         Mockito.verify(this.context, Mockito.times(3))
-            .saveMeasure(Matchers.eq(this.resource), captor.capture());
-        final List<Measure> measures = captor.getAllValues();
-        assertEquals(SmellMetrics.SMELL_COUNT_ANTI_PATTERN, measures.get(0)
-            .getMetric());
-        assertEquals(Integer.valueOf(7), measures.get(0)
-            .getIntValue());
-        assertEquals(SmellMetrics.SMELL_COUNT, measures.get(1)
-            .getMetric());
-        assertEquals(Integer.valueOf(7), measures.get(1)
-            .getIntValue());
-        assertEquals(SmellMetrics.SMELL_DEBT, measures.get(2)
-            .getMetric());
-        assertEquals(Integer.valueOf(70), measures.get(2)
-            .getIntValue());
+            .newMeasure();
+        Mockito.verify(this.measure, Mockito.times(3))
+            .save();
+        Mockito.verify(this.measure, Mockito.times(3))
+            .forMetric(metricCaptor.capture());
+        final List<Metric> capturedMetrics = metricCaptor.getAllValues();
+        assertEquals(SmellMetrics.SMELL_COUNT_ANTI_PATTERN, capturedMetrics.get(0));
+        assertEquals(SmellMetrics.SMELL_COUNT, capturedMetrics.get(1));
+        assertEquals(SmellMetrics.SMELL_DEBT, capturedMetrics.get(2));
+        Mockito.verify(this.measure, Mockito.times(3))
+            .withValue(valueCaptor.capture());
+        final List<Serializable> capturedValues = valueCaptor.getAllValues();
+        assertEquals(Integer.valueOf(7), capturedValues.get(0));
+        assertEquals(Integer.valueOf(7), capturedValues.get(1));
+        assertEquals(Long.valueOf(70), capturedValues.get(2));
+        Mockito.verify(this.measure, Mockito.times(3))
+            .on(Mockito.any());
         Mockito.verifyNoMoreInteractions(this.context);
     }
 

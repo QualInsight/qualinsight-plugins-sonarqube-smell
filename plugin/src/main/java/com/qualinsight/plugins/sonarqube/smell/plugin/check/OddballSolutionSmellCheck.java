@@ -19,10 +19,7 @@
  */
 package com.qualinsight.plugins.sonarqube.smell.plugin.check;
 
-import org.sonar.check.Priority;
 import org.sonar.check.Rule;
-import org.sonar.squidbridge.annotations.SqaleLinearRemediation;
-import org.sonar.squidbridge.annotations.SqaleSubCharacteristic;
 import com.qualinsight.plugins.sonarqube.smell.api.model.SmellType;
 
 /**
@@ -30,16 +27,7 @@ import com.qualinsight.plugins.sonarqube.smell.api.model.SmellType;
  *
  * @author Michel Pawlak
  */
-@Rule(
-    key = "0013",
-    name = "Oddball solution",
-    description = "The problem is solved one way throughout the system and the same problem is solved another way in the same system. One of the solutions is the oddball or the inconsistent solution and has to be eliminated.",
-    priority = Priority.CRITICAL,
-    tags = {
-        "design"
-    })
-@SqaleLinearRemediation(coeff = "1min", effortToFixDescription = "")
-@SqaleSubCharacteristic(value = "MAINTAINABILITY_COMPLIANCE")
+@Rule(key = "0013")
 public class OddballSolutionSmellCheck extends AbstractSmellCheck {
 
     @Override

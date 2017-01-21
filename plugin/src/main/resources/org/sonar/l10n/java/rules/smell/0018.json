@@ -1,0 +1,15 @@
+{
+  "title": "Solution sprawl",
+  "type": "CODE_SMELL",
+  "status": "ready",
+  "remediation": {
+    "func": "Linear",
+    "coeff": "1min"
+  },
+  "tags": [
+    "design",
+    "testability",
+    "brain-overload"
+  ],
+  "defaultSeverity": "Critical"
+}

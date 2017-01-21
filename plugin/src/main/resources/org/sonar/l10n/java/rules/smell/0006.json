@@ -1,0 +1,14 @@
+{
+  "title": "How comment",
+  "type": "CODE_SMELL",
+  "status": "ready",
+  "remediation": {
+    "func": "Linear",
+    "coeff": "1min"
+  },
+  "tags": [
+    "documentation",
+    "bad-practice"
+  ],
+  "defaultSeverity": "Major"
+}

@@ -1,0 +1,16 @@
+{
+  "title": "Overcomplicated algorithm",
+  "type": "CODE_SMELL",
+  "status": "ready",
+  "remediation": {
+    "func": "Linear",
+    "coeff": "1min"
+  },
+  "tags": [
+    "logic",
+    "testability",
+    "performance",
+    "brain-overload"
+  ],
+  "defaultSeverity": "Major"
+}

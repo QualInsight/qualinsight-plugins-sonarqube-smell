@@ -1,0 +1,13 @@
+{
+  "title": "Bad framework usage",
+  "type": "CODE_SMELL",
+  "status": "ready",
+  "remediation": {
+    "func": "Linear",
+    "coeff": "1min"
+  },
+  "tags": [
+    "ecosystem"
+  ],
+  "defaultSeverity": "Blocker"
+}

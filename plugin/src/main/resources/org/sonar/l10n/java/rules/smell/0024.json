@@ -1,0 +1,14 @@
+{
+  "title": "Missing documentation",
+  "type": "CODE_SMELL",
+  "status": "ready",
+  "remediation": {
+    "func": "Linear",
+    "coeff": "1min"
+  },
+  "tags": [
+    "documentation",
+    "todo"
+  ],
+  "defaultSeverity": "Critical"
+}

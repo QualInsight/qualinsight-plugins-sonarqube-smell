@@ -1,0 +1,15 @@
+{
+  "title": "Useless test",
+  "type": "CODE_SMELL",
+  "status": "ready",
+  "remediation": {
+    "func": "Linear",
+    "coeff": "1min"
+  },
+  "tags": [
+    "tests",
+    "logic",
+    "confusing"
+  ],
+  "defaultSeverity": "Major"
+}

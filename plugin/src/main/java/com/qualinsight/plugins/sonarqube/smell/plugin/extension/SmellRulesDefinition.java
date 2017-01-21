@@ -19,8 +19,18 @@
  */
 package com.qualinsight.plugins.sonarqube.smell.plugin.extension;
 
+import java.io.IOException;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
+import java.util.Locale;
+import javax.annotation.Nullable;
 import com.google.common.collect.ImmutableList;
+import com.google.common.io.Resources;
+import com.google.gson.Gson;
+import org.sonar.api.rule.RuleStatus;
+import org.sonar.api.rules.RuleType;
+import org.sonar.api.server.debt.DebtRemediationFunction;
 import org.sonar.api.server.rule.RulesDefinition;
 import org.sonar.plugins.java.Java;
 import org.sonar.squidbridge.annotations.AnnotationBasedRulesDefinition;
@@ -42,6 +52,8 @@ public final class SmellRulesDefinition implements RulesDefinition {
      */
     public static final String REPOSITORY_NAME = "Smells";
 
+    private final Gson gson = new Gson();
+
     @SuppressWarnings("rawtypes")
     @Override
     public void define(final Context context) {
@@ -50,10 +62,85 @@ public final class SmellRulesDefinition implements RulesDefinition {
         final List<Class> checkClasses = ImmutableList.<Class> builder()
             .addAll(SmellChecksRegistrar.checkClasses())
             .build();
-        AnnotationBasedRulesDefinition.load(repository, Java.KEY, checkClasses);
+        new AnnotationBasedRulesDefinition(repository, Java.KEY).addRuleClasses(false, checkClasses);
         for (final NewRule rule : repository.rules()) {
-            rule.setInternalKey(rule.key());
+            final String metadataKey = rule.key();
+            // Setting internal key is essential for rule templates (see SONAR-6162), and it is not done by AnnotationBasedRulesDefinition from
+            // sslr-squid-bridge version 2.5.1:
+            rule.setInternalKey(metadataKey);
+            rule.setHtmlDescription(readRuleDefinitionResource(metadataKey + ".html"));
+            addMetadata(rule, metadataKey);
         }
         repository.done();
+    }
+
+    @Nullable
+    private static String readRuleDefinitionResource(final String fileName) {
+        final URL resource = SmellRulesDefinition.class.getResource("/org/sonar/l10n/java/rules/smell/" + fileName);
+        if (resource == null) {
+            return null;
+        }
+        try {
+            return Resources.toString(resource, StandardCharsets.UTF_8);
+        } catch (final IOException e) {
+            throw new IllegalStateException("Failed to read: " + resource, e);
+        }
+    }
+
+    private void addMetadata(final NewRule rule, final String metadataKey) {
+        final String json = readRuleDefinitionResource(metadataKey + ".json");
+        if (json != null) {
+            final RuleMetadata metadata = this.gson.fromJson(json, RuleMetadata.class);
+            rule.setSeverity(metadata.defaultSeverity.toUpperCase(Locale.US));
+            rule.setName(metadata.title);
+            rule.setTags(metadata.tags);
+            rule.setStatus(RuleStatus.valueOf(metadata.status.toUpperCase(Locale.US)));
+            rule.setType(RuleType.valueOf(metadata.type));
+
+            if (metadata.remediation != null) {
+                // metadata.remediation is null for template rules
+                rule.setDebtRemediationFunction(metadata.remediation.remediationFunction(rule.debtRemediationFunctions()));
+                rule.setGapDescription(metadata.remediation.linearDesc);
+            }
+        }
+    }
+
+    private static class RuleMetadata {
+
+        String title;
+
+        String status;
+
+        @Nullable
+        Remediation remediation;
+
+        String[] tags;
+
+        String defaultSeverity;
+
+        String type;
+    }
+
+    private static class Remediation {
+
+        String func;
+
+        String constantCost;
+
+        String linearDesc;
+
+        String linearOffset;
+
+        String coeff;
+
+        private DebtRemediationFunction remediationFunction(final DebtRemediationFunctions drf) {
+            if (this.func.startsWith("Constant")) {
+                return drf.constantPerIssue(this.constantCost.replace("mn", "min"));
+            }
+            if ("Linear".equals(this.func)) {
+                return drf.linear(this.coeff.replace("mn", "min"));
+            }
+            return drf.linearWithOffset(this.coeff.replace("mn", "min"), this.linearOffset.replace("mn", "min"));
+        }
     }
 }

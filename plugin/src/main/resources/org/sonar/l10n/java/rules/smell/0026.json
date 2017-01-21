@@ -1,0 +1,13 @@
+{
+  "title": "Uncategorized smell",
+  "type": "CODE_SMELL",
+  "status": "ready",
+  "remediation": {
+    "func": "Linear",
+    "coeff": "1min"
+  },
+  "tags": [
+    "uncategorized"
+  ],
+  "defaultSeverity": "Minor"
+}

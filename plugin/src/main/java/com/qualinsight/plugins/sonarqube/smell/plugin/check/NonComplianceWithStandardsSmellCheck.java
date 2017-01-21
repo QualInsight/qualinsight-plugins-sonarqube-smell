@@ -19,10 +19,7 @@
  */
 package com.qualinsight.plugins.sonarqube.smell.plugin.check;
 
-import org.sonar.check.Priority;
 import org.sonar.check.Rule;
-import org.sonar.squidbridge.annotations.SqaleLinearRemediation;
-import org.sonar.squidbridge.annotations.SqaleSubCharacteristic;
 import com.qualinsight.plugins.sonarqube.smell.api.model.SmellType;
 
 /**
@@ -30,11 +27,7 @@ import com.qualinsight.plugins.sonarqube.smell.api.model.SmellType;
  *
  * @author Michel Pawlak
  */
-@Rule(key = "0027", name = "Non compliance with standards", description = "The code does not comply with team or company development standards.", priority = Priority.CRITICAL, tags = {
-    "non-compliance"
-})
-@SqaleLinearRemediation(coeff = "1min", effortToFixDescription = "")
-@SqaleSubCharacteristic(value = "COMPLIANCE")
+@Rule(key = "0027")
 public class NonComplianceWithStandardsSmellCheck extends AbstractSmellCheck {
 
     @Override

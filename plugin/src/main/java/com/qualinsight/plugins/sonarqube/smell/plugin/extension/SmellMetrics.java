@@ -19,6 +19,7 @@
  */
 package com.qualinsight.plugins.sonarqube.smell.plugin.extension;
 
+import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.util.EnumMap;
 import java.util.HashMap;
@@ -44,11 +45,11 @@ public final class SmellMetrics implements Metrics {
 
     public static final String DOMAIN = "Code Smells";
 
-    private static final List<Metric<Number>> SMELL_METRICS;
+    private static final List<Metric<Serializable>> SMELL_METRICS;
 
-    private static final Map<SmellType, Metric<Number>> SMELL_METRICS_BY_TYPE = new EnumMap<>(SmellType.class);
+    private static final Map<SmellType, Metric<Serializable>> SMELL_METRICS_BY_TYPE = new EnumMap<>(SmellType.class);
 
-    private static final Map<String, Metric<Number>> SMELL_METRICS_BY_KEY = new HashMap<>();
+    private static final Map<String, Metric<Serializable>> SMELL_METRICS_BY_KEY = new HashMap<>();
 
     /**
      * Metric that tracks the debt related to Smell issues.
@@ -56,7 +57,7 @@ public final class SmellMetrics implements Metrics {
     public static final Metric<Long> SMELL_DEBT = new Metric.Builder("SMELL_DEBT", "Code Smells debt (reported by manual reviews)", ValueType.WORK_DUR).setBestValue(0d)
         .setDescription("Technical debt reported by developers.")
         .setDirection(Metric.DIRECTION_WORST)
-        .setDomain(CoreMetrics.DOMAIN_TECHNICAL_DEBT)
+        .setDomain(CoreMetrics.DOMAIN_MAINTAINABILITY)
         .setOptimizedBestValue(true)
         .create();
 
@@ -350,10 +351,10 @@ public final class SmellMetrics implements Metrics {
         SMELL_METRICS = new LinkedList<>();
         for (final Field field : SmellMetrics.class.getFields()) {
             final String fieldName = field.getName();
-            final Metric<Number> metric;
+            final Metric<Serializable> metric;
             if (Metric.class.isAssignableFrom(field.getType())) {
                 try {
-                    metric = (Metric<Number>) field.get(null);
+                    metric = (Metric<Serializable>) field.get(null);
                     SMELL_METRICS.add(metric);
                     SMELL_METRICS_BY_KEY.put(metric.getKey(), metric);
                 } catch (final IllegalAccessException e) {
@@ -381,7 +382,7 @@ public final class SmellMetrics implements Metrics {
      * @return a {@link Metric} corresponding to the {@link SmellType}
      */
     @CheckForNull
-    public static final Metric<Number> metricFor(final SmellType type) {
+    public static final Metric<Serializable> metricFor(final SmellType type) {
         return SMELL_METRICS_BY_TYPE.get(type);
     }
 
@@ -392,7 +393,7 @@ public final class SmellMetrics implements Metrics {
      * @return a {@link Metric} corresponding to the key
      */
     @CheckForNull
-    public static final Metric<Number> metricFor(final String metricKey) {
+    public static final Metric<Serializable> metricFor(final String metricKey) {
         return SMELL_METRICS_BY_KEY.get(metricKey);
     }
 
@@ -402,8 +403,8 @@ public final class SmellMetrics implements Metrics {
      * @return {@link List} of {@link Metric}
      */
     @CheckForNull
-    public static final List<Metric<Number>> metrics() {
-        return ImmutableList.<Metric<Number>> copyOf(SMELL_METRICS);
+    public static final List<Metric<Serializable>> metrics() {
+        return ImmutableList.<Metric<Serializable>> copyOf(SMELL_METRICS);
     }
 
 }

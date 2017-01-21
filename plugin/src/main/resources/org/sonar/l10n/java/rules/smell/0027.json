@@ -1,0 +1,13 @@
+{
+  "title": "Non compliance with standards",
+  "type": "CODE_SMELL",
+  "status": "ready",
+  "remediation": {
+    "func": "Linear",
+    "coeff": "1min"
+  },
+  "tags": [
+    "non-compliance"
+  ],
+  "defaultSeverity": "Critical"
+}
