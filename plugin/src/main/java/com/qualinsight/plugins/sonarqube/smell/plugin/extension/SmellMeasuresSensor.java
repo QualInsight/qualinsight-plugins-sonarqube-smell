@@ -61,6 +61,8 @@ public final class SmellMeasuresSensor implements Sensor {
 
     @Override
     public void describe(final SensorDescriptor descriptor) {
+        descriptor.name(this.getClass()
+            .getSimpleName());
         descriptor.onlyOnLanguage(Java.KEY);
     }
 
