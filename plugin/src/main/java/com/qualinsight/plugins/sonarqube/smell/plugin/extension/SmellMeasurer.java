@@ -37,7 +37,7 @@ import com.qualinsight.plugins.sonarqube.smell.api.annotation.Smell;
 import com.qualinsight.plugins.sonarqube.smell.api.model.SmellType;
 
 /**
- * Helper class that scans {@link InputFile}s for the presence of {@link Smell} annotations and saves {@link Measure}s accordingly.
+ * Helper class that scans {@link InputFile}s for the presence of {@link Smell} annotations and saves Measures accordingly.
  *
  * @author Michel Pawlak
  */
@@ -56,7 +56,7 @@ public final class SmellMeasurer {
     /**
      * {@link SmellCountByTypeMeasuresComputer} constructor
      *
-     * @param context context to be used to save {@link Measure}.
+     * @param context context to be used to save Measure.
      */
     public SmellMeasurer(final SensorContext context) {
         this.context = context;

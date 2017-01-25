@@ -44,6 +44,16 @@ public final class SmellPlugin implements Plugin {
 
     private static final Version NO_MORE_WIDGETS_VERSION = Version.create(6, 1);
 
+    /**
+     * This method is executed at runtime when:
+     * <ul>
+     * <li>Web Server starts</li>
+     * <li>Compute Engine starts</li>
+     * <li>Scanner starts</li>
+     * </ul>
+     *
+     * @param context the Context to which extensions have to be added to.
+     */
     @Override
     public void define(final Context context) {
         context.addExtension(SmellChecksRegistrar.class);
