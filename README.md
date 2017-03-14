@@ -7,6 +7,6 @@ If you want more information, read the [project's rationale](https://github.com/
 
 Installation and usage Documentation is available on [the project's wiki](https://github.com/QualInsight/qualinsight-plugins-sonarqube-smell/wiki).
 
-New feature ideas and [contributions](https://github.com/QualInsight/qualinsight-plugins-sonarqube-smell/wiki/Contributing) are more than welcome. A [Google group](https://groups.google.com/forum/#!forum/code-smells) named [Code Smells](https://groups.google.com/forum/#!forum/code-smells) has been created in order to facilitate discussions about this plugin.
+New feature ideas and [contributions](https://github.com/QualInsight/qualinsight-contribution-guidelines/wiki) are more than welcome. A [Google group](https://groups.google.com/forum/#!forum/code-smells) named [Code Smells](https://groups.google.com/forum/#!forum/code-smells) has been created in order to facilitate discussions about this plugin.
 
 I hope you'll enjoy this small plugin as much as I enjoyed writing it ! Do not hesitate to request new Code Smells types and send comments as well as requests for improvement. 
